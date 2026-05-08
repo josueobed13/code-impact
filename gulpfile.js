@@ -147,5 +147,4 @@ export function dev() {
 // ==========================
 // eliminar luego de que cargue en render
 // ==========================
-export const build = series(js, css, imagenes, animations, videos)
 export default build
