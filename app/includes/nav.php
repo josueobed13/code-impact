@@ -2,13 +2,13 @@
     <div class="container header__container">
 
         <div class="header__logo">
-            <a href="index.php">
+            <a href="<?= BASE_URL ?>index.php">
                 <img src="<?= BASE_URL ?>build/img/logos/logo.svg" alt="CodeImpact">
             </a>
         </div>
 
         <nav class="header__nav">
-            <a href="<?= BASE_URL ?>servicios/" class="header__link">Servicios</a>
+            <a href="<?= BASE_URL ?>servicios/servicios.php" class="header__link">Servicios</a>
             <a href="<?= BASE_URL ?>proyectos.php" class="header__link">Proyectos</a>
             <a href="<?= BASE_URL ?>nosotros.php" class="header__link">Nosotros</a>
             <a href="<?= BASE_URL ?>contacto.php" class="header__link">Contacto</a>
