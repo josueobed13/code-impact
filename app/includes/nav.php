@@ -50,7 +50,7 @@
 
         <div class="mobile-nav__section">
             <p class="mobile-nav__title">Empresa</p>
-            <a href="<?= BASE_URL ?>servicios/" class="header__link">Servicios</a>
+            <a href="<?= BASE_URL ?>servicios/servicios.php" class="header__link">Servicios</a>
             <a href="<?= BASE_URL ?>proyectos.php" class="header__link">Proyectos</a>
             <a href="<?= BASE_URL ?>nosotros.php" class="header__link">Nosotros</a>
             <a href="<?= BASE_URL ?>contacto.php" class="header__link">Contacto</a>

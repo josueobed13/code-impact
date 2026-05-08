@@ -11,7 +11,7 @@
             </p>
 
             <div class="hero__buttons">
-                <a href="/codeImpact/public/servicios/" class="btn btn--primary">Ver servicios</a>
+                <a href="<?= BASE_URL ?>servicios/servicios.php" class="btn btn--primary">Ver servicios</a>
                 <a href="https://wa.me/51970503691?text=Hola%20CodeImpact%20Perú,%20quiero%20hacer%20una%20consulta" class="btn btn--primary">Solicitar asesoría</a>
             </div>
         </div>
