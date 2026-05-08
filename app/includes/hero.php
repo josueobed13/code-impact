@@ -17,8 +17,8 @@
         </div>
 
         <div class="hero__media">
-            <video autoplay muted loop playsinline poster="build/img/hero/vid-hero.jpg">
-                <source src="/codeImpact/public/build/video/hero.mp4" type="video/mp4">
+            <video autoplay muted loop playsinline poster="<?= BASE_URL ?>build/img/hero/vid-hero.jpg">
+                <source src="<?= BASE_URL ?>build/video/hero.mp4" type="video/mp4">
             </video>
         </div>
 

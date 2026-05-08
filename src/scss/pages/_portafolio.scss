@@ -30,10 +30,6 @@ PORTFOLIO STATS
         pointer-events: none;
     }
 
-    .container {
-        max-width: 45rem;
-    }
-
     &__top {
         text-align: center;
         margin-bottom: 2rem;
@@ -67,12 +63,13 @@ PORTFOLIO STATS
     }
 
     &__grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-        max-width: 44rem;
-        margin: 0 auto 1rem;
-    }
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 60rem;
+            margin: 0 auto 1rem;
+            height: 15vh;
+        }
 
     &__bottom {
         display: flex;
@@ -240,6 +237,7 @@ RESPONSIVE 1024px
             grid-template-columns: repeat(4, 1fr);
             max-width: 55rem;
             gap: 1.8rem;
+            height: 13vh;
         }
     }
 
@@ -289,6 +287,7 @@ RESPONSIVE 650px
             grid-template-columns: repeat(4, 1fr);
             gap: 1.3rem;
             max-width: 45rem;
+            height: 11vh;
         }
 
         &__bottom {
@@ -350,6 +349,7 @@ RESPONSIVE 480px
             grid-template-columns: repeat(2, 1fr);
             max-width: 19rem;
             margin: 0 auto 0rem;
+            height: 19.5vh;
         }
 
         &__bottom {
@@ -419,9 +419,9 @@ RESPONSIVE 480px
     .portfolio-stats__grid {
         gap: 0.7rem;
         grid-template-columns: repeat(2, 1fr);
-        /* max-width: 30rem; */
         margin: 0 auto 0rem;
         max-width: 17rem;
+        height: 17.5vh;
     }
     .portfolio-stat .line {
         width: 3rem;

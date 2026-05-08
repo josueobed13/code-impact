@@ -28,8 +28,15 @@
 
 
 .models {
-    padding: 3rem 1.5rem;
+    padding: 5rem 1.5rem;
     text-align: center;
+    position: relative;
+    line-height: 1.2;
+    background-image: image-set(url(../img/blog/blog-desktop.avif) type('image/avif'), url(../img/blog/blog-desktop.webp) type('image/webp'), url(../img/blog/blog-desktop.jpg) type('image/jpeg'));
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
 
     &__tag {
         font-size: 1.2rem;
@@ -46,7 +53,7 @@
     }
 
     &__subtitle {
-        color: #6B7280;
+        color: #e7e7e7;
         margin-bottom: 3rem;
         font-size: 1.4rem;
         max-width: 600px;

@@ -922,9 +922,15 @@ HEADER SCROLL EFFECT
 }
 
 .services {
-  padding: 8rem 0;
   text-align: center;
-  background: radial-gradient(circle at top, rgba(37, 99, 235, 0.08), transparent 60%);
+  padding: 8rem 0;
+  position: relative;
+  line-height: 1.2;
+  background-image: image-set(url(../img/catalog/fondo-desktop.avif) type('image/avif'), url(../img/catalog/fondo-desktop.webp) type('image/webp'), url(../img/catalog/fondo-desktop.jpg) type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 .services__label {
   display: inline-block;
@@ -943,7 +949,7 @@ HEADER SCROLL EFFECT
   max-width: 600px;
   margin: 0 auto 5rem auto;
   font-size: 1.6rem;
-  color: #A1A1AA;
+  color: #e7e7e7;
 }
 .services__grid {
   display: grid;
@@ -958,7 +964,7 @@ HEADER SCROLL EFFECT
    CARD BASE (DESKTOP FIRST)
 ========================= */
 .service-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(1, 6, 24, 0.6705882353);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 16px;
   padding: 3rem;
@@ -1142,8 +1148,15 @@ HEADER SCROLL EFFECT
   }
 }
 .models {
-  padding: 3rem 1.5rem;
+  padding: 5rem 1.5rem;
   text-align: center;
+  position: relative;
+  line-height: 1.2;
+  background-image: image-set(url(../img/blog/blog-desktop.avif) type('image/avif'), url(../img/blog/blog-desktop.webp) type('image/webp'), url(../img/blog/blog-desktop.jpg) type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 .models__tag {
   font-size: 1.2rem;
@@ -1158,7 +1171,7 @@ HEADER SCROLL EFFECT
   margin-bottom: 1rem;
 }
 .models__subtitle {
-  color: #6B7280;
+  color: #e7e7e7;
   margin-bottom: 3rem;
   font-size: 1.4rem;
   max-width: 600px;
@@ -2354,9 +2367,6 @@ PORTFOLIO STATS
   background: linear-gradient(90deg, transparent 0%, rgba(37, 99, 235, 0.02) 50%, transparent 100%);
   pointer-events: none;
 }
-.portfolio-stats .container {
-  max-width: 45rem;
-}
 .portfolio-stats__top {
   text-align: center;
   margin-bottom: 2rem;
@@ -2386,8 +2396,9 @@ PORTFOLIO STATS
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  max-width: 44rem;
+  max-width: 60rem;
   margin: 0 auto 1rem;
+  height: 15vh;
 }
 .portfolio-stats__bottom {
   display: flex;
@@ -2512,6 +2523,7 @@ RESPONSIVE 1024px
     grid-template-columns: repeat(4, 1fr);
     max-width: 55rem;
     gap: 1.8rem;
+    height: 13vh;
   }
   .portfolio-stat {
     max-width: 14rem;
@@ -2546,6 +2558,7 @@ RESPONSIVE 650px
     grid-template-columns: repeat(4, 1fr);
     gap: 1.3rem;
     max-width: 45rem;
+    height: 11vh;
   }
   .portfolio-stats__bottom p {
     font-size: 1.25rem;
@@ -2584,6 +2597,7 @@ RESPONSIVE 480px
     grid-template-columns: repeat(2, 1fr);
     max-width: 19rem;
     margin: 0 auto 0rem;
+    height: 19.5vh;
   }
   .portfolio-stats__bottom {
     flex-direction: column;
@@ -2634,9 +2648,9 @@ RESPONSIVE 480px
   .portfolio-stats__grid {
     gap: 0.7rem;
     grid-template-columns: repeat(2, 1fr);
-    /* max-width: 30rem; */
     margin: 0 auto 0rem;
     max-width: 17rem;
+    height: 17.5vh;
   }
   .portfolio-stat .line {
     width: 3rem;
@@ -3008,6 +3022,9 @@ RESPONSIVE
 ========================= */
 .services-pro {
   padding: 10rem 0;
+  background-image: image-set(url(../img/catalog/fondo-mobil.avif) type('image/avif'), url(../img/catalog/fondo-mobil.webp) type('image/webp'), url(../img/catalog/fondo-mobil.jpg) type('image/jpeg'));
+  background-position: center;
+  background-size: cover;
 }
 .services-pro__wrapper {
   display: grid;
@@ -3097,6 +3114,11 @@ RESPONSIVE
   }
 }
 @media (max-width: 865px) {
+  .services-pro {
+    background-image: image-set(url(../img/catalog/fondo-mobil.avif) type('image/avif'), url(../img/catalog/fondo-mobil.webp) type('image/webp'), url(../img/catalog/fondo-mobil.jpg) type('image/jpeg'));
+    background-position: center;
+    background-size: cover;
+  }
   .services-pro__title {
     line-height: 1.3;
     font-size: 2.5rem;
@@ -3256,7 +3278,7 @@ INTRO
   text-align: center;
 }
 .catalog-intro h1 {
-  font-size: 4rem;
+  font-size: 5.4rem;
   color: #fff;
   margin-bottom: 2rem;
   letter-spacing: -0.5px;
@@ -3271,28 +3293,64 @@ INTRO
 
 /* 🔥 LIGHT MODE INTRO (SIN TOCAR LO DEMÁS) */
 .catalog-intro--light {
-  background: #ffffff;
-  padding: 3.4rem 0;
+  position: relative;
+  padding: 9rem 0;
   line-height: 1.2;
+  background-image: image-set(url("../img/catalog/banner-proyect-d.avif") type('image/avif'), url("../img/catalog/banner-proyect-d.webp") type('image/webp'), url("../img/catalog/banner-proyect-d.jpg") type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 .catalog-intro--light h1 {
   color: #0B0F19;
+  margin-bottom: 3rem;
 }
 .catalog-intro--light p {
-  color: #4B5563;
+  color: #252a31;
+  font-weight: 600;
 }
 
-@media (max-width: 455px) {
+@media (max-width: 1110px) {
   .catalog-intro--light {
-    padding: 3.5rem 0 3.5rem;
+    padding: 5.5rem 7rem 5.5rem;
+  }
+  .catalog-intro h1 {
+    font-size: 4.5rem;
+  }
+}
+@media (max-width: 890px) {
+  .catalog-intro h1 {
+    font-size: 4rem;
+  }
+}
+@media (max-width: 800px) {
+  .catalog-intro--light {
+    padding: 4.5rem 5.5rem 4.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .catalog-intro--light {
+    background-image: image-set(url("../img/catalog/banner-proyect-m.avif") type('image/avif'), url("../img/catalog/banner-proyect-m.webp") type('image/webp'), url("../img/catalog/banner-proyect-m.jpg") type('image/jpeg'));
+    background-position: center;
+    background-size: cover;
+  }
+  .catalog-intro--light {
+    padding: 5.5rem 0 5.5rem;
   }
 }
 /* =========================
 CATÁLOGO
 ========================= */
 .service-catalog {
-  padding: 6rem 0 10rem;
-  background: radial-gradient(circle at top, rgba(37, 99, 235, 0.08), transparent 55%);
+  position: relative;
+  padding: 9rem 0;
+  line-height: 1.2;
+  background-image: image-set(url(../img/catalog/fondo-desktop.avif) type('image/avif'), url(../img/catalog/fondo-desktop.webp) type('image/webp'), url(../img/catalog/fondo-desktop.jpg) type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 .service-catalog h2 {
   text-align: center;
@@ -3310,7 +3368,7 @@ CATÁLOGO
 
 /* CARD */
 .catalog-item {
-  background: rgba(255, 255, 255, 0.02);
+  background-color: rgba(1, 6, 24, 0.6705882353);
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 18px;
   overflow: hidden;
@@ -3477,20 +3535,18 @@ TRUST SECTION
 
 /* CARDS */
 .trust-grid div {
-  background: #f8fafc;
-  border: 1px solid #e5e7eb;
-  border-radius: 18px;
+  /* background: #f8fafc; */
+  /* border: 1px solid #e5e7eb; */
+  /* border-radius: 18px; */
   padding: 2rem 2rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+  /* box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 .trust-grid div:hover {
   transform: translateY(-8px);
-  border-color: rgba(37, 99, 235, 0.25);
-  box-shadow: 0 18px 45px rgba(37, 99, 235, 0.12);
 }
 .trust-grid div h4 {
   font-size: clamp(1.6rem, 2vw, 2.6rem);
@@ -3503,13 +3559,21 @@ TRUST SECTION
 .trust-grid div p {
   color: #4B5563;
   font-size: clamp(1.2rem, 1.3vw, 1.5rem);
-  line-height: 1.7;
+  font-weight: 600;
+  line-height: 1.4;
   margin: 0 auto;
 }
 
 /* 🔥 LIGHT MODE TRUST (SIN ROMPER NADA) */
 .catalog-trust--light {
-  background: radial-gradient(circle at top, rgba(37, 99, 235, 0.06), transparent 55%), #ffffff;
+  position: relative;
+  padding: 6rem 0;
+  line-height: 1.2;
+  background-image: image-set(url("../img/catalog/banner-proyect-d.avif") type('image/avif'), url("../img/catalog/banner-proyect-d.webp") type('image/webp'), url("../img/catalog/banner-proyect-d.jpg") type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 .catalog-trust--light h3 {
   color: #0B0F19;
@@ -3519,7 +3583,14 @@ TRUST SECTION
 BLOG
 ========================= */
 .catalog-blog {
-  padding: 6rem 0;
+  position: relative;
+  padding: 9rem 0;
+  line-height: 1.2;
+  background-image: image-set(url(../img/blog/blog-desktop.avif) type('image/avif'), url(../img/blog/blog-desktop.webp) type('image/webp'), url(../img/blog/blog-desktop.jpg) type('image/jpeg'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
 /* INTRO BLOG */
@@ -3549,7 +3620,7 @@ BLOG
 
 /* CARD */
 .blog-card {
-  background: rgba(255, 255, 255, 0.02);
+  background: rgba(18, 2, 23, 0.7882352941);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 14px;
   overflow: hidden;
@@ -3609,6 +3680,23 @@ RESPONSIVE
     grid-template-columns: repeat(2, 1fr);
   }
 }
+@media (max-width: 835px) {
+  .service-catalog {
+    background-image: image-set(url(../img/catalog/fondo-mobil.avif) type('image/avif'), url(../img/catalog/fondo-mobil.webp) type('image/webp'), url(../img/catalog/fondo-mobil.jpg) type('image/jpeg'));
+    background-position: center;
+    background-size: cover;
+  }
+  .catalog-blog {
+    background-image: image-set(url(../img/blog/blog-mobil.avif) type('image/avif'), url(../img/blog/blog-mobil.webp) type('image/webp'), url(../img/blog/blog-mobil.jpg) type('image/jpeg'));
+    background-position: center;
+    background-size: cover;
+  }
+}
+@media (max-width: 800px) {
+  .catalog-intro--light p {
+    line-height: 1.4;
+  }
+}
 @media (max-width: 705px) {
   .catalog-slider {
     grid-template-columns: 1fr;
@@ -3629,7 +3717,9 @@ RESPONSIVE
 }
 @media (max-width: 640px) {
   .catalog-intro h1 {
-    font-size: 2.6rem;
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 1.9rem;
   }
   .service-catalog h2 {
     font-size: 2.4rem;
@@ -3651,6 +3741,18 @@ RESPONSIVE
     margin-bottom: 0;
   }
 }
+@media (max-width: 480px) {
+  .catalog-trust--light .container {
+    margin: 0;
+    width: 100%;
+    padding: 0px 6px 0 6px;
+  }
+  .catalog-trust--light {
+    background-image: image-set(url("../img/catalog/banner-proyect-m.avif") type('image/avif'), url("../img/catalog/banner-proyect-m.webp") type('image/webp'), url("../img/catalog/banner-proyect-m.jpg") type('image/jpeg'));
+    background-position: center;
+    background-size: cover;
+  }
+}
 @media (max-width: 390px) {
   .catalog-content p {
     font-size: 1.1rem;
@@ -3665,10 +3767,9 @@ RESPONSIVE
     margin: 0px -9px 11px -9px;
   }
   .catalog-intro h1 {
-    font-size: 2.3rem;
-    line-height: 1.2;
-    margin-bottom: 0.5rem;
-    margin: 0px -9px 0 -9px;
+    font-size: 3rem;
+    line-height: 1.05;
+    margin: 0px -9px 11px -9px;
   }
   .blog-grid {
     grid-template-columns: 1fr;
