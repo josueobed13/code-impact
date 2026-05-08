@@ -8,10 +8,10 @@
         </div>
 
         <nav class="header__nav">
-            <a href="/codeImpact/public/servicios/" class="header__link">Servicios</a>
-            <a href="/codeImpact/public/proyectos.php" class="header__link">Proyectos</a>
-            <a href="/codeImpact/public/nosotros.php" class="header__link">Nosotros</a>
-            <a href="/codeImpact/public/contacto.php" class="header__link">Contacto</a>
+            <a href="<?= BASE_URL ?>servicios/" class="header__link">Servicios</a>
+            <a href="<?= BASE_URL ?>proyectos.php" class="header__link">Proyectos</a>
+            <a href="<?= BASE_URL ?>nosotros.php" class="header__link">Nosotros</a>
+            <a href="<?= BASE_URL ?>contacto.php" class="header__link">Contacto</a>
         </nav>
 
         <a href="<?php echo BASE_URL; ?>contacto.php" class="btn btn--primary header__cta">Empezar</a>
@@ -50,10 +50,10 @@
 
         <div class="mobile-nav__section">
             <p class="mobile-nav__title">Empresa</p>
-            <a href="/codeImpact/public/servicios/" class="header__link">Servicios</a>
-            <a href="<?php echo BASE_URL; ?>proyectos.php" class="header__link">Proyectos</a>
-            <a href="<?php echo BASE_URL; ?>nosotros.php" class="header__link">Nosotros</a>
-            <a href="<?php echo BASE_URL; ?>contacto.php" class="header__link">Contacto</a>
+            <a href="<?= BASE_URL ?>servicios/" class="header__link">Servicios</a>
+            <a href="<?= BASE_URL ?>proyectos.php" class="header__link">Proyectos</a>
+            <a href="<?= BASE_URL ?>nosotros.php" class="header__link">Nosotros</a>
+            <a href="<?= BASE_URL ?>contacto.php" class="header__link">Contacto</a>
         </div>
 
         <div class="mobile-nav__section">
