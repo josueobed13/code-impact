@@ -2,8 +2,8 @@
     <div class="container header__container">
 
         <div class="header__logo">
-            <a href="/codeImpact/public/">
-                <img src="/codeImpact/public/build/img/logos/logo.svg" alt="CodeImpact">
+            <a href="index.php">
+                <img src="<?= BASE_URL ?>build/img/logos/logo.svg" alt="CodeImpact">
             </a>
         </div>
 

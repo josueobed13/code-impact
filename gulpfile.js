@@ -139,4 +139,4 @@ export function dev() {
 // ==========================
 // DEFAULT
 // ==========================
-export default series(js, css, imagenes, animations, videos)
+export default series(js, css, imagenes, animations, videos, dev)
