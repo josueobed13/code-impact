@@ -15,9 +15,9 @@
 
                     <div class="clients__item">
                         <picture>
-                            <source srcset="/codeImpact/public/build/img/clients/1.avif" type="image/avif">
-                            <source srcset="/codeImpact/public/build/img/clients/1.webp" type="image/webp">
-                            <img class="js-lightbox" loading="lazy" src="/codeImpact/public/build/img/clients/1.jpg" alt="Proyecto 1">
+                            <source srcset="<?php echo BASE_URL; ?>/build/img/clients/1.avif" type="image/avif">
+                            <source srcset="<?php echo BASE_URL; ?>/build/img/clients/1.webp" type="image/webp">
+                            <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>/build/img/clients/1.jpg" alt="Proyecto 1">
                         </picture>
                     </div>
 
