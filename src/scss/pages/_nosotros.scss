@@ -1,0 +1,606 @@
+@use '../base/variables' as *;
+
+/* =========================
+ABOUT HISTORY
+========================= */
+.about-history {
+    position: relative;
+    overflow: hidden;
+
+    padding: 10rem 0;
+
+    background:
+        radial-gradient(circle at top, rgba(37,99,235,.14), transparent 45%),
+        linear-gradient(180deg, #020617 0%, #050b16 100%);
+
+    &::before {
+        content: '';
+
+        position: absolute;
+        inset: 0;
+
+        background:
+            linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(37,99,235,.04) 50%,
+                transparent 100%
+            );
+
+        pointer-events: none;
+    }
+
+    &__top {
+        position: relative;
+        z-index: 2;
+
+        text-align: center;
+
+        max-width: 85rem;
+
+        margin: 0 auto 7rem;
+
+        span {
+            display: inline-block;
+
+            color: $primary;
+
+            font-size: 1.3rem;
+            font-weight: 700;
+
+            letter-spacing: .35rem;
+            text-transform: uppercase;
+
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: white;
+
+            font-size: clamp(4rem, 5vw, 7rem);
+            line-height: 1.05;
+
+            margin-bottom: 3rem;
+
+            font-weight: 800;
+        }
+
+        p {
+            color: rgba(255,255,255,.72);
+
+            font-size: 2rem;
+            line-height: 1.8;
+        }
+    }
+
+    &__timeline {
+        position: relative;
+        z-index: 2;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 3rem;
+
+        margin-bottom: 7rem;
+    }
+
+    &__bottom {
+        position: relative;
+        z-index: 2;
+    }
+
+    &__quote {
+        max-width: 90rem;
+
+        margin: 0 auto;
+
+        padding: 5rem;
+
+        border-radius: 3rem;
+
+        text-align: center;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,.05),
+                rgba(255,255,255,.02)
+            );
+
+        border: 1px solid rgba(255,255,255,.08);
+
+        backdrop-filter: blur(18px);
+
+        span {
+            display: inline-block;
+
+            color: $primary;
+
+            font-size: 1.2rem;
+            font-weight: 700;
+
+            letter-spacing: .3rem;
+
+            margin-bottom: 2rem;
+        }
+
+        p {
+            color: white;
+
+            font-size: clamp(2.2rem, 3vw, 3.2rem);
+            line-height: 1.5;
+
+            font-weight: 700;
+        }
+    }
+}
+
+/* =========================
+HISTORY CARD
+========================= */
+.history-card {
+    position: relative;
+
+    padding: 4rem 3rem;
+
+    border-radius: 3rem;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.04),
+            rgba(255,255,255,.015)
+        );
+
+    border: 1px solid rgba(255,255,255,.07);
+
+    transition: .4s ease;
+
+    overflow: hidden;
+
+    &:hover {
+        transform: translateY(-10px);
+
+        border-color: rgba(37,99,235,.3);
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.35),
+            0 0 35px rgba(37,99,235,.12);
+    }
+
+    &::before {
+        content: '';
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: .4rem;
+
+        background: linear-gradient(
+            90deg,
+            transparent,
+            $primary,
+            transparent
+        );
+    }
+
+    &__number {
+        color: rgba(37,99,235,.18);
+
+        font-size: 7rem;
+        font-weight: 900;
+
+        line-height: 1;
+
+        margin-bottom: 2rem;
+    }
+
+    h3 {
+        color: white;
+
+        font-size: 2.6rem;
+
+        margin-bottom: 2rem;
+    }
+
+    p {
+        color: rgba(255,255,255,.72);
+
+        font-size: 1.7rem;
+        line-height: 1.8;
+    }
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media (max-width: 992px) {
+
+    .about-history {
+
+        padding: 8rem 0;
+
+        &__timeline {
+            grid-template-columns: 1fr;
+        }
+
+        &__top {
+
+            h2 {
+                font-size: 4.8rem;
+            }
+
+            p {
+                font-size: 1.8rem;
+            }
+        }
+
+        &__quote {
+            padding: 4rem 3rem;
+
+            p {
+                font-size: 2.4rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 576px) {
+
+    .about-history {
+
+        padding: 6rem 0;
+
+        &__top {
+
+            margin-bottom: 5rem;
+
+            h2 {
+                font-size: 3.4rem;
+            }
+
+            p {
+                font-size: 1.55rem;
+            }
+        }
+
+        &__quote {
+
+            padding: 3rem 2rem;
+            border-radius: 2rem;
+
+            p {
+                font-size: 1.9rem;
+            }
+        }
+    }
+
+    .history-card {
+
+        padding: 3rem 2.2rem;
+        border-radius: 2.2rem;
+
+        &__number {
+            font-size: 5rem;
+        }
+
+        h3 {
+            font-size: 2.1rem;
+        }
+
+        p {
+            font-size: 1.5rem;
+        }
+    }
+}
+
+/* =========================
+ABOUT PROFILE
+========================= */
+.about-profile {
+    padding: 8rem 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #081120 0%,
+            #020617 100%
+        );
+
+    &__card {
+        position: relative;
+        overflow: hidden;
+
+        display: grid;
+        grid-template-columns: 32rem 1fr;
+        gap: 5rem;
+        align-items: center;
+
+        padding: 5rem;
+
+        border-radius: 3.5rem;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,.04),
+                rgba(255,255,255,.015)
+            );
+
+        border: 1px solid rgba(255,255,255,.08);
+
+        backdrop-filter: blur(18px);
+
+        box-shadow:
+            0 25px 70px rgba(0,0,0,.4);
+
+        &::before {
+            content: '';
+
+            position: absolute;
+            inset: 0;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(37,99,235,.14),
+                    transparent 35%
+                );
+
+            pointer-events: none;
+        }
+    }
+
+    /* FOTO */
+    &__image {
+        position: relative;
+        z-index: 2;
+
+        width: 100%;
+        max-width: 32rem;
+
+        aspect-ratio: 1 / 1;
+
+        border-radius: 3rem;
+
+        overflow: hidden;
+
+        border: 1px solid rgba(255,255,255,.08);
+
+        box-shadow:
+            0 20px 50px rgba(0,0,0,.35);
+
+        img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+        }
+    }
+
+    /* CONTENIDO */
+    &__content {
+        position: relative;
+        z-index: 2;
+    }
+
+    span {
+        display: inline-block;
+
+        margin-bottom: 1.8rem;
+
+        color: $primary;
+
+        font-size: 1.2rem;
+        font-weight: 700;
+
+        letter-spacing: .3rem;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        color: white;
+
+        font-size: clamp(3.2rem, 5vw, 5.5rem);
+        line-height: 1.05;
+        font-weight: 800;
+
+        margin-bottom: 2rem;
+
+        max-width: 60rem;
+    }
+
+    &__text {
+        color: rgba(255,255,255,.78);
+
+        font-size: 1.75rem;
+        line-height: 1.9;
+
+        max-width: 70rem;
+
+        margin-bottom: 3rem;
+    }
+
+    /* LISTA */
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+    }
+
+    &__row {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        padding: 1.6rem 2rem;
+
+        border-radius: 1.8rem;
+
+        background:
+            linear-gradient(
+                180deg,
+                rgba(255,255,255,.03),
+                rgba(255,255,255,.015)
+            );
+
+        border: 1px solid rgba(255,255,255,.06);
+
+        transition: .3s ease;
+
+        &:hover {
+            transform: translateX(6px);
+
+            border-color: rgba(37,99,235,.22);
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,.25),
+                0 0 20px rgba(37,99,235,.10);
+        }
+
+        strong {
+            min-width: 10rem;
+
+            color: $primary;
+
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        p {
+            color: rgba(255,255,255,.82);
+
+            font-size: 1.55rem;
+            line-height: 1.6;
+        }
+    }
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media (max-width: 992px) {
+
+    .about-profile {
+
+        padding: 6rem 0;
+
+        &__card {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+
+            padding: 4rem;
+        }
+
+        &__image {
+            margin: 0 auto;
+
+            max-width: 26rem;
+        }
+
+        &__content {
+            text-align: center;
+        }
+
+        &__text {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        &__row {
+            text-align: left;
+        }
+    }
+}
+
+@media (max-width: 650px) {
+
+    .about-profile {
+
+        padding: 5rem 0;
+
+        &__card {
+            padding: 3rem 2.2rem;
+
+            border-radius: 2.5rem;
+        }
+
+        &__image {
+            max-width: 22rem;
+
+            border-radius: 2rem;
+        }
+
+        h2 {
+            font-size: 3rem;
+        }
+
+        &__text {
+            font-size: 1.55rem;
+            line-height: 1.8;
+        }
+
+        &__row {
+            gap: 1.5rem;
+
+            padding: 1.4rem 1.6rem;
+
+            strong {
+                min-width: 8rem;
+                font-size: 1.7rem;
+            }
+
+            p {
+                font-size: 1.35rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+
+    .about-profile {
+
+        &__card {
+            padding: 2.5rem 1.6rem;
+        }
+
+        &__image {
+            max-width: 18rem;
+        }
+
+        span {
+            font-size: 1rem;
+            letter-spacing: .22rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+
+        &__text {
+            font-size: 1.4rem;
+        }
+
+        &__row {
+            flex-direction: column;
+            align-items: flex-start;
+
+            gap: .8rem;
+
+            strong {
+                min-width: auto;
+                font-size: 1.6rem;
+            }
+
+            p {
+                font-size: 1.3rem;
+            }
+        }
+    }
+}

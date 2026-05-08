@@ -1,0 +1,217 @@
+/* =========================
+WHATSAPP FLOAT
+========================= */
+.whatsapp-float {
+    position: fixed;
+
+    right: 2rem;
+    bottom: 2rem;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    text-decoration: none;
+
+    animation: whatsappFloat 2.5s ease-in-out infinite;
+
+    &__text {
+
+        width: 19rem;
+        height: 4.4rem;
+
+        overflow: hidden;
+
+        background: rgba(11,15,25,.95);
+
+        border-radius: 10rem;
+
+        border: 1px solid rgba(255,255,255,.08);
+
+        box-shadow:
+            0 10px 30px rgba(0,0,0,.25);
+
+        backdrop-filter: blur(10px);
+
+        position: relative;
+    }
+
+    &__texts {
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+
+        animation: whatsappTextRotate 5s infinite;
+    }
+
+    &__texts span {
+
+        width: 100%;
+        height: 4.4rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: white;
+
+        font-size: 1.35rem;
+        font-weight: 700;
+
+        white-space: nowrap;
+    }
+
+    &__icon {
+
+        width: 6rem;
+        height: 6rem;
+
+        border-radius: 50%;
+
+        background: #25D366;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        color: white;
+
+        font-size: 3rem;
+
+        box-shadow:
+            0 10px 30px rgba(37,211,102,.35);
+
+        transition: .3s ease;
+    }
+
+    &:hover {
+
+        .whatsapp-float__icon {
+            transform: scale(1.08);
+        }
+
+        .whatsapp-float__text {
+            transform: translateX(-4px);
+        }
+    }
+}
+
+/* =========================
+TEXT ROTATE
+========================= */
+@keyframes whatsappTextRotate {
+
+    0%, 40% {
+        transform: translateY(0);
+    }
+
+    50%, 90% {
+        transform: translateY(-4.5rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+FLOAT
+========================= */
+@keyframes whatsappFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media (max-width: 650px) {
+
+    .whatsapp-float {
+
+        right: 0.5rem;
+        bottom: 1.5rem;
+        align-items: flex-end;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &__text {
+            width: 12rem;
+            height: 3rem;
+        }
+
+        &__icon {
+
+            width: 4.5rem;
+            height: 4.5rem;
+
+            font-size: 2.7rem;
+        }
+
+         &__texts span {
+            height: 3rem;
+            font-size: 1rem;
+            font-weight: 500;
+
+        }
+
+        __texts {
+            top: -7px;
+
+        }
+    }
+
+    @keyframes whatsappTextRotate {
+
+    0%, 40% {
+        transform: translateY(0);
+    }
+
+    50%, 90% {
+        transform: translateY(-3rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+   
+}
+
+
+//telefono
+/* =========================
+FLOATING ACTIONS
+========================= */
+.floating-actions {
+    position: fixed;
+
+    right: 2rem;
+    bottom: 2rem;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}

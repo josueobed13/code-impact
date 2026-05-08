@@ -1,0 +1,294 @@
+@use '../base/variables' as *;
+
+.process {
+    padding: 5rem 0;
+    text-align: center;
+    background: linear-gradient(to bottom, #f8fafc, #eef2f7);
+
+    &__label {
+        font-size: 1.4rem;
+        letter-spacing: 2px;
+        color: $primary;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        display: inline-block;
+    }
+
+    &__heading {
+        font-size: 3.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        color: #111827;
+    }
+
+    /* =========================
+       STEPS
+    ========================= */
+    &__steps {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+            gap: 1.5rem;
+    }
+
+    /* 🔥 línea conectada REAL */
+    &__steps::before {
+        content: '';
+        position: absolute;
+        top: 35px;
+        left: 5%;
+        width: 90%;
+        height: 2px;
+
+        background: linear-gradient(
+            to right,
+            rgba(37, 99, 235, 0.15),
+            rgba(37, 99, 235, 0.5),
+            rgba(37, 99, 235, 0.15)
+        );
+
+        z-index: 0;
+    }
+
+    &__step {
+        position: relative;
+        z-index: 1;
+
+        max-width: 220px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    /* =========================
+       🔥 NUMERO SOBRE EL CÍRCULO
+    ========================= */
+    &__step::before {
+        content: attr(data-step);
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        background: $primary;
+        color: white;
+
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 1.1rem;
+        font-weight: 700;
+
+        box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+    }
+
+    /* =========================
+       🔥 ICONO (PRO)
+    ========================= */
+    &__icon {
+        width: 75px;
+        height: 75px;
+
+        border-radius: 50%;
+        background: #1f2937;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        box-shadow:
+            0 10px 25px rgba(0,0,0,0.2);
+
+        transition: all .3s ease;
+
+        .lottie {
+            width: 38px;
+            height: 38px;
+        }
+    }
+
+    h3 {
+        margin-top: 1.8rem;
+        font-size: 1.6rem;
+        color: #111827;
+    }
+
+    p {
+        font-size: 1.3rem;
+        color: #6B7280;
+        line-height: 1.5;
+        margin-top: .6rem;
+        
+    }
+
+    /* =========================
+       🔥 HOVER SOLO DESKTOP
+    ========================= */
+    @media (hover: hover) and (pointer: fine) {
+        &__step:hover {
+
+            .process__icon {
+                transform: translateY(-6px) scale(1.1);
+                background: $primary;
+
+                box-shadow:
+                    0 15px 35px rgba(37, 99, 235, 0.5),
+                    0 0 20px rgba(37, 99, 235, 0.4);
+            }
+
+            h3 {
+                color: $primary;
+            }
+        }
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 900px) {
+
+    .process__icon {
+        width: 50px;
+        height: 50px;
+
+    }
+
+    .process__steps {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4rem 2rem;
+        justify-items: center;
+    }
+
+    .process__steps::before {
+        display: none;
+    }
+
+    .process__step::before {
+        display: none;
+    }
+}
+@media (max-width: 600px) {
+    .process__steps {
+        gap: 1rem 1rem;
+        justify-items: inherit;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+
+    .process {
+        padding: 5rem 0;
+    }
+
+    .process__heading {
+        font-size: 2.4rem;
+        margin-bottom: 3rem;
+    }
+
+    .process__icon {
+        width: 45px;
+        height: 45px;
+
+        .lottie {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .process__step h3 {
+        font-size: 1.4rem;
+    }
+
+    .process__step p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .process__heading {
+        font-size: 2rem;
+        margin-bottom: 3rem;
+        line-height: 1.2;
+    }
+    
+    .process h3 {
+        margin-top: 0;
+    }
+
+    .process__step p {
+        margin: 0;
+    }
+
+}
+
+
+
+/* =========================
+   🔥 MOBILE TEXT SWITCH FIX
+========================= */
+@media (max-width: 600px) {
+
+    .process__step {
+        align-items: center;
+    }
+
+    /* 🔥 CONTENEDOR FIJO */
+    .process__text {
+        position: relative;
+        height: 70px; // 🔥 controla altura del bloque
+        margin-top: 1rem;
+        width: 100%;
+    }
+
+    .process__text h3,
+    .process__text p {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        transition: all .4s ease;
+        text-align: center;
+    }
+
+    /* estado inicial */
+    .process__text p {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    /* 🔥 activo */
+    .process__step.active {
+
+        h3 {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        p {
+            opacity: 1;
+            transform: translateY(0);
+            width: 100%;
+            align-items: center;
+            text-align: center;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .process__text {
+        margin-top: 0.6rem;
+    }
+}

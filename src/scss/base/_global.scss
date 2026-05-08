@@ -1,0 +1,23 @@
+@use 'variables' as *;
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: $bg-main;
+    color: $text-main;
+    line-height: 1.5;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+    color: $text-main;
+}
+
+p {
+    color: $text-secondary;
+}

@@ -1,0 +1,32 @@
+// BASE
+@use 'base/variables';
+@use 'base/reset';
+@use 'base/global';
+
+// COMPONENTS
+@use 'components/buttons';
+@use 'components/hero';
+@use 'components/footer';
+@use 'components/whatsapp';
+@use 'components/retorno';
+
+// LAYOUT
+@use 'layout/header';
+@use 'layout/services';
+@use 'layout/models';
+@use 'layout/process';
+@use 'layout/clientes';
+
+
+
+@use 'pages/nosotros';
+@use 'pages/portafolio';
+@use 'pages/contacto';
+// PAGES
+@use 'pages/servicio/servicios';
+@use 'pages/servicio/web';
+@use 'pages/servicio/audiovisual';
+@use 'pages/servicio/eventos';
+@use 'pages/servicio/marketing';
+@use 'pages/servicio/software';
+@use 'pages/servicio/ads';

@@ -1,0 +1,256 @@
+@use '../base/variables' as *;
+
+.services {
+    padding: 8rem 0;
+    text-align: center;
+
+    background: radial-gradient(
+        circle at top,
+        rgba(37, 99, 235, 0.08),
+        transparent 60%
+    );
+
+    &__label {
+        display: inline-block;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: $primary;
+        margin-bottom: 1rem;
+        font-weight: 900;
+    }
+
+    &__heading {
+        font-size: 3.8rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+
+    &__intro {
+        max-width: 600px;
+        margin: 0 auto 5rem auto;
+        font-size: 1.6rem;
+        color: #A1A1AA;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+    }
+
+    &__cta {
+        margin-top: 5rem;
+    }
+}
+
+/* =========================
+   CARD BASE (DESKTOP FIRST)
+========================= */
+.service-card {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+
+    padding: 3rem;
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    position: relative;
+    overflow: hidden;
+
+    transition: all .3s ease;
+
+    /* ICONO 🔥 RESPONSIVE PRO */
+    &__icon {
+        width: clamp(55px, 6vw, 80px);
+        height: clamp(55px, 6vw, 80px);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: 16px;
+        background: rgba(37, 99, 235, 0.15);
+
+        box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
+
+        .lottie {
+            width: clamp(30px, 3vw, 48px);
+            height: clamp(30px, 3vw, 48px);
+        }
+    }
+
+    h3 {
+        font-size: 1.8rem;
+        color: #fff;
+        transition: .3s;
+    }
+
+    &__link {
+        margin-top: auto;
+        font-size: 1.4rem;
+        color: $primary;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+
+        transition: .3s;
+
+        &:hover {
+            gap: 10px;
+        }
+    }
+}
+
+/* =========================
+   ✅ HOVER SOLO DESKTOP
+========================= */
+@media (hover: hover) and (pointer: fine) {
+    .service-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(37, 99, 235, 0.4);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+
+        h3 {
+            color: $primary;
+        }
+    }
+}
+
+/* =========================
+   TABLET
+========================= */
+@media (max-width: 1024px) {
+    .services__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================
+   MOBILE BASE
+========================= */
+@media (max-width: 640px) {
+
+    .services {
+        padding: 5rem 0;
+    }
+
+    .services__heading {
+        font-size: 2.6rem;
+    }
+
+    .services__intro {
+        font-size: 1.4rem;
+        margin-bottom: 3rem;
+    }
+
+    .services__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.4rem;
+    }
+
+    .service-card {
+        padding: 1.8rem;
+        min-height: 140px;
+        border-radius: 14px;
+    }
+
+    .service-card h3 {
+        font-size: 1.35rem;
+    }
+
+    .service-card__link {
+        font-size: 1.2rem;
+    }
+}
+
+.service-card__desc {
+    font-size: 1.4rem;
+}
+
+/* =========================
+   🔥 MOBILE EFFECT (LOOP)
+========================= */
+@media (max-width: 640px) {
+
+    .service-card__main {
+        transition: all .4s ease;
+    }
+
+    .service-card__desc {
+        position: absolute;
+        inset: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        padding: 1.5rem;
+        font-size: 1.3rem;
+        color: #fff;
+
+        opacity: 0;
+        transform: scale(0.95);
+        transition: all .4s ease;
+    }
+
+    .service-card.active {
+
+        .service-card__main {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .service-card__desc {
+            opacity: 1;
+            transform: scale(1);
+
+            text-shadow:
+                0 0 6px rgba(37, 99, 235, 0.8),
+                0 0 12px rgba(37, 99, 235, 0.5);
+        }
+    }
+}
+
+/* =========================
+   🔥 MOBILE TOUCH (REEMPLAZA HOVER)
+========================= */
+@media (max-width: 768px) {
+
+    .service-card.touched {
+        transform: translateY(-8px) scale(1.03);
+        border-color: rgba(37, 99, 235, 0.6);
+
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.5),
+            0 0 20px rgba(37, 99, 235, 0.4);
+
+        background: rgba(37, 99, 235, 0.08);
+
+        h3 {
+            color: $primary;
+        }
+
+        .service-card__icon {
+            background: $primary;
+        }
+    }
+}
+
+/* =========================
+   EXTRA SMALL
+========================= */
+@media (max-width: 380px) {
+    .services__grid {
+        gap: 1rem;
+    }
+
+    .service-card {
+        padding: 1.6rem;
+    }
+}

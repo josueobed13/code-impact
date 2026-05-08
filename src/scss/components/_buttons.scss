@@ -1,0 +1,77 @@
+@use '../base/variables' as *;
+
+.btn {
+    display: inline-block;
+    padding: 12px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    line-height: 1;
+
+    /* 🔥 NUEVO: alineación útil */
+    &.center {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+    }
+
+    /* 🔥 NUEVO: tamaño grande (para hero) */
+    &--lg {
+        padding: 14px 28px;
+        font-size: 15px;
+    }
+
+    /* 🔥 NUEVO: ancho completo (mobile forms, CTAs) */
+    &--full {
+        width: 100%;
+        text-align: center;
+    }
+
+    &--primary {
+        background: linear-gradient(135deg, #2563EB, #1D4ED8);
+        color: #fff;
+        box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+
+        &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+        }
+
+        /* 🔥 NUEVO: active state */
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    &--outline {
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #E5E7EB;
+        background: transparent;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+        }
+
+        /* 🔥 NUEVO: active state */
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    /* 🔥 NUEVO: accesibilidad (focus visible) */
+    &:focus-visible {
+        outline: 2px solid #2563EB;
+        outline-offset: 2px;
+    }
+
+    /* 🔥 NUEVO: deshabilitado */
+    &.disabled,
+    &:disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
