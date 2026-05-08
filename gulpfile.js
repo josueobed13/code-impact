@@ -136,7 +136,15 @@ export function dev() {
     watch(paths.animations, { usePolling: true }, animations)
 }
 
+
 // ==========================
-// DEFAULT
+// activar luego de que cargue en render
 // ==========================
-export default series(js, css, imagenes, animations, videos, dev)
+//export default series(js, css, imagenes, animations, videos, dev)
+
+
+
+// ==========================
+// eliminar luego de que cargue en render
+// ==========================
+export default series(js, css, imagenes, animations, videos)
