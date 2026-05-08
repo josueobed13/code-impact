@@ -1,7 +1,18 @@
-<?php 
-// 🔥 CONFIG GLOBAL (siempre arriba)
+<?php
+
 if (!defined('BASE_URL')) {
-    define('BASE_URL', '/codeImpact/public/');
+
+    $host = $_SERVER['HTTP_HOST'];
+
+    // LOCAL XAMPP
+    if ($host === 'localhost') {
+        define('BASE_URL', '/codeImpact/public/');
+    }
+
+    // PRODUCCIÓN
+    else {
+        define('BASE_URL', '/');
+    }
 }
 ?>
 
