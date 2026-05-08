@@ -1657,6 +1657,7 @@ HEADER SCROLL EFFECT
 .clients__wrapper {
   position: relative;
   overflow: hidden;
+  touch-action: pan-y;
 }
 .clients {
   /* 🔥 fade lateral premium */
@@ -1686,6 +1687,7 @@ HEADER SCROLL EFFECT
 .clients__track {
   display: flex;
   align-items: center;
+  width: max-content;
   will-change: transform;
 }
 .clients {

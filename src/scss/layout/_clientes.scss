@@ -33,9 +33,12 @@
        WRAPPER IMÁGENES
     ========================= */
     &__wrapper {
-        position: relative;
+         position: relative;
         overflow: hidden;
+        touch-action: pan-y;
     }
+
+
 
     /* 🔥 fade lateral premium */
     &__wrapper::before,
@@ -65,6 +68,7 @@
     &__track {
         display: flex;
         align-items: center;
+        width: max-content;
         will-change: transform;
     }
 

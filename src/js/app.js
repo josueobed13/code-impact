@@ -229,25 +229,41 @@ function initClientsSlider() {
 
     let speed = 0.3;
     let position = 0;
+
     let isPaused = false;
-    let timeout;
+    let isDragging = false;
+
+    let startX = 0;
+    let currentX = 0;
 
     const items = [...track.children];
 
+    // duplicar items
     items.forEach(item => {
         track.appendChild(item.cloneNode(true));
     });
 
+    const totalWidth = track.scrollWidth / 2;
+
+    // ==========================
+    // AUTO SLIDE
+    // ==========================
     function animate() {
 
-        if (!isPaused) {
+        if (!isPaused && !isDragging) {
+
             position -= speed;
 
-            if (Math.abs(position) >= track.scrollWidth / 2) {
+            // loop infinito
+            if (Math.abs(position) >= totalWidth) {
                 position = 0;
             }
 
-            track.style.transform = `translateX(${position}px)`;
+            if (position > 0) {
+                position = -totalWidth;
+            }
+
+            track.style.transform = `translate3d(${position}px,0,0)`;
         }
 
         requestAnimationFrame(animate);
@@ -255,20 +271,82 @@ function initClientsSlider() {
 
     animate();
 
+    // ==========================
+    // PAUSA
+    // ==========================
+    let timeout;
+
     function pauseSlider() {
+
         isPaused = true;
 
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
             isPaused = false;
-        }, 4000);
+        }, 3000);
     }
 
+    // ==========================
+    // TOUCH START
+    // ==========================
+    track.addEventListener('touchstart', (e) => {
+
+        pauseSlider();
+
+        isDragging = true;
+
+        startX = e.touches[0].clientX;
+        currentX = startX;
+
+    }, { passive: true });
+
+    // ==========================
+    // TOUCH MOVE
+    // ==========================
+    track.addEventListener('touchmove', (e) => {
+
+        if (!isDragging) return;
+
+        const x = e.touches[0].clientX;
+
+        const diff = x - currentX;
+
+        position += diff;
+
+        // mantener loop correcto
+        if (Math.abs(position) >= totalWidth) {
+            position = 0;
+        }
+
+        if (position > 0) {
+            position = -totalWidth;
+        }
+
+        track.style.transform = `translate3d(${position}px,0,0)`;
+
+        currentX = x;
+
+    }, { passive: true });
+
+    // ==========================
+    // TOUCH END
+    // ==========================
+    track.addEventListener('touchend', () => {
+
+        isDragging = false;
+
+        pauseSlider();
+
+    });
+
+    // ==========================
+    // CLICK PAUSE
+    // ==========================
     track.addEventListener('click', pauseSlider);
-    track.addEventListener('touchstart', pauseSlider);
 }
 
+// INICIAR
 initClientsSlider();
 
 
