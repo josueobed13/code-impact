@@ -51,37 +51,37 @@ FOOTER
 
                 <ul>
                     <li>
-                        <a href="<?= BASE_URL; ?>servicios/desarrollo-web/">
+                        <a href="<?= BASE_URL; ?>servicios/desarrollo-web.php">
                             Desarrollo web
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>servicios/audiovisual/">
+                        <a href="<?= BASE_URL; ?>servicios/audiovisual.php">
                             Producción audiovisual
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>servicios/eventos/">
+                        <a href="<?= BASE_URL; ?>servicios/eventos.php">
                             Eventos corporativos
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>servicios/marketing/">
+                        <a href="<?= BASE_URL; ?>servicios/marketing.php">
                             Marketing digital
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>servicios/software/">
+                        <a href="<?= BASE_URL; ?>servicios/software.php">
                             Diseño de software
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>servicios/publicidad-ads/">
+                        <a href="<?= BASE_URL; ?>servicios/publicidad-ads.php">
                             Campañas Ads
                         </a>
                     </li>
@@ -96,25 +96,25 @@ FOOTER
 
                 <ul>
                     <li>
-                        <a href="<?= BASE_URL; ?>servicios/">
+                        <a href="<?= BASE_URL ?>servicios/servicios.php">
                             Servicios
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>proyectos/">
+                        <a href="<?= BASE_URL ?>proyectos.php">
                             Proyectos
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>nosotros/">
+                        <a href="<?= BASE_URL ?>nosotros.php">
                             Nosotros
                         </a>
                     </li>
 
                     <li>
-                        <a href="<?= BASE_URL; ?>contacto/">
+                        <a href="<?= BASE_URL ?>contacto.php">
                             Contacto
                         </a>
                     </li>

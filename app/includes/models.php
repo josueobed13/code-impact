@@ -15,7 +15,7 @@
             <div class="model-card">
 
                 <div class="model-card__image">
-                    <img src="/codeImpact/public/build/img/models/carla.jpg" alt="Carla Aragón">
+                    <img src="<?= BASE_URL ?>build/img/models/carla.jpg" alt="Carla Aragón">
                 </div>
 
                 <div class="model-card__content">
@@ -43,7 +43,7 @@
             <div class="model-card">
 
                 <div class="model-card__image">
-                    <img src="/codeImpact/public/build/img/models/chantal.jpg" alt="Chantal Flores">
+                    <img src="<?= BASE_URL ?>build/img/models/chantal.jpg" alt="Chantal Flores">
                 </div>
 
                 <div class="model-card__content">
@@ -74,7 +74,7 @@
 
             <div class="models__cta-left">
                 <div class="models__icon">
-                    <img  src="/codeImpact/public/build/img/icons/work-log.svg" alt="Work-logo">
+                    <img  src="<?= BASE_URL ?>build/img/icons/work-log.svg" alt="Work-logo">
                 </div>
                 <div>
                     <h4>¿Tienes talento para trabajar como imagen corporativa en tus tiempos libres?</h4>
