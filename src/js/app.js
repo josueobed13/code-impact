@@ -619,7 +619,7 @@ function initPortfolioCounters() {
 
         let current = 0;
 
-        const increment = target / 80;
+        const increment = target / 190;
 
         const updateCounter = () => {
 
