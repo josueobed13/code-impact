@@ -122,6 +122,18 @@
 
 @media (max-width: 573px) {
 
+    .models {
+        background-image: image-set(
+            url(../img/blog/blog-mobil.avif) type('image/avif'),
+            url(../img/blog/blog-mobil.webp) type('image/webp'),
+            url(../img/blog/blog-mobil.jpg) type('image/jpeg'));
+            
+        background-position: center;
+        background-size: cover;
+    }
+
+
+
 .models__cta-left {
     flex-direction: column;
 }

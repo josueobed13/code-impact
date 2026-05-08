@@ -219,6 +219,16 @@
     }
 }
 
+@media (max-width: 517px) {
+        .hero__title {
+            padding: 0rem 1.2rem;
+        }
+
+    .hero__text {
+        padding: 0rem 1.2rem;
+    }
+}
+
 @media (max-width: 768px) {
     .hero__grid {
         width: 100%;

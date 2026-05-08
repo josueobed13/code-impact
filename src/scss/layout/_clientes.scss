@@ -12,8 +12,20 @@
    SECCIÓN CLIENTES
 ========================= */
 .clients {
-    padding: 5rem 0;
+    padding: 6rem 0;
     text-align: center;
+    text-align: center;
+    position: relative;
+    line-height: 1.2;
+    background-image: image-set(
+        url(../img/clients/client-background-desktop.avif) type('image/avif'),
+        url(../img/catalog/client-background-desktop.webp) type('image/webp'),
+        url(../img/catalog/client-background-desktop.jpg) type('image/jpeg'));
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
 
     /* =========================
        TEXTOS
@@ -112,12 +124,12 @@
        LOGOS (SCROLL REAL + FLECHAS)
     ========================= */
     &__logos {
-        margin-top: 6rem;
+        margin-top: 0rem;
         position: relative;
         display: flex;
         align-items: center;
-
         padding: 0 60px;
+        height: 13vh;
     }
 
     &__logos-wrapper {
@@ -144,7 +156,6 @@
 
     &__logos-track img {
         height: 76px;
-        opacity: 0.7;
 
         filter: grayscale(100%) brightness(1.2);
         transition: all .3s ease;
@@ -211,6 +222,19 @@
 ========================= */
 @media (max-width: 1024px) {
 
+    .clients {
+        background-image: image-set(
+            url(../img/clients/client-background-mobil.avif) type('image/avif'),
+            url(../img/catalog/client-background-mobil.webp) type('image/webp'),
+            url(../img/catalog/client-background-mobil.jpg) type('image/jpeg'));
+
+        background-position: center;
+        background-size: cover;
+    }
+
+
+    
+
     .clients__item {
         min-width: 290px;
         height: 220px;
@@ -219,6 +243,12 @@
     .clients__logos-track img {
         height: 57px;
     }
+
+
+
+
+
+
 }
 
 /* =========================
@@ -251,6 +281,9 @@
 
     .clients__arrow--right {
         right: 15px;
+    }
+    .clients__subtitle {
+        margin-bottom: 3.2rem;
     }
 }
 
