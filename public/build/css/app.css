@@ -571,9 +571,8 @@ p {
     grid-template-columns: 1fr;
   }
   .footer__col.footer__brand {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    justify-items: center;
   }
 }
 .footer__logo {

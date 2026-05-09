@@ -42,23 +42,7 @@ if (!defined('BASE_URL')) {
     >
 
     <!-- ICONS -->
-    <link
-        rel="preload"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2"
-        as="font"
-        type="font/woff2"
-        crossorigin
-        >
-
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css"
-        />
-
-        <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css"
-        />
+    
 
     <!-- JS GLOBAL CONFIG -->
     <script>
