@@ -78,7 +78,7 @@ FORM
                     >
                 </div>
 
-                <div class="form-group">
+                <div class="form-group select-wrapper">
 
                     <select id="servicio" required>
 
