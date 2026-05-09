@@ -16,11 +16,35 @@
             </div>
         </div>
 
-        <div class="hero__media">
-            <video autoplay muted loop playsinline poster="<?= BASE_URL ?>build/img/hero/hero.jpg">
-                <source src="<?= BASE_URL ?>build/video/hero.mp4" type="video/mp4">
-            </video>
-        </div>
 
+        <!-- video hero -->
+        <div class="hero__media">
+
+            <video
+                class="hero__video"
+                autoplay
+                muted
+                loop
+                playsinline
+                preload="none"
+                poster="<?= BASE_URL ?>build/img/hero/hero.webp"
+            >
+
+                <!-- MOBILE -->
+                <source
+                    media="(max-width: 570px)"
+                    src="<?= BASE_URL ?>build/video/hero-mobile.mp4"
+                    type="video/mp4"
+                >
+
+                <!-- DESKTOP -->
+                <source
+                    src="<?= BASE_URL ?>build/video/hero-desktop.mp4"
+                    type="video/mp4"
+                >
+
+            </video>
+
+        </div>
     </div>
 </section>
