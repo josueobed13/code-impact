@@ -31,6 +31,16 @@ if (!defined('BASE_URL')) {
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>build/css/app.css">
 
+
+    <!-- img hero -->
+
+    <link
+        rel="preload"
+        as="image"
+        href="<?= BASE_URL ?>build/img/hero/hero.jpg"
+        fetchpriority="high"
+    >
+
     <!-- ICONS -->
     <link
         rel="preload"
