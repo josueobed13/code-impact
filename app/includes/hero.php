@@ -32,7 +32,7 @@
 
                 <!-- MOBILE -->
                 <source
-                    media="(max-width: 570px)"
+                    media="(max-width: 750px)"
                     src="<?= BASE_URL ?>build/video/hero-mobile.mp4"
                     type="video/mp4"
                 >
