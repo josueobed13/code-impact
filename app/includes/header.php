@@ -26,7 +26,7 @@ if (!defined('BASE_URL')) {
     <meta name="description" content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>">
 
     <!-- FONTS -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>build/css/app.css">
