@@ -12,10 +12,10 @@ INTRO
 ========================= -->
 <section class="catalog-intro catalog-intro--light">
     <div class="container">
-        <h1>Publicidad digital que convierte inversión en resultados</h1>
+        <h1>Publicidad Ads con Resultados Reales</h1>
         <p>
-            Creamos, gestionamos y optimizamos campañas publicitarias enfocadas en ventas,
-            leads y escalamiento de negocios en plataformas digitales.
+            Los Métodos cambian y se Reinventan siempre:
+            Creamos Campañas Ads, elegimos las redes sociales donde tendrás mayor Visibilidad y Ventas
         </p>
     </div>
 </section>

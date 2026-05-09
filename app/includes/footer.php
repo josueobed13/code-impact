@@ -146,7 +146,7 @@ FOOTER
         <div class="footer__bottom">
 
             <p>
-                © 2026 CodeImpact Perú. Todos los derechos reservados.
+                © <?= date('Y'); ?> CodeImpact Perú. Todos los derechos reservados.
             </p>
 
             <div class="footer__links">

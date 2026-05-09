@@ -12,10 +12,10 @@ INTRO
 ========================= -->
 <section class="catalog-intro catalog-intro--light">
     <div class="container">
-        <h1>Contenido audiovisual que impacta y conecta</h1>
+        <h1>Destaca con Diseños únicos y Corporativos</h1>
         <p>
-            Creamos piezas visuales de alto impacto para marcas que quieren destacar: 
-            videos, diseño gráfico, edición creativa y branding profesional.
+            Creamos Diseños Digitales y Audio Visuales: 
+            Sesiones de Fotos para eventos, Filmación profesional, Diseño gráfico, Edición de Videos
         </p>
     </div>
 </section>
@@ -156,6 +156,7 @@ CATÁLOGO AUDIOVISUAL
     </div>
 
 </section>
+<?php include __DIR__ . '/../../app/includes/models.php'; ?>
 
 <!-- =========================
 TRUST

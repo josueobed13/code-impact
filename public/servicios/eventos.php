@@ -12,9 +12,9 @@ INTRO
 ========================= -->
 <section class="catalog-intro catalog-intro--light">
     <div class="container">
-        <h1>Eventos que conectan marcas con personas</h1>
+        <h1>Eventos que conectan tu  Marca con Personas</h1>
         <p>
-            Creamos experiencias de marca completas: activaciones, eventos corporativos,
+            Organizamos: activaciones, eventos corporativos,
             transmisiones en vivo y conducción profesional con talento especializado.
         </p>
     </div>

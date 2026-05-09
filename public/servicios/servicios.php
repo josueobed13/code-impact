@@ -10,10 +10,10 @@ require_once __DIR__ . '/../../app/includes/header.php';
 <!-- HERO INTERNO -->
 <section class="hero-internal">
     <div class="container">
-        <h1>Servicios diseñados para hacer crecer tu negocio</h1>
+        <h1>Conoce más de lo que Podemos Lograr en tu Empresa</h1>
         <p>
-            No solo ejecutamos proyectos. Creamos soluciones digitales que generan resultados medibles:
-            más clientes, más ventas y más posicionamiento.
+            No solo ejecutamos proyectos sin objetivos:
+            Globalizar tu alcance publicitario debe tener un orden, Consulta y te Orientaremos Gratis
         </p>
     </div>
 </section>

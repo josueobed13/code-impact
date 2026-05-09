@@ -12,10 +12,10 @@ INTRO
 ========================= -->
 <section class="catalog-intro catalog-intro--light">
     <div class="container">
-        <h1>Marketing que convierte ideas en crecimiento real</h1>
+        <h1>Las Ideas se Convierten en Ventas, Impulsa tu Negocio</h1>
         <p>
-            Diseñamos estrategias completas de marketing enfocadas en atraer clientes, convertir oportunidades
-            y escalar tu negocio con datos y optimización constante.
+            Analisamos tu Empresa: con Métodos de Eficiencia:
+            Elaboramos estratégias para Incrementar ventas y Presencia en Medios de comunicación.
         </p>
     </div>
 </section>

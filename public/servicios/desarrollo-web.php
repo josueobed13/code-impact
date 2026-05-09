@@ -12,7 +12,7 @@ INTRO
 ========================= -->
 <section class="catalog-intro catalog-intro--light">
     <div class="container">
-        <h1>Soluciones web diseñadas para crecer tu negocio</h1>
+        <h1>Soluciones web y Diseños a tu Medida</h1>
         <p>
             No solo desarrollamos páginas web. Creamos herramientas digitales enfocadas en generar ventas,
             posicionamiento y crecimiento real.

@@ -191,7 +191,7 @@ PERFIL PROFESIONAL
                     </div>
 
                     <div class="about-profile__row">
-                        <strong>+1 año</strong>
+                        <strong>+6 año</strong>
                         <p>Análisis de Marketing y Estrategias</p>
                     </div>
 
