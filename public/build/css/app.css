@@ -785,6 +785,74 @@ RESPONSIVE
 .header__link:hover {
   color: #FFFFFF;
 }
+.header {
+  /* =========================
+  /* =========================
+  DROPDOWN SERVICIOS
+  ========================= */
+}
+.header__dropdown {
+  position: relative;
+}
+.header__dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+.header__dropdown-toggle::after {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: 0.3s ease;
+}
+.header__dropdown:hover .header__dropdown-toggle {
+  color: #FFFFFF;
+}
+.header__dropdown-menu {
+  position: absolute;
+  top: calc(100% + 1.6rem);
+  left: 0;
+  min-width: 26rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 2rem;
+  background: rgba(11, 15, 25, 0.95);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1rem);
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 200;
+}
+.header__dropdown-menu a {
+  display: block;
+  padding: 1.2rem 1.4rem;
+  border-radius: 1.2rem;
+  color: #E5E7EB;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+.header__dropdown-menu a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+}
+.header__dropdown:hover .header__dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.header__dropdown:hover .header__dropdown-toggle::after {
+  transform: rotate(225deg) translateY(-2px);
+}
 .header__cta {
   font-size: 14px;
   margin-left: 24px;
@@ -3012,6 +3080,101 @@ RESPONSIVE
   }
   .contact-form__info h2 {
     font-size: 3rem;
+  }
+}
+.legal-page {
+  padding: 8rem 0;
+}
+.legal-page__container {
+  max-width: 90rem;
+}
+.legal-page__header {
+  margin-bottom: 6rem;
+}
+.legal-page__header span {
+  display: inline-block;
+  margin-bottom: 1.6rem;
+  color: #3B82F6;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.legal-page__header h1 {
+  margin-bottom: 2.4rem;
+  font-size: clamp(3.6rem, 5vw, 5.8rem);
+  line-height: 1.1;
+  color: #FFFFFF;
+}
+.legal-page__header p {
+  max-width: 72rem;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.7rem;
+  line-height: 1.9;
+}
+.legal-page__content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.legal-block {
+  padding: 3.2rem;
+  border-radius: 2.4rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.legal-block:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59, 130, 246, 0.22);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+}
+.legal-block h2 {
+  margin-bottom: 1.8rem;
+  color: #FFFFFF;
+  font-size: 2.2rem;
+  line-height: 1.3;
+}
+.legal-block p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.6rem;
+  line-height: 1.95;
+}
+
+.legal-small {
+  margin-top: 1.6rem;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 1.3rem;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 768px) {
+  .legal-page {
+    padding: 6rem 0;
+  }
+  .legal-page__header {
+    margin-bottom: 4rem;
+  }
+  .legal-page__header h1 {
+    font-size: 4rem;
+  }
+  .legal-page__header p {
+    font-size: 1.6rem;
+  }
+  .legal-block {
+    padding: 2.4rem;
+  }
+  .legal-block h2 {
+    font-size: 2rem;
+  }
+  .legal-block p {
+    font-size: 1.5rem;
+  }
+  .legal-small {
+    font-size: 1.2rem;
   }
 }
 /* =========================

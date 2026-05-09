@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="model-card__content">
-                    <h3>Carla Aragón</h3>
+                    <h3>modelo 1</h3>
                     <span class="model-card__role">MODELO</span>
 
                     <p>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="model-card__content">
-                    <h3>Chantal Flores</h3>
+                    <h3>modelo 2</h3>
                     <span class="model-card__role">MODELO</span>
 
                     <p>

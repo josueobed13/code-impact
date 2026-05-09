@@ -59,6 +59,127 @@
         }
     }
 
+
+    //selecetor servicios
+    /* =========================
+    /* =========================
+    DROPDOWN SERVICIOS
+    ========================= */
+    &__dropdown{
+        position: relative;
+    }
+
+    &__dropdown-toggle{
+        display: flex;
+        align-items: center;
+        gap: .8rem;
+
+        cursor: pointer;
+
+        transition: color .25s ease;
+
+        &::after{
+            content: "";
+
+            width: .7rem;
+            height: .7rem;
+
+            border-right: 2px solid currentColor;
+            border-bottom: 2px solid currentColor;
+
+            transform:
+                rotate(45deg)
+                translateY(-2px);
+
+            transition: .3s ease;
+        }
+    }
+
+    &__dropdown:hover &__dropdown-toggle{
+        color: #FFFFFF;
+    }
+
+    &__dropdown-menu{
+        position: absolute;
+
+        top: calc(100% + 1.6rem);
+        left: 0;
+
+        min-width: 26rem;
+
+        display: flex;
+        flex-direction: column;
+
+        padding: 1rem;
+
+        border-radius: 2rem;
+
+        background:
+            rgba(11,15,25,.95);
+
+        backdrop-filter: blur(18px);
+
+        border:
+            1px solid rgba(255,255,255,.06);
+
+        box-shadow:
+            0 10px 30px rgba(0,0,0,.35);
+
+        opacity: 0;
+        visibility: hidden;
+
+        transform:
+            translateY(1rem);
+
+        transition:
+            opacity .3s ease,
+            visibility .3s ease,
+            transform .3s ease;
+
+        z-index: 200;
+
+        a{
+            display: block;
+
+            padding: 1.2rem 1.4rem;
+
+            border-radius: 1.2rem;
+
+            color: #E5E7EB;
+
+            font-size: 14px;
+
+            text-decoration: none;
+
+            transition:
+                background .25s ease,
+                color .25s ease;
+
+            &:hover{
+                background:
+                    rgba(255,255,255,.05);
+
+                color: #fff;
+            }
+        }
+    }
+
+    &__dropdown:hover &__dropdown-menu{
+        opacity: 1;
+        visibility: visible;
+
+        transform:
+            translateY(0);
+    }
+
+    &__dropdown:hover &__dropdown-toggle::after{
+        transform:
+            rotate(225deg)
+            translateY(-2px);
+    }
+
+
+    //cta
     &__cta {
         font-size: 14px;
         margin-left: 24px;

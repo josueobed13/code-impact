@@ -24,20 +24,16 @@ FOOTER
 
                 <div class="footer__social">
 
-                    <a href="#" aria-label="Facebook">
+                    <a href="https://www.facebook.com/CodeImpact.Peru" target="blank" aria-label="Facebook">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
 
-                    <a href="#" aria-label="Instagram">
+                    <a href="https://www.instagram.com/code.impactperu/" target="blank" aria-label="Instagram">
                         <i class="fa-brands fa-instagram"></i>
                     </a>
 
-                    <a href="#" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
-
-                    <a href="#" aria-label="YouTube">
-                        <i class="fa-brands fa-youtube"></i>
+                    <a href="https://www.tiktok.com/@codeimpactperu" target="blank" aria-label="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
                     </a>
 
                 </div>
@@ -151,11 +147,11 @@ FOOTER
 
             <div class="footer__links">
 
-                <a href="#">
+                <a href="<?= BASE_URL ?>politica-privacidad.php">
                     Política de privacidad
                 </a>
 
-                <a href="#">
+                <a href="<?= BASE_URL ?>terminos-condiciones.php">
                     Términos y condiciones
                 </a>
 

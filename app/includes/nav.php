@@ -14,10 +14,55 @@
 
 
         <nav class="header__nav">
-            <a href="<?= BASE_URL ?>servicios/servicios.php" class="header__link">Servicios</a>
-            <a href="<?= BASE_URL ?>proyectos.php" class="header__link">Proyectos</a>
-            <a href="<?= BASE_URL ?>nosotros.php" class="header__link">Nosotros</a>
-            <a href="<?= BASE_URL ?>contacto.php" class="header__link">Contacto</a>
+
+            <div class="header__dropdown">
+
+                <a class="header__link header__dropdown-toggle">
+                    Servicios
+                </a>
+
+                <div class="header__dropdown-menu">
+
+                    <a href="<?= BASE_URL; ?>servicios/desarrollo-web.php">
+                        Desarrollo web
+                    </a>
+
+                    <a href="<?= BASE_URL; ?>servicios/audiovisual.php">
+                        Producción audiovisual
+                    </a>
+
+                    <a href="<?= BASE_URL; ?>servicios/eventos.php">
+                        Eventos corporativos
+                    </a>
+
+                    <a href="<?= BASE_URL; ?>servicios/marketing.php">
+                        Marketing digital
+                    </a>
+
+                    <a href="<?= BASE_URL; ?>servicios/software.php">
+                        Diseño de software
+                    </a>
+
+                    <a href="<?= BASE_URL; ?>servicios/publicidad-ads.php">
+                        Publicidad ADS
+                    </a>
+
+                </div>
+
+            </div>
+
+            <a href="<?= BASE_URL ?>proyectos.php" class="header__link">
+                Proyectos
+            </a>
+
+            <a href="<?= BASE_URL ?>nosotros.php" class="header__link">
+                Nosotros
+            </a>
+
+            <a href="<?= BASE_URL ?>contacto.php" class="header__link">
+                Contacto
+            </a>
+
         </nav>
 
         <a href="<?php echo BASE_URL; ?>contacto.php" class="btn btn--primary header__cta">Empezar</a>
