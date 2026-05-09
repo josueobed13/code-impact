@@ -541,6 +541,11 @@ p {
     grid-template-columns: 1fr;
   }
 }
+.footer__logo {
+  position: relative;
+  width: 212px;
+}
+
 /* =========================
 WHATSAPP FLOAT
 ========================= */
@@ -2068,6 +2073,205 @@ HEADER SCROLL EFFECT
   transform: translateY(-50%) scale(1.1);
 }
 
+/* =========================
+COOKIE BANNER
+========================= */
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 2rem;
+  transform: translateX(-50%) translateY(2rem);
+  width: calc(100% - 3rem);
+  max-width: 110rem;
+  padding: 2rem 2.4rem;
+  border-radius: 2.4rem;
+  background: rgba(11, 15, 25, 0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+}
+.cookie-banner.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.cookie-banner__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.4rem;
+}
+.cookie-banner__text span {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  color: #3B82F6;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.cookie-banner__text p {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.5rem;
+  line-height: 1.7;
+}
+.cookie-banner__text p a {
+  color: #FFFFFF;
+  text-decoration: underline;
+}
+.cookie-banner__actions {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+/* =========================
+COOKIE BUTTONS
+========================= */
+.cookie-btn {
+  border: none;
+  padding: 1.2rem 2rem;
+  border-radius: 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.cookie-btn--primary {
+  background: #2563EB;
+  color: #fff;
+}
+.cookie-btn--primary:hover {
+  transform: translateY(-2px);
+}
+.cookie-btn--secondary {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.cookie-btn--secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+COOKIE MODAL
+========================= */
+.cookie-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s ease;
+  z-index: 10000;
+}
+.cookie-modal.show {
+  opacity: 1;
+  visibility: visible;
+}
+.cookie-modal__card {
+  width: 100%;
+  max-width: 62rem;
+  padding: 3rem;
+  border-radius: 2.6rem;
+  background: #0B0F19;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.cookie-modal__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.cookie-modal__top h3 {
+  color: #fff;
+  font-size: 2.4rem;
+}
+.cookie-modal__top button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+}
+.cookie-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.cookie-modal__bottom {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+/* =========================
+COOKIE OPTION
+========================= */
+.cookie-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: 1.8rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+.cookie-option h4 {
+  margin-bottom: 0.6rem;
+  color: #fff;
+  font-size: 1.7rem;
+}
+.cookie-option p {
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 1.4rem;
+  line-height: 1.7;
+}
+.cookie-option input {
+  width: 2rem;
+  height: 2rem;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .cookie-banner__content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cookie-banner__actions {
+    width: 100%;
+    flex-direction: column;
+  }
+  .cookie-banner__actions .cookie-btn {
+    width: 100%;
+  }
+  .cookie-modal__card {
+    padding: 2.4rem;
+  }
+  .cookie-modal__bottom {
+    flex-direction: column;
+  }
+  .cookie-modal__bottom .cookie-btn {
+    width: 100%;
+  }
+  .cookie-option {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 /* =========================
 ABOUT HISTORY
 ========================= */
