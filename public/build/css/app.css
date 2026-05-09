@@ -147,7 +147,7 @@ p {
   align-items: center;
   overflow: hidden;
   /* 🔥 NUEVO FONDO PROFESIONAL (NO ROMPE NADA) */
-  background: linear-gradient(to right, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0) 40%, rgba(2, 6, 23, 0.6) 70%, rgba(2, 6, 23, 0.9) 100%), url("/codeImpact/public/build/img/hero/hero.jpg");
+  background: linear-gradient(to right, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0) 40%, rgba(2, 6, 23, 0.6) 70%, rgba(2, 6, 23, 0.9) 100%), image-set(url(../img/hero/hero.avif) type('image/avif'), url(../img/hero/hero.webp) type('image/webp'), url(../img/hero/hero.jpg) type('image/jpeg'));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -739,6 +739,14 @@ RESPONSIVE
 /* =========================
    HEADER
 ========================= */
+.lottie.logo-lottie {
+  height: 55px;
+  width: auto;
+  display: block;
+  right: 11px;
+  position: relative;
+}
+
 .header {
   position: fixed;
   top: 0;
@@ -758,11 +766,6 @@ RESPONSIVE
   /* LOGO */
 }
 .header__logo a {
-  display: block;
-}
-.header__logo img {
-  height: 40px;
-  width: auto;
   display: block;
 }
 .header {

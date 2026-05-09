@@ -3,9 +3,15 @@
 
         <div class="header__logo">
             <a href="<?= BASE_URL ?>index.php">
-                <img src="<?= BASE_URL ?>build/img/logos/logo.svg" alt="CodeImpact">
+                <div 
+                    class="lottie logo-lottie"
+                    data-animation="logo">
+                </div>
             </a>
         </div>
+        
+
+
 
         <nav class="header__nav">
             <a href="<?= BASE_URL ?>servicios/servicios.php" class="header__link">Servicios</a>

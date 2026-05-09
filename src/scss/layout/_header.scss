@@ -3,6 +3,13 @@
 /* =========================
    HEADER
 ========================= */
+.lottie.logo-lottie{
+    height: 55px;
+    width: auto;
+    display: block;
+    right: 11px;
+    position: relative;
+}
 .header {
     position: fixed;
 
@@ -31,11 +38,7 @@
             display: block;
         }
 
-        img {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
+        
     }
 
     /* NAV DESKTOP */

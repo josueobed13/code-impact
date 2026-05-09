@@ -56,9 +56,10 @@ CTA FINAL
                 Solicitar proyecto
             </a>
 
-            <a href="<?= BASE_URL; ?>servicios/" class="btn btn--primary">
+            <a href="<?= BASE_URL ?>servicios/servicios.php" class="btn btn--primary">
                 Ver servicios
             </a>
+
 
         </div>
 
