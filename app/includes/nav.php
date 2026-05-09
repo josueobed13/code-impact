@@ -2,7 +2,7 @@
     <div class="container header__container">
 
         <div class="header__logo">
-            <a href="<?= BASE_URL ?>index.php">
+            <a href="<?= BASE_URL ?>index.php" aria-label="Ir al inicio de Code Impact Perú">
                 <div 
                     class="lottie logo-lottie"
                     data-animation="logo">
@@ -67,7 +67,7 @@
 
         <a href="<?php echo BASE_URL; ?>contacto.php" class="btn btn--primary header__cta">Empezar</a>
 
-        <button class="header__toggle">
+        <button class="header__toggle" aria-label="Abrir menú">
             <span></span>
             <span></span>
             <span></span>
