@@ -895,7 +895,7 @@ if (!cookieSaved && cookieBanner) {
 
     setTimeout(() => {
         cookieBanner.classList.add('show');
-    }, 1200);
+    }, 4500);
 
 }
 
