@@ -134,9 +134,10 @@
 
 .models__cta-left {
     flex-direction: column;
+    text-align: center;
 }
 .models__cta {
-        padding: 2rem 3rem 2rem 4rem;
+        padding: 2rem 1.5rem 2rem 1.5rem;
     }
 }
 
@@ -327,6 +328,14 @@
         align-items: flex-start;
     }
 }
+
+@media (max-width: 573px){
+    .models__cta-left h4 {
+        font-size: 1.5rem;
+        margin-bottom: 1.4rem;
+    }
+}
+
 @media (max-width: 465px) {
 .model-card__image {
         width: 75%;
