@@ -175,7 +175,7 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-attachment: fixed;
+  background-attachment: scroll;
   /* =========================
      GRID
   ========================= */
@@ -195,9 +195,6 @@ p {
 }
 .hero__content {
   max-width: 520px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.5s ease forwards 2s;
 }
 .hero__title {
   font-size: 5rem;
@@ -221,7 +218,7 @@ p {
 }
 .hero__media {
   position: relative;
-  transform: scale(1.08);
+  transform: none;
   aspect-ratio: 16/9;
 }
 .hero__media video {
@@ -229,45 +226,7 @@ p {
   height: 100%;
   object-fit: cover;
   border-radius: 16px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 0.5s ease forwards 2s;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(37, 99, 235, 0.15);
-}
-.hero__media::before {
-  content: "";
-  position: absolute;
-  inset: -2px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.5), transparent 40%, transparent 60%, rgba(37, 99, 235, 0.5));
-  opacity: 0.5;
-  filter: blur(14px);
-  z-index: -1;
-}
-.hero {
-  /* =========================
-     GLOW CORPORATIVO (SE MANTIENE)
-  ========================= */
-}
-.hero::before {
-  content: "";
-  position: absolute;
-  top: -200px;
-  right: -200px;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.25), transparent 70%);
-  z-index: 1;
-}
-.hero {
-  /* 🔥 NUEVO OVERLAY SUAVE (PROFUNDIDAD) */
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 20% 40%, rgba(37, 99, 235, 0.15), transparent 60%);
-  z-index: 1;
 }
 .hero {
   /* =========================
