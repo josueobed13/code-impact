@@ -14,7 +14,7 @@ BACK BUTTON FLOAT
 
     display: inline-flex;
     align-items: center;
-    gap: .8rem;
+    gap: 0rem;
 
     padding: 1rem 1.6rem;
 
@@ -40,8 +40,9 @@ BACK BUTTON FLOAT
 
     transition: .3s ease;
 
-    i {
-        font-size: 1.2rem;
+    span {
+        right: 3px;
+        position: relative;
     }
 
     &:hover {

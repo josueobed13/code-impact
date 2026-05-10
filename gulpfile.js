@@ -31,13 +31,42 @@ export function css() {
 }
 
 // ==========================
-// JS
+// fonts
 // ==========================
-export function js() {
-    return src(paths.js)
-        .pipe(concat('app.js'))
+function fonts() {
+    return src('src/fonts/**/*')
+        .pipe(dest('./public/build/fonts'))
+}
+
+
+
+// ==========================
+// JS CORE
+// ==========================
+export function jsCore() {
+    return src('src/js/core/**/*.js')
+        .pipe(concat('core.min.js'))
         .pipe(terser())
-        .pipe(rename({ suffix: '.min' }))
+        .pipe(dest('./public/build/js'))
+}
+
+// ==========================
+// JS UI
+// ==========================
+export function jsUI() {
+    return src('src/js/ui/**/*.js')
+        .pipe(concat('ui.min.js'))
+        .pipe(terser())
+        .pipe(dest('./public/build/js'))
+}
+
+// ==========================
+// JS HOME
+// ==========================
+export function jsHome() {
+    return src('src/js/home/**/*.js')
+        .pipe(concat('home.min.js'))
+        .pipe(terser())
         .pipe(dest('./public/build/js'))
 }
 
@@ -128,15 +157,25 @@ export function videos() {
 // ==========================
 export function dev() {
     watch(paths.scss, { usePolling: true }, css)
-    watch(paths.js, { usePolling: true }, js)
+
+    watch(paths.js, { usePolling: true }, series(jsCore, jsUI, jsHome))
+
     watch(paths.img, { usePolling: true }, imagenes)
     watch(paths.video, { usePolling: true }, videos)
-
-    // 🔥 NUEVO WATCH
     watch(paths.animations, { usePolling: true }, animations)
 }
 
 // ==========================
 // DEFAULT
 // ==========================
-export default series(js, css, imagenes, animations, videos, dev)
+export default series(
+    jsCore,
+    jsUI,
+    jsHome,
+    fonts,
+    css,
+    imagenes,
+    animations,
+    videos,
+    dev
+)

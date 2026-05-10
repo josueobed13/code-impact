@@ -1,34 +1,4 @@
 @charset "UTF-8";
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-v20-latin-300.woff2") format("woff2");
-  font-weight: 300;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-v20-latin-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-v20-latin-500.woff2") format("woff2");
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-v20-latin-600.woff2") format("woff2");
-  font-weight: 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("../fonts/inter-v20-latin-700.woff2") format("woff2");
-  font-weight: 700;
-  font-display: swap;
-}
 *,
 *::before,
 *::after {
@@ -70,6 +40,36 @@ button {
   font: inherit;
 }
 
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-v20-latin-300.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-v20-latin-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-v20-latin-500.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-v20-latin-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/inter-v20-latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
 body {
   font-family: "Inter", sans-serif;
   background-color: #0B0F19;
@@ -738,7 +738,7 @@ BACK BUTTON FLOAT
   z-index: 9998;
   display: inline-flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0rem;
   padding: 1rem 1.6rem;
   border-radius: 10rem;
   background: rgba(11, 15, 25, 0.92);
@@ -752,8 +752,9 @@ BACK BUTTON FLOAT
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
   transition: 0.3s ease;
 }
-.back-button i {
-  font-size: 1.2rem;
+.back-button span {
+  right: 3px;
+  position: relative;
 }
 .back-button:hover {
   transform: translateY(-3px);

@@ -220,7 +220,9 @@ FOOTER
 <!-- SCRIPTS -->
 
 
-<script src="<?= BASE_URL; ?>build/js/app.min.js" defer></script>
+<script src="<?= BASE_URL; ?>build/js/core.min.js" defer></script>
+<script src="<?= BASE_URL; ?>build/js/ui.min.js" defer></script>
+<script src="<?= BASE_URL; ?>build/js/home.min.js" defer></script>
 
 <?php include __DIR__ . '/whatsapp.php'; ?>
 
