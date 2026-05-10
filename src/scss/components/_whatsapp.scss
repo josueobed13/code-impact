@@ -1,6 +1,18 @@
 /* =========================
 WHATSAPP FLOAT
 ========================= */
+
+.whatsapp-wrapper {
+    position: fixed;
+    right: 2rem;
+    bottom: 0rem;
+    z-index: 9999;
+
+    transform: translateY(102px);
+
+    animation: fadeUp 0.5s ease forwards 2s;
+}
+
 .whatsapp-float {
     position: fixed;
 
@@ -15,7 +27,7 @@ WHATSAPP FLOAT
 
     text-decoration: none;
 
-    animation: whatsappFloat 2.5s ease-in-out infinite;
+     animation: whatsappFloat 2.5s ease-in-out infinite;
 
     &__text {
 
