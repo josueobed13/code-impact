@@ -8,6 +8,7 @@ import concat from 'gulp-concat'
 import terser from 'gulp-terser'
 import sharp from 'sharp'
 import rename from 'gulp-rename'
+import sourcemaps from 'gulp-sourcemaps'
 
 const sass = gulpSass(dartSass)
 
@@ -46,8 +47,14 @@ export function css() {
 // ==========================
 export function jsCore() {
     return src('src/js/core/**/*.js')
+
+        .pipe(sourcemaps.init())
+
         .pipe(concat('core.min.js'))
         .pipe(terser())
+
+        .pipe(sourcemaps.write('.'))
+
         .pipe(dest('./public/build/js'))
 }
 
@@ -56,8 +63,14 @@ export function jsCore() {
 // ==========================
 export function jsUI() {
     return src('src/js/ui/**/*.js')
+
+        .pipe(sourcemaps.init())
+
         .pipe(concat('ui.min.js'))
         .pipe(terser())
+
+        .pipe(sourcemaps.write('.'))
+
         .pipe(dest('./public/build/js'))
 }
 
@@ -66,8 +79,14 @@ export function jsUI() {
 // ==========================
 export function jsHome() {
     return src('src/js/home/**/*.js')
+
+        .pipe(sourcemaps.init())
+
         .pipe(concat('home.min.js'))
         .pipe(terser())
+
+        .pipe(sourcemaps.write('.'))
+
         .pipe(dest('./public/build/js'))
 }
 
