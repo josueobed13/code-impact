@@ -34,10 +34,10 @@ export function css() {
 // ==========================
 // fonts
 // ==========================
-export function fonts() {
-    return src('src/fonts/*.{woff,woff2,ttf,otf}')
-        .pipe(dest('./public/build/fonts'))
-}
+//export function fonts() {
+   // return src('src/fonts/*.{woff,woff2,ttf,otf}')
+      //  .pipe(dest('./public/build/fonts'))
+//}
 
 
 
@@ -173,7 +173,6 @@ export default series(
     jsCore,
     jsUI,
     jsHome,
-    fonts,
     css,
     imagenes,
     animations,

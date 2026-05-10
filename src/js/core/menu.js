@@ -36,3 +36,5 @@ function initMenu() {
         if (e.key === 'Escape') closeMenu();
     });
 }
+
+initMenu();

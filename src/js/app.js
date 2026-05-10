@@ -1,4 +1,4 @@
-import { initMenu } from './core/menu.js';
+
 import { initLottie } from './core/lottie.js';
 import { initFixedHeader } from './core/fixedHeader.js';
 import { initMailLinks } from './core/mail.js';
@@ -18,7 +18,6 @@ import { initHeroVideo } from './core/heroVideo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    initMenu();
     initLottie();
     initFixedHeader();
     initMailLinks();
@@ -33,6 +32,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initPortfolioCounters();
     initContactForm();
 
-    // 👉 AÑÁDELO AQUÍ
-    initHeroVideo();
+    initHeroVideo(); // solo aquí
 });
