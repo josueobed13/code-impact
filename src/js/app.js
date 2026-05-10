@@ -1,60 +1,78 @@
+
 import { initFixedHeader } from './core/fixedHeader.js';
 import { initMailLinks } from './core/mail.js';
-
 import { initHeroVideo } from './home/heroVideo.js';
+import { initLottie } from './ui/lottie.js';
 
+
+// =========================
+// DOM READY (CRÍTICO - INMEDIATO)
+// =========================
 document.addEventListener('DOMContentLoaded', () => {
 
-    // =========================
-    // CRÍTICO
-    // =========================
+    console.log('🚀 DOM READY INIT');
+
     initFixedHeader();
     initMailLinks();
-
-    // =========================
-    // HERO VIDEO
-    // =========================
     initHeroVideo();
-
+    initLottie();
 });
 
 
 // =========================
-// DIFERIDO
+// LOAD (UI PESADA / ASYNC)
 // =========================
 window.addEventListener('load', async () => {
 
-    // CORE
-    const { initCookies } = await import('./core/cookies.js');
+    try {
 
-    // UI
-    const { initLottie } = await import('./ui/lottie.js');
-    const { initLightbox } = await import('./ui/lightbox.js');
-    const { initClients } = await import('./ui/clients.js');
-    const { initCatalog } = await import('./ui/catalog.js');
+        console.log('⚡ LOAD INIT START');
 
-    // HOME
-    const { initServices } = await import('./home/services.js');
-    const { initProcessMobile } = await import('./home/process.js');
-    const { initPortfolioCounters } = await import('./home/portfolio.js');
-    const { initContactForm } = await import('./home/contact.js');
+        // =========================
+        // CORE / SYSTEM
+        // =========================
+        const { initCookies } = await import('./core/cookies.js');
 
-    // =========================
-    // INIT
-    // =========================
+        // =========================
+        // UI COMPONENTS
+        // =========================
+        const { initLightbox } = await import('./ui/lightbox.js');
+        const { initClients } = await import('./ui/clients.js');
+        const { initCatalog } = await import('./ui/catalog.js');
 
-    initCookies();
+        // =========================
+        // HOME FEATURES
+        // =========================
+        const { initServices } = await import('./home/services.js');
+        const { initProcessMobile } = await import('./home/process.js');
+        const { initContactForm } = await import('./home/contact.js');
 
-    // UI PESADO
-    initLottie();
-    initLightbox();
-    initClients();
-    initCatalog();
+        // =========================
+        // PORTFOLIO COUNTERS (AQUÍ)
+        // =========================
+        const { initPortfolioCounters } = await import('./home/portfolio.js');
 
-    // HOME
-    initServices();
-    initProcessMobile();
-    initPortfolioCounters();
-    initContactForm();
+        // =========================
+        // INIT EXECUTION
+        // =========================
+        initCookies();
+
+        initLightbox();
+        initClients();
+        initCatalog();
+
+        initServices();
+        initProcessMobile();
+
+        // 🔥 IMPORTANTE: después de todo el layout
+        initPortfolioCounters();
+
+        initContactForm();
+
+        console.log('✅ LOAD INIT COMPLETE');
+
+    } catch (error) {
+        console.error('❌ IMPORT ERROR:', error);
+    }
 
 });
