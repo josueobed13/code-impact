@@ -1,6 +1,3 @@
-// ==========================
-// 🔥 LOTTIE LAZY LOAD
-// ==========================
 async function initLottie() {
 
     const items = document.querySelectorAll('.lottie');
