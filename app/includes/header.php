@@ -31,7 +31,17 @@ if (!defined('BASE_URL')) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- CSS -->
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>build/css/app.css">
+        
+    <link
+        rel="preload"
+        href="<?= BASE_URL; ?>build/css/app.css"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+    >
+
+    <noscript>
+        <link rel="stylesheet" href="<?= BASE_URL; ?>build/css/app.css">
+    </noscript>
 
 
     <!-- img hero -->
