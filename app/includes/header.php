@@ -37,7 +37,7 @@ if (!defined('BASE_URL')) {
     <link
         rel="preload"
         as="image"
-        href="<?= BASE_URL ?>build/img/hero/hero.jpg"
+        href="<?= BASE_URL ?>build/img/hero/hero.webp"
         fetchpriority="high"
     >
 

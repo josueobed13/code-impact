@@ -10,3 +10,4 @@ function initFixedHeader() {
     update();
     window.addEventListener('resize', update);
 }
+

@@ -20,30 +20,15 @@
         <!-- video hero -->
         <div class="hero__media">
 
-            <video
+           <video
                 class="hero__video"
                 autoplay
                 muted
                 loop
                 playsinline
-                preload="none"
+                preload="auto"
                 poster="<?= BASE_URL ?>build/img/hero/hero.webp"
-            >
-
-                <!-- MOBILE -->
-                <source
-                    media="(max-width: 768px)"
-                    src="<?= BASE_URL ?>build/video/hero-mobile.mp4"
-                    type="video/mp4"
-                >
-
-                <!-- DESKTOP -->
-                <source
-                    src="<?= BASE_URL ?>build/video/hero-desktop.mp4"
-                    type="video/mp4"
-                >
-
-            </video>
+            ></video>
 
         </div>
     </div>

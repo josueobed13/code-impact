@@ -30,11 +30,12 @@ export function css() {
         .pipe(dest('./public/build/css', { sourcemaps: '.' }))
 }
 
+
 // ==========================
 // fonts
 // ==========================
-function fonts() {
-    return src('src/fonts/**/*')
+export function fonts() {
+    return src('src/fonts/*.{woff,woff2,ttf,otf}')
         .pipe(dest('./public/build/fonts'))
 }
 

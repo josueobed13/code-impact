@@ -28,7 +28,9 @@ function initMenu() {
 
     overlay.addEventListener('click', closeMenu);
 
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMenu);
+    }
 
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeMenu();
