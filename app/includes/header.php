@@ -32,8 +32,16 @@ if (!defined('BASE_URL')) {
     
     <!-- CSS -->
         
-    <link rel="preload" href="<?= BASE_URL; ?>build/css/app.css" as="style">
-    <link rel="stylesheet" href="<?= BASE_URL; ?>build/css/app.css">
+    <link
+        rel="preload"
+        href="<?= BASE_URL; ?>build/css/app.css"
+        as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
+    >
+
+    <noscript>
+        <link rel="stylesheet" href="<?= BASE_URL; ?>build/css/app.css">
+    </noscript>
 
 
     <!-- img hero -->
