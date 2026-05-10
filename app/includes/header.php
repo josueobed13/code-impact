@@ -46,12 +46,6 @@ if (!defined('BASE_URL')) {
 
     <!-- img hero -->
 
-    <link
-        rel="preload"
-        as="image"
-        href="<?= BASE_URL ?>build/img/hero/hero.webp"
-        fetchpriority="high"
-    >
 
     <!-- ICONS -->
     
