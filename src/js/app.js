@@ -14,7 +14,7 @@ import { initPortfolioCounters } from './home/portfolio.js';
 import { initContactForm } from './home/contact.js';
 
 // 👉 ESTE ES EL NUEVO
-import { initHeroVideo } from './core/heroVideo.js';
+
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -32,5 +32,4 @@ document.addEventListener('DOMContentLoaded', () => {
     initPortfolioCounters();
     initContactForm();
 
-    initHeroVideo(); // solo aquí
 });

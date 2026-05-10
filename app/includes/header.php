@@ -26,7 +26,9 @@ if (!defined('BASE_URL')) {
     <meta name="description" content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>">
 
     <!-- FONTS -->
-
+    <link rel="preload" href="<?= BASE_URL ?>build/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>build/css/app.css">
