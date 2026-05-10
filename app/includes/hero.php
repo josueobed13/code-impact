@@ -26,7 +26,7 @@
                 muted
                 loop
                 playsinline
-                preload="none"
+                preload="auto"
                 poster="<?= BASE_URL ?>build/img/hero/hero.webp"
             >
 
