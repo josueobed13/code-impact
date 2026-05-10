@@ -2,77 +2,104 @@
 import { initFixedHeader } from './core/fixedHeader.js';
 import { initMailLinks } from './core/mail.js';
 import { initHeroVideo } from './home/heroVideo.js';
-import { initLottie } from './ui/lottie.js';
-
 
 // =========================
-// DOM READY (CRÍTICO - INMEDIATO)
+// DOM READY
 // =========================
 document.addEventListener('DOMContentLoaded', () => {
 
-    console.log('🚀 DOM READY INIT');
-
+    // =========================
+    // CRÍTICO
+    // =========================
     initFixedHeader();
     initMailLinks();
+
+    // =========================
+    // HERO VIDEO
+    // =========================
     initHeroVideo();
-    initLottie();
 });
 
-
 // =========================
-// LOAD (UI PESADA / ASYNC)
+// DIFERIDO
 // =========================
 window.addEventListener('load', async () => {
 
     try {
 
-        console.log('⚡ LOAD INIT START');
-
         // =========================
-        // CORE / SYSTEM
+        // CORE
         // =========================
         const { initCookies } = await import('./core/cookies.js');
 
         // =========================
-        // UI COMPONENTS
+        // UI
         // =========================
         const { initLightbox } = await import('./ui/lightbox.js');
         const { initClients } = await import('./ui/clients.js');
         const { initCatalog } = await import('./ui/catalog.js');
 
         // =========================
-        // HOME FEATURES
+        // HOME
         // =========================
         const { initServices } = await import('./home/services.js');
         const { initProcessMobile } = await import('./home/process.js');
+        const { initPortfolioCounters } = await import('./home/portfolio.js');
         const { initContactForm } = await import('./home/contact.js');
 
         // =========================
-        // PORTFOLIO COUNTERS (AQUÍ)
+        // INIT
         // =========================
-        const { initPortfolioCounters } = await import('./home/portfolio.js');
+        try {
+            initCookies();
+        } catch (e) {
+            console.error('Cookies error:', e);
+        }
 
-        // =========================
-        // INIT EXECUTION
-        // =========================
-        initCookies();
+        try {
+            initLightbox();
+        } catch (e) {
+            console.error('Lightbox error:', e);
+        }
 
-        initLightbox();
-        initClients();
-        initCatalog();
+        try {
+            initClients();
+        } catch (e) {
+            console.error('Clients error:', e);
+        }
 
-        initServices();
-        initProcessMobile();
+        try {
+            initCatalog();
+        } catch (e) {
+            console.error('Catalog error:', e);
+        }
 
-        // 🔥 IMPORTANTE: después de todo el layout
-        initPortfolioCounters();
+        try {
+            initServices();
+        } catch (e) {
+            console.error('Services error:', e);
+        }
 
-        initContactForm();
+        try {
+            initProcessMobile();
+        } catch (e) {
+            console.error('Process error:', e);
+        }
 
-        console.log('✅ LOAD INIT COMPLETE');
+        try {
+            console.log('CONTADORES INICIADOS');
+            initPortfolioCounters();
+        } catch (e) {
+            console.error('Portfolio error:', e);
+        }
+
+        try {
+            initContactForm();
+        } catch (e) {
+            console.error('Contact error:', e);
+        }
 
     } catch (error) {
-        console.error('❌ IMPORT ERROR:', error);
+        console.error('IMPORT ERROR:', error);
     }
-
 });
