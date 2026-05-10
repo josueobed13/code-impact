@@ -3,7 +3,7 @@
 // ==========================
 // 🔥 PORTFOLIO COUNTERS
 // ==========================
-function initPortfolioCounters() {
+export function initPortfolioCounters() {
 
     const counters = document.querySelectorAll('.counter');
 
