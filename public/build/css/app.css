@@ -197,7 +197,7 @@ p {
   max-width: 520px;
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeUp 0.5s ease forwards 0.8s;
+  animation: fadeUp 0.5s ease forwards 2s;
 }
 .hero__title {
   font-size: 5rem;
@@ -231,7 +231,7 @@ p {
   border-radius: 16px;
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeUp 0.5s ease forwards 1s;
+  animation: fadeUp 0.5s ease forwards 2s;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(37, 99, 235, 0.15);
 }
 .hero__media::before {
