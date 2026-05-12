@@ -4,7 +4,7 @@
     background-color: #010618; 
     
     /* 2. ESPACIO INMEDIATO */
-    min-height: 85vh; 
+    min-height: 66vh; 
     display: flex;
     align-items: center;
     position: relative;
