@@ -37,21 +37,11 @@ if (!defined('BASE_URL')) {
     <link rel="stylesheet" href="<?= BASE_URL; ?>build/css/app.css">
 
 
-    <!-- fondo hero -->
-        <link
-            rel="preload"
-            as="image"
-            href="<?= BASE_URL ?>build/img/hero/hero.avif"
-            type="image/avif"
-            fetchpriority="high"
-        >
+    <!-- img hero -->
+
 
     <!-- ICONS -->
-    <link
-        rel="preload"
-        href="https://unpkg.com/lottie-web/build/player/lottie.min.js"
-        as="script"
-    >
+    
 
     <!-- JS GLOBAL CONFIG -->
     <script>

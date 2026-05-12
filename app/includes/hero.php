@@ -22,7 +22,12 @@
 
     <video
         class="hero__video"
-       
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="<?= BASE_URL ?>build/img/hero/hero.avif"
     >
 
         <!-- MOBILE -->
