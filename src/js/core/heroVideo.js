@@ -5,19 +5,15 @@ export function initHeroVideo() {
     if (!video) return;
 
     // =========================
-    // MOBILE
+    // CONFIGURACIÓN
     // =========================
-    if (window.innerWidth <= 768) {
-
-        video.removeAttribute('autoplay');
-        video.pause();
-
-        return;
-
-    }
+    video.muted = true;
+    video.playsInline = true;
+    video.loop = true;
+    video.preload = 'none';
 
     // =========================
-    // DESKTOP
+    // CARGA DIFERIDA
     // =========================
     const observer = new IntersectionObserver((entries) => {
 
@@ -25,13 +21,21 @@ export function initHeroVideo() {
 
         if (!entry.isIntersecting) return;
 
-        // Intentar reproducir
+        // cargar video recién cuando aparece
+        if (!video.src) {
+
+            video.src =
+                `${BASE_URL}build/video/hero-mobile.mp4`;
+
+        }
+
+        // reproducir
         video.play().catch(() => {});
 
         observer.disconnect();
 
     }, {
-        threshold: 0.4
+        threshold: 0.25
     });
 
     observer.observe(video);

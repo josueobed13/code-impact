@@ -171,7 +171,7 @@ p {
   align-items: center;
   overflow: hidden;
   /* 🔥 NUEVO FONDO PROFESIONAL (NO ROMPE NADA) */
-  background: linear-gradient(to right, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0) 40%, rgba(2, 6, 23, 0.6) 70%, rgba(2, 6, 23, 0.9) 100%), image-set(url(../img/hero/hero.avif) type('image/avif'), url(../img/hero/hero.webp) type('image/webp'), url(../img/hero/hero.jpg) type('image/jpeg'));
+  background: image-set(url(../img/hero/hero.avif) type('image/avif'), url(../img/hero/hero.webp) type('image/webp'), url(../img/hero/hero.jpg) type('image/jpeg'));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -232,12 +232,6 @@ p {
   /* =========================
      ANIMACIÓN
   ========================= */
-}
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 @media (max-width: 1127px) {
   .hero__title {
