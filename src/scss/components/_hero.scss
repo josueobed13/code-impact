@@ -4,7 +4,7 @@
     position: relative;
     padding: 6rem 0;
     padding-top: 12rem;
-    min-height: auto;
+    min-height: 55vh;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -66,8 +66,6 @@
         position: relative;
         transform: none;
         aspect-ratio: 16 / 9;
-        content-visibility: auto;
-        contain-intrinsic-size: 1280px 720px;
 
         video {
             width: 100%;
@@ -77,9 +75,7 @@
 
             
                
-        box-shadow: 
-             0 10px 25px rgba(0,0,0,0.35),
-            0 0 10px rgba(37, 99, 235, 0.08);
+
 
         }
 
@@ -124,8 +120,6 @@
     @media (max-width: 768px) {
         padding: 4rem 0;
         min-height: auto;
-        background-size: cover;
-        background-position: center top;
 
         /* 🔥 importante para mobile */
         background-attachment: scroll;

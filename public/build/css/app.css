@@ -166,7 +166,7 @@ p {
   position: relative;
   padding: 6rem 0;
   padding-top: 12rem;
-  min-height: auto;
+  min-height: 55vh;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -220,15 +220,12 @@ p {
   position: relative;
   transform: none;
   aspect-ratio: 16/9;
-  content-visibility: auto;
-  contain-intrinsic-size: 1280px 720px;
 }
 .hero__media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 16px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35), 0 0 10px rgba(37, 99, 235, 0.08);
 }
 .hero {
   /* =========================
@@ -264,8 +261,6 @@ p {
   .hero {
     padding: 4rem 0;
     min-height: auto;
-    background-size: cover;
-    background-position: center top;
     /* 🔥 importante para mobile */
     background-attachment: scroll;
   }
@@ -740,13 +735,11 @@ RESPONSIVE
    HEADER
 ========================= */
 .lottie.logo-lottie {
-  width: 180px;
   height: 55px;
-  position: relative;
-  right: 11px;
+  width: auto;
   display: block;
-  contain: layout paint;
-  transform: translateZ(0);
+  right: 11px;
+  position: relative;
 }
 
 .header {
@@ -903,7 +896,7 @@ RESPONSIVE
 }
 
 /* =========================
-   OVERLAY de función del menu no mover
+   OVERLAY
 ========================= */
 .overlay {
   position: fixed;
@@ -1558,7 +1551,6 @@ HEADER SCROLL EFFECT
   top: -10px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
   background: #2563eb;
   color: white;
   width: 22px;
@@ -1584,8 +1576,6 @@ HEADER SCROLL EFFECT
   display: flex;
   align-items: center;
   justify-content: center;
-  contain: layout paint;
-  transform: translateZ(0);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
 }
@@ -2054,18 +2044,16 @@ HEADER SCROLL EFFECT
   transform: translateY(-50%);
   width: 36px;
   height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(0, 0, 0, 0.4);
   color: #fff;
   font-size: 2rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: opacity 0.3s ease;
-  opacity: 1;
-  pointer-events: auto;
+  transition: 0.3s;
 }
 
 .lightbox__prev {
@@ -2080,12 +2068,6 @@ HEADER SCROLL EFFECT
 .lightbox__next:hover {
   color: #2563eb;
   transform: translateY(-50%) scale(1.1);
-}
-
-.lightbox__prev.hidden,
-.lightbox__next.hidden {
-  opacity: 0;
-  pointer-events: none;
 }
 
 /* =========================
