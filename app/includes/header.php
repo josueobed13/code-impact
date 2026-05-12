@@ -19,13 +19,7 @@ if (!defined('BASE_URL')) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title><?php echo $titulo ?? 'CodeImpact'; ?></title>
-    <meta name="description" content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>">
-
-    <!-- preload fondo -->
+        <!-- preload fondo -->
     <!-- preload fondo mobile -->
 <link
     rel="preload"
@@ -45,6 +39,13 @@ if (!defined('BASE_URL')) {
     type="image/avif"
     fetchpriority="high"
 >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title><?php echo $titulo ?? 'CodeImpact'; ?></title>
+    <meta name="description" content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>">
+
+
 
     <!-- JS GLOBAL CONFIG -->
     <script>
