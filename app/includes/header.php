@@ -25,34 +25,39 @@ if (!defined('BASE_URL')) {
     <title><?php echo $titulo ?? 'CodeImpact'; ?></title>
     <meta name="description" content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>">
 
-    <!-- FONTS -->
-    <link rel="preload" href="<?= BASE_URL ?>build/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- CSS -->
-        
-    
-    <link rel="preload" href="<?= BASE_URL; ?>build/css/app.css" as="style">
-    <link rel="stylesheet" href="<?= BASE_URL; ?>build/css/app.css">
-    
-
-
-        <!-- img hero -->
-
-
-<!-- preload fondo -->
-<link rel="preload" as="image" href="<?= BASE_URL ?>build/img/hero/hero-mobil.avif" media="(max-width: 767px)" type="image/avif" fetchpriority="high">
-<link rel="preload" as="image" href="<?= BASE_URL ?>build/img/hero/hero.avif" media="(min-width: 768px)" type="image/avif" fetchpriority="high">
-
-
-
-    
+    <!-- preload fondo -->
+    <link rel="preload" as="image" href="<?= BASE_URL ?>build/img/hero/hero-mobil.avif" media="(max-width: 767px)" type="image/avif" fetchpriority="high">
+    <link rel="preload" as="image" href="<?= BASE_URL ?>build/img/hero/hero.avif" media="(min-width: 768px)" type="image/avif" fetchpriority="high">
 
     <!-- JS GLOBAL CONFIG -->
     <script>
         const BASE_URL = "<?php echo BASE_URL; ?>";
     </script>
+
+    <!-- CSS -->
+    <link rel="preload" href="<?= BASE_URL; ?>build/css/app.css" as="style">
+    <link rel="stylesheet" href="<?= BASE_URL; ?>build/css/app.css">
+    
+
+    <!-- FONTS -->
+
+    <link rel="preload" href="<?= BASE_URL ?>build/fonts/Inter-Regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+ 
+
+
+        <!-- img hero -->
+
+
+
+
+
+
+    
+
+   
 
 </head>
 <body>
