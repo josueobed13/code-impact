@@ -1,15 +1,25 @@
-<!-- 1. El estilo específico para que cargue instantáneo -->
 <style>
   .hero {
-    background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif");
+    /* 1. Fondo por defecto (JPG) - Carga inmediata en navegadores antiguos */
+    background-image: url("<?= BASE_URL ?>build/img/hero/hero.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: scroll;
   }
-  /* Backup por si el navegador es muy antiguo y no soporta avif */
-  @supports not (background-image: url("t.avif")) {
-    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.webp"); }
+
+  /* 2. Si el navegador entiende WebP, sobrescribe el JPG */
+  @supports (background-image: url("t.webp")) {
+    .hero { 
+      background-image: url("<?= BASE_URL ?>build/img/hero/hero.webp"); 
+    }
+  }
+
+  /* 3. Si el navegador entiende AVIF (mejor compresión), sobrescribe todo lo anterior */
+  @supports (background-image: url("t.avif")) {
+    .hero { 
+      background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif"); 
+    }
   }
 </style>
 

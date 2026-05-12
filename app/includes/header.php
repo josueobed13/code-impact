@@ -38,13 +38,13 @@ if (!defined('BASE_URL')) {
 
 
         <!-- img hero -->
-    <link 
+   <link 
     rel="preload" 
     as="image" 
     href="<?= BASE_URL ?>build/img/hero/hero.avif" 
     type="image/avif" 
     fetchpriority="high"
->
+    >
 
     <!-- ICONS -->
     
