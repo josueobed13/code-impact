@@ -41,7 +41,11 @@ if (!defined('BASE_URL')) {
 
 
     <!-- ICONS -->
-    
+    <link
+        rel="preload"
+        href="https://unpkg.com/lottie-web/build/player/lottie.min.js"
+        as="script"
+    >
 
     <!-- JS GLOBAL CONFIG -->
     <script>
