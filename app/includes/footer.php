@@ -216,9 +216,7 @@ FOOTER
 
 </footer>
 
-
 <!-- SCRIPTS -->
-
 
 <!-- 1. CORE: Contiene la lógica base y el monitor de LCP -->
 <script src="<?= BASE_URL; ?>build/js/core.min.js?v=1.2" defer></script>
@@ -232,9 +230,6 @@ FOOTER
 
 
 <?php include __DIR__ . '/whatsapp.php'; ?>
-
-
-
 
 
 <!--cookies -->
