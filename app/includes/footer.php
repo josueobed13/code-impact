@@ -224,7 +224,7 @@ FOOTER
 <script src="<?= BASE_URL; ?>build/js/core.min.js?v=1.2" defer></script>
 
 <!-- 2. UI: Contiene Lottie, Sliders y efectos visuales -->
-<script src="<?= BASE_URL; ?>build/js/ui.min.js?v=2" defer></script>
+<script src="<?= BASE_URL; ?>build/js/ui.min.js?v=1.2" defer></script>
 
 <!-- 3. HOME: Contiene la lógica específica de esta página -->
 <script src="<?= BASE_URL; ?>build/js/home.min.js?v=1.2" defer></script>

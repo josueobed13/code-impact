@@ -12,15 +12,17 @@ function initHeroVideo() {
     if (video.dataset.loaded) return;
 
     // ==========================
-    // CONFIGURACIÓN
+    // CONFIG
     // ==========================
     video.muted = true;
     video.loop = true;
     video.autoplay = true;
     video.playsInline = true;
-    video.preload = 'none';
 
-    // compatibilidad iOS
+    // mejor para LCP móvil
+    video.preload = 'metadata';
+
+    // iOS
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
     video.setAttribute('autoplay', '');
@@ -49,32 +51,21 @@ function initHeroVideo() {
         // insertar source
         video.appendChild(source);
 
-        // cargar video
+        // cargar metadata/video
         video.load();
 
         // reproducir
-        const playVideo = () => {
+        requestAnimationFrame(() => {
 
-            setTimeout(() => {
+            video.play().catch(() => {});
 
-                video.play().catch(() => {});
-
-            }, 300);
-
-        };
-
-        // esperar disponibilidad
-        video.addEventListener(
-            'canplay',
-            playVideo,
-            { once: true }
-        );
+        });
 
         // detener observer
         observer.disconnect();
 
     }, {
-        threshold: 0.15
+        threshold: 0
     });
 
     observer.observe(video);

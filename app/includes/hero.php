@@ -68,6 +68,11 @@
 
     <video
     class="hero__video" poster="<?= BASE_URL ?>build/img/hero/hero.avif"
+        muted
+        autoplay
+        loop
+        playsinline
+        preload="metadata"
     ></video>
 
 </div>
