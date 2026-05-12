@@ -20,17 +20,9 @@
         <!-- video hero -->
 <div class="hero__media">
 
-    <video
-        class="hero__video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-        poster="<?= BASE_URL ?>build/img/hero/hero.avif"
-    >
+    <video class="hero__video">
 
-        <!-- MOBILE -->
+
         <source
             media="(max-width: 768px)"
             src="<?= BASE_URL ?>build/video/hero-mobil.mp4"

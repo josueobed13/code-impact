@@ -1,3 +1,5 @@
+
+
 <!-- =========================
 FOOTER
 ========================= -->
@@ -220,12 +222,9 @@ FOOTER
 <!-- SCRIPTS -->
 
 
-<script type="module" src="<?= BASE_URL; ?>build/js/core.min.js"></script>
-<script type="module" src="<?= BASE_URL; ?>build/js/ui.min.js"></script>
-
-<?php if($inicio): ?>
-    <script type="module" src="<?= BASE_URL; ?>build/js/home.min.js"></script>
-<?php endif; ?>
+<script src="<?= BASE_URL; ?>build/js/core.min.js" defer></script>
+<script src="<?= BASE_URL; ?>build/js/ui.min.js" defer></script>
+<script src="<?= BASE_URL; ?>build/js/home.min.js" defer></script>
 
 <?php include __DIR__ . '/whatsapp.php'; ?>
 
