@@ -3,50 +3,46 @@
 // ==========================
 function initClientsSlider() {
 
-    const track = document.querySelector('.clients__track');
+    const track =
+        document.querySelector('.clients__track');
 
     if (!track) return;
 
     // ==========================
-    // LEER ANTES DE ESCRIBIR
+    // DUPLICAR ITEMS (ANTES DE MEDIR)
     // ==========================
-    const totalWidth = track.scrollWidth;
+    const items =
+        Array.from(track.children);
 
-    const items = [...track.children];
-
-    // ==========================
-    // DUPLICAR ITEMS
-    // ==========================
     items.forEach(item => {
-
-        track.appendChild(
-            item.cloneNode(true)
-        );
-
+        track.appendChild(item.cloneNode(true));
     });
+
+    // ==========================
+    // MEDIR DESPUÉS DE MUTAR DOM
+    // ==========================
+    const totalWidth =
+        track.scrollWidth;
 
     // ==========================
     // CONFIG
     // ==========================
     let speed = 0.3;
-
     let position = 0;
 
     let isPaused = false;
-
     let isDragging = false;
 
     let startX = 0;
-
     let currentX = 0;
 
-    // ==========================
-    // RAF
-    // ==========================
     let rafId = null;
 
+    // cache (evita recalcular en loop)
+    const resetPoint = totalWidth;
+
     // ==========================
-    // ANIMATE
+    // ANIMATE (RAF OPTIMIZADO)
     // ==========================
     function animate() {
 
@@ -54,70 +50,54 @@ function initClientsSlider() {
 
             position -= speed;
 
-            if (Math.abs(position) >= totalWidth) {
-
+            if (Math.abs(position) >= resetPoint) {
                 position = 0;
-
             }
 
             if (position > 0) {
-
-                position = -totalWidth;
-
+                position = -resetPoint;
             }
 
             track.style.transform =
                 `translate3d(${position}px,0,0)`;
-
         }
 
-        rafId = requestAnimationFrame(animate);
-
+        rafId =
+            requestAnimationFrame(animate);
     }
 
-    // ==========================
-    // START ANIMATION
-    // ==========================
     function startAnimation() {
 
         if (rafId) return;
 
         rafId =
             requestAnimationFrame(animate);
-
     }
 
-    // ==========================
-    // STOP ANIMATION
-    // ==========================
     function stopAnimation() {
 
         cancelAnimationFrame(rafId);
 
         rafId = null;
-
     }
 
     // ==========================
     // OBSERVER
     // ==========================
-    const observer = new IntersectionObserver((entries) => {
+    const observer =
+        new IntersectionObserver((entries) => {
 
-        const entry = entries[0];
+            const entry = entries[0];
 
-        if (entry.isIntersecting) {
+            if (entry.isIntersecting) {
+                startAnimation();
+            } else {
+                stopAnimation();
+            }
 
-            startAnimation();
-
-        } else {
-
-            stopAnimation();
-
-        }
-
-    }, {
-        threshold: 0
-    });
+        }, {
+            threshold: 0
+        });
 
     observer.observe(track);
 
@@ -133,56 +113,46 @@ function initClientsSlider() {
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
-
             isPaused = false;
-
         }, 3000);
-
     }
 
     // ==========================
-    // TOUCH START
+    // TOUCH (THROTTLE FIX)
     // ==========================
+    let lastMove = 0;
+
     track.addEventListener('touchstart', (e) => {
 
         pauseSlider();
 
         isDragging = true;
 
-        startX =
-            e.touches[0].clientX;
-
+        startX = e.touches[0].clientX;
         currentX = startX;
 
-    }, {
-        passive: true
-    });
+    }, { passive: true });
 
-    // ==========================
-    // TOUCH MOVE
-    // ==========================
     track.addEventListener('touchmove', (e) => {
 
         if (!isDragging) return;
 
-        const x =
-            e.touches[0].clientX;
+        // throttle manual (evita reflow continuo)
+        const now = performance.now();
+        if (now - lastMove < 16) return; // ~60fps
+        lastMove = now;
 
-        const diff =
-            x - currentX;
+        const x = e.touches[0].clientX;
+        const diff = x - currentX;
 
         position += diff;
 
-        if (Math.abs(position) >= totalWidth) {
-
+        if (Math.abs(position) >= resetPoint) {
             position = 0;
-
         }
 
         if (position > 0) {
-
-            position = -totalWidth;
-
+            position = -resetPoint;
         }
 
         track.style.transform =
@@ -190,99 +160,20 @@ function initClientsSlider() {
 
         currentX = x;
 
-    }, {
-        passive: true
-    });
+    }, { passive: true });
 
-    // ==========================
-    // TOUCH END
-    // ==========================
     track.addEventListener('touchend', () => {
 
         isDragging = false;
-
         pauseSlider();
 
     });
 
-    // ==========================
-    // CLICK
-    // ==========================
-    track.addEventListener(
-        'click',
-        pauseSlider
-    );
+    track.addEventListener('click', pauseSlider);
 
 }
 
-// INICIAR
+// ==========================
+// INIT
+// ==========================
 initClientsSlider();
-
-// ==========================
-// CLIENTS LOGOS SCROLL
-// ==========================
-function initClientsArrows() {
-
-    const wrapper =
-        document.querySelector(
-            '.clients__logos-wrapper'
-        );
-
-    const leftBtn =
-        document.querySelector(
-            '.clients__arrow--left'
-        );
-
-    const rightBtn =
-        document.querySelector(
-            '.clients__arrow--right'
-        );
-
-    if (
-        !wrapper ||
-        !leftBtn ||
-        !rightBtn
-    ) return;
-
-    // ==========================
-    // GET SCROLL
-    // ==========================
-    function getScrollAmount() {
-
-        return wrapper.clientWidth * 0.7;
-
-    }
-
-    // ==========================
-    // LEFT
-    // ==========================
-    leftBtn.addEventListener('click', () => {
-
-        wrapper.scrollBy({
-
-            left: -getScrollAmount(),
-
-            behavior: 'smooth'
-
-        });
-
-    });
-
-    // ==========================
-    // RIGHT
-    // ==========================
-    rightBtn.addEventListener('click', () => {
-
-        wrapper.scrollBy({
-
-            left: getScrollAmount(),
-
-            behavior: 'smooth'
-
-        });
-
-    });
-
-}
-
-initClientsArrows();
