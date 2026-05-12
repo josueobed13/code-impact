@@ -6,6 +6,18 @@ function initClientsSlider() {
     const track = document.querySelector('.clients__track');
     if (!track) return;
 
+    // --- OPTIMIZACIÓN PARA EVITAR REPROCESAMIENTO ---
+    // Medimos el ancho original ANTES de duplicar los elementos.
+    // Esto evita que el navegador tenga que recalcular el layout dos veces.
+    const totalWidth = track.scrollWidth; 
+    const items = [...track.children];
+
+    // Duplicar items
+    items.forEach(item => {
+        track.appendChild(item.cloneNode(true));
+    });
+    // ------------------------------------------------
+
     let speed = 0.3;
     let position = 0;
 
@@ -14,15 +26,6 @@ function initClientsSlider() {
 
     let startX = 0;
     let currentX = 0;
-
-    const items = [...track.children];
-
-    // duplicar items
-    items.forEach(item => {
-        track.appendChild(item.cloneNode(true));
-    });
-
-    const totalWidth = track.scrollWidth / 2;
 
     // ==========================
     // AUTO SLIDE
@@ -33,7 +36,7 @@ function initClientsSlider() {
 
             position -= speed;
 
-            // loop infinito
+            // loop infinito (usamos totalWidth que medimos al inicio)
             if (Math.abs(position) >= totalWidth) {
                 position = 0;
             }
@@ -140,6 +143,7 @@ function initClientsArrows() {
 
     if (!wrapper || !leftBtn || !rightBtn) return;
 
+    // Optimización: calculamos el scroll en base al ancho actual
     function getScrollAmount() {
         return wrapper.clientWidth * 0.7;
     }
@@ -161,5 +165,3 @@ function initClientsArrows() {
 }
 
 initClientsArrows();
-
-

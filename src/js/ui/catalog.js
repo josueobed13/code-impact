@@ -16,21 +16,25 @@ function initCatalog() {
 
         if (!images.length) return;
 
-        let index = 0;
+        // Mantenemos el rastro del índice actual de forma local para cada item
+        let currentIndex = 0;
 
-        const show = (i) => {
-            images.forEach(el => el.classList.remove("active"));
-            images[i].classList.add("active");
+        const show = (newIndex) => {
+            // OPTIMIZACIÓN: En lugar de un forEach a todas, 
+            // solo operamos sobre la activa y la nueva.
+            images[currentIndex].classList.remove("active");
+            images[newIndex].classList.add("active");
+            currentIndex = newIndex;
         };
 
         const next = () => {
-            index = (index + 1) % images.length;
-            show(index);
+            let nextIndex = (currentIndex + 1) % images.length;
+            show(nextIndex);
         };
 
         const prev = () => {
-            index = (index - 1 + images.length) % images.length;
-            show(index);
+            let prevIndex = (currentIndex - 1 + images.length) % images.length;
+            show(prevIndex);
         };
 
         nextBtn?.addEventListener("click", (e) => {
@@ -48,9 +52,10 @@ function initCatalog() {
         // swipe móvil
         let startX = 0;
 
+        // Añadimos { passive: true } para que el scroll del navegador sea fluido
         item.addEventListener("touchstart", (e) => {
             startX = e.touches[0].clientX;
-        });
+        }, { passive: true });
 
         item.addEventListener("touchend", (e) => {
             let endX = e.changedTouches[0].clientX;
@@ -59,9 +64,11 @@ function initCatalog() {
             if (Math.abs(diff) < 50) return;
 
             diff > 0 ? next() : prev();
-        });
+        }, { passive: true });
 
-        show(0);
+        // Inicialización: nos aseguramos de que el primero esté activo
+        // sin necesidad de llamar a la lógica pesada.
+        images[0].classList.add("active");
     });
 
 }
