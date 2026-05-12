@@ -238,6 +238,10 @@ p {
   }
 }
 @media (max-width: 900px) {
+  .hero .container.hero__grid {
+    width: 100%;
+    margin: 0;
+  }
   .hero__grid {
     grid-template-columns: 1fr;
     gap: 3rem;
@@ -245,7 +249,6 @@ p {
   }
   .hero__media {
     order: -1;
-    padding: 42px 75px;
   }
   .hero__title {
     font-size: 3.4rem;

@@ -70,9 +70,16 @@
     }
 
 
+
+
+
+   
     /* =========================
        ANIMACIÓN
     ========================= */
+
+
+
 
     @media (max-width: 1127px) {
         &__title {
@@ -88,6 +95,12 @@
     }
 
     @media (max-width: 900px) {
+
+         .container.hero__grid {
+            width: 100%;
+            margin: 0;
+            }
+
         &__grid {
             grid-template-columns: 1fr;
             gap: 3rem;
@@ -96,7 +109,6 @@
 
         &__media {
             order: -1;
-            padding: 42px 75px;
         }
 
         &__title {

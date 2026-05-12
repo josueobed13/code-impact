@@ -3,8 +3,7 @@
     /* 1. EVITA PANTALLA BLANCA */
     background-color: #010618; 
     
-    /* 2. ESPACIO INMEDIATO */
-    min-height: 66vh; 
+    /* 2. ESPACIO INMEDIATO */ 
     display: flex;
     align-items: center;
     position: relative;
