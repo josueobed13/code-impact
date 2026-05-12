@@ -1,5 +1,18 @@
 <section class="hero">
+
+        <img
+                src="<?= BASE_URL ?>build/img/hero/hero.webp"
+                alt=""
+                class="hero__lcp"
+                fetchpriority="high"
+                decoding="async"
+                width="1920"
+                height="1080"
+            >
+
     <div class="container hero__grid">
+
+
 
         <div class="hero__content">
             <h1 class="hero__title">

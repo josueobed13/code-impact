@@ -170,12 +170,24 @@ p {
   display: flex;
   align-items: center;
   overflow: hidden;
-  /* 🔥 NUEVO FONDO PROFESIONAL (NO ROMPE NADA) */
-  background: linear-gradient(to right, rgba(2, 6, 23, 0.95) 0%, rgba(2, 6, 23, 0) 40%, rgba(2, 6, 23, 0.6) 70%, rgba(2, 6, 23, 0.9) 100%), image-set(url(../img/hero/hero.avif) type('image/avif'), url(../img/hero/hero.webp) type('image/webp'), url(../img/hero/hero.jpg) type('image/jpeg'));
+  /* 🔥 BACKGROUND */
+  background-image: image-set(url(../img/hero/hero.avif) type('image/avif'), url(../img/hero/hero.webp) type('image/webp'), url(../img/hero/hero.jpg) type('image/jpeg'));
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
+  /* =========================
+     LCP FIX
+  ========================= */
+}
+.hero__lcp {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.hero {
   /* =========================
      GRID
   ========================= */
