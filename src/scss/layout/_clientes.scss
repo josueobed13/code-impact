@@ -82,7 +82,9 @@
         align-items: center;
         width: max-content;
         will-change: transform;
-    }
+        transform: translateZ(0);
+        contain: layout paint;
+        }
 
     /* =========================
        ITEMS (IMÁGENES)
