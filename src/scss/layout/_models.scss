@@ -7,32 +7,34 @@
 }
 @media (max-width: 915px) {
     .container-models{
-    width: 100%;
-
-    margin: 0;
-}
+        width: 100%;
+        margin: 0;
+    }
 }
 
 @media (max-width: 768px) {
     .container-models{
-    width: 90%;
-    margin: 0 auto;
+        width: 90%;
+        margin: 0 auto;
     }
 }
 @media (max-width: 465px) {
     .container-models{
-    width: 98%;
-    margin: 0 auto;
+        width: 98%;
+        margin: 0 auto;
     }
 }
-
 
 .models {
     padding: 5rem 1.5rem;
     text-align: center;
     position: relative;
     line-height: 1.2;
-    background-image: image-set(url(../img/blog/blog-desktop.avif) type('image/avif'), url(../img/blog/blog-desktop.webp) type('image/webp'), url(../img/blog/blog-desktop.jpg) type('image/jpeg'));
+    background-image: image-set(
+        url(../img/blog/blog-desktop.avif) type('image/avif'), 
+        url(../img/blog/blog-desktop.webp) type('image/webp'), 
+        url(../img/blog/blog-desktop.jpg) type('image/jpeg')
+    );
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -82,7 +84,6 @@
         gap: 2rem;
         text-align: left;
 
-
         &-left {
             display: flex;
             align-items: center;
@@ -119,7 +120,6 @@
 }
 
 @media (max-width: 573px) {
-
     .models {
         background-image: image-set(
             url(../img/blog/blog-mobil.avif) type('image/avif'),
@@ -130,13 +130,11 @@
         background-size: cover;
     }
 
-
-
-.models__cta-left {
-    flex-direction: column;
-    text-align: center;
-}
-.models__cta {
+    .models__cta-left {
+        flex-direction: column;
+        text-align: center;
+    }
+    .models__cta {
         padding: 2rem 1.5rem 2rem 1.5rem;
     }
 }
@@ -190,7 +188,6 @@
        CONTENT
     ========================= */
     &__content {
-
         h3 {
             font-size: 1.7rem;
             margin-bottom: .3rem;
@@ -233,23 +230,17 @@
         grid-template-columns: 149px 1fr;
     }
 }
+
 @media (max-width: 945px) {
     .model-card {
         grid-template-columns: 118px 1fr;
-        padding: 0px 18px 20px 18px;
+        padding: 1.6rem; /* Unificado con el otro bloque de 945px */
     }
     .model-card p {
         font-size: 1.1rem;
     }
     .model-card__list li {
-    font-size: 1.05rem;
-}
-}
-
-
-@media (max-width: 945px) {
-    .model-card {
-        padding: 1.6rem;
+        font-size: 1.05rem;
     }
 }
 
@@ -265,10 +256,7 @@
     .model-card__content h3 {
         text-align: center;
     }
-    
 }
-
-
 
 /* =========================
    BOTONES
@@ -304,19 +292,15 @@
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE FINAL
 ========================= */
 @media (max-width: 768px) {
-
     .models__grid {
         grid-template-columns: 1fr;
     }
 
     .model-card {
-
         &__image {
-            
-
             img {
                 object-fit: cover; /* 🔥 en mobile sí queda mejor */
             }
@@ -337,7 +321,7 @@
 }
 
 @media (max-width: 465px) {
-.model-card__image {
+    .model-card__image {
         width: 75%;
         height: 100%;
     }

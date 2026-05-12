@@ -29,7 +29,7 @@
         justify-content: space-between;
         align-items: flex-start;
         position: relative;
-            gap: 1.5rem;
+        gap: 1.5rem;
     }
 
     /* 🔥 línea conectada REAL */
@@ -125,7 +125,6 @@
         color: #6B7280;
         line-height: 1.5;
         margin-top: .6rem;
-        
     }
 
     /* =========================
@@ -133,7 +132,6 @@
     ========================= */
     @media (hover: hover) and (pointer: fine) {
         &__step:hover {
-
             .process__icon {
                 transform: translateY(-6px) scale(1.1);
                 background: $primary;
@@ -154,11 +152,9 @@
    TABLET
 ========================= */
 @media (max-width: 900px) {
-
     .process__icon {
         width: 50px;
         height: 50px;
-
     }
 
     .process__steps {
@@ -176,6 +172,7 @@
         display: none;
     }
 }
+
 @media (max-width: 600px) {
     .process__steps {
         gap: 1rem 1rem;
@@ -187,7 +184,6 @@
    MOBILE
 ========================= */
 @media (max-width: 600px) {
-
     .process {
         padding: 5rem 0;
     }
@@ -230,16 +226,12 @@
     .process__step p {
         margin: 0;
     }
-
 }
-
-
 
 /* =========================
    🔥 MOBILE TEXT SWITCH FIX
 ========================= */
 @media (max-width: 600px) {
-
     .process__step {
         align-items: center;
     }
@@ -247,7 +239,7 @@
     /* 🔥 CONTENEDOR FIJO */
     .process__text {
         position: relative;
-        height: 70px; // 🔥 controla altura del bloque
+        height: 70px;
         margin-top: 1rem;
         width: 100%;
     }
@@ -271,7 +263,6 @@
 
     /* 🔥 activo */
     .process__step.active {
-
         h3 {
             opacity: 0;
             transform: translateY(-10px);

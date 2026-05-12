@@ -1,5 +1,5 @@
 /* =========================
-WHATSAPP FLOAT
+   WHATSAPP FLOAT
 ========================= */
 
 .whatsapp-wrapper {
@@ -23,10 +23,9 @@ WHATSAPP FLOAT
 
     text-decoration: none;
 
-     animation: whatsappFloat 2.5s ease-in-out infinite;
+    animation: whatsappFloat 2.5s ease-in-out infinite;
 
     &__text {
-
         width: 19rem;
         height: 4.4rem;
 
@@ -36,10 +35,9 @@ WHATSAPP FLOAT
 
         border-radius: 10rem;
 
-        border: 1px solid rgba(255,255,255,.08);
+        border: 1px solid rgba(255,255,255,0.08);
 
-        box-shadow:
-            0 10px 30px rgba(0,0,0,.25);
+        box-shadow: 0 10px 30px rgba(0,0,0,.25);
 
         backdrop-filter: blur(10px);
 
@@ -47,7 +45,6 @@ WHATSAPP FLOAT
     }
 
     &__texts {
-
         position: absolute;
 
         top: 0;
@@ -59,7 +56,6 @@ WHATSAPP FLOAT
     }
 
     &__texts span {
-
         width: 100%;
         height: 4.4rem;
 
@@ -76,7 +72,6 @@ WHATSAPP FLOAT
     }
 
     &__icon {
-
         width: 6rem;
         height: 6rem;
 
@@ -94,14 +89,12 @@ WHATSAPP FLOAT
 
         font-size: 3rem;
 
-        box-shadow:
-            0 10px 30px rgba(37,211,102,.35);
+        box-shadow: 0 10px 30px rgba(37,211,102,.35);
 
         transition: .3s ease;
     }
 
     &:hover {
-
         .whatsapp-float__icon {
             transform: scale(1.08);
         }
@@ -113,48 +106,40 @@ WHATSAPP FLOAT
 }
 
 /* =========================
-TEXT ROTATE
+   TEXT ROTATE
 ========================= */
 @keyframes whatsappTextRotate {
-
     0%, 40% {
         transform: translateY(0);
     }
-
     50%, 90% {
         transform: translateY(-4.5rem);
     }
-
     100% {
         transform: translateY(0);
     }
 }
 
 /* =========================
-FLOAT
+   FLOAT
 ========================= */
 @keyframes whatsappFloat {
-
     0% {
         transform: translateY(0);
     }
-
     50% {
         transform: translateY(-6px);
     }
-
     100% {
         transform: translateY(0);
     }
 }
 
 /* =========================
-RESPONSIVE
+   RESPONSIVE
 ========================= */
 @media (max-width: 650px) {
-
     .whatsapp-float {
-
         right: 0.5rem;
         bottom: 1.5rem;
         align-items: flex-end;
@@ -167,49 +152,38 @@ RESPONSIVE
         }
 
         &__icon {
-
             width: 4.5rem;
             height: 4.5rem;
 
             font-size: 2.7rem;
         }
 
-         &__texts span {
+        &__texts span {
             height: 3rem;
             font-size: 1rem;
             font-weight: 500;
-
         }
 
-        __texts {
+        &__texts {
             top: -7px;
-
         }
     }
 
     @keyframes whatsappTextRotate {
-
-    0%, 40% {
-        transform: translateY(0);
-    }
-
-    50%, 90% {
-        transform: translateY(-3rem);
-    }
-
-    100% {
-        transform: translateY(0);
+        0%, 40% {
+            transform: translateY(0);
+        }
+        50%, 90% {
+            transform: translateY(-3rem);
+        }
+        100% {
+            transform: translateY(0);
+        }
     }
 }
 
-
-   
-}
-
-
-//telefono
 /* =========================
-FLOATING ACTIONS
+   FLOATING ACTIONS
 ========================= */
 .floating-actions {
     position: fixed;

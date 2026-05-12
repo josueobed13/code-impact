@@ -53,24 +53,14 @@
 }
 
 @media (max-width: 665px) {
-    .hero-internal h1 {
-        font-size: 3.5rem;
-    }
+    .hero-internal h1 { font-size: 3.5rem; }
 }
 @media (max-width: 527px) {
-    .hero-internal h1 {
-        font-size: 2.8rem;
-    }
+    .hero-internal h1 { font-size: 2.8rem; }
 }
-
 @media (max-width: 380px) {
-    .hero-internal h1 {
-        font-size: 2.3rem;
-    }
-    .hero-internal p {
-        font-size: 1.3rem;
-    }
-
+    .hero-internal h1 { font-size: 2.3rem; }
+    .hero-internal p { font-size: 1.3rem; }
 }
 
 /* =========================
@@ -78,14 +68,12 @@
 ========================= */
 .services-pro {
     padding: 10rem 0;
-        
-        background-image: image-set(
-            url(../img/catalog/fondo-mobil.avif) type('image/avif'),
-            url(../img/catalog/fondo-mobil.webp) type('image/webp'),
-            url(../img/catalog/fondo-mobil.jpg) type('image/jpeg'));
-
-        background-position: center;
-        background-size: cover;
+    background-image: image-set(
+        url(../img/catalog/fondo-mobil.avif) type('image/avif'),
+        url(../img/catalog/fondo-mobil.webp) type('image/webp'),
+        url(../img/catalog/fondo-mobil.jpg) type('image/jpeg'));
+    background-position: center;
+    background-size: cover;
 
     &__wrapper {
         display: grid;
@@ -106,9 +94,7 @@
         margin: 1rem 0 2rem;
     }
 
-    &__content {
-        max-width: 420px;
-    }
+    &__content { max-width: 420px; }
 
     &__desc {
         font-size: 1.6rem;
@@ -130,7 +116,6 @@
         gap: 0.5rem;
 
         .service-card__image {
-
             img {
                 width: 100%;
                 height: 100%;
@@ -147,14 +132,11 @@
         .service-card__desc {
             padding: 0 2rem;
             @media (max-width: 460px) {
-            .services-pro .service-card--image .service-card__desc {
                 padding: 0 0.7rem;
                 text-align: center;
                 text-shadow: 0 0 black;
             }
-            }
         }
-         
 
         .service-card__link {
             padding: 1rem 2rem 2rem;
@@ -162,10 +144,7 @@
             display: inline;
         }
     }
-
-   
 }
-
 
 @media (max-width: 480px) {
     .services-pro .service-card--image .service-card__desc {
@@ -178,96 +157,64 @@
    RESPONSIVE SERVICES PRO
 ========================= */
 @media (max-width: 1024px) {
-
-    .services-pro {
-        padding: 5rem 0;
-    }
+    .services-pro { padding: 5rem 0; }
     .services-pro__wrapper {
         grid-template-columns: 1fr;
         text-align: center;
         gap: inherit;
     }
-
-    /* 🔥 OCULTA TEXTO EN TABLET */
-    .services-pro__desc {
-        display: none;
-    }
+    .services-pro__desc { display: none; }
 }
 
 @media (max-width: 865px) {
-
-.services-pro {
+    .services-pro {
         background-image: image-set(
             url(../img/catalog/fondo-mobil.avif) type('image/avif'),
             url(../img/catalog/fondo-mobil.webp) type('image/webp'),
             url(../img/catalog/fondo-mobil.jpg) type('image/jpeg'));
         background-position: center;
         background-size: cover;
-}
-
-
-
-
-    
+    }
     .services-pro__title {
         line-height: 1.3;
         font-size: 2.5rem;
     }
-    }
-
+}
 
 @media (max-width: 640px) {
-    .services-pro__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
+    .services-pro {
+        &__grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        /* 🔥 EVITA CONFLICTO CON services.scss */
+        .service-card--image .service-card__desc {
+            position: static;
+            opacity: 1;
+            transform: none;
+            text-align: center;
+            color: #A1A1AA;
+            padding: 0.8rem 1rem 0;
+            text-shadow: 0 0 black;
+        }
+
+        .service-card { min-height: auto; }
+        .service-card__main { opacity: 1 !important; transform: none !important; }
     }
-
-    /* 🔥 EVITA CONFLICTO CON services.scss */
-
-        .services-pro .service-card--image .service-card__desc {
-        position: static;
-        opacity: 1;
-        transform: none;
-        text-align: center;
-        color: #A1A1AA;
-        padding: 0.8rem 1rem 0;
-        text-shadow: 0 0 black;
-    }
-    
-
-    .services-pro .service-card {
-        min-height: auto;
-    }
-
-    .services-pro .service-card__main {
-        opacity: 1 !important;
-        transform: none !important;
-    }
-
-
-    .service-card__link {
-        font-size: 1.4rem;
-    }
+    .service-card__link { font-size: 1.4rem; }
 }
 
-/* 🔥 ESTE SIEMPRE DEBE IR DESPUÉS */
 @media (max-width: 480px) {
-
-    .services-pro__grid {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 1rem;
-    }
-    .services-pro .service-card--image .service-card__desc {
-        padding: 0.8rem 1rem 0;
-        text-align: center;
-    }
-
-    .services-pro__title {
-        font-size: 2.1rem;
+    .services-pro {
+        &__grid { grid-template-columns: repeat(1, 1fr); gap: 1rem; }
+        &__title { font-size: 2.1rem; }
+        .service-card--image .service-card__desc {
+            padding: 0.8rem 1rem 0;
+            text-align: center;
+        }
     }
 }
-
-
 
 /* =========================
    WHY (DIFERENCIAL)
@@ -275,7 +222,6 @@
 .why {
     padding: 8rem 0;
     text-align: center;
-
     background: radial-gradient(
         circle at center,
         rgba(37, 99, 235, 0.06),
@@ -304,48 +250,25 @@
         background: rgba(255,255,255,0.02);
         border: 1px solid rgba(255,255,255,0.06);
         border-radius: 16px;
-
         padding: 2.5rem;
         text-align: left;
-
         transition: .3s;
 
-        h3 {
-            font-size: 1.7rem;
-            margin-bottom: .8rem;
-        }
-
-        p {
-            font-size: 1.4rem;
-            color: #A1A1AA;
-        }
+        h3 { font-size: 1.7rem; margin-bottom: .8rem; }
+        p { font-size: 1.4rem; color: #A1A1AA; }
 
         &:hover {
             transform: translateY(-6px);
             border-color: rgba(37,99,235,.4);
-
-            box-shadow:
-                0 15px 35px rgba(0,0,0,.4),
-                0 0 15px rgba(37,99,235,.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,.4), 0 0 15px rgba(37,99,235,.2);
         }
     }
 }
 
-/* =========================
-   RESPONSIVE WHY
-========================= */
 @media (max-width: 768px) {
-    .why__grid {
-        grid-template-columns: 1fr;
-    }
-
-    .why h2 {
-        font-size: 2.6rem;
-    }
-
-    .why__intro {
-        font-size: 1.4rem;
-    }
+    .why__grid { grid-template-columns: 1fr; }
+    .why h2 { font-size: 2.6rem; }
+    .why__intro { font-size: 1.4rem; }
 }
 
 /* =========================
@@ -356,25 +279,13 @@
     text-align: center;
     position: relative;
     overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(37, 99, 235, 0.15),
-            rgba(2, 6, 23, 0.9)
-        );
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.15), rgba(2, 6, 23, 0.9));
 
     &::before {
         content: '';
         position: absolute;
         inset: 0;
-
-        background: radial-gradient(
-            circle at center,
-            rgba(37, 99, 235, 0.25),
-            transparent 70%
-        );
-
+        background: radial-gradient(circle at center, rgba(37, 99, 235, 0.25), transparent 70%);
         z-index: 0;
     }
 
@@ -385,31 +296,14 @@
         margin: 0 auto;
     }
 
-    h2 {
-        font-size: 3.2rem;
-        margin-bottom: 1rem;
-    }
-
-    p {
-        font-size: 1.5rem;
-        color: #A1A1AA;
-        margin-bottom: 2.5rem;
-    }
+    h2 { font-size: 3.2rem; margin-bottom: 1rem; }
+    p { font-size: 1.5rem; color: #A1A1AA; margin-bottom: 2.5rem; }
 }
 
-/* =========================
-   RESPONSIVE CTA
-========================= */
 @media (max-width: 768px) {
     .cta {
         padding: 6rem 0;
-
-        h2 {
-            font-size: 2.4rem;
-        }
-
-        p {
-            font-size: 1.3rem;
-        }
+        h2 { font-size: 2.4rem; }
+        p { font-size: 1.3rem; }
     }
 }

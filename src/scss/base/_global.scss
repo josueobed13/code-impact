@@ -1,5 +1,6 @@
 @use 'variables' as *;
 
+// Fuentes con swap para mejor FCP
 @font-face {
     font-family: 'Inter';
     src: url('./../fonts/Inter-Light.woff2') format('woff2');
@@ -27,6 +28,7 @@
     font-weight: 700;
     font-display: swap;
 }
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: $bg-main;

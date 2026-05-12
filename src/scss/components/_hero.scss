@@ -1,7 +1,7 @@
 @use '../base/variables' as *;
 
 .hero {
-     position: relative;
+    position: relative;
     padding: 6rem 0;
     padding-top: 12rem;
     display: flex;
@@ -59,28 +59,15 @@
             object-fit: cover;
             border-radius: 16px;
 
-            
             box-shadow: 
                 0 25px 60px rgba(0,0,0,0.6),
                 0 0 25px rgba(37, 99, 235, 0.15);
-
         }
-
-        
     }
 
-
-
-
-
-   
     /* =========================
-       ANIMACIÓN
+       MEDIA QUERIES HERO
     ========================= */
-
-
-
-
     @media (max-width: 1127px) {
         &__title {
             font-size: 4rem;
@@ -95,16 +82,15 @@
     }
 
     @media (max-width: 900px) {
-
-         .container.hero__grid {
+        .container.hero__grid {
             width: 100%;
             margin: 0;
-            }
+        }
 
         &__grid {
             grid-template-columns: 1fr;
             gap: 3rem;
-                justify-items: center;
+            justify-items: center;
         }
 
         &__media {
@@ -127,8 +113,6 @@
             order: -1;
             padding: 0;
             width: 100%;
-
-            
         }
 
         &__title {
@@ -153,17 +137,20 @@
     }
 }
 
+/* =========================
+   EXTRAS / BREAKPOINTS ESPECÍFICOS
+========================= */
 @media (max-width: 444px) {
-        .hero__title {
+    .hero__title {
         font-size: 2.6rem;
         padding: 0rem 1rem 0rem 1rem;
     }
 }
 
 @media (max-width: 517px) {
-        .hero__title {
-            padding: 0rem 1.2rem;
-        }
+    .hero__title {
+        padding: 0rem 1.2rem;
+    }
 
     .hero__text {
         padding: 0rem 1.2rem;
@@ -179,23 +166,17 @@
     }
     .hero__media video {
         border-radius: 0;
-
     }
 }
 
-/* =========================
-   AJUSTES GLOBALES
-========================= */
 @media (max-width: 1165px) {
     .hero {
         padding-top: 5rem;
     }
 }
 
-
 @media (max-width: 900px) {
     .hero {
-
         padding-top: 0;
     }
 }

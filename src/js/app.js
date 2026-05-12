@@ -1,6 +1,6 @@
-// =========================
-// PERFORMANCE MONITOR (LCP)
-// =========================
+// ==========================================
+// 1. PERFORMANCE MONITOR (LCP) - Auto-ejecutable
+// ==========================================
 (function() {
     if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
         const observer = new PerformanceObserver((list) => {
@@ -9,65 +9,59 @@
             const element = latestEntry.element;
 
             if (element) {
-                if (element.getAttribute('loading') === 'lazy') {
-                    console.warn('⚠️ LCP Alert: loading="lazy" detectado.', element);
-                }
+                const time = latestEntry.startTime.toFixed(0);
+                const url = latestEntry.url || 'Texto/Inline';
+                const color = time < 2500 ? '🟢' : '🔴';
+                const version = window.innerWidth < 768 ? 'MÓVIL' : 'DESKTOP';
 
-                if (element.classList.contains('hero') || element.closest('.hero')) {
-                    const time = latestEntry.startTime.toFixed(0);
-                    const color = time < 2500 ? '🟢' : '🔴';
-                    console.info(`${color} LCP detectado en .hero: ${time}ms`);
+                console.group(`📊 LCP Report [${version}]`);
+                console.info(`${color} Tiempo: ${time}ms`);
+                console.info(`🔗 Recurso: ${url}`);
+                console.info(`🧩 Elemento:`, element);
+                
+                if (element.getAttribute('loading') === 'lazy') {
+                    console.warn('⚠️ LCP Alert: El elemento LCP tiene loading="lazy".');
                 }
+                console.groupEnd();
             }
         });
         observer.observe({ type: 'largest-contentful-paint', buffered: true });
     }
 })();
 
-// NOTA: Se eliminan los 'import' de la parte superior para evitar el error 
-// de "Unexpected token export" en tus archivos minificados .min.js
-
-javascriptdocument.addEventListener('DOMContentLoaded', () => {
-    // 1. INICIAR MONITOR DE LCP DE INMEDIATO
-    if (typeof initLCPObserver === 'function') initLCPObserver();
-
-    // 2. CRÍTICO
+// ==========================================
+// 2. DOM CONTENT LOADED (Interactividad Rápida)
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    // Iniciamos funciones que no afectan el layout inicial
     if (typeof initFixedHeader === 'function') initFixedHeader();
     if (typeof initMailLinks === 'function') initMailLinks();
+    
+    // Si tienes el observer como función externa, la llamamos (opcional si usas la de arriba)
+    if (typeof initLCPObserver === 'function') initLCPObserver();
 });
 
-// =========================
-// WINDOW LOAD
-// =========================
+// ==========================================
+// 3. WINDOW LOAD (Recursos Pesados)
+// ==========================================
 window.addEventListener('load', () => {
-
-    // 1. CORE (Prioridad 2)
+    // Prioridad Media
     if (typeof initCookies === 'function') initCookies();
-
-    // 2. UI LIGERA Y LOTTIE (Prioridad 3)
-    // Cargamos Lottie aquí porque ya es lazy y no bloquea el diseño
     if (typeof initLottie === 'function') initLottie();
 
-    // =========================
-    // 🚀 OPTIMIZACIÓN: RETRASO ESTRATÉGICO
-    // Retrasamos los sliders que calculan dimensiones (Layout) para 
-    // eliminar el "Reprocesamiento forzado" y mejorar el LCP en móvil.
-    // =========================
+    // Prioridad Baja: Retraso para evitar el bloqueo del hilo principal (Main Thread)
     setTimeout(() => {
-        
-        // UI PESADA (Sliders que piden offsetWidth/scrollWidth)
+        // Sliders y UI pesada
         if (typeof initClients === 'function') initClients();
         if (typeof initCatalog === 'function') initCatalog();
 
-        // ELEMENTOS HOME
+        // Elementos Home y otros
         if (typeof initServices === 'function') initServices();
         if (typeof initProcessMobile === 'function') initProcessMobile();
         if (typeof initPortfolioCounters === 'function') initPortfolioCounters();
         if (typeof initContactForm === 'function') initContactForm();
-        
-        // OTROS
         if (typeof initLightbox === 'function') initLightbox();
         
-    }, 200); // 200ms libera el hilo principal para el renderizado inicial
-
+        console.log("🚀 Módulos pesados cargados con éxito.");
+    }, 300); // Subido a 300ms para asegurar que el LCP ya se haya disparado
 });
