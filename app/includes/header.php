@@ -37,6 +37,15 @@ if (!defined('BASE_URL')) {
     <link rel="stylesheet" href="<?= BASE_URL; ?>build/css/app.css">
 
 
+        <!-- img hero -->
+    <link
+        rel="preconnect"
+        as="image"
+        href="<?= BASE_URL ?>build/img/hero/hero.avif"
+        fetchpriority="high"
+        type="image/avif"
+    >
+
     <!-- ICONS -->
     
 
