@@ -22,12 +22,19 @@
 
     <video
     class="hero__video"
+    autoplay
     muted
     loop
     playsinline
     preload="none"
-    poster="<?= BASE_URL ?>build/img/hero/hero.avif"
-></video>
+>
+
+    <source
+        src="<?= BASE_URL ?>build/video/hero-mobil.mp4"
+        type="video/mp4"
+    >
+
+</video>
 
 </div>
 </section>
