@@ -1,5 +1,5 @@
 // ==========================
-// 🔥 CATALOG SLIDER
+// 🔥 CATALOG SLIDER (Optimizado)
 // ==========================
 function initCatalog() {
 
@@ -16,24 +16,24 @@ function initCatalog() {
 
         if (!images.length) return;
 
-        // Mantenemos el rastro del índice actual de forma local para cada item
         let currentIndex = 0;
 
         const show = (newIndex) => {
-            // OPTIMIZACIÓN: En lugar de un forEach a todas, 
-            // solo operamos sobre la activa y la nueva.
+            // Verificamos que el índice realmente haya cambiado para evitar cálculos inútiles
+            if (newIndex === currentIndex) return;
+
             images[currentIndex].classList.remove("active");
             images[newIndex].classList.add("active");
             currentIndex = newIndex;
         };
 
         const next = () => {
-            let nextIndex = (currentIndex + 1) % images.length;
+            const nextIndex = (currentIndex + 1) % images.length;
             show(nextIndex);
         };
 
         const prev = () => {
-            let prevIndex = (currentIndex - 1 + images.length) % images.length;
+            const prevIndex = (currentIndex - 1 + images.length) % images.length;
             show(prevIndex);
         };
 
@@ -49,26 +49,27 @@ function initCatalog() {
             prev();
         });
 
-        // swipe móvil
+        // Swipe móvil optimizado
         let startX = 0;
 
-        // Añadimos { passive: true } para que el scroll del navegador sea fluido
         item.addEventListener("touchstart", (e) => {
             startX = e.touches[0].clientX;
         }, { passive: true });
 
         item.addEventListener("touchend", (e) => {
-            let endX = e.changedTouches[0].clientX;
-            let diff = startX - endX;
+            const endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
 
+            // Umbral de 50px para evitar disparos accidentales al hacer scroll vertical
             if (Math.abs(diff) < 50) return;
 
             diff > 0 ? next() : prev();
         }, { passive: true });
 
-        // Inicialización: nos aseguramos de que el primero esté activo
-        // sin necesidad de llamar a la lógica pesada.
-        images[0].classList.add("active");
+        // Inicialización segura: solo si no hay ya uno activo
+        if (!images[0].classList.contains('active')) {
+            images[0].classList.add("active");
+        }
     });
 
 }

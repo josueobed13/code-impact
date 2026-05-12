@@ -24,67 +24,49 @@
     }
 })();
 
-
-import { initFixedHeader } from './core/fixedHeader.js';
-import { initMailLinks } from './core/mail.js';
-
-
-
-
-
+// NOTA: Se eliminan los 'import' de la parte superior para evitar el error 
+// de "Unexpected token export" en tus archivos minificados .min.js
 
 document.addEventListener('DOMContentLoaded', () => {
-
     // =========================
-    // CRÍTICO
+    // CRÍTICO (Prioridad 1)
     // =========================
-    initFixedHeader();
-    initMailLinks();
-
+    if (typeof initFixedHeader === 'function') initFixedHeader();
+    if (typeof initMailLinks === 'function') initMailLinks();
 });
 
 // =========================
 // WINDOW LOAD
 // =========================
-window.addEventListener('load', async () => {
+window.addEventListener('load', () => {
+
+    // 1. CORE (Prioridad 2)
+    if (typeof initCookies === 'function') initCookies();
+
+    // 2. UI LIGERA Y LOTTIE (Prioridad 3)
+    // Cargamos Lottie aquí porque ya es lazy y no bloquea el diseño
+    if (typeof initLottie === 'function') initLottie();
 
     // =========================
-    // HERO VIDEO
+    // 🚀 OPTIMIZACIÓN: RETRASO ESTRATÉGICO
+    // Retrasamos los sliders que calculan dimensiones (Layout) para 
+    // eliminar el "Reprocesamiento forzado" y mejorar el LCP en móvil.
     // =========================
+    setTimeout(() => {
+        
+        // UI PESADA (Sliders que piden offsetWidth/scrollWidth)
+        if (typeof initClients === 'function') initClients();
+        if (typeof initCatalog === 'function') initCatalog();
 
-
-    // CORE
-    const { initCookies } = await import('./core/cookies.js');
-
-    // UI
-    const { initLottie } = await import('./ui/lottie.js');
-    const { initLightbox } = await import('./ui/lightbox.js');
-    const { initClients } = await import('./ui/clients.js');
-    const { initCatalog } = await import('./ui/catalog.js');
-
-    // HOME
-    const { initServices } = await import('./home/services.js');
-    const { initProcessMobile } = await import('./home/process.js');
-    const { initPortfolioCounters } = await import('./home/portfolio.js');
-    const { initContactForm } = await import('./home/contact.js');
-
-    // =========================
-    // INIT
-    // =========================
-
-
-    initCookies();
-
-    // UI PESADO
-    initLottie();
-    initLightbox();
-    initClients();
-    initCatalog();
-
-    // HOME
-    initServices();
-    initProcessMobile();
-    initPortfolioCounters();
-    initContactForm();
+        // ELEMENTOS HOME
+        if (typeof initServices === 'function') initServices();
+        if (typeof initProcessMobile === 'function') initProcessMobile();
+        if (typeof initPortfolioCounters === 'function') initPortfolioCounters();
+        if (typeof initContactForm === 'function') initContactForm();
+        
+        // OTROS
+        if (typeof initLightbox === 'function') initLightbox();
+        
+    }, 200); // 200ms libera el hilo principal para el renderizado inicial
 
 });

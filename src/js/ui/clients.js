@@ -1,145 +1,101 @@
 // ==========================
-// 🔥 CLIENTS SLIDER PRO
+// 🔥 CLIENTS SLIDER PRO (Optimizado)
 // ==========================
 function initClientsSlider() {
-
     const track = document.querySelector('.clients__track');
     if (!track) return;
 
-    let speed = 0.3;
-    let position = 0;
-
-    let isPaused = false;
-    let isDragging = false;
-
-    let startX = 0;
-    let currentX = 0;
-
+    // --- MEJORA DE RENDIMIENTO ---
+    // 1. LEER: Medimos antes de modificar el DOM para evitar el "Layout Thrashing"
+    const totalWidth = track.scrollWidth; 
     const items = [...track.children];
 
-    // duplicar items
+    // 2. ESCRIBIR: Duplicamos items después de haber leído las medidas
     items.forEach(item => {
         track.appendChild(item.cloneNode(true));
     });
+    // -----------------------------
 
-    const totalWidth = track.scrollWidth / 2;
+    let speed = 0.3;
+    let position = 0;
+    let isPaused = false;
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
 
-    // ==========================
-    // AUTO SLIDE
-    // ==========================
     function animate() {
-
         if (!isPaused && !isDragging) {
-
             position -= speed;
 
-            // loop infinito
             if (Math.abs(position) >= totalWidth) {
                 position = 0;
             }
-
             if (position > 0) {
                 position = -totalWidth;
             }
 
             track.style.transform = `translate3d(${position}px,0,0)`;
         }
-
         requestAnimationFrame(animate);
     }
 
-    animate();
+    requestAnimationFrame(animate);
 
-    // ==========================
-    // PAUSA
-    // ==========================
     let timeout;
-
     function pauseSlider() {
-
         isPaused = true;
-
         clearTimeout(timeout);
-
         timeout = setTimeout(() => {
             isPaused = false;
         }, 3000);
     }
 
-    // ==========================
-    // TOUCH START
-    // ==========================
     track.addEventListener('touchstart', (e) => {
-
         pauseSlider();
-
         isDragging = true;
-
         startX = e.touches[0].clientX;
         currentX = startX;
-
     }, { passive: true });
 
-    // ==========================
-    // TOUCH MOVE
-    // ==========================
     track.addEventListener('touchmove', (e) => {
-
         if (!isDragging) return;
-
         const x = e.touches[0].clientX;
-
         const diff = x - currentX;
-
         position += diff;
 
-        // mantener loop correcto
         if (Math.abs(position) >= totalWidth) {
             position = 0;
         }
-
         if (position > 0) {
             position = -totalWidth;
         }
 
         track.style.transform = `translate3d(${position}px,0,0)`;
-
         currentX = x;
-
     }, { passive: true });
 
-    // ==========================
-    // TOUCH END
-    // ==========================
     track.addEventListener('touchend', () => {
-
         isDragging = false;
-
         pauseSlider();
-
     });
 
-    // ==========================
-    // CLICK PAUSE
-    // ==========================
     track.addEventListener('click', pauseSlider);
 }
 
 // INICIAR
 initClientsSlider();
 
-
 // ==========================
 // CLIENTS LOGOS SCROLL
 // ==========================
 function initClientsArrows() {
-
     const wrapper = document.querySelector('.clients__logos-wrapper');
     const leftBtn = document.querySelector('.clients__arrow--left');
     const rightBtn = document.querySelector('.clients__arrow--right');
 
     if (!wrapper || !leftBtn || !rightBtn) return;
 
+    // Optimización: Solo leemos el ancho cuando el usuario hace clic
     function getScrollAmount() {
         return wrapper.clientWidth * 0.7;
     }
@@ -157,9 +113,6 @@ function initClientsArrows() {
             behavior: 'smooth'
         });
     });
-
 }
 
 initClientsArrows();
-
-
