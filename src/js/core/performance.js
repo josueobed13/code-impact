@@ -7,30 +7,31 @@ function initLCPObserver() {
         const element = latestEntry.element;
 
         if (element) {
-            // 1. Alerta de Lazy Loading (Crítico para LCP)
+            const time = latestEntry.startTime;
+            const url = latestEntry.url || 'Sin URL (posiblemente texto)';
+            const color = time < 2500 ? '🟢' : '🔴';
+            const version = window.innerWidth < 768 ? 'MÓVIL' : 'DESKTOP';
+
+            console.group('📊 Reporte LCP (Largest Contentful Paint)');
+            console.info(`${color} Tiempo: ${time.toFixed(0)}ms`);
+            console.info(`📱 Dispositivo: ${version}`);
+            console.info(`🔗 Recurso: ${url}`);
+            console.info(`🧩 Elemento:`, element);
+
             if (element.getAttribute('loading') === 'lazy') {
-                console.warn('⚠️ LCP Alert: El elemento LCP tiene loading="lazy". Quítalo para mejorar la velocidad:', element);
+                console.warn('⚠️ ALERTA: El elemento LCP tiene loading="lazy". ¡Quítalo ya!');
             }
 
-            // 2. Monitoreo específico de la sección Hero
-            if (element.classList.contains('hero') || element.closest('.hero')) {
-                const time = latestEntry.startTime;
-                const color = time < 2500 ? '🟢' : '🔴'; // Verde si es menos de 2.5s
-                
-                // Detectamos qué versión está viendo el usuario según el ancho de pantalla
-                const version = window.innerWidth < 768 ? 'MÓVIL' : 'DESKTOP';
-
-                console.info(`${color} LCP [${version}]: Fondo detectado en ${time.toFixed(0)}ms`);
-
-                if (time > 2500) {
-                    console.warn(`🚀 Sugerencia: El LCP en ${version} es lento. Verifica que la imagen pese menos de 50KB y el preload sea correcto.`);
-                }
+            if (time > 2500) {
+                console.warn('🚀 SUGERENCIA: El tiempo es alto. Si el recurso es una imagen, revisa que el preload en el HTML tenga fetchpriority="high" y que el video no esté robando ancho de banda.');
             }
+            console.groupEnd();
         }
     });
 
     observer.observe({ type: 'largest-contentful-paint', buffered: true });
 }
 
-// Hacerla disponible globalmente para app.js
+// Iniciar observer
 window.initLCPObserver = initLCPObserver;
+document.addEventListener('DOMContentLoaded', window.initLCPObserver);

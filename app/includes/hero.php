@@ -72,7 +72,8 @@
         autoplay
         loop
         playsinline
-        preload="metadata"
+        preload="none" 
+        poster="<?= BASE_URL ?>build/img/hero/hero.avif" 
     ></video>
 
 </div>
