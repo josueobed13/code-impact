@@ -1,92 +1,56 @@
 // ==========================
-// 🔥 LOTTIE OPTIMIZADO PRO
+// 🔥 LOTTIE OPTIMIZADO
 // ==========================
 function initLottie() {
 
     // ==========================
-    // TODOS LOS LOTTIES
+    // ELEMENTOS
     // ==========================
-    const items =
-        document.querySelectorAll('.lottie');
+    const logos =
+        document.querySelectorAll('.logo-lottie');
 
-    // salir si no existe
-    if (!items.length) return;
+    const lazyItems =
+        document.querySelectorAll('.lazy-lottie');
 
-    // ==========================
-    // OBSERVER PRINCIPAL
-    // ==========================
-    const mainObserver =
-        new IntersectionObserver((entries) => {
-
-            const entry = entries[0];
-
-            // salir si no es visible
-            if (!entry.isIntersecting) return;
-
-            // detener observer
-            mainObserver.disconnect();
-
-            // ==========================
-            // SI YA EXISTE LOTTIE
-            // ==========================
-            if (window.lottie) {
-
-                initAnimations();
-
-                return;
-
-            }
-
-            // ==========================
-            // CARGAR SCRIPT
-            // ==========================
-            const script =
-                document.createElement('script');
-
-            script.src =
-                'https://unpkg.com/lottie-web/build/player/lottie.min.js';
-
-            script.async = true;
-
-            script.onload = () => {
-
-                initAnimations();
-
-            };
-
-            document.body.appendChild(script);
-
-        }, {
-            threshold: 0
-        });
-
-    // observar primer lottie
-    mainObserver.observe(items[0]);
+    // salir si no existe nada
+    if (!logos.length && !lazyItems.length) return;
 
     // ==========================
-    // INIT ANIMATIONS
+    // CARGAR SCRIPT
     // ==========================
-    function initAnimations() {
+    const script =
+        document.createElement('script');
+
+    script.src =
+        'https://unpkg.com/lottie-web/build/player/lottie.min.js';
+
+    script.async = true;
+
+    // ==========================
+    // ON LOAD
+    // ==========================
+    script.onload = () => {
 
         // ==========================
         // LOGOS
         // ==========================
-        const logos =
-            document.querySelectorAll('.logo-lottie');
-
-        logos.forEach(item => {
-
-            // evitar doble carga
-            if (item.dataset.loaded) return;
-
-            item.dataset.loaded = 'true';
+        logos.forEach((item, index) => {
 
             const name =
                 item.dataset.animation;
 
+            // limpiar contenedor
+            item.innerHTML = '';
+
+            // cargar animación
             window.lottie.loadAnimation({
 
-                container: item,
+                // nombre único
+                name:
+                    `logo-${index}-${Date.now()}`,
+
+                container:
+                    item,
 
                 renderer: 'svg',
 
@@ -102,11 +66,8 @@ function initLottie() {
         });
 
         // ==========================
-        // LAZY LOTTIES
+        // salir si no hay lazy
         // ==========================
-        const lazyItems =
-            document.querySelectorAll('.lazy-lottie');
-
         if (!lazyItems.length) return;
 
         // ==========================
@@ -123,7 +84,7 @@ function initLottie() {
                         entry.target.dataset.loaded
                     ) return;
 
-                    // marcar
+                    // marcar cargado
                     entry.target.dataset.loaded =
                         'true';
 
@@ -131,11 +92,18 @@ function initLottie() {
                     const name =
                         entry.target.dataset.animation;
 
+                    // limpiar contenedor
+                    entry.target.innerHTML = '';
+
                     // ==========================
                     // LOAD
                     // ==========================
                     const animation =
                         window.lottie.loadAnimation({
+
+                            // nombre único
+                            name:
+                                `lottie-${name}-${Date.now()}`,
 
                             container:
                                 entry.target,
@@ -154,6 +122,9 @@ function initLottie() {
                     // velocidad
                     animation.setSpeed(0.5);
 
+                    // dejar observar
+                    observer.unobserve(entry.target);
+
                 });
 
             }, {
@@ -161,7 +132,7 @@ function initLottie() {
             });
 
         // ==========================
-        // OBSERVE ITEMS
+        // OBSERVE
         // ==========================
         lazyItems.forEach(item => {
 
@@ -169,7 +140,12 @@ function initLottie() {
 
         });
 
-    }
+    };
+
+    // ==========================
+    // APPEND SCRIPT
+    // ==========================
+    document.body.appendChild(script);
 
 }
 
