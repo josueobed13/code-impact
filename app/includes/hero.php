@@ -66,15 +66,18 @@
         <!-- video hero -->
 <div class="hero__media">
 
+    <div class="hero__media">
+
     <video
-        class="hero__video"
-        muted
-        autoplay
-        loop
-        playsinline
-        preload="none" 
-        poster="<?= BASE_URL ?>build/img/hero/hero.avif" 
+    class="hero__video"
+    muted
+    loop
+    playsinline
+    preload="none"
+    poster="<?= BASE_URL ?>build/img/hero/hero.avif"
     ></video>
+
+</div>
 
 </div>
 </section>

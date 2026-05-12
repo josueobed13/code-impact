@@ -1,15 +1,36 @@
 // ==========================
-// HERO VIDEO
+// HERO VIDEO OPTIMIZADO
 // ==========================
 function initHeroVideo() {
 
-    const video = document.querySelector('.hero__video');
+    const video =
+        document.querySelector('.hero__video');
 
     // salir si no existe
     if (!video) return;
 
     // evitar múltiples cargas
     if (video.dataset.loaded) return;
+
+    // ==========================
+    // AHORRO DE DATOS
+    // ==========================
+    const connection =
+        navigator.connection ||
+        navigator.mozConnection ||
+        navigator.webkitConnection;
+
+    // evitar video en conexiones lentas
+    if (
+        connection &&
+        (
+            connection.saveData ||
+            connection.effectiveType === '2g' ||
+            connection.effectiveType === 'slow-2g'
+        )
+    ) {
+        return;
+    }
 
     // ==========================
     // POSTER RESPONSIVE
@@ -27,66 +48,93 @@ function initHeroVideo() {
     // ==========================
     video.muted = true;
     video.loop = true;
-    video.autoplay = true;
     video.playsInline = true;
 
-    // mejor balance LCP / UX
-    video.preload = 'metadata';
+    // importante para Lighthouse
+    video.preload = 'none';
 
     // compatibilidad iOS
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
-    video.setAttribute('autoplay', '');
 
     // ==========================
     // OBSERVER
     // ==========================
-    const observer = new IntersectionObserver((entries) => {
+    const observer =
+        new IntersectionObserver((entries) => {
 
-        const entry = entries[0];
+            const entry = entries[0];
 
-        // salir si no entra en viewport
-        if (!entry.isIntersecting) return;
+            // salir si no entra
+            if (!entry.isIntersecting) return;
 
-        // marcar cargado
-        video.dataset.loaded = 'true';
+            // evitar doble carga
+            if (video.dataset.loaded) return;
 
-        // ==========================
-        // SOURCE
-        // ==========================
-        const source = document.createElement('source');
+            // marcar cargado
+            video.dataset.loaded = 'true';
 
-        source.src =
-            `${BASE_URL}build/video/hero-mobil.mp4`;
+            // ==========================
+            // SOURCE
+            // ==========================
+            const source =
+                document.createElement('source');
 
-        source.type = 'video/mp4';
+            source.src =
+                `${BASE_URL}build/video/hero-mobil.mp4`;
 
-        // insertar source
-        video.appendChild(source);
+            source.type = 'video/mp4';
 
-        // cargar metadata/video
-        video.load();
+            // insertar source
+            video.appendChild(source);
 
-        // reproducir
-        requestAnimationFrame(() => {
+            // cargar video
+            video.load();
 
-            video.play().catch(() => {});
+            // reproducir
+            requestAnimationFrame(() => {
 
+                video.play().catch(() => {});
+
+            });
+
+            // detener observer
+            observer.disconnect();
+
+        }, {
+            threshold: 0
         });
 
-        // detener observer
-        observer.disconnect();
-
-    }, {
-        threshold: 0
-    });
-
+    // observar
     observer.observe(video);
 
 }
 
-// iniciar
-document.addEventListener(
-    'DOMContentLoaded',
-    initHeroVideo
-);
+// ==========================
+// INIT DESPUÉS DEL LOAD
+// ==========================
+window.addEventListener('load', () => {
+
+    // navegador moderno
+    if ('requestIdleCallback' in window) {
+
+        requestIdleCallback(() => {
+
+            initHeroVideo();
+
+        });
+
+    }
+
+    // fallback
+    else {
+
+        setTimeout(() => {
+
+            initHeroVideo();
+
+        }, 800);
+
+    }
+
+});

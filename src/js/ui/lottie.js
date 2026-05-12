@@ -22,7 +22,7 @@ function initLottie() {
         document.createElement('script');
 
     script.src =
-        'https://unpkg.com/lottie-web/build/player/lottie.min.js';
+       'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js';
 
     script.async = true;
 
