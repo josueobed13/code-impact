@@ -12,6 +12,17 @@ function initHeroVideo() {
     if (video.dataset.loaded) return;
 
     // ==========================
+    // POSTER RESPONSIVE
+    // ==========================
+    const poster =
+        window.innerWidth < 768
+            ? 'hero-mobil.avif'
+            : 'hero.avif';
+
+    video.poster =
+        `${BASE_URL}build/img/hero/${poster}`;
+
+    // ==========================
     // CONFIG
     // ==========================
     video.muted = true;
@@ -19,10 +30,10 @@ function initHeroVideo() {
     video.autoplay = true;
     video.playsInline = true;
 
-    // mejor para LCP móvil
+    // mejor balance LCP / UX
     video.preload = 'metadata';
 
-    // iOS
+    // compatibilidad iOS
     video.setAttribute('muted', '');
     video.setAttribute('playsinline', '');
     video.setAttribute('autoplay', '');
@@ -40,7 +51,9 @@ function initHeroVideo() {
         // marcar cargado
         video.dataset.loaded = 'true';
 
-        // crear source dinámicamente
+        // ==========================
+        // SOURCE
+        // ==========================
         const source = document.createElement('source');
 
         source.src =

@@ -26,15 +26,25 @@ if (!defined('BASE_URL')) {
     <meta name="description" content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>">
 
     <!-- preload fondo -->
-    <link
-        rel="preload"
-        as="image"
-        href="<?= BASE_URL ?>build/img/hero/hero-mobil.avif"
-        media="(max-width: 767px)"
-        type="image/avif"
-        fetchpriority="high"
-    >
-    <link rel="preload" as="image" href="<?= BASE_URL ?>build/img/hero/hero.avif" media="(min-width: 768px)" type="image/avif" fetchpriority="high">
+    <!-- preload fondo mobile -->
+<link
+    rel="preload"
+    as="image"
+    href="<?= BASE_URL ?>build/img/hero/hero-mobil.avif"
+    media="(max-width: 767px)"
+    type="image/avif"
+    fetchpriority="high"
+>
+
+<!-- preload fondo desktop -->
+<link
+    rel="preload"
+    as="image"
+    href="<?= BASE_URL ?>build/img/hero/hero.avif"
+    media="(min-width: 768px)"
+    type="image/avif"
+    fetchpriority="high"
+>
 
     <!-- JS GLOBAL CONFIG -->
     <script>

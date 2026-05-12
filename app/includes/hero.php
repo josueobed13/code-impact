@@ -67,7 +67,7 @@
 <div class="hero__media">
 
     <video
-    class="hero__video" poster="<?= BASE_URL ?>build/img/hero/hero.avif"
+        class="hero__video"
         muted
         autoplay
         loop
