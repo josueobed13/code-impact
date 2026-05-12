@@ -9,12 +9,13 @@
     align-items: center;
     overflow: hidden;
 
-    /* 🔥 BACKGROUND */
-    background-image: image-set(
+    /* 🔥 NUEVO FONDO PROFESIONAL (NO ROMPE NADA) */
+    background:
+         image-set(
         url(../img/hero/hero.avif) type('image/avif'),
         url(../img/hero/hero.webp) type('image/webp'),
-        url(../img/hero/hero.jpg) type('image/jpeg')
-    );
+        url(../img/hero/hero.jpg) type('image/jpeg'));
+
 
     background-size: cover;
     background-position: center;
@@ -22,20 +23,8 @@
     background-attachment: scroll;
 
     /* =========================
-       LCP FIX
-    ========================= */
-    &__lcp{
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    /* =========================
        GRID
     ========================= */
-
     &__grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -84,12 +73,16 @@
             object-fit: cover;
             border-radius: 16px;
 
+            
             box-shadow: 
                 0 25px 60px rgba(0,0,0,0.6),
                 0 0 25px rgba(37, 99, 235, 0.15);
 
         }
+
+        
     }
+
 
     /* =========================
        ANIMACIÓN
@@ -118,7 +111,7 @@
         &__grid {
             grid-template-columns: 1fr;
             gap: 3rem;
-            justify-items: center;
+                justify-items: center;
         }
 
         &__media {
@@ -142,6 +135,8 @@
             order: -1;
             padding: 0;
             width: 100%;
+
+            
         }
 
         &__title {
@@ -167,16 +162,16 @@
 }
 
 @media (max-width: 444px) {
-    .hero__title {
+        .hero__title {
         font-size: 2.6rem;
         padding: 0rem 1rem 0rem 1rem;
     }
 }
 
 @media (max-width: 517px) {
-    .hero__title {
-        padding: 0rem 1.2rem;
-    }
+        .hero__title {
+            padding: 0rem 1.2rem;
+        }
 
     .hero__text {
         padding: 0rem 1.2rem;
@@ -190,9 +185,9 @@
         text-align: center;
         margin: 0rem;
     }
-
     .hero__media video {
         border-radius: 0;
+
     }
 }
 
@@ -205,8 +200,10 @@
     }
 }
 
+
 @media (max-width: 900px) {
     .hero {
+
         padding-top: 0;
     }
 }

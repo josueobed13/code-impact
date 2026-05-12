@@ -1,18 +1,5 @@
 <section class="hero">
-
-        <img
-                src="<?= BASE_URL ?>build/img/hero/hero.webp"
-                alt=""
-                class="hero__lcp"
-                fetchpriority="high"
-                decoding="async"
-                width="1920"
-                height="1080"
-            >
-
     <div class="container hero__grid">
-
-
 
         <div class="hero__content">
             <h1 class="hero__title">
@@ -33,9 +20,12 @@
         <!-- video hero -->
 <div class="hero__media">
 
-    <video class="hero__video">
+    <video
+        class="hero__video"
+       
+    >
 
-
+        <!-- MOBILE -->
         <source
             media="(max-width: 768px)"
             src="<?= BASE_URL ?>build/video/hero-mobil.mp4"
