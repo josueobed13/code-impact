@@ -27,10 +27,11 @@
 // NOTA: Se eliminan los 'import' de la parte superior para evitar el error 
 // de "Unexpected token export" en tus archivos minificados .min.js
 
-document.addEventListener('DOMContentLoaded', () => {
-    // =========================
-    // CRÍTICO (Prioridad 1)
-    // =========================
+javascriptdocument.addEventListener('DOMContentLoaded', () => {
+    // 1. INICIAR MONITOR DE LCP DE INMEDIATO
+    if (typeof initLCPObserver === 'function') initLCPObserver();
+
+    // 2. CRÍTICO
     if (typeof initFixedHeader === 'function') initFixedHeader();
     if (typeof initMailLinks === 'function') initMailLinks();
 });
