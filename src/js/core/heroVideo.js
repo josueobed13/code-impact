@@ -55,7 +55,11 @@ function initHeroVideo() {
         // reproducir
         const playVideo = () => {
 
-            video.play().catch(() => {});
+            setTimeout(() => {
+
+                video.play().catch(() => {});
+
+            }, 300);
 
         };
 

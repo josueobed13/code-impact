@@ -4,6 +4,7 @@
 function initClientsSlider() {
 
     const track = document.querySelector('.clients__track');
+
     if (!track) return;
 
     let speed = 0.3;
@@ -11,29 +12,72 @@ function initClientsSlider() {
 
     let isPaused = false;
     let isDragging = false;
+    let isVisible = false;
 
     let startX = 0;
     let currentX = 0;
 
     const items = [...track.children];
 
-    // duplicar items
-    items.forEach(item => {
-        track.appendChild(item.cloneNode(true));
-    });
+    // duplicar items SOLO una vez
+    if (!track.dataset.cloned) {
 
-    const totalWidth = track.scrollWidth / 2;
+        items.forEach(item => {
+
+            track.appendChild(item.cloneNode(true));
+
+        });
+
+        track.dataset.cloned = 'true';
+    }
+
+    // calcular una sola vez
+    let totalWidth = track.scrollWidth / 2;
 
     // ==========================
-    // AUTO SLIDE
+    // RESIZE
+    // ==========================
+    let resizeTimeout;
+
+    window.addEventListener('resize', () => {
+
+        clearTimeout(resizeTimeout);
+
+        resizeTimeout = setTimeout(() => {
+
+            totalWidth = track.scrollWidth / 2;
+
+        }, 200);
+
+    });
+
+    // ==========================
+    // OBSERVER
+    // ==========================
+    const observer = new IntersectionObserver((entries) => {
+
+        isVisible = entries[0].isIntersecting;
+
+    }, {
+        threshold: 0.1
+    });
+
+    observer.observe(track);
+
+    // ==========================
+    // ANIMATE
     // ==========================
     function animate() {
 
-        if (!isPaused && !isDragging) {
+        if (
+            isVisible &&
+            !isPaused &&
+            !isDragging
+        ) {
 
             position -= speed;
 
-            // loop infinito
+            // loop
             if (Math.abs(position) >= totalWidth) {
                 position = 0;
             }
@@ -42,16 +86,19 @@ function initClientsSlider() {
                 position = -totalWidth;
             }
 
-            track.style.transform = `translate3d(${position}px,0,0)`;
+            track.style.transform =
+                `translate3d(${position}px,0,0)`;
+
         }
 
         requestAnimationFrame(animate);
+
     }
 
     animate();
 
     // ==========================
-    // PAUSA
+    // PAUSE
     // ==========================
     let timeout;
 
@@ -62,8 +109,11 @@ function initClientsSlider() {
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
+
             isPaused = false;
+
         }, 3000);
+
     }
 
     // ==========================
@@ -78,7 +128,9 @@ function initClientsSlider() {
         startX = e.touches[0].clientX;
         currentX = startX;
 
-    }, { passive: true });
+    }, {
+        passive: true
+    });
 
     // ==========================
     // TOUCH MOVE
@@ -93,7 +145,6 @@ function initClientsSlider() {
 
         position += diff;
 
-        // mantener loop correcto
         if (Math.abs(position) >= totalWidth) {
             position = 0;
         }
@@ -102,11 +153,14 @@ function initClientsSlider() {
             position = -totalWidth;
         }
 
-        track.style.transform = `translate3d(${position}px,0,0)`;
+        track.style.transform =
+            `translate3d(${position}px,0,0)`;
 
         currentX = x;
 
-    }, { passive: true });
+    }, {
+        passive: true
+    });
 
     // ==========================
     // TOUCH END
@@ -117,49 +171,16 @@ function initClientsSlider() {
 
         pauseSlider();
 
+    }, {
+        passive: true
     });
 
     // ==========================
-    // CLICK PAUSE
+    // CLICK
     // ==========================
     track.addEventListener('click', pauseSlider);
+
 }
 
-// INICIAR
+// iniciar
 initClientsSlider();
-
-
-// ==========================
-// CLIENTS LOGOS SCROLL
-// ==========================
-function initClientsArrows() {
-
-    const wrapper = document.querySelector('.clients__logos-wrapper');
-    const leftBtn = document.querySelector('.clients__arrow--left');
-    const rightBtn = document.querySelector('.clients__arrow--right');
-
-    if (!wrapper || !leftBtn || !rightBtn) return;
-
-    function getScrollAmount() {
-        return wrapper.clientWidth * 0.7;
-    }
-
-    leftBtn.addEventListener('click', () => {
-        wrapper.scrollBy({
-            left: -getScrollAmount(),
-            behavior: 'smooth'
-        });
-    });
-
-    rightBtn.addEventListener('click', () => {
-        wrapper.scrollBy({
-            left: getScrollAmount(),
-            behavior: 'smooth'
-        });
-    });
-
-}
-
-initClientsArrows();
-
-

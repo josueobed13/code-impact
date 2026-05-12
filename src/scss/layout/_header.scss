@@ -4,11 +4,17 @@
    HEADER
 ========================= */
 .lottie.logo-lottie{
+    width: 180px;
     height: 55px;
-    width: auto;
-    display: block;
-    right: 11px;
+
     position: relative;
+    right: 11px;
+
+    display: block;
+
+    contain: layout paint;
+
+    transform: translateZ(0);
 }
 .header {
     position: fixed;
@@ -236,9 +242,23 @@
 }
 
 /* =========================
-   OVERLAY
+   OVERLAY de función del menu no mover
 ========================= */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s ease;
 
+    z-index: 800;
+
+    &.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+}
 
 /* =========================
    MOBILE NAV
