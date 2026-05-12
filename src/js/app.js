@@ -20,6 +20,7 @@ window.addEventListener('load', async () => {
     // HERO VIDEO
     // =========================
 
+
     // CORE
     const { initCookies } = await import('./core/cookies.js');
 
