@@ -33,35 +33,36 @@
 // 2. DOM CONTENT LOADED (Interactividad Rápida)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Iniciamos funciones que no afectan el layout inicial
     if (typeof initFixedHeader === 'function') initFixedHeader();
     if (typeof initMailLinks === 'function') initMailLinks();
-    
-    // Si tienes el observer como función externa, la llamamos (opcional si usas la de arriba)
-    if (typeof initLCPObserver === 'function') initLCPObserver();
 });
 
 // ==========================================
-// 3. WINDOW LOAD (Recursos Pesados)
+// 3. WINDOW LOAD (Adiós a la Redistribución Forzada)
 // ==========================================
 window.addEventListener('load', () => {
-    // Prioridad Media
+    // Prioridad Media: Cookies y Lottie (No disparan reflow)
     if (typeof initCookies === 'function') initCookies();
     if (typeof initLottie === 'function') initLottie();
 
-    // Prioridad Baja: Retraso para evitar el bloqueo del hilo principal (Main Thread)
-    setTimeout(() => {
-        // Sliders y UI pesada
-        if (typeof initClients === 'function') initClients();
-        if (typeof initCatalog === 'function') initCatalog();
+    // 🚀 OPTIMIZACIÓN CRÍTICA: Esperamos a que el navegador esté libre
+    // requestAnimationFrame asegura que el código corra justo antes del próximo repintado
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            
+            // UI PESADA: Sliders que usan offsetWidth/scrollWidth
+            // Al ejecutarlos aquí, el navegador ya conoce las dimensiones reales del DOM
+            if (typeof initClients === 'function') initClients();
+            if (typeof initCatalog === 'function') initCatalog();
 
-        // Elementos Home y otros
-        if (typeof initServices === 'function') initServices();
-        if (typeof initProcessMobile === 'function') initProcessMobile();
-        if (typeof initPortfolioCounters === 'function') initPortfolioCounters();
-        if (typeof initContactForm === 'function') initContactForm();
-        if (typeof initLightbox === 'function') initLightbox();
-        
-        console.log("🚀 Módulos pesados cargados con éxito.");
-    }, 300); // Subido a 300ms para asegurar que el LCP ya se haya disparado
+            // Elementos de la Home y otros
+            if (typeof initServices === 'function') initServices();
+            if (typeof initProcessMobile === 'function') initProcessMobile();
+            if (typeof initPortfolioCounters === 'function') initPortfolioCounters();
+            if (typeof initContactForm === 'function') initContactForm();
+            if (typeof initLightbox === 'function') initLightbox();
+            
+            console.log("⚡ Módulos iniciados sin bloquear el renderizado.");
+        });
+    });
 });

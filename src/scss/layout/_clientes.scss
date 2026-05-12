@@ -78,10 +78,11 @@
         display: flex;
         align-items: center;
         width: max-content;
+        min-height: 250px; // 👈 Añade la altura aproximada de tus logos/imágenes
         will-change: transform;
         transform: translateZ(0);
         contain: layout paint;
-    }
+        }
 
     /* =========================
        ITEMS (IMÁGENES)

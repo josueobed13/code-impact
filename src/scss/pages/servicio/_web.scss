@@ -1,378 +1,12 @@
 @use '../../base/variables' as *;
 
-
-/* =========================
-INTRO
-========================= */
-
+/* ==========================================
+   1. INTRO SECTION
+   ========================================== */
 .catalog-intro {
-    padding: 5rem 0 5rem;
-    text-align: center;
-
-    h1 {
-        font-size: 5.4rem;
-        color: #fff;
-        margin-bottom: 2rem;
-        letter-spacing: -0.5px;
-    }
-
-    p {
-        max-width: 720px;
-        margin: 0 auto;
-        color: #A1A1AA;
-        font-size: 1.6rem;
-        line-height: 1.6;
-    }
-}
-
-/* 🔥 LIGHT MODE INTRO (SIN TOCAR LO DEMÁS) */
-.catalog-intro--light {
-    position: relative;
-
-    padding: 9rem 0;
-    line-height: 1.2;
-
-    background-image: image-set(
-            url('../img/catalog/banner-proyect-d.avif') type('image/avif'),
-            url('../img/catalog/banner-proyect-d.webp') type('image/webp'),
-            url('../img/catalog/banner-proyect-d.jpg') type('image/jpeg')
-        );
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    overflow: hidden;
-
-
-
-    h1 {
-        color: #0B0F19;
-        margin-bottom: 3rem;
-    }
-
-    p {
-        color: #252a31;
-        font-weight: 600;
-    }
-}
-
-@media (max-width: 1110px) {
-    .catalog-intro--light {
-        padding: 5.5rem 7rem 5.5rem;
-
-    }
-
-    .catalog-intro h1 {
-        font-size: 4.5rem;
-    }
-}
-
-@media (max-width: 890px) {
-    .catalog-intro h1 {
-        font-size: 4rem;
-    }
-}
-
-@media (max-width: 800px) {
-    .catalog-intro--light {
-        padding: 4.5rem 5.5rem 4.5rem;
-    }
-}
-
-
-@media (max-width: 480px) {
-    //background-movil
-    .catalog-intro--light {
-
-            background-image: image-set(
-                url('../img/catalog/banner-proyect-m.avif') type('image/avif'),
-                url('../img/catalog/banner-proyect-m.webp') type('image/webp'),
-                url('../img/catalog/banner-proyect-m.jpg') type('image/jpeg')
-            );
-
-            background-position: center;
-            background-size: cover;
-        }
-
-
-    .catalog-intro--light {
-        padding: 5.5rem 0 5.5rem;
-    }
-}
-
-/* =========================
-CATÁLOGO
-========================= */
-
-.service-catalog {
-
-    position: relative;
-    padding: 9rem 0;
-    line-height: 1.2;
-
-    background-image: image-set(
-        url(../img/catalog/fondo-desktop.avif) type('image/avif'),
-        url(../img/catalog/fondo-desktop.webp) type('image/webp'),
-        url(../img/catalog/fondo-desktop.jpg) type('image/jpeg'));
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-
-    h2 {
-        text-align: center;
-        font-size: 3.2rem;
-        margin-bottom: 5rem;
-        color: #fff;
-    }
-}
-
-
-
-
-/* GRID */
-
-.catalog-slider {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2.5rem;
-}
-
-/* CARD */
-
-.catalog-item {
-    background-color: #010618ab;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 18px;
-
-    overflow: hidden;
-
-    transition: all .35s ease;
-
-    display: flex;
-    flex-direction: column;
-
-    &:hover {
-        transform: translateY(-10px);
-        border-color: rgba(37, 99, 235, 0.4);
-        box-shadow: 0 25px 60px rgba(0,0,0,0.5);
-    }
-}
-
-/* =========================
-IMÁGENES
-========================= */
-
-.catalog-images {
-    position: relative;
-    aspect-ratio: 16/11;
-    overflow: hidden;
-}
-
-.catalog-track picture {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: .5s ease;
-}
-
-.catalog-track picture.active {
-    opacity: 1;
-}
-
-.catalog-track picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* NAV */
-
-.catalog-prev,
-.catalog-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 36px;
-    height: 36px;
-
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.15);
-
-    background: rgba(0,0,0,0.4);
-    color: #fff;
-    font-size: 2rem;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    transition: .3s;
-
-    &:hover {
-        background: $primary;
-    }
-}
-
-.catalog-prev { left: 10px; }
-.catalog-next { right: 10px; }
-
-@media (max-width: 485px) {
-    .catalog-prev { left: 5px; }
-.catalog-next { right: 5px; }
-}
-
-    
-    @media (max-width: 385px) {
-        .catalog-prev,
-        .catalog-next {
-            width: 30px;
-            height: 30px;
-    }
-}
-
-/* =========================
-CONTENT
-========================= */
-
-.catalog-content {
-    padding: 2rem;
-
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-}
-
-.catalog-content h3 {
-    font-size: 1.8rem;
-    color: #fff;
-}
-
-.catalog-content p {
-    font-size: 1.4rem;
-    color: #A1A1AA;
-}
-
-/* FEATURES */
-
-.catalog-features {
-    list-style: none;
-    padding: 0;
-
-    li {
-        font-size: 1.3rem;
-        color: #D4D4D8;
-        margin-bottom: .4rem;
-    }
-}
-
-/* META */
-
-.catalog-meta {
-    display: flex;
-    justify-content: space-between;
-
-    font-size: 1.2rem;
-    color: #9CA3AF;
-}
-
-/* BOTÓN */
-
-.catalog-content .btn {
-    margin: 1rem auto 0;
-    width: min(100%, 301px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Responsive móviles pequeños */
-
-@media (max-width: 390px) {
-    .catalog-content .btn {
-        font-size: 1.4rem;
-        padding: 1rem;
-    }
-}
-
-
-/* =========================
-TRUST SECTION
-========================= */
-
-
-.catalog-trust {
     padding: 5rem 0;
     text-align: center;
 
-    h3 {
-        font-size: clamp(2.5rem, 4vw, 4rem);
-        margin-bottom: 1.3rem;
-        color: #fff;
-        font-weight: 800;
-        letter-spacing: -1px;
-        line-height: 1.1;
-    }
-}
-
-.trust-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.8rem;
-}
-
-/* CARDS */
-
-.trust-grid div {
-    /* background: #f8fafc; */
-    /* border: 1px solid #e5e7eb; */
-    /* border-radius: 18px; */
-    padding: 2rem 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    /* box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    &:hover {
-        transform: translateY(-8px);
-    }
-
-    h4 {
-        font-size: clamp(1.6rem, 2vw, 2.6rem);
-        color: $primary;
-
-            margin-bottom: 0.4rem;
-
-        font-weight: 800;
-        letter-spacing: -.5px;
-        line-height: 1.2;
-    }
-
-    p {
-        color: #4B5563;
-        font-size: clamp(1.2rem, 1.3vw, 1.5rem);
-        font-weight: 600;
-        line-height: 1.4;
-        margin: 0 auto;
-
-    }
-}
-
-
-/* =========================
-   INTRO
-========================= */
-.catalog-intro {
-    padding: 5rem 0 5rem;
-    text-align: center;
-
     h1 {
         font-size: 5.4rem;
         color: #fff;
@@ -383,57 +17,40 @@ TRUST SECTION
     p {
         max-width: 720px;
         margin: 0 auto;
-        color: #A1A1AA;
+        color: $text-secondary;
         font-size: 1.6rem;
         line-height: 1.6;
     }
-}
 
-/* 🔥 LIGHT MODE INTRO */
-.catalog-intro--light {
-    position: relative;
-    padding: 9rem 0;
-    line-height: 1.2;
+    /* 🔥 LIGHT MODE INTRO */
+    &--light {
+        position: relative;
+        padding: 9rem 0;
+        line-height: 1.2;
+        background: image-set(
+            url('../img/catalog/banner-proyect-d.avif') type('image/avif'),
+            url('../img/catalog/banner-proyect-d.webp') type('image/webp'),
+            url('../img/catalog/banner-proyect-d.jpg') type('image/jpeg')
+        ) center/cover no-repeat;
+        overflow: hidden;
 
-    background-image: image-set(
-        url('../img/catalog/banner-proyect-d.avif') type('image/avif'),
-        url('../img/catalog/banner-proyect-d.webp') type('image/webp'),
-        url('../img/catalog/banner-proyect-d.jpg') type('image/jpeg')
-    );
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-
-    h1 {
-        color: #0B0F19;
-        margin-bottom: 3rem;
-    }
-
-    p {
-        color: #252a31;
-        font-weight: 600;
+        h1 { color: $bg-main; margin-bottom: 3rem; }
+        p { color: #252a31; font-weight: 600; }
     }
 }
 
-/* =========================
-   CATÁLOGO
-========================= */
+/* ==========================================
+   2. CATÁLOGO (Slider & Items)
+   ========================================== */
 .service-catalog {
     position: relative;
     padding: 9rem 0;
     line-height: 1.2;
-
-    background-image: image-set(
+    background: image-set(
         url(../img/catalog/fondo-desktop.avif) type('image/avif'),
         url(../img/catalog/fondo-desktop.webp) type('image/webp'),
         url(../img/catalog/fondo-desktop.jpg) type('image/jpeg')
-    );
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    ) center/cover no-repeat;
     overflow: hidden;
 
     h2 {
@@ -448,47 +65,43 @@ TRUST SECTION
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
+    /* 🚀 OPTIMIZACIÓN: Reserva espacio para evitar Redistribución forzada */
+    min-height: 450px; 
 }
 
 .catalog-item {
-    background-color: #010618ab;
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: #010618ab;
+    border: 1px solid $border;
     border-radius: 18px;
     overflow: hidden;
-    transition: all .35s ease;
+    transition: $transition;
     display: flex;
     flex-direction: column;
 
     &:hover {
         transform: translateY(-10px);
-        border-color: rgba(37, 99, 235, 0.4);
-        box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        border-color: rgba($primary, 0.4);
+        box-shadow: $shadow-lg;
     }
 }
 
 .catalog-images {
     position: relative;
-    aspect-ratio: 16/11;
+    aspect-ratio: 16 / 11; /* 🚀 Previene saltos de diseño (CLS) */
     overflow: hidden;
+    background: #0b0f19;
+
+    .catalog-track picture {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity .5s ease;
+        &.active { opacity: 1; }
+        img { width: 100%; height: 100%; object-fit: cover; }
+    }
 }
 
-.catalog-track picture {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: .5s ease;
-}
-
-.catalog-track picture.active {
-    opacity: 1;
-}
-
-.catalog-track picture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+/* Navegación del Slider */
 .catalog-prev,
 .catalog-next {
     position: absolute;
@@ -505,16 +118,16 @@ TRUST SECTION
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: .3s;
+    transition: $transition;
+    z-index: 5;
 
-    &:hover {
-        background: $primary;
-    }
+    &:hover { background: $primary; }
 }
 
 .catalog-prev { left: 10px; }
 .catalog-next { right: 10px; }
 
+/* Detalles del Contenido */
 .catalog-content {
     padding: 2rem;
     display: flex;
@@ -522,12 +135,21 @@ TRUST SECTION
     gap: 1.2rem;
 
     h3 { font-size: 1.8rem; color: #fff; }
-    p { font-size: 1.4rem; color: #A1A1AA; }
+    p { font-size: 1.4rem; color: $text-secondary; }
+
+    .btn {
+        margin: 1rem auto 0;
+        width: min(100%, 301px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
 }
 
 .catalog-features {
-    list-style: none;
     padding: 0;
+    list-style: none;
     li {
         font-size: 1.3rem;
         color: #D4D4D8;
@@ -542,18 +164,9 @@ TRUST SECTION
     color: #9CA3AF;
 }
 
-.catalog-content .btn {
-    margin: 1rem auto 0;
-    width: min(100%, 301px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* =========================
-   TRUST SECTION
-========================= */
+/* ==========================================
+   3. TRUST SECTION
+   ========================================== */
 .catalog-trust {
     padding: 5rem 0;
     text-align: center;
@@ -565,6 +178,20 @@ TRUST SECTION
         font-weight: 800;
         letter-spacing: -1px;
         line-height: 1.1;
+    }
+
+    /* 🔥 LIGHT MODE TRUST */
+    &--light {
+        position: relative;
+        padding: 6rem 0;
+        background: image-set(
+            url('../img/catalog/banner-proyect-d.avif') type('image/avif'),
+            url('../img/catalog/banner-proyect-d.webp') type('image/webp'),
+            url('../img/catalog/banner-proyect-d.jpg') type('image/jpeg')
+        ) center/cover no-repeat;
+        overflow: hidden;
+
+        h3 { color: $bg-main; }
     }
 }
 
@@ -574,8 +201,8 @@ TRUST SECTION
     gap: 1.8rem;
 
     div {
-        padding: 2rem 2rem;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 2rem;
+        transition: $transition;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -601,50 +228,28 @@ TRUST SECTION
     }
 }
 
-/* 🔥 LIGHT MODE TRUST */
-.catalog-trust--light {
-    position: relative;
-    padding: 6rem 0;
-    line-height: 1.2;
-
-    background-image: image-set(
-        url('../img/catalog/banner-proyect-d.avif') type('image/avif'),
-        url('../img/catalog/banner-proyect-d.webp') type('image/webp'),
-        url('../img/catalog/banner-proyect-d.jpg') type('image/jpeg')
-    );
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    overflow: hidden;
-
-    h3 { color: #0B0F19; }
-}
-
-/* =========================
-   BLOG
-========================= */
+/* ==========================================
+   4. BLOG SECTION
+   ========================================== */
 .catalog-blog {
     position: relative;
     padding: 9rem 0;
     line-height: 1.2;
-    background-image: image-set(
+    background: image-set(
         url(../img/blog/blog-desktop.avif) type('image/avif'),
         url(../img/blog/blog-desktop.webp) type('image/webp'),
         url(../img/blog/blog-desktop.jpg) type('image/jpeg')
-    );
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    ) center/cover no-repeat;
     overflow: hidden;
-}
 
-.catalog-blog__intro {
-    max-width: 750px;
-    margin: 0 auto 4rem;
-    text-align: center;
-    h3 { font-size: 4rem; color: #fff; margin-bottom: 2rem; }
-    p { color: #A1A1AA; font-size: 1.5rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    &__intro {
+        max-width: 750px;
+        margin: 0 auto 4rem;
+        text-align: center;
+
+        h3 { font-size: 4rem; color: #fff; margin-bottom: 2rem; }
+        p { color: $text-secondary; font-size: 1.5rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    }
 }
 
 .blog-grid {
@@ -658,7 +263,7 @@ TRUST SECTION
     border: 1px solid rgba(255,255,255,0.05);
     border-radius: 14px;
     overflow: hidden;
-    transition: .3s;
+    transition: $transition;
 
     &:hover {
         transform: translateY(-6px);
@@ -673,16 +278,18 @@ TRUST SECTION
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
     h4 { font-size: 1.6rem; color: #fff; line-height: 1.4; }
-    p { font-size: 1.35rem; color: #A1A1AA; line-height: 1.6; }
+    p { font-size: 1.35rem; color: $text-secondary; line-height: 1.6; }
 }
 
 .blog-tag { font-size: 1.1rem; color: $primary; font-weight: 600; }
 .blog-cta { margin-top: .5rem; font-size: 1.3rem; color: #D4D4D8; font-style: italic; }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ==========================================
+   5. RESPONSIVE (MEDIA QUERIES)
+   ========================================== */
+
 @media (max-width: 1110px) {
     .catalog-intro--light { padding: 5.5rem 7rem; }
     .catalog-intro h1 { font-size: 4.5rem; }
@@ -721,7 +328,7 @@ TRUST SECTION
     .catalog-slider { grid-template-columns: 1fr; }
     .catalog-content { gap: 0.2rem; }
     .trust-grid { grid-template-columns: 1fr; gap: 1rem; }
-    .catalog-blog { padding: 5rem 0; __intro h3 { font-size: 3.5rem; } }
+    .catalog-blog { padding: 5rem 0; &__intro h3 { font-size: 3.5rem; } }
 }
 
 @media (max-width: 640px) {
@@ -749,13 +356,13 @@ TRUST SECTION
         padding: 5.5rem 0;
     }
     .catalog-trust--light {
-        .container { margin: 0; width: 100%; padding: 0 6px; }
         background-image: image-set(
             url('../img/catalog/banner-proyect-m.avif') type('image/avif'),
             url('../img/catalog/banner-proyect-m.webp') type('image/webp'),
             url('../img/catalog/banner-proyect-m.jpg') type('image/jpeg')
         );
         background-position: center; background-size: cover;
+        .container { margin: 0; width: 100%; padding: 0 6px; }
     }
 }
 

@@ -1,4 +1,7 @@
 @charset "UTF-8";
+/* ==========================================
+   RESET GLOBAL & NORMALIZACIÓN
+   ========================================== */
 *,
 *::before,
 *::after {
@@ -9,35 +12,65 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
 }
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
+/* Multimedia */
 img,
-picture {
+picture,
+video,
+canvas,
+svg {
   max-width: 100%;
   display: block;
+  height: auto;
 }
 
+/* Enlaces */
 a {
   text-decoration: none;
   color: inherit;
+  display: inline-block;
 }
 
+/* Listas */
 ul,
 ol {
   list-style: none;
 }
 
-button {
+/* Formularios y Botones */
+button,
+input,
+select,
+textarea {
   border: none;
   background: none;
   cursor: pointer;
   font: inherit;
+  color: inherit;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Accesibilidad: Quita el resaltado azul en móviles al tocar */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
 @font-face {
@@ -1777,6 +1810,7 @@ body {
   display: flex;
   align-items: center;
   width: max-content;
+  min-height: 250px;
   will-change: transform;
   transform: translateZ(0);
   contain: layout paint;
@@ -3809,11 +3843,11 @@ RESPONSIVE
     font-size: 1.3rem;
   }
 }
-/* =========================
-INTRO
-========================= */
+/* ==========================================
+   1. INTRO SECTION
+   ========================================== */
 .catalog-intro {
-  padding: 5rem 0 5rem;
+  padding: 5rem 0;
   text-align: center;
 }
 .catalog-intro h1 {
@@ -3829,16 +3863,14 @@ INTRO
   font-size: 1.6rem;
   line-height: 1.6;
 }
-
-/* 🔥 LIGHT MODE INTRO (SIN TOCAR LO DEMÁS) */
+.catalog-intro {
+  /* 🔥 LIGHT MODE INTRO */
+}
 .catalog-intro--light {
   position: relative;
   padding: 9rem 0;
   line-height: 1.2;
-  background-image: image-set(url("../img/catalog/banner-proyect-d.avif") type('image/avif'), url("../img/catalog/banner-proyect-d.webp") type('image/webp'), url("../img/catalog/banner-proyect-d.jpg") type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: image-set(url("../img/catalog/banner-proyect-d.avif") type('image/avif'), url("../img/catalog/banner-proyect-d.webp") type('image/webp'), url("../img/catalog/banner-proyect-d.jpg") type('image/jpeg')) center/cover no-repeat;
   overflow: hidden;
 }
 .catalog-intro--light h1 {
@@ -3850,45 +3882,14 @@ INTRO
   font-weight: 600;
 }
 
-@media (max-width: 1110px) {
-  .catalog-intro--light {
-    padding: 5.5rem 7rem 5.5rem;
-  }
-  .catalog-intro h1 {
-    font-size: 4.5rem;
-  }
-}
-@media (max-width: 890px) {
-  .catalog-intro h1 {
-    font-size: 4rem;
-  }
-}
-@media (max-width: 800px) {
-  .catalog-intro--light {
-    padding: 4.5rem 5.5rem 4.5rem;
-  }
-}
-@media (max-width: 480px) {
-  .catalog-intro--light {
-    background-image: image-set(url("../img/catalog/banner-proyect-m.avif") type('image/avif'), url("../img/catalog/banner-proyect-m.webp") type('image/webp'), url("../img/catalog/banner-proyect-m.jpg") type('image/jpeg'));
-    background-position: center;
-    background-size: cover;
-  }
-  .catalog-intro--light {
-    padding: 5.5rem 0 5.5rem;
-  }
-}
-/* =========================
-CATÁLOGO
-========================= */
+/* ==========================================
+   2. CATÁLOGO (Slider & Items)
+   ========================================== */
 .service-catalog {
   position: relative;
   padding: 9rem 0;
   line-height: 1.2;
-  background-image: image-set(url(../img/catalog/fondo-desktop.avif) type('image/avif'), url(../img/catalog/fondo-desktop.webp) type('image/webp'), url(../img/catalog/fondo-desktop.jpg) type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: image-set(url(../img/catalog/fondo-desktop.avif) type('image/avif'), url(../img/catalog/fondo-desktop.webp) type('image/webp'), url(../img/catalog/fondo-desktop.jpg) type('image/jpeg')) center/cover no-repeat;
   overflow: hidden;
 }
 .service-catalog h2 {
@@ -3898,56 +3899,51 @@ CATÁLOGO
   color: #fff;
 }
 
-/* GRID */
 .catalog-slider {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2.5rem;
+  /* 🚀 OPTIMIZACIÓN: Reserva espacio para evitar Redistribución forzada */
+  min-height: 450px;
 }
 
-/* CARD */
 .catalog-item {
-  background-color: rgba(1, 6, 24, 0.6705882353);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(1, 6, 24, 0.6705882353);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 18px;
   overflow: hidden;
-  transition: all 0.35s ease;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 .catalog-item:hover {
   transform: translateY(-10px);
   border-color: rgba(37, 99, 235, 0.4);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 }
 
-/* =========================
-IMÁGENES
-========================= */
 .catalog-images {
   position: relative;
-  aspect-ratio: 16/11;
+  aspect-ratio: 16/11; /* 🚀 Previene saltos de diseño (CLS) */
   overflow: hidden;
+  background: #0b0f19;
 }
-
-.catalog-track picture {
+.catalog-images .catalog-track picture {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: 0.5s ease;
+  transition: opacity 0.5s ease;
 }
-
-.catalog-track picture.active {
+.catalog-images .catalog-track picture.active {
   opacity: 1;
 }
-
-.catalog-track picture img {
+.catalog-images .catalog-track picture img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* NAV */
+/* Navegación del Slider */
 .catalog-prev,
 .catalog-next {
   position: absolute;
@@ -3964,7 +3960,8 @@ IMÁGENES
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 0.3s;
+  transition: all 0.3s ease;
+  z-index: 5;
 }
 .catalog-prev:hover,
 .catalog-next:hover {
@@ -3979,266 +3976,7 @@ IMÁGENES
   right: 10px;
 }
 
-@media (max-width: 485px) {
-  .catalog-prev {
-    left: 5px;
-  }
-  .catalog-next {
-    right: 5px;
-  }
-}
-@media (max-width: 385px) {
-  .catalog-prev,
-  .catalog-next {
-    width: 30px;
-    height: 30px;
-  }
-}
-/* =========================
-CONTENT
-========================= */
-.catalog-content {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.catalog-content h3 {
-  font-size: 1.8rem;
-  color: #fff;
-}
-
-.catalog-content p {
-  font-size: 1.4rem;
-  color: #A1A1AA;
-}
-
-/* FEATURES */
-.catalog-features {
-  list-style: none;
-  padding: 0;
-}
-.catalog-features li {
-  font-size: 1.3rem;
-  color: #D4D4D8;
-  margin-bottom: 0.4rem;
-}
-
-/* META */
-.catalog-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.2rem;
-  color: #9CA3AF;
-}
-
-/* BOTÓN */
-.catalog-content .btn {
-  margin: 1rem auto 0;
-  width: min(100%, 301px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* Responsive móviles pequeños */
-@media (max-width: 390px) {
-  .catalog-content .btn {
-    font-size: 1.4rem;
-    padding: 1rem;
-  }
-}
-/* =========================
-TRUST SECTION
-========================= */
-.catalog-trust {
-  padding: 5rem 0;
-  text-align: center;
-}
-.catalog-trust h3 {
-  font-size: clamp(2.5rem, 4vw, 4rem);
-  margin-bottom: 1.3rem;
-  color: #fff;
-  font-weight: 800;
-  letter-spacing: -1px;
-  line-height: 1.1;
-}
-
-.trust-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.8rem;
-}
-
-/* CARDS */
-.trust-grid div {
-  /* background: #f8fafc; */
-  /* border: 1px solid #e5e7eb; */
-  /* border-radius: 18px; */
-  padding: 2rem 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  /* box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.trust-grid div:hover {
-  transform: translateY(-8px);
-}
-.trust-grid div h4 {
-  font-size: clamp(1.6rem, 2vw, 2.6rem);
-  color: #2563eb;
-  margin-bottom: 0.4rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-}
-.trust-grid div p {
-  color: #4B5563;
-  font-size: clamp(1.2rem, 1.3vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 0 auto;
-}
-
-/* =========================
-   INTRO
-========================= */
-.catalog-intro {
-  padding: 5rem 0 5rem;
-  text-align: center;
-}
-.catalog-intro h1 {
-  font-size: 5.4rem;
-  color: #fff;
-  margin-bottom: 2rem;
-  letter-spacing: -0.5px;
-}
-.catalog-intro p {
-  max-width: 720px;
-  margin: 0 auto;
-  color: #A1A1AA;
-  font-size: 1.6rem;
-  line-height: 1.6;
-}
-
-/* 🔥 LIGHT MODE INTRO */
-.catalog-intro--light {
-  position: relative;
-  padding: 9rem 0;
-  line-height: 1.2;
-  background-image: image-set(url("../img/catalog/banner-proyect-d.avif") type('image/avif'), url("../img/catalog/banner-proyect-d.webp") type('image/webp'), url("../img/catalog/banner-proyect-d.jpg") type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-.catalog-intro--light h1 {
-  color: #0B0F19;
-  margin-bottom: 3rem;
-}
-.catalog-intro--light p {
-  color: #252a31;
-  font-weight: 600;
-}
-
-/* =========================
-   CATÁLOGO
-========================= */
-.service-catalog {
-  position: relative;
-  padding: 9rem 0;
-  line-height: 1.2;
-  background-image: image-set(url(../img/catalog/fondo-desktop.avif) type('image/avif'), url(../img/catalog/fondo-desktop.webp) type('image/webp'), url(../img/catalog/fondo-desktop.jpg) type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  overflow: hidden;
-}
-.service-catalog h2 {
-  text-align: center;
-  font-size: 3.2rem;
-  margin-bottom: 5rem;
-  color: #fff;
-}
-
-.catalog-slider {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2.5rem;
-}
-
-.catalog-item {
-  background-color: rgba(1, 6, 24, 0.6705882353);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 18px;
-  overflow: hidden;
-  transition: all 0.35s ease;
-  display: flex;
-  flex-direction: column;
-}
-.catalog-item:hover {
-  transform: translateY(-10px);
-  border-color: rgba(37, 99, 235, 0.4);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
-}
-
-.catalog-images {
-  position: relative;
-  aspect-ratio: 16/11;
-  overflow: hidden;
-}
-
-.catalog-track picture {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: 0.5s ease;
-}
-
-.catalog-track picture.active {
-  opacity: 1;
-}
-
-.catalog-track picture img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.catalog-prev,
-.catalog-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background: rgba(0, 0, 0, 0.4);
-  color: #fff;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.catalog-prev:hover,
-.catalog-next:hover {
-  background: #2563eb;
-}
-
-.catalog-prev {
-  left: 10px;
-}
-
-.catalog-next {
-  right: 10px;
-}
-
+/* Detalles del Contenido */
 .catalog-content {
   padding: 2rem;
   display: flex;
@@ -4253,10 +3991,18 @@ TRUST SECTION
   font-size: 1.4rem;
   color: #A1A1AA;
 }
+.catalog-content .btn {
+  margin: 1rem auto 0;
+  width: min(100%, 301px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
 
 .catalog-features {
-  list-style: none;
   padding: 0;
+  list-style: none;
 }
 .catalog-features li {
   font-size: 1.3rem;
@@ -4271,18 +4017,9 @@ TRUST SECTION
   color: #9CA3AF;
 }
 
-.catalog-content .btn {
-  margin: 1rem auto 0;
-  width: min(100%, 301px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-/* =========================
-   TRUST SECTION
-========================= */
+/* ==========================================
+   3. TRUST SECTION
+   ========================================== */
 .catalog-trust {
   padding: 5rem 0;
   text-align: center;
@@ -4295,67 +4032,60 @@ TRUST SECTION
   letter-spacing: -1px;
   line-height: 1.1;
 }
-
-.trust-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.8rem;
+.catalog-trust {
+  /* 🔥 LIGHT MODE TRUST */
 }
-.trust-grid div {
-  padding: 2rem 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.trust-grid div:hover {
-  transform: translateY(-8px);
-}
-.trust-grid div h4 {
-  font-size: clamp(1.6rem, 2vw, 2.6rem);
-  color: #2563eb;
-  margin-bottom: 0.4rem;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-}
-.trust-grid div p {
-  color: #4B5563;
-  font-size: clamp(1.2rem, 1.3vw, 1.5rem);
-  font-weight: 600;
-  line-height: 1.4;
-  margin: 0 auto;
-}
-
-/* 🔥 LIGHT MODE TRUST */
 .catalog-trust--light {
   position: relative;
   padding: 6rem 0;
-  line-height: 1.2;
-  background-image: image-set(url("../img/catalog/banner-proyect-d.avif") type('image/avif'), url("../img/catalog/banner-proyect-d.webp") type('image/webp'), url("../img/catalog/banner-proyect-d.jpg") type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: image-set(url("../img/catalog/banner-proyect-d.avif") type('image/avif'), url("../img/catalog/banner-proyect-d.webp") type('image/webp'), url("../img/catalog/banner-proyect-d.jpg") type('image/jpeg')) center/cover no-repeat;
   overflow: hidden;
 }
 .catalog-trust--light h3 {
   color: #0B0F19;
 }
 
-/* =========================
-   BLOG
-========================= */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.8rem;
+}
+.trust-grid div {
+  padding: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.trust-grid div:hover {
+  transform: translateY(-8px);
+}
+.trust-grid div h4 {
+  font-size: clamp(1.6rem, 2vw, 2.6rem);
+  color: #2563eb;
+  margin-bottom: 0.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+.trust-grid div p {
+  color: #4B5563;
+  font-size: clamp(1.2rem, 1.3vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   4. BLOG SECTION
+   ========================================== */
 .catalog-blog {
   position: relative;
   padding: 9rem 0;
   line-height: 1.2;
-  background-image: image-set(url(../img/blog/blog-desktop.avif) type('image/avif'), url(../img/blog/blog-desktop.webp) type('image/webp'), url(../img/blog/blog-desktop.jpg) type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: image-set(url(../img/blog/blog-desktop.avif) type('image/avif'), url(../img/blog/blog-desktop.webp) type('image/webp'), url(../img/blog/blog-desktop.jpg) type('image/jpeg')) center/cover no-repeat;
   overflow: hidden;
 }
-
 .catalog-blog__intro {
   max-width: 750px;
   margin: 0 auto 4rem;
@@ -4384,7 +4114,7 @@ TRUST SECTION
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 14px;
   overflow: hidden;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 .blog-card:hover {
   transform: translateY(-6px);
@@ -4425,9 +4155,9 @@ TRUST SECTION
   font-style: italic;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* ==========================================
+   5. RESPONSIVE (MEDIA QUERIES)
+   ========================================== */
 @media (max-width: 1110px) {
   .catalog-intro--light {
     padding: 5.5rem 7rem;
@@ -4480,7 +4210,7 @@ TRUST SECTION
   .catalog-blog {
     padding: 5rem 0;
   }
-  .catalog-blog __intro h3 {
+  .catalog-blog__intro h3 {
     font-size: 3.5rem;
   }
 }
@@ -4522,15 +4252,15 @@ TRUST SECTION
     background-image: image-set(url("../img/catalog/banner-proyect-m.avif") type('image/avif'), url("../img/catalog/banner-proyect-m.webp") type('image/webp'), url("../img/catalog/banner-proyect-m.jpg") type('image/jpeg'));
     padding: 5.5rem 0;
   }
-  .catalog-trust--light .container {
-    margin: 0;
-    width: 100%;
-    padding: 0 6px;
-  }
   .catalog-trust--light {
     background-image: image-set(url("../img/catalog/banner-proyect-m.avif") type('image/avif'), url("../img/catalog/banner-proyect-m.webp") type('image/webp'), url("../img/catalog/banner-proyect-m.jpg") type('image/jpeg'));
     background-position: center;
     background-size: cover;
+  }
+  .catalog-trust--light .container {
+    margin: 0;
+    width: 100%;
+    padding: 0 6px;
   }
 }
 @media (max-width: 390px) {

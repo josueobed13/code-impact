@@ -1,3 +1,7 @@
+/* ==========================================
+   RESET GLOBAL & NORMALIZACIÓN
+   ========================================== */
+
 *,
 *::before,
 *::after {
@@ -8,33 +12,63 @@
 
 html {
     font-size: 62.5%; // 1rem = 10px
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%; // Evita saltos de fuente en iOS al rotar
+    -moz-tab-size: 4;
+    tab-size: 4;
 }
 
 body {
     min-height: 100vh;
+    overflow-x: hidden; // Evita scroll horizontal accidental
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+/* Multimedia */
 img,
-picture {
+picture,
+video,
+canvas,
+svg {
     max-width: 100%;
     display: block;
+    height: auto;
 }
 
+/* Enlaces */
 a {
     text-decoration: none;
     color: inherit;
+    display: inline-block; // Permite aplicar transforms y paddings mejor
 }
 
+/* Listas */
 ul,
 ol {
     list-style: none;
 }
 
-button {
+/* Formularios y Botones */
+button,
+input,
+select,
+textarea {
     border: none;
     background: none;
     cursor: pointer;
-    font: inherit;
+    font: inherit; // Hereda la fuente del body automáticamente
+    color: inherit;
+    outline: none;
+}
+
+textarea {
+    resize: vertical; // Solo permite estirar hacia abajo
+}
+
+/* Accesibilidad: Quita el resaltado azul en móviles al tocar */
+a, 
+button {
+    -webkit-tap-highlight-color: transparent;
 }
