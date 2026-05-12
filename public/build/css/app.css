@@ -166,7 +166,6 @@ p {
   position: relative;
   padding: 6rem 0;
   padding-top: 12rem;
-  min-height: 55vh;
   display: flex;
   align-items: center;
   overflow: hidden;

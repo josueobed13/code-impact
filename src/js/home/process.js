@@ -1,54 +1,19 @@
-function initLottie() {
-    const items = document.querySelectorAll('.lottie');
-    if (!items.length) return;
+function initProcessMobile() {
+    const steps = document.querySelectorAll('.process__step');
+    if (!steps.length || window.innerWidth > 600) return; // Solo en móvil real
 
-    const cargarScript = () => {
-        if (window.lottie) return ejecutar();
-        const s = document.createElement('script');
-        s.src = 'https://cloudflare.com';
-        s.async = true;
-        s.onload = ejecutar;
-        document.body.appendChild(s);
+    let i = 0;
+    steps[0].classList.add('active');
+
+    const rotateProcess = () => {
+        // En lugar de forEach, buscamos solo al que está activo
+        const current = document.querySelector('.process__step.active');
+        if (current) current.classList.remove('active');
+
+        i = (i + 1) % steps.length;
+        steps[i].classList.add('active');
     };
 
-    const ejecutar = () => {
-        items.forEach(el => {
-            if (el.dataset.loaded) return;
-            const isLazy = el.classList.contains('lazy-lottie');
-            
-            const run = () => {
-                el.dataset.loaded = 'true';
-                const name = el.dataset.animation;
-                
-                // Intentamos cargar desde build, que es donde deberían estar tras el despliegue
-                const baseUrl = (typeof BASE_URL !== 'undefined') ? BASE_URL : '/';
-                const path = `${baseUrl}build/animations/${name}.json`.replace(/([^:]\/)\/+/g, "$1");
-
-                lottie.loadAnimation({
-                    container: el,
-                    renderer: 'svg',
-                    loop: true,
-                    autoplay: true,
-                    path: path
-                });
-            };
-
-            if (!isLazy) {
-                run();
-            } else {
-                const obs = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            run();
-                            obs.disconnect();
-                        }
-                    });
-                }, { rootMargin: '200px' });
-                obs.observe(el);
-            }
-        });
-    };
-
-    cargarScript();
+    // Usamos un intervalo más largo o solo cuando sea visible
+    setInterval(rotateProcess, 4000); 
 }
-window.initLottie = initLottie;

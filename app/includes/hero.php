@@ -1,6 +1,16 @@
 <style>
   .hero {
-    /* 1. Fondo por defecto (JPG) - Carga inmediata en navegadores antiguos */
+    /* 1. EVITA PANTALLA BLANCA: Color oscuro inmediato */
+    background-color: #010618; 
+    
+    /* 2. ESPACIO INMEDIATO: Reserva el tamaño de la pantalla */
+    min-height: 80vh; 
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+
+    /* 3. ESTILOS DE IMAGEN: Control visual total */
     background-image: url("<?= BASE_URL ?>build/img/hero/hero.jpg");
     background-size: cover;
     background-position: center;
@@ -8,18 +18,13 @@
     background-attachment: scroll;
   }
 
-  /* 2. Si el navegador entiende WebP, sobrescribe el JPG */
+  /* SOPORTE PARA FORMATOS MODERNOS */
   @supports (background-image: url("t.webp")) {
-    .hero { 
-      background-image: url("<?= BASE_URL ?>build/img/hero/hero.webp"); 
-    }
+    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.webp"); }
   }
 
-  /* 3. Si el navegador entiende AVIF (mejor compresión), sobrescribe todo lo anterior */
   @supports (background-image: url("t.avif")) {
-    .hero { 
-      background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif"); 
-    }
+    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif"); }
   }
 </style>
 
@@ -46,7 +51,7 @@
 <div class="hero__media">
 
     <video
-    class="hero__video"
+    class="hero__video" poster="<?= BASE_URL ?>build/img/hero/hero.jpg"
     ></video>
 
 </div>
