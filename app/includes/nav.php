@@ -4,8 +4,7 @@
         <div class="header__logo">
             <a href="<?= BASE_URL ?>index.php" aria-label="Ir al inicio de Code Impact Perú">
                 <div 
-                    class="lottie logo-lottie" data-animation="logo"
-                    data-animation="logo">
+                    class="lottie logo-lottie" data-animation="logo">
                 </div>
             </a>
         </div>

@@ -1,11 +1,18 @@
+// ==========================
+// 🔥 LOTTIE OPTIMIZADO
+// ==========================
 async function initLottie() {
 
-    const items = document.querySelectorAll('.lottie');
+    const items =
+        document.querySelectorAll('.lottie');
 
     if (!items.length) return;
 
-    // cargar script SOLO si existe lottie en la página
-    const script = document.createElement('script');
+    // ==========================
+    // CARGAR SCRIPT
+    // ==========================
+    const script =
+        document.createElement('script');
 
     script.src =
         'https://unpkg.com/lottie-web/build/player/lottie.min.js';
@@ -16,39 +23,84 @@ async function initLottie() {
 
     script.onload = () => {
 
-        const observer = new IntersectionObserver((entries) => {
+        // ==========================
+        // LOGO DIRECTO
+        // ==========================
+        const logos =
+            document.querySelectorAll('.logo-lottie');
 
-            entries.forEach(entry => {
+        logos.forEach(item => {
 
-                // cargar animación SOLO al verse
-                if (entry.isIntersecting && !entry.target.__loaded) {
+            const name =
+                item.dataset.animation;
 
-                    entry.target.__loaded = true;
+            lottie.loadAnimation({
 
-                    const name =
-                        entry.target.getAttribute('data-animation');
+                container: item,
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
 
-                    const path =
-                        `${BASE_URL}build/animations/${name}.json`;
-
-                    const animation = lottie.loadAnimation({
-                        container: entry.target,
-                        renderer: 'svg',
-                        loop: true,
-                        autoplay: true,
-                        path: path
-                    });
-
-                    animation.setSpeed(0.5);
-                }
+                path:
+                    `${BASE_URL}build/animations/${name}.json`
 
             });
 
-        }, {
-            threshold: 0.2
         });
 
-        items.forEach(item => observer.observe(item));
+        // ==========================
+        // LAZY LOTTIES
+        // ==========================
+        const lazyItems =
+            document.querySelectorAll('.lazy-lottie');
+
+        if (!lazyItems.length) return;
+
+        const observer =
+            new IntersectionObserver((entries) => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting &&
+                        !entry.target.dataset.loaded
+                    ) {
+
+                        entry.target.dataset.loaded = 'true';
+
+                        const name =
+                            entry.target.dataset.animation;
+
+                        const animation =
+                            lottie.loadAnimation({
+
+                                container: entry.target,
+
+                                renderer: 'svg',
+
+                                loop: true,
+                                autoplay: true,
+
+                                path:
+                                    `${BASE_URL}build/animations/${name}.json`
+
+                            });
+
+                        animation.setSpeed(0.5);
+
+                    }
+
+                });
+
+            }, {
+                threshold: 0.15
+            });
+
+        lazyItems.forEach(item => {
+
+            observer.observe(item);
+
+        });
 
     };
 

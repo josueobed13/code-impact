@@ -1,3 +1,18 @@
+<!-- 1. El estilo específico para que cargue instantáneo -->
+<style>
+  .hero {
+    background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+  }
+  /* Backup por si el navegador es muy antiguo y no soporta avif */
+  @supports not (background-image: url("t.avif")) {
+    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.webp"); }
+  }
+</style>
+
 <section class="hero">
     <div class="container hero__grid">
 

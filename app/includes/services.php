@@ -18,7 +18,7 @@
             <a href="<?= BASE_URL; ?>servicios/desarrollo-web.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
-                        <div class="lottie" data-animation="diseno-web"></div>
+                        <div class="lottie lazy-lottie" data-animation="diseno-web"></div>
                     </div>
                     <h3>Desarrollo Web</h3>
                     <span class="service-card__link">Conocer más →</span>
@@ -32,7 +32,7 @@
             <a href="<?= BASE_URL; ?>servicios/audiovisual.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
-                        <div class="lottie" data-animation="video"></div>
+                        <div class="lottie lazy-lottie" data-animation="video"></div>
                     </div>
                     <h3>Producción audiovisual para posicionamiento</h3>
                     <span class="service-card__link">Conocer más →</span>
@@ -46,7 +46,7 @@
             <a href="<?= BASE_URL; ?>servicios/eventos.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
-                        <div class="lottie" data-animation="eventos"></div>
+                        <div class="lottie lazy-lottie" data-animation="eventos"></div>
                     </div>
                     <h3>Eventos corporativos</h3>
                     <span class="service-card__link">Conocer más →</span>
@@ -60,7 +60,7 @@
             <a href="<?= BASE_URL; ?>servicios/marketing.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
-                        <div class="lottie" data-animation="marketing"></div>
+                        <div class="lottie lazy-lottie" data-animation="marketing"></div>
                     </div>
                     <h3>Análisis de marketing</h3>
                     <span class="service-card__link">Conocer más →</span>
@@ -74,7 +74,7 @@
             <a href="<?= BASE_URL; ?>servicios/software.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
-                        <div class="lottie" data-animation="software"></div>
+                        <div class="lottie lazy-lottie" data-animation="software"></div>
                     </div>
                     <h3>Diseño de software a medida</h3>
                     <span class="service-card__link">Conocer más →</span>
@@ -88,7 +88,7 @@
             <a href="<?= BASE_URL; ?>servicios/publicidad-ads.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
-                        <div class="lottie" data-animation="analisis"></div>
+                        <div class="lottie lazy-lottie" data-animation="analisis"></div>
                     </div>
                     <h3>Campañas digitales enfocadas en resultados</h3>
                     <span class="service-card__link">Conocer más →</span>

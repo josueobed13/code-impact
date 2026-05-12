@@ -16,7 +16,7 @@
             <!-- STEP 1 -->
             <div class="process__step" data-step="1">
                 <div class="process__icon">
-                    <div class="lottie" data-animation="proceso/buscar"></div>
+                    <div class="lottie lazy-lottie" data-animation="proceso/buscar"></div>
                 </div>
                 <div class="process__text">
                     <h3>Analizamos tu negocio</h3>
@@ -29,7 +29,7 @@
             <!-- STEP 2 -->
             <div class="process__step" data-step="2">
                 <div class="process__icon">
-                    <div class="lottie" data-animation="proceso/idea"></div>
+                    <div class="lottie lazy-lottie" data-animation="proceso/idea"></div>
                 </div>
                 <div class="process__text">
                     <h3>Creamos la estrategia</h3>
@@ -40,7 +40,7 @@
             <!-- STEP 3 -->
             <div class="process__step" data-step="3">
                 <div class="process__icon">
-                    <div class="lottie" data-animation="proceso/desarrollo"></div>
+                    <div class="lottie lazy-lottie" data-animation="proceso/desarrollo"></div>
                 </div>
                 <div class="process__text">
                     <h3>Desarrollamos la solución</h3>
@@ -51,7 +51,7 @@
             <!-- STEP 4 -->
             <div class="process__step" data-step="4">
                 <div class="process__icon">
-                    <div class="lottie" data-animation="proceso/optimizamos"></div>
+                    <div class="lottie lazy-lottie" data-animation="proceso/optimizamos"></div>
                 </div>
                 <div class="process__text">
                     <h3>Lanzamos y optimizamos</h3>

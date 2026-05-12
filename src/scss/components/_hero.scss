@@ -9,19 +9,6 @@
     align-items: center;
     overflow: hidden;
 
-    /* 🔥 NUEVO FONDO PROFESIONAL (NO ROMPE NADA) */
-    background:
-         image-set(
-        url(../img/hero/hero.avif) type('image/avif'),
-        url(../img/hero/hero.webp) type('image/webp'),
-        url(../img/hero/hero.jpg) type('image/jpeg'));
-
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-
     /* =========================
        GRID
     ========================= */
@@ -74,8 +61,9 @@
             border-radius: 16px;
 
             
-               
-
+            box-shadow: 
+                0 25px 60px rgba(0,0,0,0.6),
+                0 0 25px rgba(37, 99, 235, 0.15);
 
         }
 
