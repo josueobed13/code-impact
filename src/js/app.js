@@ -1,24 +1,24 @@
 import { initFixedHeader } from './core/fixedHeader.js';
 import { initMailLinks } from './core/mail.js';
-import { initHeroVideo } from './home/heroVideo.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+
     // =========================
     // CRÍTICO
     // =========================
     initFixedHeader();
     initMailLinks();
 
-    // =========================
-    // HERO VIDEO
-    // =========================
-    initHeroVideo();
 });
 
 // =========================
-// DIFERIDO
+// WINDOW LOAD
 // =========================
 window.addEventListener('load', async () => {
+
+    // =========================
+    // HERO VIDEO
+    // =========================
 
     // CORE
     const { initCookies } = await import('./core/cookies.js');
@@ -38,6 +38,8 @@ window.addEventListener('load', async () => {
     // =========================
     // INIT
     // =========================
+
+
     initCookies();
 
     // UI PESADO
@@ -51,4 +53,5 @@ window.addEventListener('load', async () => {
     initProcessMobile();
     initPortfolioCounters();
     initContactForm();
+
 });

@@ -22,19 +22,7 @@
 
     <video
     class="hero__video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="none"
->
-
-    <source
-        src="<?= BASE_URL ?>build/video/hero-mobil.mp4"
-        type="video/mp4"
-    >
-
-</video>
+    ></video>
 
 </div>
 </section>
