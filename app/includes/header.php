@@ -39,14 +39,11 @@ if (!defined('BASE_URL')) {
 
         <!-- img hero -->
 
-<!-- Preload para Desktop -->
-<link 
-  rel="preload" 
-  as="image" 
-  href="<?= BASE_URL ?>build/img/hero/hero.avif" 
-  type="image/avif" 
-  fetchpriority="high"
->
+
+<!-- preload fondo -->
+<link rel="preload" as="image" href="<?= BASE_URL ?>build/img/hero/hero-mobil.avif" media="(max-width: 767px)" type="image/avif" fetchpriority="high">
+<link rel="preload" as="image" href="<?= BASE_URL ?>build/img/hero/hero.avif" media="(min-width: 768px)" type="image/avif" fetchpriority="high">
+
 
 
     <!-- ICONS -->
