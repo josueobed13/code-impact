@@ -150,7 +150,9 @@ function initLottie() {
 }
 
 // iniciar
-document.addEventListener(
-    'DOMContentLoaded',
-    initLottie
-);
+// Única mejora sugerida sobre tu código funcional
+document.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+        initLottie();
+    });
+});

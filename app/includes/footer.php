@@ -216,17 +216,18 @@ FOOTER
 
 </footer>
 
-<!-- SCRIPTS -->
 
-<!-- 1. CORE: Contiene la lógica base y el monitor de LCP -->
-<script src="<?= BASE_URL; ?>build/js/core.min.js?v=1.2" defer></script>
+    
 
-<!-- 2. UI: Contiene Lottie, Sliders y efectos visuales -->
-<script src="<?= BASE_URL; ?>build/js/ui.min.js?v=2" defer></script>
+    <!-- 1. CORE -->
+<script src="<?= BASE_URL; ?>build/js/core.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/core.min.js'); ?>" defer></script>
 
-<!-- 3. HOME: Contiene la lógica específica de esta página -->
-<script src="<?= BASE_URL; ?>build/js/home.min.js?v=1.2" defer></script>
-<!-- En los Scripts -->
+<!-- 2. UI -->
+<script src="<?= BASE_URL; ?>build/js/ui.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/ui.min.js'); ?>" defer></script>
+
+<!-- 3. HOME -->
+<script src="<?= BASE_URL; ?>build/js/home.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/home.min.js'); ?>" defer></script>
+
 
 
 <?php include __DIR__ . '/whatsapp.php'; ?>

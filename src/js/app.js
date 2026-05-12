@@ -1,28 +1,21 @@
+/**
+ * 🚀 máster Orquestador JS - CodeImpact
+ * Maneja el rendimiento (LCP), evita Reflows y sincroniza módulos.
+ */
+
 // ==========================================
-// 1. PERFORMANCE MONITOR (LCP) - Auto-ejecutable
+// 1. MONITOR DE RENDIMIENTO (LCP)
 // ==========================================
 (function() {
     if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
         const observer = new PerformanceObserver((list) => {
             const entries = list.getEntries();
             const latestEntry = entries[entries.length - 1];
-            const element = latestEntry.element;
-
-            if (element) {
+            if (latestEntry.element) {
                 const time = latestEntry.startTime.toFixed(0);
-                const url = latestEntry.url || 'Texto/Inline';
                 const color = time < 2500 ? '🟢' : '🔴';
-                const version = window.innerWidth < 768 ? 'MÓVIL' : 'DESKTOP';
-
-                console.group(`📊 LCP Report [${version}]`);
-                console.info(`${color} Tiempo: ${time}ms`);
-                console.info(`🔗 Recurso: ${url}`);
-                console.info(`🧩 Elemento:`, element);
-                
-                if (element.getAttribute('loading') === 'lazy') {
-                    console.warn('⚠️ LCP Alert: El elemento LCP tiene loading="lazy".');
-                }
-                console.groupEnd();
+                const device = window.innerWidth < 768 ? 'MÓVIL' : 'DESKTOP';
+                console.info(`📊 LCP [${device}]: ${color} ${time}ms`);
             }
         });
         observer.observe({ type: 'largest-contentful-paint', buffered: true });
@@ -30,39 +23,42 @@
 })();
 
 // ==========================================
-// 2. DOM CONTENT LOADED (Interactividad Rápida)
+// 2. DOM CONTENT LOADED (Interactividad inmediata)
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // Funciones que no miden el DOM (No causan Reflow)
     if (typeof initFixedHeader === 'function') initFixedHeader();
     if (typeof initMailLinks === 'function') initMailLinks();
+    if (typeof initMenu === 'function') initMenu();
 });
 
 // ==========================================
-// 3. WINDOW LOAD (Adiós a la Redistribución Forzada)
+// 3. WINDOW LOAD (Carga pesada y visual)
 // ==========================================
 window.addEventListener('load', () => {
-    // Prioridad Media: Cookies y Lottie (No disparan reflow)
+    
+    // A. Prioridad de Red: Cookies y Lottie
+    // Lanzamos Lottie rápido para que empiece a descargar la librería externa
     if (typeof initCookies === 'function') initCookies();
     if (typeof initLottie === 'function') initLottie();
 
-    // 🚀 OPTIMIZACIÓN CRÍTICA: Esperamos a que el navegador esté libre
-    // requestAnimationFrame asegura que el código corra justo antes del próximo repintado
+    // B. 🚀 ELIMINAR REDISTRIBUCIÓN FORZADA (Técnica Double RAF)
+    // Esperamos a que el navegador esté libre de tareas de renderizado
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
             
-            // UI PESADA: Sliders que usan offsetWidth/scrollWidth
-            // Al ejecutarlos aquí, el navegador ya conoce las dimensiones reales del DOM
+            // 1. Módulos que miden offsetWidth / scrollWidth (Sliders)
             if (typeof initClients === 'function') initClients();
             if (typeof initCatalog === 'function') initCatalog();
+            if (typeof initPortfolioCounters === 'function') initPortfolioCounters();
 
-            // Elementos de la Home y otros
+            // 2. Otros elementos de la UI
             if (typeof initServices === 'function') initServices();
             if (typeof initProcessMobile === 'function') initProcessMobile();
-            if (typeof initPortfolioCounters === 'function') initPortfolioCounters();
             if (typeof initContactForm === 'function') initContactForm();
             if (typeof initLightbox === 'function') initLightbox();
             
-            console.log("⚡ Módulos iniciados sin bloquear el renderizado.");
+            console.log("⚡ UI y Sliders cargados correctamente sin Reflow.");
         });
     });
 });
