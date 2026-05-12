@@ -11,6 +11,8 @@
 
     /* 🔥 NUEVO FONDO PROFESIONAL (NO ROMPE NADA) */
     background:
+       linear-gradient(to right, rgba(2, 6, 23, 0.95) 0%, rgb(2 6 23 / 0%) 40%, rgba(2, 6, 23, 0.6) 70%, rgba(2, 6, 23, 0.9) 100%)
+        ,
          image-set(
         url(../img/hero/hero.avif) type('image/avif'),
         url(../img/hero/hero.webp) type('image/webp'),
