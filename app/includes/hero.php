@@ -1,49 +1,27 @@
-<style>
-  .hero {
-    /* 1. EVITA PANTALLA BLANCA */
-    background-color: #010618; 
-    
-    /* 2. ESPACIO INMEDIATO */ 
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
 
-    /* 3. ESTILOS DE IMAGEN BASE */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    
-    /* 4. LÓGICA MÓVIL (Por defecto) */
-    background-position: right center; /* Prioriza el logo/oficina en móvil */
-    background-image: url("<?= BASE_URL ?>build/img/hero/hero-mobil.jpg");
-  }
-
-  /* 5. LÓGICA DESKTOP (Pantallas grandes) */
-  @media (min-width: 768px) {
-    .hero {
-      background-position: center;
-      background-image: url("<?= BASE_URL ?>build/img/hero/hero.jpg");
-    }
-  }
-
-  /* SOPORTE PARA FORMATOS MODERNOS (WebP) */
-  @supports (background-image: url("t.webp")) {
-    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero-mobil.webp"); }
-    @media (min-width: 768px) {
-      .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.webp"); }
-    }
-  }
-
-  /* SOPORTE PARA FORMATOS MODERNOS (AVIF - Máxima prioridad) */
-  @supports (background-image: url("t.avif")) {
-    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero-mobil.avif"); }
-    @media (min-width: 768px) {
-      .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif"); }
-    }
-  }
-</style>
-
+ <!-- 2. CSS CRÍTICO (Estilos necesarios para pintar el Hero de inmediato) -->
+    <style>
+        /* Estilos base para evitar el salto de contenido (CLS) y pintar el Hero */
+        .hero {
+            background-color: #010618; 
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-image: url("<?= BASE_URL ?>build/img/hero/hero-mobil.avif");
+            min-height: 80vh; /* Ajusta según el tamaño real de tu hero */
+        }
+        @media (min-width: 768px) {
+            .hero {
+                background-position: center;
+                background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif");
+            }
+        }
+        /* Agrega aquí también el CSS básico de tu nav.php si es pequeño */
+    </style>
 <section class="hero">
     <div class="container hero__grid">
 

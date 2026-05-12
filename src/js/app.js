@@ -1,13 +1,7 @@
-/**
- * APP.JS - OPTIMIZADO PARA FCP/LCP
- * Versión final unificada
- */
-
-// ==========================================
-// 1. MONITOR DE RENDIMIENTO (Performance)
-// ==========================================
-// Lo envolvemos en un pequeño retraso para que no compita con el primer pintado
-setTimeout(() => {
+// =========================
+// PERFORMANCE MONITOR (LCP)
+// =========================
+(function() {
     if (typeof window !== 'undefined' && 'PerformanceObserver' in window) {
         const observer = new PerformanceObserver((list) => {
             const entries = list.getEntries();
@@ -28,58 +22,52 @@ setTimeout(() => {
         });
         observer.observe({ type: 'largest-contentful-paint', buffered: true });
     }
-}, 500);
+})();
 
-// ==========================================
-// 2. DOM CONTENT LOADED (Prioridad Alta)
-// ==========================================
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // Funciones críticas que afectan la navegación o interacción inmediata
+// NOTA: Se eliminan los 'import' de la parte superior para evitar el error 
+// de "Unexpected token export" en tus archivos minificados .min.js
+
+javascriptdocument.addEventListener('DOMContentLoaded', () => {
+    // 1. INICIAR MONITOR DE LCP DE INMEDIATO
+    if (typeof initLCPObserver === 'function') initLCPObserver();
+
+    // 2. CRÍTICO
     if (typeof initFixedHeader === 'function') initFixedHeader();
     if (typeof initMailLinks === 'function') initMailLinks();
-    
-    // Si tienes un observador manual de LCP definido como función
-    if (typeof initLCPObserver === 'function') initLCPObserver();
 });
 
-// ==========================================
-// 3. WINDOW LOAD (Prioridad Media/Baja)
-// ==========================================
+// =========================
+// WINDOW LOAD
+// =========================
 window.addEventListener('load', () => {
 
-    // A. CORE (Funcionalidades base tras la carga)
+    // 1. CORE (Prioridad 2)
     if (typeof initCookies === 'function') initCookies();
 
-    // B. LOTTIE (Cargamos el script de animaciones cuando el sitio ya es usable)
-    if (typeof initLottie === 'function') {
-        // requestIdleCallback da prioridad a la estabilidad del navegador
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(() => initLottie());
-        } else {
-            initLottie();
-        }
-    }
+    // 2. UI LIGERA Y LOTTIE (Prioridad 3)
+    // Cargamos Lottie aquí porque ya es lazy y no bloquea el diseño
+    if (typeof initLottie === 'function') initLottie();
 
-    // ==========================================
-    // 🚀 OPTIMIZACIÓN FINAL: RETRASO ESTRATÉGICO
-    // ==========================================
-    // Subimos a 400ms para asegurar que el móvil terminó de renderizar el Hero
+    // =========================
+    // 🚀 OPTIMIZACIÓN: RETRASO ESTRATÉGICO
+    // Retrasamos los sliders que calculan dimensiones (Layout) para 
+    // eliminar el "Reprocesamiento forzado" y mejorar el LCP en móvil.
+    // =========================
     setTimeout(() => {
         
-        // UI PESADA: Elementos que requieren cálculos de dimensiones (Layout)
+        // UI PESADA (Sliders que piden offsetWidth/scrollWidth)
         if (typeof initClients === 'function') initClients();
         if (typeof initCatalog === 'function') initCatalog();
 
-        // LÓGICA DE SECCIONES (HOME)
+        // ELEMENTOS HOME
         if (typeof initServices === 'function') initServices();
         if (typeof initProcessMobile === 'function') initProcessMobile();
         if (typeof initPortfolioCounters === 'function') initPortfolioCounters();
         if (typeof initContactForm === 'function') initContactForm();
         
-        // OTROS PLUGINS
+        // OTROS
         if (typeof initLightbox === 'function') initLightbox();
         
-    }, 400); 
+    }, 200); // 200ms libera el hilo principal para el renderizado inicial
 
 });
