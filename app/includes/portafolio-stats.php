@@ -69,3 +69,8 @@
     </div>
 
 </section>
+
+<script
+    src="<?= BASE_URL; ?>build/js/contador.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/contador.min.js'); ?>"
+    defer
+></script>

@@ -1,9 +1,9 @@
 // ==========================
-// 🔥 LIGHTBOX
+// 🔥 LIGHTBOX (OPTIMIZADO + CONSISTENTE)
 // ==========================
 function initLightbox() {
 
-    const images = document.querySelectorAll('.js-lightbox');
+    const triggers = document.querySelectorAll('.js-lightbox');
 
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.querySelector('.lightbox__img');
@@ -11,61 +11,74 @@ function initLightbox() {
     const prevBtn = document.querySelector('.lightbox__prev');
     const nextBtn = document.querySelector('.lightbox__next');
 
-    if (!images.length || !lightbox || !lightboxImg) return;
+    if (!triggers.length || !lightbox || !lightboxImg) return;
 
+    // =========================
+    // STATE GLOBAL
+    // =========================
     let group = [];
     let index = 0;
 
-    const updateImage = () => {
+    // =========================
+    // UPDATE IMAGE
+    // =========================
+    const update = () => {
         const img = group[index];
         if (!img) return;
-        lightboxImg.src = img.currentSrc;
+
+        lightboxImg.src = img.currentSrc || img.src;
     };
 
+    // =========================
+    // NAV
+    // =========================
     const next = () => {
-        if (!group.length) return;
+        if (group.length <= 1) return;
+
         index = (index + 1) % group.length;
-        updateImage();
+        update();
     };
 
     const prev = () => {
-        if (!group.length) return;
+        if (group.length <= 1) return;
+
         index = (index - 1 + group.length) % group.length;
-        updateImage();
+        update();
     };
 
-    const open = (imgs, i) => {
+    // =========================
+    // OPEN
+    // =========================
+    const open = (imgs, startIndex = 0) => {
+
         group = imgs;
-        index = i;
+        index = startIndex;
 
         lightbox.classList.add('active');
-        updateImage();
+        update();
 
-        // 🔥 mostrar flechas SOLO si hay más de 1 imagen
-        if (group.length > 1) {
-            prevBtn.style.display = 'block';
-            nextBtn.style.display = 'block';
-        } else {
-            prevBtn.style.display = 'none';
-            nextBtn.style.display = 'none';
-        }
+        const hasMultiple = group.length > 1;
+
+        prevBtn.style.display = hasMultiple ? 'block' : 'none';
+        nextBtn.style.display = hasMultiple ? 'block' : 'none';
     };
 
     // =========================
-    // CLICK EN IMÁGENES
+    // CLICK HANDLER
     // =========================
-    images.forEach(img => {
+    triggers.forEach(img => {
 
         img.style.cursor = 'zoom-in';
 
         img.addEventListener('click', (e) => {
 
+            e.preventDefault();
             e.stopPropagation();
 
             const catalog = img.closest('.catalog-item');
 
             // =========================
-            // 🔥 CASO CATALOGO
+            // CATALOGO (SLIDER INTERNO)
             // =========================
             if (catalog) {
 
@@ -73,30 +86,31 @@ function initLightbox() {
                     catalog.querySelectorAll('.catalog-track picture img')
                 );
 
-                const activeImg =
-                    catalog.querySelector('.catalog-track picture.active img');
+                const active = catalog.querySelector(
+                    '.catalog-track picture.active img'
+                );
 
-                const startIndex = imgs.indexOf(activeImg || img);
+                const startIndex = Math.max(
+                    imgs.indexOf(active),
+                    0
+                );
 
-                open(imgs, startIndex >= 0 ? startIndex : 0);
+                open(imgs, startIndex);
 
                 return;
             }
 
             // =========================
-            // 🔥 CASO NORMAL
+            // SIMPLE IMAGE
             // =========================
-            lightbox.classList.add('active');
-            lightboxImg.src = img.currentSrc;
+            open([img], 0);
 
-            prevBtn.style.display = 'none';
-            nextBtn.style.display = 'none';
         });
 
     });
 
     // =========================
-    // CERRAR
+    // CLOSE
     // =========================
     const close = () => {
         lightbox.classList.remove('active');
@@ -112,20 +126,20 @@ function initLightbox() {
     });
 
     // =========================
-    // BOTONES
+    // BUTTONS
     // =========================
-    prevBtn?.addEventListener('click', (e) => {
-        e.stopPropagation();
-        prev();
-    });
-
     nextBtn?.addEventListener('click', (e) => {
         e.stopPropagation();
         next();
     });
 
+    prevBtn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        prev();
+    });
+
     // =========================
-    // TECLADO
+    // KEYBOARD
     // =========================
     document.addEventListener('keydown', (e) => {
 
@@ -141,4 +155,5 @@ function initLightbox() {
 
 }
 
+// INIT
 initLightbox();

@@ -1,40 +1,39 @@
-// ==========================
-// HERO SLIDER OPTIMIZADO (FIX DEFINITIVO)
-// ==========================
-
 function initHeroSlider() {
 
     const slider = document.querySelector('.hero__slides');
     const container = document.querySelector('.hero__slider');
 
     if (!slider || !container) return;
-
     if (slider.dataset.loaded) return;
-    slider.dataset.loaded = 'true';
+
+    slider.dataset.loaded = "true";
 
     const slidesData = [
-    {
-        avif: BASE_URL + 'build/img/header/produccion-marketing.avif',
-        webp: BASE_URL + 'build/img/header/produccion-marketing.webp',
-        jpg: BASE_URL + 'build/img/header/produccion-marketing.jpg',
-        alt: 'Producción y marketing'
-    },
-    {
-        avif: BASE_URL + 'build/img/header/codeimpact-web.avif',
-        webp: BASE_URL + 'build/img/header/codeimpact-web.webp',
-        jpg: BASE_URL + 'build/img/header/codeimpact-web.jpg',
-        alt: 'CodeImpact web'
-    }
-];
+        {
+            avif: BASE_URL + 'build/img/header/desarollo-web.avif',
+            webp: BASE_URL + 'build/img/header/desarollo-web.webp',
+            jpg: BASE_URL + 'build/img/header/desarollo-web.jpg',
+            alt: 'Desarrollo web'
+        },
+        {
+            avif: BASE_URL + 'build/img/header/produccion-marketing.avif',
+            webp: BASE_URL + 'build/img/header/produccion-marketing.webp',
+            jpg: BASE_URL + 'build/img/header/produccion-marketing.jpg',
+            alt: 'Producción y marketing'
+        },
+        {
+            avif: BASE_URL + 'build/img/header/codeimpact-web.avif',
+            webp: BASE_URL + 'build/img/header/codeimpact-web.webp',
+            jpg: BASE_URL + 'build/img/header/codeimpact-web.jpg',
+            alt: 'CodeImpact web'
+        }
+    ];
 
-    // ==========================
-    // CREAR SLIDES
-    // ==========================
     function createSlides() {
 
         const fragment = document.createDocumentFragment();
 
-        slidesData.forEach((slide) => {
+        slidesData.forEach((slide, index) => {
 
             const picture = document.createElement('picture');
 
@@ -47,8 +46,8 @@ function initHeroSlider() {
                     width="1920"
                     height="1080"
                     decoding="async"
-                    fetchpriority="${slide.eager ? 'high' : 'low'}"
-                    loading="${slide.eager ? 'eager' : 'lazy'}"
+                    fetchpriority="${index === 0 ? 'high' : 'low'}"
+                    loading="${index === 0 ? 'eager' : 'lazy'}"
                 >
             `;
 
@@ -58,58 +57,42 @@ function initHeroSlider() {
         slider.appendChild(fragment);
     }
 
-    // ==========================
-    // SLIDER CORE
-    // ==========================
-    function startSlider() {
+    function start() {
 
         createSlides();
 
         const slides = slider.querySelectorAll('picture');
-        const totalSlides = slides.length;
+        const total = slides.length;
 
         let index = 0;
 
-        // 🔥 FIX CLAVE: usar width estable (NO getBoundingClientRect)
-        function getSlideWidth() {
-            return container.offsetWidth;
+        function getWidth() {
+            return container.clientWidth;
         }
 
-        function goToSlide(i) {
-            const width = getSlideWidth();
-
-            slider.style.transform =
-                `translate3d(-${i * width}px,0,0)`;
+        function goTo(i) {
+            const width = getWidth();
+            slider.style.transform = `translate3d(-${i * width}px,0,0)`;
         }
 
-        function nextSlide() {
-            index = (index + 1) % totalSlides;
-            goToSlide(index);
-        }
-
-        // activar transición después del primer frame
+        // esperar layout real (CLAVE)
         requestAnimationFrame(() => {
+
             slider.classList.add('is-ready');
+
+            goTo(0);
+
+            setInterval(() => {
+                index = (index + 1) % total;
+                goTo(index);
+            }, 5000);
+
         });
 
-        // autoplay
-        const interval = setInterval(nextSlide, 5000);
-
-        // mantener coherencia en resize
-        window.addEventListener('resize', () => {
-            goToSlide(index);
-        });
-
-        // posición inicial obligatoria
-        goToSlide(0);
+        window.addEventListener('resize', () => goTo(index));
     }
 
-    startSlider();
+    start();
 }
 
-// ==========================
-// INIT
-// ==========================
-document.addEventListener('DOMContentLoaded', () => {
-    initHeroSlider();
-});
+document.addEventListener('DOMContentLoaded', initHeroSlider);

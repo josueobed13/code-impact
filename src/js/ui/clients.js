@@ -1,362 +1,226 @@
 // ==========================
-// 🔥 CLIENTS SLIDER PRO
-// Optimizado para Lighthouse
+// 🔥 CLIENTS SLIDER PRO (OPTIMIZED)
 // ==========================
 
 function initClientsSlider() {
 
     const track =
-        document.querySelector(
-            '.clients__track'
-        );
+        document.querySelector('.clients__track');
 
     if (!track) return;
 
     // ==========================
     // GPU HINT
     // ==========================
-    track.style.willChange =
-        'transform';
-
-    track.style.transform =
-        'translate3d(0,0,0)';
+    track.style.willChange = 'transform';
+    track.style.transform = 'translate3d(0,0,0)';
 
     // ==========================
-    // DUPLICAR ITEMS
+    // DUPLICAR ITEMS (UNA SOLA VEZ)
     // ==========================
-    const items =
-        [...track.children];
+    const items = Array.from(track.children);
 
     items.forEach(item => {
-
-        track.appendChild(
-            item.cloneNode(true)
-        );
-
+        track.appendChild(item.cloneNode(true));
     });
 
     // ==========================
-    // LEER DESPUÉS DE ESCRIBIR
+    // CACHE WIDTH (CRÍTICO FIX)
     // ==========================
-    const totalWidth =
-        track.scrollWidth / 2;
+    let halfWidth = 0;
+
+    function calculateWidth() {
+        // leer UNA sola vez fuera del loop RAF
+        halfWidth = track.scrollWidth / 2;
+    }
+
+    calculateWidth();
+
+    window.addEventListener('resize', () => {
+        calculateWidth();
+    }, { passive: true });
 
     // ==========================
     // CONFIG
     // ==========================
     let speed = 0.3;
-
     let position = 0;
-
     let isPaused = false;
-
     let isDragging = false;
 
     let startX = 0;
-
     let currentX = 0;
 
-    // ==========================
-    // RAF
-    // ==========================
     let rafId = null;
-
     let lastFrame = 0;
 
     // ==========================
-    // UPDATE POSITION
+    // UPDATE (SIN LAYOUT READS)
     // ==========================
-    function updatePosition() {
+    function update() {
 
-        if (Math.abs(position) >= totalWidth) {
-
+        // loop infinito limpio sin recalcular DOM
+        if (Math.abs(position) >= halfWidth) {
             position = 0;
-
         }
 
         if (position > 0) {
-
-            position = -totalWidth;
-
+            position = -halfWidth;
         }
 
         track.style.transform =
             `translate3d(${position}px,0,0)`;
-
     }
 
     // ==========================
-    // ANIMATE
+    // RAF LOOP (ULTRA OPTIMIZADO)
     // ==========================
     function animate(timestamp) {
 
-        // limitar fps
         if (timestamp - lastFrame > 16) {
 
-            if (
-                !isPaused &&
-                !isDragging
-            ) {
-
+            if (!isPaused && !isDragging) {
                 position -= speed;
-
-                updatePosition();
-
+                update();
             }
 
             lastFrame = timestamp;
-
         }
 
-        rafId =
-            requestAnimationFrame(
-                animate
-            );
-
+        rafId = requestAnimationFrame(animate);
     }
 
-    // ==========================
-    // START ANIMATION
-    // ==========================
-    function startAnimation() {
-
-        if (rafId) return;
-
-        rafId =
-            requestAnimationFrame(
-                animate
-            );
-
+    function start() {
+        if (!rafId) {
+            rafId = requestAnimationFrame(animate);
+        }
     }
 
-    // ==========================
-    // STOP ANIMATION
-    // ==========================
-    function stopAnimation() {
-
-        cancelAnimationFrame(
-            rafId
-        );
-
+    function stop() {
+        cancelAnimationFrame(rafId);
         rafId = null;
-
     }
 
     // ==========================
-    // INTERSECTION OBSERVER
+    // OBSERVER (NO BLOCKING CPU)
     // ==========================
-    const observer =
-        new IntersectionObserver(
-            (entries) => {
+    const observer = new IntersectionObserver((entries) => {
 
-                const entry =
-                    entries[0];
+        const entry = entries[0];
 
-                if (
-                    entry.isIntersecting
-                ) {
+        if (entry.isIntersecting) {
+            start();
+        } else {
+            stop();
+        }
 
-                    startAnimation();
-
-                } else {
-
-                    stopAnimation();
-
-                }
-
-            },
-            {
-                threshold: 0
-            }
-        );
+    }, { threshold: 0.1 });
 
     observer.observe(track);
 
     // ==========================
-    // PAUSE
+    // PAUSE CONTROL
     // ==========================
     let timeout;
 
-    function pauseSlider() {
+    function pause() {
 
         isPaused = true;
 
         clearTimeout(timeout);
 
         timeout = setTimeout(() => {
-
             isPaused = false;
-
-        }, 3000);
-
+        }, 2500);
     }
 
     // ==========================
-    // TOUCH START
+    // TOUCH EVENTS (OPTIMIZED)
     // ==========================
-    track.addEventListener(
-        'touchstart',
-        (e) => {
+    track.addEventListener('touchstart', (e) => {
 
-            pauseSlider();
+        pause();
 
-            isDragging = true;
+        isDragging = true;
 
-            startX =
-                e.touches[0].clientX;
+        startX = e.touches[0].clientX;
+        currentX = startX;
 
-            currentX = startX;
+    }, { passive: true });
 
-        },
-        {
-            passive: true
-        }
-    );
+    track.addEventListener('touchmove', (e) => {
 
-    // ==========================
-    // TOUCH MOVE
-    // ==========================
-    track.addEventListener(
-        'touchmove',
-        (e) => {
+        if (!isDragging) return;
 
-            if (!isDragging) return;
+        const x = e.touches[0].clientX;
+        const diff = x - currentX;
 
-            const x =
-                e.touches[0].clientX;
+        position += diff;
+        currentX = x;
 
-            const diff =
-                x - currentX;
+        update();
 
-            position += diff;
+    }, { passive: true });
 
-            updatePosition();
+    track.addEventListener('touchend', () => {
+        isDragging = false;
+        pause();
+    });
 
-            currentX = x;
-
-        },
-        {
-            passive: true
-        }
-    );
-
-    // ==========================
-    // TOUCH END
-    // ==========================
-    track.addEventListener(
-        'touchend',
-        () => {
-
-            isDragging = false;
-
-            pauseSlider();
-
-        }
-    );
-
-    // ==========================
-    // CLICK
-    // ==========================
-    track.addEventListener(
-        'click',
-        pauseSlider
-    );
-
+    track.addEventListener('click', pause);
 }
 
 // ==========================
-// INIT
+// CLIENTS ARROWS (FIXED)
 // ==========================
-initClientsSlider();
 
-
-// ==========================
-// CLIENTS ARROWS
-// ==========================
 function initClientsArrows() {
 
     const wrapper =
-        document.querySelector(
-            '.clients__logos-wrapper'
-        );
+        document.querySelector('.clients__logos-wrapper');
 
     const leftBtn =
-        document.querySelector(
-            '.clients__arrow--left'
-        );
+        document.querySelector('.clients__arrow--left');
 
     const rightBtn =
-        document.querySelector(
-            '.clients__arrow--right'
-        );
+        document.querySelector('.clients__arrow--right');
 
-    if (
-        !wrapper ||
-        !leftBtn ||
-        !rightBtn
-    ) return;
+    if (!wrapper || !leftBtn || !rightBtn) return;
 
-    // ==========================
-    // CACHE WIDTH
-    // ==========================
     let scrollAmount = 0;
 
-    function updateScrollAmount() {
+    function calculate() {
 
-        scrollAmount =
-            wrapper.offsetWidth * 0.7;
-
+        // evita layout thrashing en resize
+        requestAnimationFrame(() => {
+            scrollAmount = wrapper.clientWidth * 0.7;
+        });
     }
 
-    updateScrollAmount();
+    calculate();
 
-    window.addEventListener(
-        'resize',
-        updateScrollAmount,
-        {
-            passive: true
-        }
-    );
+    window.addEventListener('resize', calculate, { passive: true });
 
-    // ==========================
-    // LEFT
-    // ==========================
-    leftBtn.addEventListener(
-        'click',
-        () => {
+    leftBtn.addEventListener('click', () => {
+        wrapper.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    });
 
-            wrapper.scrollBy({
-
-                left: -scrollAmount,
-
-                behavior: 'smooth'
-
-            });
-
-        }
-    );
-
-    // ==========================
-    // RIGHT
-    // ==========================
-    rightBtn.addEventListener(
-        'click',
-        () => {
-
-            wrapper.scrollBy({
-
-                left: scrollAmount,
-
-                behavior: 'smooth'
-
-            });
-
-        }
-    );
-
+    rightBtn.addEventListener('click', () => {
+        wrapper.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
 }
 
 // ==========================
 // INIT
 // ==========================
-initClientsArrows();
+
+document.addEventListener('DOMContentLoaded', () => {
+    initClientsSlider();
+    initClientsArrows();
+});
