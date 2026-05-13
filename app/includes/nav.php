@@ -1,11 +1,21 @@
 <header class="header">
     <div class="container header__container">
 
-        <div class="header__logo">
-            <a href="<?= BASE_URL ?>index.php" aria-label="Ir al inicio de Code Impact Perú">
-                <div 
-                    class="lottie logo-lottie" data-animation="logo">
-                </div>
+       <div class="header__logo">
+            <a href="<?= BASE_URL ?>index.php" class="logo-link">
+
+                <span class="logo-box">
+
+                    <img
+                        class="logo-fallback"
+                        src="<?= BASE_URL ?>build/img/logos/logo.svg"
+                        alt="Code Impact Perú"
+                    >
+
+                    <div class="lottie logo-lottie" data-animation="logo"></div>
+
+                </span>
+
             </a>
         </div>
         

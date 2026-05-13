@@ -1,109 +1,116 @@
-function initLottie() {
-
-    const allLotties =
-        document.querySelectorAll('.logo-lottie, .lazy-lottie');
-
-    if (!allLotties.length) return;
-
-    let lottieLoaded = false;
-    let lottieLoading = false;
+function initLotties() {
 
     // ==========================
-    // 1. CARGA DIFERIDA DEL SCRIPT
+    // 1. CARGA LOTTIE (SINGLE SOURCE)
     // ==========================
     function loadLottieScript() {
 
         return new Promise((resolve) => {
 
-            if (lottieLoaded && window.lottie) {
-                resolve();
-                return;
-            }
-
-            if (lottieLoading) {
-                const check = setInterval(() => {
-                    if (window.lottie) {
-                        clearInterval(check);
-                        resolve();
-                    }
-                }, 50);
-                return;
-            }
-
-            lottieLoading = true;
+            if (window.lottie) return resolve();
 
             const script = document.createElement('script');
             script.src =
                 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js';
             script.async = true;
 
-            script.onload = () => {
-                lottieLoaded = true;
-                resolve();
-            };
+            script.onload = () => resolve();
 
             document.head.appendChild(script);
         });
     }
 
     // ==========================
-    // 2. CREAR ANIMACIÓN
+    // 2. NAV LOTTIE (CRÍTICO + SWAP SVG)
     // ==========================
-    function createAnimation(el, index = 0) {
+    async function initNavLottie() {
+
+    const el = document.querySelector('.logo-lottie');
+    const wrapper = document.querySelector('.header__logo');
+
+    if (!el || el.dataset.loaded) return;
+
+    el.dataset.loaded = "true";
+
+    await loadLottieScript();
+
+    const anim = window.lottie.loadAnimation({
+        container: el,
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: `${BASE_URL}build/animations/logo.json`
+    });
+
+    // 🔥 SOLO cuando la animación ya está lista
+    anim.addEventListener('DOMLoaded', () => {
+        wrapper?.classList.add('is-lottie-ready');
+    });
+}
+
+    // ==========================
+    // 3. ANIMACIONES LAZY (SECCIONES)
+    // ==========================
+    async function createAnimation(el) {
 
         if (el.dataset.loaded) return;
-        el.dataset.loaded = 'true';
+        el.dataset.loaded = "true";
 
         const name = el.dataset.animation;
+        if (!name) return;
 
         el.innerHTML = '';
 
-        const anim = window.lottie.loadAnimation({
+        await loadLottieScript();
+
+        window.lottie.loadAnimation({
             container: el,
             renderer: 'svg',
             loop: true,
             autoplay: true,
             path: `${BASE_URL}build/animations/${name}.json`
         });
-
-        anim.setSpeed(0.5);
     }
 
     // ==========================
-    // 3. OBSERVER (OPTIMIZADO)
+    // 4. OBSERVER LAZY
     // ==========================
-    const observer = new IntersectionObserver(async (entries) => {
+    function initLazyLotties() {
 
-        const targets = entries.filter(e => e.isIntersecting);
+        const items = document.querySelectorAll('.lazy-lottie');
+        if (!items.length) return;
 
-        if (!targets.length) return;
+        const observer = new IntersectionObserver((entries, obs) => {
 
-        // 🔥 SOLO cargar si ya terminó render inicial
-        await new Promise(r => setTimeout(r, 1200));
+            entries.forEach(async (entry) => {
 
-        await loadLottieScript();
+                if (!entry.isIntersecting) return;
 
-        targets.forEach((entry, i) => {
-            createAnimation(entry.target, i);
-            observer.unobserve(entry.target);
+                await createAnimation(entry.target);
+                obs.unobserve(entry.target);
+            });
+
+        }, {
+            threshold: 0.25,
+            rootMargin: '150px'
         });
 
-    }, {
-        threshold: 0.25,
-        rootMargin: '200px' // 🔥 precarga antes de entrar
-    });
+        items.forEach(el => observer.observe(el));
+    }
 
     // ==========================
-    // 4. OBSERVAR
+    // 5. INIT PRINCIPAL
     // ==========================
-    allLotties.forEach(el => observer.observe(el));
+    initNavLottie();
+    initLazyLotties();
 }
 
+
 // ==========================
-// INIT (MEJOR MOMENTO)
+// 6. BOOTSTRAP
 // ==========================
-window.addEventListener('load', () => {
-    requestIdleCallback(() => {
-        initLottie();
-    });
-});
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initLotties);
+} else {
+    initLotties();
+}

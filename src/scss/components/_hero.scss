@@ -7,9 +7,63 @@
     align-items: center;
     overflow: hidden;
     padding: 6rem 0;
-
-
 }
+.header__logo {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* CONTENEDOR REAL DEL LOGO */
+.logo-link {
+    display: inline-block;
+}
+
+/* 🔥 ESTE ES EL CONTAINER REAL DEL LAYOUT */
+.logo-box {
+    position: relative;
+
+    display: block;
+
+    height: 55px;      /* controla el tamaño visual */
+    width: auto;       /* deja que escale natural */
+
+    min-width: 140px;  /* evita que se aplaste */
+}
+
+/* SVG ocupa exactamente el box */
+.logo-fallback {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+}
+
+/* Lottie ocupa EXACTAMENTE el mismo box */
+.logo-lottie {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* swap */
+.header__logo.is-lottie-ready .logo-fallback {
+    opacity: 0;
+}
+
+.header__logo.is-lottie-ready .logo-lottie {
+    opacity: 1;
+}
+
+
+
 
 /* GRID */
 .hero__grid {
@@ -22,8 +76,6 @@
 }
 
 /* CONTENT */
-
-
 .hero__title {
     font-size: 5rem;
     line-height: 1.1;
@@ -49,6 +101,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
+    contain: layout paint;
 }
 
 /* SLIDER */
@@ -57,6 +110,7 @@
     height: 100%;
     overflow: hidden;
     border-radius: 16px;
+    background-color: #000; /* evita flash blanco */
 }
 
 /* TRACK */
@@ -85,29 +139,23 @@
     object-fit: cover;
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 1127px) {
-    .hero__title {
-    font-size: 3.5rem;
-}
-/* RESPONSIVE */
-@media (max-width: 900px) {
 
     .hero__title {
-        text-align: center;
+        font-size: 3.5rem;
     }
-    .hero__content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        max-width: 692px;
-        }
+}
 
+@media (max-width: 900px) {
 
     .hero__grid {
         grid-template-columns: 1fr;
         gap: 3rem;
         justify-items: center;
-        
     }
 
     .hero__media {
@@ -115,33 +163,42 @@
         width: 86%;
     }
 
+    .hero__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 692px;
+        text-align: center;
+    }
+
     .hero__title {
         font-size: 3.4rem;
+        text-align: center;
     }
-}
-.hero__buttons {
+
+    .hero__buttons {
         display: flex;
         gap: 3rem;
-        }
-
-
+    }
 }
 
 @media (max-width: 768px) {
 
     .hero {
-        padding: 0rem 0rem 6rem 0rem
+        padding: 0rem 0rem 6rem 0rem;
     }
+
     .hero__media {
-            width: 100%;
-        }
+        width: 100%;
+    }
 
     .hero__content {
         display: flex;
         flex-direction: column;
         text-align: center;
-        padding: 0rem 2rem 0rem 2rem;
+        padding: 0rem 2rem;
     }
+
     .hero__title {
         font-size: 3rem;
     }
@@ -155,18 +212,14 @@
         margin: 0;
         gap: 2rem;
     }
+
     .hero__slider {
-    border-radius: 0px;
-
-    .hero__content {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+        border-radius: 0px;
     }
-
 }
 
 @media (max-width: 505px) {
+
     .hero__content {
         padding: 1rem;
     }
@@ -178,17 +231,15 @@
         width: 77%;
         gap: 1.5rem;
     }
-
 }
 
 @media (max-width: 435px) {
+
     .hero__grid {
         gap: 1rem;
     }
+
     .hero__title {
         font-size: 2.5rem;
     }
 }
-
-}
-
