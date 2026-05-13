@@ -168,14 +168,16 @@
 
         &__grid {
             grid-template-columns: 1fr;
-
             gap: 3rem;
-
             justify-items: center;
         }
 
         &__media {
             order: -1;
+        }
+
+        &__slider {
+            border-radius: 0;
         }
 
         &__title {

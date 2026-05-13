@@ -1,22 +1,32 @@
 // ==========================
-// 🔥 CLIENTS SLIDER PRO (Optimizado)
+// 🔥 CLIENTS SLIDER PRO
+// Optimizado para Lighthouse
 // ==========================
+
 function initClientsSlider() {
 
-    const track = document.querySelector('.clients__track');
+    const track =
+        document.querySelector(
+            '.clients__track'
+        );
 
     if (!track) return;
 
     // ==========================
-    // LEER ANTES DE ESCRIBIR
+    // GPU HINT
     // ==========================
-    const totalWidth = track.scrollWidth;
+    track.style.willChange =
+        'transform';
 
-    const items = [...track.children];
+    track.style.transform =
+        'translate3d(0,0,0)';
 
     // ==========================
     // DUPLICAR ITEMS
     // ==========================
+    const items =
+        [...track.children];
+
     items.forEach(item => {
 
         track.appendChild(
@@ -24,6 +34,12 @@ function initClientsSlider() {
         );
 
     });
+
+    // ==========================
+    // LEER DESPUÉS DE ESCRIBIR
+    // ==========================
+    const totalWidth =
+        track.scrollWidth / 2;
 
     // ==========================
     // CONFIG
@@ -45,33 +61,57 @@ function initClientsSlider() {
     // ==========================
     let rafId = null;
 
+    let lastFrame = 0;
+
     // ==========================
-    // ANIMATE
+    // UPDATE POSITION
     // ==========================
-    function animate() {
+    function updatePosition() {
 
-        if (!isPaused && !isDragging) {
+        if (Math.abs(position) >= totalWidth) {
 
-            position -= speed;
-
-            if (Math.abs(position) >= totalWidth) {
-
-                position = 0;
-
-            }
-
-            if (position > 0) {
-
-                position = -totalWidth;
-
-            }
-
-            track.style.transform =
-                `translate3d(${position}px,0,0)`;
+            position = 0;
 
         }
 
-        rafId = requestAnimationFrame(animate);
+        if (position > 0) {
+
+            position = -totalWidth;
+
+        }
+
+        track.style.transform =
+            `translate3d(${position}px,0,0)`;
+
+    }
+
+    // ==========================
+    // ANIMATE
+    // ==========================
+    function animate(timestamp) {
+
+        // limitar fps
+        if (timestamp - lastFrame > 16) {
+
+            if (
+                !isPaused &&
+                !isDragging
+            ) {
+
+                position -= speed;
+
+                updatePosition();
+
+            }
+
+            lastFrame = timestamp;
+
+        }
+
+        rafId =
+            requestAnimationFrame(
+                animate
+            );
 
     }
 
@@ -83,7 +123,9 @@ function initClientsSlider() {
         if (rafId) return;
 
         rafId =
-            requestAnimationFrame(animate);
+            requestAnimationFrame(
+                animate
+            );
 
     }
 
@@ -92,32 +134,41 @@ function initClientsSlider() {
     // ==========================
     function stopAnimation() {
 
-        cancelAnimationFrame(rafId);
+        cancelAnimationFrame(
+            rafId
+        );
 
         rafId = null;
 
     }
 
     // ==========================
-    // OBSERVER
+    // INTERSECTION OBSERVER
     // ==========================
-    const observer = new IntersectionObserver((entries) => {
+    const observer =
+        new IntersectionObserver(
+            (entries) => {
 
-        const entry = entries[0];
+                const entry =
+                    entries[0];
 
-        if (entry.isIntersecting) {
+                if (
+                    entry.isIntersecting
+                ) {
 
-            startAnimation();
+                    startAnimation();
 
-        } else {
+                } else {
 
-            stopAnimation();
+                    stopAnimation();
 
-        }
+                }
 
-    }, {
-        threshold: 0
-    });
+            },
+            {
+                threshold: 0
+            }
+        );
 
     observer.observe(track);
 
@@ -143,67 +194,65 @@ function initClientsSlider() {
     // ==========================
     // TOUCH START
     // ==========================
-    track.addEventListener('touchstart', (e) => {
+    track.addEventListener(
+        'touchstart',
+        (e) => {
 
-        pauseSlider();
+            pauseSlider();
 
-        isDragging = true;
+            isDragging = true;
 
-        startX =
-            e.touches[0].clientX;
+            startX =
+                e.touches[0].clientX;
 
-        currentX = startX;
+            currentX = startX;
 
-    }, {
-        passive: true
-    });
+        },
+        {
+            passive: true
+        }
+    );
 
     // ==========================
     // TOUCH MOVE
     // ==========================
-    track.addEventListener('touchmove', (e) => {
+    track.addEventListener(
+        'touchmove',
+        (e) => {
 
-        if (!isDragging) return;
+            if (!isDragging) return;
 
-        const x =
-            e.touches[0].clientX;
+            const x =
+                e.touches[0].clientX;
 
-        const diff =
-            x - currentX;
+            const diff =
+                x - currentX;
 
-        position += diff;
+            position += diff;
 
-        if (Math.abs(position) >= totalWidth) {
+            updatePosition();
 
-            position = 0;
+            currentX = x;
 
+        },
+        {
+            passive: true
         }
-
-        if (position > 0) {
-
-            position = -totalWidth;
-
-        }
-
-        track.style.transform =
-            `translate3d(${position}px,0,0)`;
-
-        currentX = x;
-
-    }, {
-        passive: true
-    });
+    );
 
     // ==========================
     // TOUCH END
     // ==========================
-    track.addEventListener('touchend', () => {
+    track.addEventListener(
+        'touchend',
+        () => {
 
-        isDragging = false;
+            isDragging = false;
 
-        pauseSlider();
+            pauseSlider();
 
-    });
+        }
+    );
 
     // ==========================
     // CLICK
@@ -215,11 +264,14 @@ function initClientsSlider() {
 
 }
 
-// INICIAR
+// ==========================
+// INIT
+// ==========================
 initClientsSlider();
 
+
 // ==========================
-// CLIENTS LOGOS SCROLL
+// CLIENTS ARROWS
 // ==========================
 function initClientsArrows() {
 
@@ -245,44 +297,66 @@ function initClientsArrows() {
     ) return;
 
     // ==========================
-    // GET SCROLL
+    // CACHE WIDTH
     // ==========================
-    function getScrollAmount() {
+    let scrollAmount = 0;
 
-        return wrapper.clientWidth * 0.7;
+    function updateScrollAmount() {
+
+        scrollAmount =
+            wrapper.offsetWidth * 0.7;
 
     }
+
+    updateScrollAmount();
+
+    window.addEventListener(
+        'resize',
+        updateScrollAmount,
+        {
+            passive: true
+        }
+    );
 
     // ==========================
     // LEFT
     // ==========================
-    leftBtn.addEventListener('click', () => {
+    leftBtn.addEventListener(
+        'click',
+        () => {
 
-        wrapper.scrollBy({
+            wrapper.scrollBy({
 
-            left: -getScrollAmount(),
+                left: -scrollAmount,
 
-            behavior: 'smooth'
+                behavior: 'smooth'
 
-        });
+            });
 
-    });
+        }
+    );
 
     // ==========================
     // RIGHT
     // ==========================
-    rightBtn.addEventListener('click', () => {
+    rightBtn.addEventListener(
+        'click',
+        () => {
 
-        wrapper.scrollBy({
+            wrapper.scrollBy({
 
-            left: getScrollAmount(),
+                left: scrollAmount,
 
-            behavior: 'smooth'
+                behavior: 'smooth'
 
-        });
+            });
 
-    });
+        }
+    );
 
 }
 
+// ==========================
+// INIT
+// ==========================
 initClientsArrows();

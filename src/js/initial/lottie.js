@@ -1,56 +1,125 @@
 // ==========================
-// 🔥 LOTTIE OPTIMIZADO
+// 🔥 LOTTIE ULTRA OPTIMIZADO
 // ==========================
+
 function initLottie() {
 
     // ==========================
     // ELEMENTOS
     // ==========================
-    const logos =
-        document.querySelectorAll('.logo-lottie');
+    const allLotties =
+        document.querySelectorAll(
+            '.logo-lottie, .lazy-lottie'
+        );
 
-    const lazyItems =
-        document.querySelectorAll('.lazy-lottie');
-
-    // salir si no existe nada
-    if (!logos.length && !lazyItems.length) return;
+    if (!allLotties.length) return;
 
     // ==========================
-    // CARGAR SCRIPT
+    // SCRIPT STATE
     // ==========================
-    const script =
-        document.createElement('script');
+    let lottieLoaded = false;
 
-    script.src =
-       'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js';
-
-    script.async = true;
+    let lottieLoading = false;
 
     // ==========================
-    // ON LOAD
+    // LOAD LOTTIE SCRIPT
     // ==========================
-    script.onload = () => {
+    function loadLottieScript() {
 
-        // ==========================
-        // LOGOS
-        // ==========================
-        logos.forEach((item, index) => {
+        return new Promise((resolve) => {
 
-            const name =
-                item.dataset.animation;
+            // ya cargado
+            if (
+                lottieLoaded &&
+                window.lottie
+            ) {
 
-            // limpiar contenedor
-            item.innerHTML = '';
+                resolve();
 
-            // cargar animación
+                return;
+
+            }
+
+            // evitar doble carga
+            if (lottieLoading) {
+
+                const check =
+                    setInterval(() => {
+
+                        if (
+                            window.lottie
+                        ) {
+
+                            clearInterval(
+                                check
+                            );
+
+                            resolve();
+
+                        }
+
+                    }, 100);
+
+                return;
+
+            }
+
+            lottieLoading = true;
+
+            const script =
+                document.createElement(
+                    'script'
+                );
+
+            script.src =
+                'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js';
+
+            script.async = true;
+
+            script.onload = () => {
+
+                lottieLoaded = true;
+
+                resolve();
+
+            };
+
+            document.body.appendChild(
+                script
+            );
+
+        });
+
+    }
+
+    // ==========================
+    // CREATE ANIMATION
+    // ==========================
+    function createAnimation(
+        element,
+        index = 0
+    ) {
+
+        if (
+            element.dataset.loaded
+        ) return;
+
+        element.dataset.loaded =
+            'true';
+
+        const name =
+            element.dataset.animation;
+
+        element.innerHTML = '';
+
+        const animation =
             window.lottie.loadAnimation({
 
-                // nombre único
                 name:
-                    `logo-${index}-${Date.now()}`,
+                    `lottie-${index}-${Date.now()}`,
 
                 container:
-                    item,
+                    element,
 
                 renderer: 'svg',
 
@@ -63,96 +132,76 @@ function initLottie() {
 
             });
 
-        });
+        animation.setSpeed(0.5);
 
-        // ==========================
-        // salir si no hay lazy
-        // ==========================
-        if (!lazyItems.length) return;
+    }
 
-        // ==========================
-        // OBSERVER
-        // ==========================
-        const observer =
-            new IntersectionObserver((entries) => {
+    // ==========================
+    // OBSERVER
+    // ==========================
+    const observer =
+        new IntersectionObserver(
+            async (entries) => {
 
-                entries.forEach(entry => {
+                const visibleEntries =
+                    entries.filter(
+                        entry =>
+                            entry.isIntersecting
+                    );
 
-                    // salir
-                    if (
-                        !entry.isIntersecting ||
-                        entry.target.dataset.loaded
-                    ) return;
+                if (
+                    !visibleEntries.length
+                ) return;
 
-                    // marcar cargado
-                    entry.target.dataset.loaded =
-                        'true';
+                // ==========================
+                // LOAD SCRIPT SOLO AQUÍ
+                // ==========================
+                await loadLottieScript();
 
-                    // nombre
-                    const name =
-                        entry.target.dataset.animation;
+                visibleEntries.forEach(
+                    (entry, index) => {
 
-                    // limpiar contenedor
-                    entry.target.innerHTML = '';
+                        createAnimation(
+                            entry.target,
+                            index
+                        );
 
-                    // ==========================
-                    // LOAD
-                    // ==========================
-                    const animation =
-                        window.lottie.loadAnimation({
+                        observer.unobserve(
+                            entry.target
+                        );
 
-                            // nombre único
-                            name:
-                                `lottie-${name}-${Date.now()}`,
+                    }
+                );
 
-                            container:
-                                entry.target,
-
-                            renderer: 'svg',
-
-                            loop: true,
-
-                            autoplay: true,
-
-                            path:
-                                `${BASE_URL}build/animations/${name}.json`
-
-                        });
-
-                    // velocidad
-                    animation.setSpeed(0.5);
-
-                    // dejar observar
-                    observer.unobserve(entry.target);
-
-                });
-
-            }, {
+            },
+            {
                 threshold: 0.15
-            });
-
-        // ==========================
-        // OBSERVE
-        // ==========================
-        lazyItems.forEach(item => {
-
-            observer.observe(item);
-
-        });
-
-    };
+            }
+        );
 
     // ==========================
-    // APPEND SCRIPT
+    // OBSERVE
     // ==========================
-    document.body.appendChild(script);
+    allLotties.forEach(item => {
+
+        observer.observe(item);
+
+    });
 
 }
 
-// iniciar
-// Única mejora sugerida sobre tu código funcional
-document.addEventListener('DOMContentLoaded', () => {
-    requestAnimationFrame(() => {
-        initLottie();
-    });
-});
+// ==========================
+// INIT
+// ==========================
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        requestAnimationFrame(() => {
+
+            initLottie();
+
+        });
+
+    }
+);

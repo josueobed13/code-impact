@@ -63,6 +63,5 @@ if (!defined('BASE_URL')) {
 
 </head>
 <body>
-    
-<script src="<?= BASE_URL; ?>build/js/initial.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/initial.min.js'); ?>" defer></script>
+
 <?php include __DIR__ . '/nav.php'; ?>
