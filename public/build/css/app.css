@@ -195,13 +195,17 @@ p {
   pointer-events: none;
 }
 
+/* =========================
+   HERO
+========================= */
 .hero {
+  background-color: #010618;
   position: relative;
-  padding: 6rem 0;
-  padding-top: 12rem;
   display: flex;
   align-items: center;
   overflow: hidden;
+  padding: 6rem 0;
+  padding-top: 12rem;
   /* =========================
      GRID
   ========================= */
@@ -216,7 +220,7 @@ p {
 }
 .hero {
   /* =========================
-     CONTENIDO
+     CONTENT
   ========================= */
 }
 .hero__content {
@@ -239,13 +243,19 @@ p {
 }
 .hero {
   /* =========================
-     VIDEO (SE MANTIENE IGUAL)
+     MEDIA
   ========================= */
 }
 .hero__media {
   position: relative;
   transform: none;
   aspect-ratio: 16/9;
+  width: 100%;
+}
+.hero {
+  /* =========================
+     VIDEO
+  ========================= */
 }
 .hero__media video {
   width: 100%;
@@ -256,8 +266,43 @@ p {
 }
 .hero {
   /* =========================
-     MEDIA QUERIES HERO
+     SLIDER
   ========================= */
+}
+.hero__slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 25px rgba(37, 99, 235, 0.15);
+}
+.hero__slides {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s ease-in-out;
+}
+.hero__slides picture {
+  min-width: 100%;
+  height: 100%;
+  display: block;
+}
+.hero__slides img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.hero {
+  /* =========================
+     RESPONSIVE
+  ========================= */
+}
+@media (max-width: 1165px) {
+  .hero {
+    padding-top: 5rem;
+  }
 }
 @media (max-width: 1127px) {
   .hero__title {
@@ -271,6 +316,9 @@ p {
   }
 }
 @media (max-width: 900px) {
+  .hero {
+    padding-top: 0;
+  }
   .hero .container.hero__grid {
     width: 100%;
     margin: 0;
@@ -289,14 +337,30 @@ p {
 }
 @media (max-width: 768px) {
   .hero {
-    padding: 4rem 0;
     min-height: auto;
-    background-attachment: scroll;
+  }
+  .hero__grid {
+    width: 100%;
+    justify-items: center;
+    text-align: center;
+    margin: 0rem;
   }
   .hero__media {
     order: -1;
     padding: 0;
     width: 100%;
+  }
+  .hero {
+    /* video */
+  }
+  .hero__media video {
+    border-radius: 0;
+  }
+  .hero {
+    /* slider */
+  }
+  .hero__slider {
+    border-radius: 0;
   }
   .hero__title {
     font-size: 3rem;
@@ -305,6 +369,20 @@ p {
     display: grid;
     grid-auto-flow: column;
     justify-content: center;
+  }
+}
+@media (max-width: 517px) {
+  .hero__title {
+    padding: 0rem 1.2rem;
+  }
+  .hero__text {
+    padding: 0rem 1.2rem;
+  }
+}
+@media (max-width: 444px) {
+  .hero__title {
+    font-size: 2.6rem;
+    padding: 0rem 1rem 0rem 1rem;
   }
 }
 @media (max-width: 380px) {
@@ -317,44 +395,6 @@ p {
   }
 }
 
-/* =========================
-   responsive
-========================= */
-@media (max-width: 444px) {
-  .hero__title {
-    font-size: 2.6rem;
-    padding: 0rem 1rem 0rem 1rem;
-  }
-}
-@media (max-width: 517px) {
-  .hero__title {
-    padding: 0rem 1.2rem;
-  }
-  .hero__text {
-    padding: 0rem 1.2rem;
-  }
-}
-@media (max-width: 768px) {
-  .hero__grid {
-    width: 100%;
-    justify-items: center;
-    text-align: center;
-    margin: 0rem;
-  }
-  .hero__media video {
-    border-radius: 0;
-  }
-}
-@media (max-width: 1165px) {
-  .hero {
-    padding-top: 5rem;
-  }
-}
-@media (max-width: 900px) {
-  .hero {
-    padding-top: 0;
-  }
-}
 .footer {
   background: #020617;
   color: #94a3b8;

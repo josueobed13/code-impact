@@ -18,26 +18,8 @@ if (!defined('BASE_URL')) {
 <!DOCTYPE html>
 <html lang="es">
 <head>
-        <!-- preload fondo -->
-    <!-- preload fondo mobile -->
-<link
-    rel="preload"
-    as="image"
-    href="<?= BASE_URL ?>build/img/hero/hero-mobil.avif"
-    media="(max-width: 767px)"
-    type="image/avif"
-    fetchpriority="high"
->
 
-<!-- preload fondo desktop -->
-<link
-    rel="preload"
-    as="image"
-    href="<?= BASE_URL ?>build/img/hero/hero.avif"
-    media="(min-width: 768px)"
-    type="image/avif"
-    fetchpriority="high"
->
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -65,16 +47,10 @@ if (!defined('BASE_URL')) {
  
 
 
-        <!-- favicon -->
-        <link rel="icon" href="<?= BASE_URL ?>build/img/favicon/favicon.ico">
-
-        <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>build/img/favicon/favicon.svg">
-
-        <link rel="icon" type="image/png" sizes="96x96" href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png">
-
-        <link rel="apple-touch-icon" href="<?= BASE_URL ?>build/img/favicon/apple-touch-icon.png">
-
-        <link rel="manifest" href="<?= BASE_URL ?>build/img/favicon/site.webmanifest">
+   <!-- FAVICON -->
+    <link rel="icon" href="<?= BASE_URL ?>build/img/favicon/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>build/img/favicon/favicon.svg">
+    <link rel="icon" type="image/png" sizes="96x96" href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png">
 
 
 

@@ -1,39 +1,3 @@
-<style>
-  .hero {
-
-    background-color: #010618; 
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-position: right center; /* Prioriza el logo/oficina en móvil */
-    background-image: url("<?= BASE_URL ?>build/img/hero/hero-mobil.jpg");
-  }
-
-  @media (min-width: 768px) {
-    .hero {
-      background-position: center;
-      background-image: url("<?= BASE_URL ?>build/img/hero/hero.jpg");
-    }
-  }
-
-  @supports (background-image: url("t.webp")) {
-    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero-mobil.webp"); }
-    @media (min-width: 768px) {
-      .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.webp"); }
-    }
-  }
-
-  @supports (background-image: url("t.avif")) {
-    .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero-mobil.avif"); }
-    @media (min-width: 768px) {
-      .hero { background-image: url("<?= BASE_URL ?>build/img/hero/hero.avif"); }
-    }
-  }
-</style>
 
 <section class="hero">
     <div class="container hero__grid">
@@ -48,27 +12,90 @@
             </p>
 
             <div class="hero__buttons">
-                <a href="<?= BASE_URL ?>servicios/servicios.php" class="btn btn--primary">Ver servicios</a>
-                <a href="https://wa.me/51970503691?text=Hola%20CodeImpact%20Perú,%20quiero%20hacer%20una%20consulta" class="btn btn--primary">Solicitar asesoría</a>
+                <a href="<?= BASE_URL ?>servicios/servicios.php" class="btn btn--primary">
+                    Ver servicios
+                </a>
+
+                <a href="https://wa.me/51970503691?text=Hola%20CodeImpact%20Perú,%20quiero%20hacer%20una%20consulta" class="btn btn--primary">
+                    Solicitar asesoría
+                </a>
             </div>
         </div>
 
+        <!-- slider hero -->
+        <div class="hero__media">
 
-        <!-- video hero -->
-<div class="hero__media">
+            <div class="hero__slider">
 
-    <div class="hero__media">
+                <div class="hero__slides">
 
-    <video
-    class="hero__video"
-    muted
-    loop
-    playsinline
-    preload="none"
-    poster="<?= BASE_URL ?>build/img/hero/hero.avif"
-    ></video>
+                  <!-- slide 1 -->
+                  <picture>
 
-</div>
+                      <source 
+                          srcset="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
+                          type="image/avif"
+                      >
 
-</div>
+                      <source 
+                          srcset="<?= BASE_URL; ?>build/img/header/desarollo-web.webp"
+                          type="image/webp"
+                      >
+
+                      <img
+                          src="<?= BASE_URL; ?>build/img/header/desarollo-web.jpg"
+                          alt="Slide 1"
+                      >
+
+                  </picture>
+
+                  <!-- slide 2 -->
+                  <picture>
+
+                      <source 
+                          srcset="<?= BASE_URL; ?>build/img/header/produccion-marketing.avif"
+                          type="image/avif"
+                      >
+
+                      <source 
+                          srcset="<?= BASE_URL; ?>build/img/header/produccion-marketing.webp"
+                          type="image/webp"
+                      >
+
+                      <img
+                          src="<?= BASE_URL; ?>build/img/header/produccion-marketing.jpg"
+                          alt="Slide 2"
+                          loading="lazy"
+                      >
+
+                  </picture>
+
+                  <!-- slide 3 -->
+                  <picture>
+
+                      <source 
+                          srcset="<?= BASE_URL; ?>build/img/header/codeimpact-web.avif"
+                          type="image/avif"
+                      >
+
+                      <source 
+                          srcset="<?= BASE_URL; ?>build/img/header/codeimpact-web.webp"
+                          type="image/webp"
+                      >
+
+                      <img
+                          src="<?= BASE_URL; ?>build/img/header/codeimpact-web.jpg"
+                          alt="Slide 3"
+                          loading="lazy"
+                      >
+
+                  </picture>
+
+              </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </section>

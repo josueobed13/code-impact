@@ -1,26 +1,31 @@
 // ==========================
-// HERO VIDEO OPTIMIZADO
+// HERO SLIDER OPTIMIZADO
 // ==========================
-function initHeroVideo() {
+function initHeroSlider() {
 
-    const video =
-        document.querySelector('.hero__video');
+    const slider =
+        document.querySelector('.hero__slides');
+
+    const container =
+        document.querySelector('.hero__slider');
 
     // salir si no existe
-    if (!video) return;
+    if (!slider || !container) return;
 
-    // evitar múltiples cargas
-    if (video.dataset.loaded) return;
+    // evitar múltiples inicializaciones
+    if (slider.dataset.loaded) return;
 
     // ==========================
-    // AHORRO DE DATOS
+    // AHORRO DE RECURSOS
     // ==========================
     const connection =
         navigator.connection ||
         navigator.mozConnection ||
         navigator.webkitConnection;
 
-    // evitar video en conexiones lentas
+    // si el usuario está en red lenta, reducir animación
+    let intervalTime = 5000;
+
     if (
         connection &&
         (
@@ -29,84 +34,73 @@ function initHeroVideo() {
             connection.effectiveType === 'slow-2g'
         )
     ) {
-        return;
+        intervalTime = 8000; // más lento para ahorrar datos
     }
 
     // ==========================
-    // POSTER RESPONSIVE
+    // SLIDER STATE
     // ==========================
-    const poster =
-        window.innerWidth < 768
-            ? 'hero-mobil.avif'
-            : 'hero.avif';
+    const slides =
+        document.querySelectorAll('.hero__slides picture');
 
-    video.poster =
-        `${BASE_URL}build/img/hero/${poster}`;
+    let index = 0;
+    let interval = null;
+
+    function goToSlide(i) {
+
+        slider.style.transform =
+            `translateX(-${i * 100}%)`;
+    }
+
+    function nextSlide() {
+
+        index++;
+
+        if (index >= slides.length) {
+            index = 0;
+        }
+
+        goToSlide(index);
+    }
+
+    function startAutoplay() {
+
+        interval =
+            setInterval(nextSlide, intervalTime);
+    }
+
+    function stopAutoplay() {
+
+        if (interval) clearInterval(interval);
+    }
 
     // ==========================
-    // CONFIG
-    // ==========================
-    video.muted = true;
-    video.loop = true;
-    video.playsInline = true;
-
-    // importante para Lighthouse
-    video.preload = 'none';
-
-    // compatibilidad iOS
-    video.setAttribute('muted', '');
-    video.setAttribute('playsinline', '');
-
-    // ==========================
-    // OBSERVER
+    // INTERSECTION OBSERVER
     // ==========================
     const observer =
         new IntersectionObserver((entries) => {
 
             const entry = entries[0];
 
-            // salir si no entra
+            // si no está visible, no iniciar
             if (!entry.isIntersecting) return;
 
-            // evitar doble carga
-            if (video.dataset.loaded) return;
+            // evitar doble init
+            if (slider.dataset.loaded) return;
 
-            // marcar cargado
-            video.dataset.loaded = 'true';
+            slider.dataset.loaded = 'true';
 
-            // ==========================
-            // SOURCE
-            // ==========================
-            const source =
-                document.createElement('source');
+            // iniciar autoplay cuando entra en pantalla
+            startAutoplay();
 
-            source.src =
-                `${BASE_URL}build/video/hero-mobil.mp4`;
-
-            source.type = 'video/mp4';
-
-            // insertar source
-            video.appendChild(source);
-
-            // cargar video
-            video.load();
-
-            // reproducir
-            requestAnimationFrame(() => {
-
-                video.play().catch(() => {});
-
-            });
-
-            // detener observer
+            // opcional: pausar cuando sale
             observer.disconnect();
 
         }, {
-            threshold: 0
+            threshold: 0.2
         });
 
-    // observar
-    observer.observe(video);
+    observer.observe(container);
 
 }
 
@@ -115,23 +109,19 @@ function initHeroVideo() {
 // ==========================
 window.addEventListener('load', () => {
 
-    // navegador moderno
     if ('requestIdleCallback' in window) {
 
         requestIdleCallback(() => {
 
-            initHeroVideo();
+            initHeroSlider();
 
         });
 
-    }
-
-    // fallback
-    else {
+    } else {
 
         setTimeout(() => {
 
-            initHeroVideo();
+            initHeroSlider();
 
         }, 800);
 
