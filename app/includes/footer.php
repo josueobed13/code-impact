@@ -223,7 +223,11 @@ FOOTER
 
 <script src="<?= BASE_URL; ?>build/js/initial.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/initial.min.js'); ?>" defer></script>
 
+<?php if (($titulo ?? '') === 'Inicio | CodeImpact'): ?>
+
 <script src="<?= BASE_URL; ?>build/js/home.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/home.min.js'); ?>" defer></script>
+
+<?php endif; ?>
 
 <?php include __DIR__ . '/whatsapp.php'; ?>
 
