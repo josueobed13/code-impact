@@ -64,7 +64,12 @@
 
                       <source 
                           srcset="<?= BASE_URL; ?>build/img/header/produccion-marketing.webp"
-                          type="image/webp"
+                          alt="Slide 1"
+                          fetchpriority="high"
+                          loading="eager"
+                          decoding="async"
+                          width="1920"
+                          height="1080"
                       >
 
                       <img
@@ -90,8 +95,12 @@
 
                       <img
                           src="<?= BASE_URL; ?>build/img/header/codeimpact-web.jpg"
-                          alt="Slide 3"
-                          loading="lazy"
+                          alt="Slide 1"
+                          fetchpriority="high"
+                          loading="eager"
+                          decoding="async"
+                          width="1920"
+                          height="1080"
                       >
 
                   </picture>
