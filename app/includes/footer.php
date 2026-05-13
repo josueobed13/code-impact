@@ -12,10 +12,10 @@ FOOTER
             <div class="footer__col footer__brand">
 
                 <div class="footer__logo">
-                    <div 
-                        class="lottie logo-lottie"
-                        data-animation="logo">
-                    </div>
+                    <img 
+                        src="<?= BASE_URL; ?>build/img/logos/logo.svg" 
+                        alt="CodeImpact"
+                    >
                 </div>
 
                 <p class="footer__text">
