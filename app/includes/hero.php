@@ -45,6 +45,11 @@
                       <img
                           src="<?= BASE_URL; ?>build/img/header/desarollo-web.jpg"
                           alt="Slide 1"
+                          fetchpriority="high"
+                          loading="eager"
+                          decoding="async"
+                          width="1920"
+                          height="1080"
                       >
 
                   </picture>
