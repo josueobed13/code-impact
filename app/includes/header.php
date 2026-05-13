@@ -76,19 +76,14 @@ if (!defined('BASE_URL')) {
     <?php if (($titulo ?? '') === 'Inicio | CodeImpact'): ?>
 
         <!-- LCP OPTIMIZED PRELOAD (multi-format safe) -->
-        <link
+       <link
             rel="preload"
             as="image"
-            href="<?= BASE_URL; ?>build/img/header/desarollo-web.jpg"
-            imagesrcset="
-                <?= BASE_URL; ?>build/img/header/desarollo-web.avif 1x,
-                <?= BASE_URL; ?>build/img/header/desarollo-web.webp 1x,
-                <?= BASE_URL; ?>build/img/header/desarollo-web.jpg 1x
-            "
-            imagesizes="100vw"
-        >
+            href="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
+            type="image/avif"
+            fetchpriority="high">
 
-    <?php endif; ?>
+            <?php endif; ?>
 
     <!-- =========================================
          FAVICON

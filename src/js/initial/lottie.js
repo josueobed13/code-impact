@@ -1,207 +1,109 @@
-// ==========================
-// 🔥 LOTTIE ULTRA OPTIMIZADO
-// ==========================
-
 function initLottie() {
 
-    // ==========================
-    // ELEMENTOS
-    // ==========================
     const allLotties =
-        document.querySelectorAll(
-            '.logo-lottie, .lazy-lottie'
-        );
+        document.querySelectorAll('.logo-lottie, .lazy-lottie');
 
     if (!allLotties.length) return;
 
-    // ==========================
-    // SCRIPT STATE
-    // ==========================
     let lottieLoaded = false;
-
     let lottieLoading = false;
 
     // ==========================
-    // LOAD LOTTIE SCRIPT
+    // 1. CARGA DIFERIDA DEL SCRIPT
     // ==========================
     function loadLottieScript() {
 
         return new Promise((resolve) => {
 
-            // ya cargado
-            if (
-                lottieLoaded &&
-                window.lottie
-            ) {
-
+            if (lottieLoaded && window.lottie) {
                 resolve();
-
                 return;
-
             }
 
-            // evitar doble carga
             if (lottieLoading) {
-
-                const check =
-                    setInterval(() => {
-
-                        if (
-                            window.lottie
-                        ) {
-
-                            clearInterval(
-                                check
-                            );
-
-                            resolve();
-
-                        }
-
-                    }, 100);
-
+                const check = setInterval(() => {
+                    if (window.lottie) {
+                        clearInterval(check);
+                        resolve();
+                    }
+                }, 50);
                 return;
-
             }
 
             lottieLoading = true;
 
-            const script =
-                document.createElement(
-                    'script'
-                );
-
+            const script = document.createElement('script');
             script.src =
                 'https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js';
-
             script.async = true;
 
             script.onload = () => {
-
                 lottieLoaded = true;
-
                 resolve();
-
             };
 
-            document.body.appendChild(
-                script
-            );
+            document.head.appendChild(script);
+        });
+    }
 
+    // ==========================
+    // 2. CREAR ANIMACIÓN
+    // ==========================
+    function createAnimation(el, index = 0) {
+
+        if (el.dataset.loaded) return;
+        el.dataset.loaded = 'true';
+
+        const name = el.dataset.animation;
+
+        el.innerHTML = '';
+
+        const anim = window.lottie.loadAnimation({
+            container: el,
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: `${BASE_URL}build/animations/${name}.json`
         });
 
+        anim.setSpeed(0.5);
     }
 
     // ==========================
-    // CREATE ANIMATION
+    // 3. OBSERVER (OPTIMIZADO)
     // ==========================
-    function createAnimation(
-        element,
-        index = 0
-    ) {
+    const observer = new IntersectionObserver(async (entries) => {
 
-        if (
-            element.dataset.loaded
-        ) return;
+        const targets = entries.filter(e => e.isIntersecting);
 
-        element.dataset.loaded =
-            'true';
+        if (!targets.length) return;
 
-        const name =
-            element.dataset.animation;
+        // 🔥 SOLO cargar si ya terminó render inicial
+        await new Promise(r => setTimeout(r, 1200));
 
-        element.innerHTML = '';
+        await loadLottieScript();
 
-        const animation =
-            window.lottie.loadAnimation({
+        targets.forEach((entry, i) => {
+            createAnimation(entry.target, i);
+            observer.unobserve(entry.target);
+        });
 
-                name:
-                    `lottie-${index}-${Date.now()}`,
-
-                container:
-                    element,
-
-                renderer: 'svg',
-
-                loop: true,
-
-                autoplay: true,
-
-                path:
-                    `${BASE_URL}build/animations/${name}.json`
-
-            });
-
-        animation.setSpeed(0.5);
-
-    }
-
-    // ==========================
-    // OBSERVER
-    // ==========================
-    const observer =
-        new IntersectionObserver(
-            async (entries) => {
-
-                const visibleEntries =
-                    entries.filter(
-                        entry =>
-                            entry.isIntersecting
-                    );
-
-                if (
-                    !visibleEntries.length
-                ) return;
-
-                // ==========================
-                // LOAD SCRIPT SOLO AQUÍ
-                // ==========================
-                await loadLottieScript();
-
-                visibleEntries.forEach(
-                    (entry, index) => {
-
-                        createAnimation(
-                            entry.target,
-                            index
-                        );
-
-                        observer.unobserve(
-                            entry.target
-                        );
-
-                    }
-                );
-
-            },
-            {
-                threshold: 0.15
-            }
-        );
-
-    // ==========================
-    // OBSERVE
-    // ==========================
-    allLotties.forEach(item => {
-
-        observer.observe(item);
-
+    }, {
+        threshold: 0.25,
+        rootMargin: '200px' // 🔥 precarga antes de entrar
     });
 
+    // ==========================
+    // 4. OBSERVAR
+    // ==========================
+    allLotties.forEach(el => observer.observe(el));
 }
 
 // ==========================
-// INIT
+// INIT (MEJOR MOMENTO)
 // ==========================
-document.addEventListener(
-    'DOMContentLoaded',
-    () => {
-
-        requestAnimationFrame(() => {
-
-            initLottie();
-
-        });
-
-    }
-);
+window.addEventListener('load', () => {
+    requestIdleCallback(() => {
+        initLottie();
+    });
+});
