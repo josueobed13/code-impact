@@ -34,7 +34,7 @@
 
                       <source 
                           srcset="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
-                          type="image/avif"
+                          type="image/webp"
                       >
 
                       <source 
@@ -44,12 +44,12 @@
 
                       <img
                           src="<?= BASE_URL; ?>build/img/header/desarollo-web.jpg"
-                          alt="Slide 1"
-                          fetchpriority="high"
-                          loading="eager"
-                          decoding="async"
-                          width="1920"
-                          height="1080"
+                            alt="Slide 1"
+                            fetchpriority="high"
+                            loading="eager"
+                            decoding="async"
+                            width="1920"
+                            height="1080"
                       >
 
                   </picture>
@@ -64,18 +64,16 @@
 
                       <source 
                           srcset="<?= BASE_URL; ?>build/img/header/produccion-marketing.webp"
-                          alt="Slide 1"
-                          fetchpriority="high"
-                          loading="eager"
-                          decoding="async"
-                          width="1920"
-                          height="1080"
+                            type="image/webp"
                       >
 
                       <img
                           src="<?= BASE_URL; ?>build/img/header/produccion-marketing.jpg"
-                          alt="Slide 2"
-                          loading="lazy"
+                           alt="Slide 2"
+                            loading="lazy"
+                            decoding="async"
+                            width="1920"
+                            height="1080"
                       >
 
                   </picture>
@@ -94,13 +92,12 @@
                       >
 
                       <img
-                          src="<?= BASE_URL; ?>build/img/header/codeimpact-web.jpg"
-                          alt="Slide 1"
-                          fetchpriority="high"
-                          loading="eager"
-                          decoding="async"
-                          width="1920"
-                          height="1080"
+                        src="<?= BASE_URL; ?>build/img/header/codeimpact-web.jpg"
+                        alt="Slide 2"
+                        loading="lazy"
+                        decoding="async"
+                        width="1920"
+                        height="1080"
                       >
 
                   </picture>
