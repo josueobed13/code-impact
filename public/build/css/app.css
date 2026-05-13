@@ -129,7 +129,7 @@ p {
   cursor: pointer;
   transition: all 0.25s ease;
   line-height: 1;
-  /* 🔥 NUEVO: alineación útil */
+  /*alineacion */
 }
 .btn.center {
   display: block;
@@ -137,14 +137,14 @@ p {
   margin: 0 auto;
 }
 .btn {
-  /* 🔥 NUEVO: tamaño grande (para hero) */
+  /* formato lg */
 }
 .btn--lg {
   padding: 14px 28px;
   font-size: 15px;
 }
 .btn {
-  /* 🔥 NUEVO: ancho completo (mobile forms, CTAs) */
+  /* width completo */
 }
 .btn--full {
   width: 100%;
@@ -160,7 +160,7 @@ p {
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
 }
 .btn--primary {
-  /* 🔥 NUEVO: active state */
+  /* activo */
 }
 .btn--primary:active {
   transform: scale(0.98);
@@ -175,13 +175,13 @@ p {
   color: #fff;
 }
 .btn--outline {
-  /* 🔥 NUEVO: active state */
+  /* activo*/
 }
 .btn--outline:active {
   transform: scale(0.98);
 }
 .btn {
-  /* 🔥 NUEVO: accesibilidad (focus visible) */
+  /* accesivilidad */
 }
 .btn:focus-visible {
   outline: 2px solid #2563EB;
@@ -291,7 +291,6 @@ p {
   .hero {
     padding: 4rem 0;
     min-height: auto;
-    /* 🔥 importante para mobile */
     background-attachment: scroll;
   }
   .hero__media {
@@ -319,7 +318,7 @@ p {
 }
 
 /* =========================
-   EXTRAS / BREAKPOINTS ESPECÍFICOS
+   responsive
 ========================= */
 @media (max-width: 444px) {
   .hero__title {
@@ -362,7 +361,7 @@ p {
   padding: 6rem 0 3rem;
   position: relative;
   overflow: hidden;
-  /* 🔥 glow fondo */
+  /* fondo glow*/
 }
 .footer::before {
   content: "";
@@ -376,7 +375,7 @@ p {
   z-index: 0;
 }
 .footer {
-  /* 🔥 línea premium */
+  /* línea */
 }
 .footer::after {
   content: "";
@@ -681,9 +680,6 @@ p {
     height: 3rem;
     font-size: 1rem;
     font-weight: 500;
-  }
-  .whatsapp-float__texts {
-    top: -7px;
   }
   @keyframes whatsappTextRotate {
     0%, 40% {
@@ -1070,7 +1066,7 @@ body {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  /* ICONO 🔥 RESPONSIVE PRO */
+  /* icono responsivo */
 }
 .service-card__icon {
   width: clamp(55px, 6vw, 80px);
@@ -1105,7 +1101,7 @@ body {
 }
 
 /* =========================
-   ✅ HOVER SOLO DESKTOP
+   OVER DESKTOP
 ========================= */
 @media (hover: hover) and (pointer: fine) {
   .service-card:hover {
@@ -1160,7 +1156,7 @@ body {
 }
 
 /* =========================
-   🔥 MOBILE EFFECT (LOOP)
+   MOBILE EFFECT
 ========================= */
 @media (max-width: 640px) {
   .service-card__main {
@@ -1191,7 +1187,7 @@ body {
   }
 }
 /* =========================
-   🔥 MOBILE TOUCH (REEMPLAZA HOVER)
+ MOBILE TOUCH
 ========================= */
 @media (max-width: 768px) {
   .service-card.touched {
@@ -1208,7 +1204,7 @@ body {
   }
 }
 /* =========================
-   EXTRA SMALL
+  small
 ========================= */
 @media (max-width: 380px) {
   .services__grid {
@@ -1339,7 +1335,7 @@ body {
   }
 }
 /* =========================
-   CARD (MEJORADA 🔥)
+   card modelo
 ========================= */
 .model-card {
   display: grid;
@@ -1360,7 +1356,7 @@ body {
 }
 .model-card {
   /* =========================
-     IMAGE (FIX DEFORMACIÓN 🔥)
+     fix imagen
   ========================= */
 }
 .model-card__image {
@@ -1420,7 +1416,7 @@ body {
 @media (max-width: 945px) {
   .model-card {
     grid-template-columns: 118px 1fr;
-    padding: 1.6rem; /* Unificado con el otro bloque de 945px */
+    padding: 1.6rem;
   }
   .model-card p {
     font-size: 1.1rem;
@@ -1481,7 +1477,7 @@ body {
     grid-template-columns: 1fr;
   }
   .model-card__image img {
-    object-fit: cover; /* 🔥 en mobile sí queda mejor */
+    object-fit: cover;
   }
   .models__cta {
     flex-direction: column;
@@ -1534,9 +1530,6 @@ body {
   position: relative;
   gap: 1.5rem;
 }
-.process {
-  /* 🔥 línea conectada REAL */
-}
 .process__steps::before {
   content: "";
   position: absolute;
@@ -1557,7 +1550,7 @@ body {
 }
 .process {
   /* =========================
-     🔥 NUMERO SOBRE EL CÍRCULO
+     NUMERO CÍRCULO
   ========================= */
 }
 .process__step::before {
@@ -1580,7 +1573,7 @@ body {
 }
 .process {
   /* =========================
-     🔥 ICONO (PRO)
+     icon
   ========================= */
 }
 .process__icon {
@@ -1611,7 +1604,7 @@ body {
 }
 .process {
   /* =========================
-     🔥 HOVER SOLO DESKTOP
+     hover desktop
   ========================= */
 }
 @media (hover: hover) and (pointer: fine) {
@@ -1692,7 +1685,7 @@ body {
   }
 }
 /* =========================
-   🔥 MOBILE TEXT SWITCH FIX
+   text mobile responsive
 ========================= */
 @media (max-width: 600px) {
   .process__step {
@@ -1714,12 +1707,10 @@ body {
     transition: all 0.4s ease;
     text-align: center;
   }
-  /* estado inicial */
   .process__text p {
     opacity: 0;
     transform: translateY(10px);
   }
-  /* 🔥 activo */
   .process__step.active h3 {
     opacity: 0;
     transform: translateY(-10px);
@@ -1781,9 +1772,6 @@ body {
   overflow: hidden;
   touch-action: pan-y;
 }
-.clients {
-  /* 🔥 fade lateral premium */
-}
 .clients__wrapper::before, .clients__wrapper::after {
   content: "";
   position: absolute;
@@ -1830,7 +1818,6 @@ body {
   border-radius: 18px;
   overflow: hidden;
   background: transparent;
-  /* 🔥 FIX PARA <picture> */
 }
 .clients__item picture {
   width: 100%;
@@ -2284,7 +2271,7 @@ body {
   }
 }
 /* =========================
-ABOUT HISTORY
+HISTORIA
 ========================= */
 .about-history {
   position: relative;
@@ -2466,7 +2453,7 @@ RESPONSIVE
   }
 }
 /* =========================
-   ABOUT HISTORY
+   HISTORIA
 ========================= */
 .about-history {
   position: relative;
@@ -3597,7 +3584,7 @@ RESPONSIVE
   }
 }
 /* =========================
-   SERVICES PRO
+   SERVICES
 ========================= */
 .services-pro {
   padding: 10rem 0;
@@ -3676,7 +3663,7 @@ RESPONSIVE
   }
 }
 /* =========================
-   RESPONSIVE SERVICES PRO
+   RESPONSIVE SERVICES
 ========================= */
 @media (max-width: 1024px) {
   .services-pro {
@@ -3706,9 +3693,6 @@ RESPONSIVE
   .services-pro__grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-  }
-  .services-pro {
-    /* 🔥 EVITA CONFLICTO CON services.scss */
   }
   .services-pro .service-card--image .service-card__desc {
     position: static;
@@ -3744,7 +3728,7 @@ RESPONSIVE
   }
 }
 /* =========================
-   WHY (DIFERENCIAL)
+   DIFERENCIAL
 ========================= */
 .why {
   padding: 8rem 0;
@@ -3844,7 +3828,7 @@ RESPONSIVE
   }
 }
 /* ==========================================
-   1. INTRO SECTION
+   INTRO SECTION
    ========================================== */
 .catalog-intro {
   padding: 5rem 0;
@@ -3883,7 +3867,7 @@ RESPONSIVE
 }
 
 /* ==========================================
-   2. CATÁLOGO (Slider & Items)
+   CATÁLOGO (Slider & Items)
    ========================================== */
 .service-catalog {
   position: relative;
@@ -4156,7 +4140,7 @@ RESPONSIVE
 }
 
 /* ==========================================
-   5. RESPONSIVE (MEDIA QUERIES)
+   RESPONSIVE
    ========================================== */
 @media (max-width: 1110px) {
   .catalog-intro--light {

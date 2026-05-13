@@ -106,7 +106,6 @@
         padding: 4rem 0;
         min-height: auto;
 
-        /* 🔥 importante para mobile */
         background-attachment: scroll;
 
         &__media {
@@ -138,7 +137,7 @@
 }
 
 /* =========================
-   EXTRAS / BREAKPOINTS ESPECÍFICOS
+   responsive
 ========================= */
 @media (max-width: 444px) {
     .hero__title {

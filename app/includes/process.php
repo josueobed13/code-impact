@@ -13,7 +13,7 @@
 
         <div class="process__steps">
 
-            <!-- STEP 1 -->
+            <!-- 1 -->
             <div class="process__step" data-step="1">
                 <div class="process__icon">
                     <div class="lottie lazy-lottie" data-animation="proceso/buscar"></div>
@@ -26,7 +26,7 @@
                 </div>
             </div>
 
-            <!-- STEP 2 -->
+            <!-- 2 -->
             <div class="process__step" data-step="2">
                 <div class="process__icon">
                     <div class="lottie lazy-lottie" data-animation="proceso/idea"></div>
@@ -37,7 +37,7 @@
                 </div>
             </div>
 
-            <!-- STEP 3 -->
+            <!-- 3 -->
             <div class="process__step" data-step="3">
                 <div class="process__icon">
                     <div class="lottie lazy-lottie" data-animation="proceso/desarrollo"></div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
 
-            <!-- STEP 4 -->
+            <!-- 4 -->
             <div class="process__step" data-step="4">
                 <div class="process__icon">
                     <div class="lottie lazy-lottie" data-animation="proceso/optimizamos"></div>

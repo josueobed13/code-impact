@@ -2,15 +2,14 @@
 
 if (!defined('BASE_URL')) {
 
-    $host = $_SERVER['HTTP_HOST'];
+    $host = $_SERVER['HTTP_HOST'] ?? '';
 
-    // LOCAL XAMPP
-    if ($host === 'localhost') {
+    // Detectar local
+    $isLocal = in_array($host, ['localhost', '127.0.0.1']);
+
+    if ($isLocal) {
         define('BASE_URL', '/codeImpact/public/');
-    }
-
-    // PRODUCCIÓN
-    else {
+    } else {
         define('BASE_URL', '/');
     }
 }
@@ -66,7 +65,16 @@ if (!defined('BASE_URL')) {
  
 
 
-        <!-- img hero -->
+        <!-- favicon -->
+        <link rel="icon" href="<?= BASE_URL ?>build/img/favicon/favicon.ico">
+
+        <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>build/img/favicon/favicon.svg">
+
+        <link rel="icon" type="image/png" sizes="96x96" href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png">
+
+        <link rel="apple-touch-icon" href="<?= BASE_URL ?>build/img/favicon/apple-touch-icon.png">
+
+        <link rel="manifest" href="<?= BASE_URL ?>build/img/favicon/site.webmanifest">
 
 
 

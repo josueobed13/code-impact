@@ -12,14 +12,16 @@ import sourcemaps from 'gulp-sourcemaps'
 
 const sass = gulpSass(dartSass)
 
+// ==========================
+// PATHS (SOLO UNO)
+// ==========================
 const paths = {
     scss: 'src/scss/**/*.scss',
     js: 'src/js/**/*.js',
     img: 'src/img/**/*',
     video: 'src/video/**/*',
-
-    // 🔥 NUEVO (animaciones)
-    animations: 'src/animations/**/*.json'
+    animations: 'src/animations/**/*.json',
+    favicon: 'src/img/favicon/**/*'
 }
 
 // ==========================
@@ -31,30 +33,15 @@ export function css() {
         .pipe(dest('./public/build/css', { sourcemaps: '.' }))
 }
 
-
-// ==========================
-// fonts
-// ==========================
-//export function fonts() {
-   // return src('src/fonts/*.{woff,woff2,ttf,otf}')
-      //  .pipe(dest('./public/build/fonts'))
-//}
-
-
-
 // ==========================
 // JS CORE
 // ==========================
 export function jsCore() {
     return src('src/js/core/**/*.js')
-
         .pipe(sourcemaps.init())
-
         .pipe(concat('core.min.js'))
         .pipe(terser())
-
         .pipe(sourcemaps.write('.'))
-
         .pipe(dest('./public/build/js'))
 }
 
@@ -63,14 +50,10 @@ export function jsCore() {
 // ==========================
 export function jsUI() {
     return src('src/js/ui/**/*.js')
-
         .pipe(sourcemaps.init())
-
         .pipe(concat('ui.min.js'))
         .pipe(terser())
-
         .pipe(sourcemaps.write('.'))
-
         .pipe(dest('./public/build/js'))
 }
 
@@ -79,14 +62,10 @@ export function jsUI() {
 // ==========================
 export function jsHome() {
     return src('src/js/home/**/*.js')
-
         .pipe(sourcemaps.init())
-
         .pipe(concat('home.min.js'))
         .pipe(terser())
-
         .pipe(sourcemaps.write('.'))
-
         .pipe(dest('./public/build/js'))
 }
 
@@ -116,13 +95,11 @@ function procesarImagen(file, outputSubDir) {
     const extName = path.extname(file).toLowerCase()
     const outputBase = path.join(outputSubDir, baseName)
 
-    // SVG
     if (extName === '.svg') {
         fs.copyFileSync(file, `${outputBase}.svg`)
         return
     }
 
-    // PNG
     if (extName === '.png') {
         sharp(file)
             .png({ compressionLevel: 9 })
@@ -135,13 +112,10 @@ function procesarImagen(file, outputSubDir) {
         sharp(file)
             .avif({ quality: 50 })
             .toFile(`${outputBase}.avif`)
-
         return
     }
 
-    // JPG / JPEG
     if (extName === '.jpg' || extName === '.jpeg') {
-
         sharp(file)
             .jpeg({ quality: 85 })
             .toFile(`${outputBase}.jpg`)
@@ -157,7 +131,15 @@ function procesarImagen(file, outputSubDir) {
 }
 
 // ==========================
-// 🔥 ANIMACIONES (LOTTIE JSON)
+// FAVICON (COPY SIMPLE)
+// ==========================
+export function favicon() {
+    return src(paths.favicon)
+        .pipe(dest('./public/build/img/favicon'))
+}
+
+// ==========================
+// ANIMACIONES (LOTTIE)
 // ==========================
 export function animations() {
     return src(paths.animations)
@@ -177,9 +159,7 @@ export function videos() {
 // ==========================
 export function dev() {
     watch(paths.scss, { usePolling: true }, css)
-
     watch(paths.js, { usePolling: true }, series(jsCore, jsUI, jsHome))
-
     watch(paths.img, { usePolling: true }, imagenes)
     watch(paths.video, { usePolling: true }, videos)
     watch(paths.animations, { usePolling: true }, animations)
@@ -196,5 +176,6 @@ export default series(
     imagenes,
     animations,
     videos,
+    favicon,
     dev
 )

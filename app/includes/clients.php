@@ -81,7 +81,7 @@
             </div>
 
         <!-- =========================
-             LOGOS (CONFIANZA)
+             logos
         ========================== -->
         <div class="clients__logos">
 

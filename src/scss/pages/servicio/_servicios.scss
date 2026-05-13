@@ -64,7 +64,7 @@
 }
 
 /* =========================
-   SERVICES PRO
+   SERVICES
 ========================= */
 .services-pro {
     padding: 10rem 0;
@@ -154,7 +154,7 @@
 }
 
 /* =========================
-   RESPONSIVE SERVICES PRO
+   RESPONSIVE SERVICES
 ========================= */
 @media (max-width: 1024px) {
     .services-pro { padding: 5rem 0; }
@@ -188,7 +188,6 @@
             gap: 1rem;
         }
 
-        /* 🔥 EVITA CONFLICTO CON services.scss */
         .service-card--image .service-card__desc {
             position: static;
             opacity: 1;
@@ -217,7 +216,7 @@
 }
 
 /* =========================
-   WHY (DIFERENCIAL)
+   DIFERENCIAL
 ========================= */
 .why {
     padding: 8rem 0;

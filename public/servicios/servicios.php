@@ -52,7 +52,7 @@ require_once __DIR__ . '/../../app/includes/header.php';
 
                 <div class="services-pro__grid">
 
-                    <!-- CARD 1 -->
+                    <!-- 1 -->
                     <div class="service-card service-card--image">
                         <div class="service-card__image">
                             <img src="<?php echo BASE_URL; ?>build/img/servicios/desarrollo-web.jpg" alt="desarrollo paginas Web">
@@ -68,7 +68,7 @@ require_once __DIR__ . '/../../app/includes/header.php';
 
                     </div>
 
-                    <!-- CARD 2 -->
+                    <!-- 2 -->
                     <div class="service-card service-card--image">
                         <div class="service-card__image">
                             <img src="<?php echo BASE_URL; ?>build/img/servicios/produccion-audiovisual.jpg" alt="Producción audiovisual">
@@ -82,7 +82,7 @@ require_once __DIR__ . '/../../app/includes/header.php';
                         </a>
                     </div>
 
-                    <!-- CARD 3 -->
+                    <!-- 3 -->
                     <div class="service-card service-card--image">
                         <div class="service-card__image">
                             <img src="<?php echo BASE_URL; ?>build/img/servicios/eventos-corporativos.jpg" alt="Eventos corporativos">
@@ -94,7 +94,7 @@ require_once __DIR__ . '/../../app/includes/header.php';
                         <a href="<?= BASE_URL; ?>servicios/eventos.php" class="service-card__link">Ver más →</a>
                     </div>
 
-                    <!-- CARD 4 -->
+                    <!-- 4 -->
                     <div class="service-card service-card--image">
                         <div class="service-card__image">
                             <img src="<?php echo BASE_URL; ?>build/img/servicios/analisis-marketing.jpg" alt="Análisis de marketing">
@@ -106,7 +106,7 @@ require_once __DIR__ . '/../../app/includes/header.php';
                         <a href="<?= BASE_URL; ?>servicios/marketing.php" class="service-card__link">Ver más →</a>
                     </div>
 
-                    <!-- CARD 5 -->
+                    <!-- 5 -->
                     <div class="service-card service-card--image">
                         <div class="service-card__image">
                             <img src="<?php echo BASE_URL; ?>build/img/servicios/diseño-software.jpg" alt="Software a medida">
@@ -118,7 +118,7 @@ require_once __DIR__ . '/../../app/includes/header.php';
                         <a href="<?= BASE_URL; ?>servicios/software.php" class="service-card__link">Ver más →</a>
                     </div>
 
-                    <!-- CARD 6 -->
+                    <!-- 6 -->
                     <div class="service-card service-card--image">
                         <div class="service-card__image">
                             <img src="<?php echo BASE_URL; ?>build/img/servicios/ads-publicidad.jpg" alt="Campañas ADS">

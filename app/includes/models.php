@@ -11,7 +11,7 @@
 
         <div class="models__grid">
 
-            <!-- CARD 1 -->
+            <!-- 1 -->
             <div class="model-card">
 
                 <div class="model-card__image">
@@ -39,7 +39,7 @@
 
             </div>
 
-            <!-- CARD 2 -->
+            <!-- 2 -->
             <div class="model-card">
 
                 <div class="model-card__image">

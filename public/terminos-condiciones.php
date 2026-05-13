@@ -6,7 +6,7 @@ require_once __DIR__ . '/../app/includes/header.php';
 ?>
 
 <main>
-
+<?php include __DIR__ . '/../app/includes/back-button.php'; ?>
 <section class="legal-page">
 
     <div class="container legal-page__container">

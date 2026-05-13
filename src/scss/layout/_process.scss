@@ -32,7 +32,6 @@
         gap: 1.5rem;
     }
 
-    /* 🔥 línea conectada REAL */
     &__steps::before {
         content: '';
         position: absolute;
@@ -63,7 +62,7 @@
     }
 
     /* =========================
-       🔥 NUMERO SOBRE EL CÍRCULO
+       NUMERO CÍRCULO
     ========================= */
     &__step::before {
         content: attr(data-step);
@@ -90,7 +89,7 @@
     }
 
     /* =========================
-       🔥 ICONO (PRO)
+       icon
     ========================= */
     &__icon {
         width: 75px;
@@ -128,7 +127,7 @@
     }
 
     /* =========================
-       🔥 HOVER SOLO DESKTOP
+       hover desktop
     ========================= */
     @media (hover: hover) and (pointer: fine) {
         &__step:hover {
@@ -229,7 +228,7 @@
 }
 
 /* =========================
-   🔥 MOBILE TEXT SWITCH FIX
+   text mobile responsive
 ========================= */
 @media (max-width: 600px) {
     .process__step {
@@ -255,13 +254,13 @@
         text-align: center;
     }
 
-    /* estado inicial */
+
     .process__text p {
         opacity: 0;
         transform: translateY(10px);
     }
 
-    /* 🔥 activo */
+
     .process__step.active {
         h3 {
             opacity: 0;

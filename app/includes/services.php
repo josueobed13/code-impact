@@ -14,7 +14,7 @@
 
         <div class="services__grid">
 
-            <!-- CARD 1 -->
+            <!-- 1 -->
             <a href="<?= BASE_URL; ?>servicios/desarrollo-web.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
@@ -28,7 +28,7 @@
                 </div>
             </a>
 
-            <!-- CARD 2 -->
+            <!-- 2 -->
             <a href="<?= BASE_URL; ?>servicios/audiovisual.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
@@ -42,7 +42,7 @@
                 </div>
             </a>
 
-            <!-- CARD 3 -->
+            <!-- 3 -->
             <a href="<?= BASE_URL; ?>servicios/eventos.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
@@ -56,7 +56,7 @@
                 </div>
             </a>
 
-            <!-- CARD 4 -->
+            <!-- 4 -->
             <a href="<?= BASE_URL; ?>servicios/marketing.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
@@ -70,7 +70,7 @@
                 </div>
             </a>
 
-            <!-- CARD 5 -->
+            <!-- 5 -->
             <a href="<?= BASE_URL; ?>servicios/software.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">
@@ -84,7 +84,7 @@
                 </div>
             </a>
 
-            <!-- CARD 6 -->
+            <!-- 6 -->
             <a href="<?= BASE_URL; ?>servicios/publicidad-ads.php" class="service-card">
                 <div class="service-card__main">
                     <div class="service-card__icon">

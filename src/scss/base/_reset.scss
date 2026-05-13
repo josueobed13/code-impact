@@ -13,14 +13,14 @@
 html {
     font-size: 62.5%; // 1rem = 10px
     scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%; // Evita saltos de fuente en iOS al rotar
+    -webkit-text-size-adjust: 100%;
     -moz-tab-size: 4;
     tab-size: 4;
 }
 
 body {
     min-height: 100vh;
-    overflow-x: hidden; // Evita scroll horizontal accidental
+    overflow-x: hidden;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -41,7 +41,7 @@ svg {
 a {
     text-decoration: none;
     color: inherit;
-    display: inline-block; // Permite aplicar transforms y paddings mejor
+    display: inline-block;
 }
 
 /* Listas */
@@ -58,13 +58,13 @@ textarea {
     border: none;
     background: none;
     cursor: pointer;
-    font: inherit; // Hereda la fuente del body automáticamente
+    font: inherit;
     color: inherit;
     outline: none;
 }
 
 textarea {
-    resize: vertical; // Solo permite estirar hacia abajo
+    resize: vertical;
 }
 
 /* Accesibilidad: Quita el resaltado azul en móviles al tocar */

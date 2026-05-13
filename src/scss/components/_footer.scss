@@ -8,7 +8,7 @@
     position: relative;
     overflow: hidden;
 
-    /* 🔥 glow fondo */
+    /* fondo glow*/
     &::before {
         content: '';
         position: absolute;
@@ -27,7 +27,7 @@
         z-index: 0;
     }
 
-    /* 🔥 línea premium */
+    /* línea */
     &::after {
         content: '';
         position: absolute;

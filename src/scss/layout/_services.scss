@@ -68,7 +68,7 @@
 
     transition: all .3s ease;
 
-    /* ICONO 🔥 RESPONSIVE PRO */
+    /* icono responsivo */
     &__icon {
         width: clamp(55px, 6vw, 80px);
         height: clamp(55px, 6vw, 80px);
@@ -112,7 +112,7 @@
 }
 
 /* =========================
-   ✅ HOVER SOLO DESKTOP
+   OVER DESKTOP
 ========================= */
 @media (hover: hover) and (pointer: fine) {
     .service-card:hover {
@@ -178,7 +178,7 @@
 }
 
 /* =========================
-   🔥 MOBILE EFFECT (LOOP)
+   MOBILE EFFECT
 ========================= */
 @media (max-width: 640px) {
 
@@ -223,7 +223,7 @@
 }
 
 /* =========================
-   🔥 MOBILE TOUCH (REEMPLAZA HOVER)
+ MOBILE TOUCH
 ========================= */
 @media (max-width: 768px) {
 
@@ -248,7 +248,7 @@
 }
 
 /* =========================
-   EXTRA SMALL
+  small
 ========================= */
 @media (max-width: 380px) {
     .services__grid {

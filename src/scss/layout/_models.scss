@@ -140,7 +140,7 @@
 }
 
 /* =========================
-   CARD (MEJORADA 🔥)
+   card modelo
 ========================= */
 .model-card {
     display: grid;
@@ -165,7 +165,7 @@
     }
 
     /* =========================
-       IMAGE (FIX DEFORMACIÓN 🔥)
+       fix imagen
     ========================= */
     &__image {
         border-radius: 12px;
@@ -234,7 +234,7 @@
 @media (max-width: 945px) {
     .model-card {
         grid-template-columns: 118px 1fr;
-        padding: 1.6rem; /* Unificado con el otro bloque de 945px */
+        padding: 1.6rem;
     }
     .model-card p {
         font-size: 1.1rem;
@@ -302,7 +302,7 @@
     .model-card {
         &__image {
             img {
-                object-fit: cover; /* 🔥 en mobile sí queda mejor */
+                object-fit: cover; 
             }
         }
     }

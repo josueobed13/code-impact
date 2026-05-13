@@ -11,20 +11,20 @@
     transition: all 0.25s ease;
     line-height: 1;
 
-    /* 🔥 NUEVO: alineación útil */
+    /*alineacion */
     &.center {
         display: block;
         width: fit-content;
         margin: 0 auto;
     }
 
-    /* 🔥 NUEVO: tamaño grande (para hero) */
+    /* formato lg */
     &--lg {
         padding: 14px 28px;
         font-size: 15px;
     }
 
-    /* 🔥 NUEVO: ancho completo (mobile forms, CTAs) */
+    /* width completo */
     &--full {
         width: 100%;
         text-align: center;
@@ -40,7 +40,7 @@
             box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
         }
 
-        /* 🔥 NUEVO: active state */
+        /* activo */
         &:active {
             transform: scale(0.98);
         }
@@ -56,13 +56,13 @@
             color: #fff;
         }
 
-        /* 🔥 NUEVO: active state */
+        /* activo*/
         &:active {
             transform: scale(0.98);
         }
     }
 
-    /* 🔥 NUEVO: accesibilidad (focus visible) */
+    /* accesivilidad */
     &:focus-visible {
         outline: 2px solid #2563EB;
         outline-offset: 2px;
