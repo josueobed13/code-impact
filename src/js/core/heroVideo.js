@@ -1,88 +1,37 @@
 // ==========================
-// HERO SLIDER ULTRA OPTIMIZADO
+// HERO SLIDER OPTIMIZADO (FIX DEFINITIVO)
 // ==========================
 
 function initHeroSlider() {
 
-    // ==========================
-    // ELEMENTOS
-    // ==========================
-    const slider =
-        document.querySelector(
-            '.hero__slides'
-        );
+    const slider = document.querySelector('.hero__slides');
+    const container = document.querySelector('.hero__slider');
 
-    const container =
-        document.querySelector(
-            '.hero__slider'
-        );
-
-    // salir si no existe
     if (!slider || !container) return;
 
-    // evitar doble init
     if (slider.dataset.loaded) return;
-
     slider.dataset.loaded = 'true';
 
-    // ==========================
-    // TODAS LAS SLIDES
-    // ==========================
     const slidesData = [
-
         {
-            avif:
-                BASE_URL +
-                'build/img/header/desarollo-web.avif',
-
-            webp:
-                BASE_URL +
-                'build/img/header/desarollo-web.webp',
-
-            jpg:
-                BASE_URL +
-                'build/img/header/desarollo-web.jpg',
-
-            alt:
-                'Desarrollo web',
-
+            avif: BASE_URL + 'build/img/header/desarollo-web.avif',
+            webp: BASE_URL + 'build/img/header/desarollo-web.webp',
+            jpg: BASE_URL + 'build/img/header/desarollo-web.jpg',
+            alt: 'Desarrollo web',
             eager: true
         },
-
         {
-            avif:
-                BASE_URL +
-                'build/img/header/produccion-marketing.avif',
-
-            webp:
-                BASE_URL +
-                'build/img/header/produccion-marketing.webp',
-
-            jpg:
-                BASE_URL +
-                'build/img/header/produccion-marketing.jpg',
-
-            alt:
-                'Producción y marketing'
+            avif: BASE_URL + 'build/img/header/produccion-marketing.avif',
+            webp: BASE_URL + 'build/img/header/produccion-marketing.webp',
+            jpg: BASE_URL + 'build/img/header/produccion-marketing.jpg',
+            alt: 'Producción y marketing'
         },
-
         {
-            avif:
-                BASE_URL +
-                'build/img/header/codeimpact-web.avif',
-
-            webp:
-                BASE_URL +
-                'build/img/header/codeimpact-web.webp',
-
-            jpg:
-                BASE_URL +
-                'build/img/header/codeimpact-web.jpg',
-
-            alt:
-                'CodeImpact web'
+            avif: BASE_URL + 'build/img/header/codeimpact-web.avif',
+            webp: BASE_URL + 'build/img/header/codeimpact-web.webp',
+            jpg: BASE_URL + 'build/img/header/codeimpact-web.jpg',
+            alt: 'CodeImpact web'
         }
-
     ];
 
     // ==========================
@@ -90,170 +39,84 @@ function initHeroSlider() {
     // ==========================
     function createSlides() {
 
-        const fragment =
-            document.createDocumentFragment();
+        const fragment = document.createDocumentFragment();
 
-        slidesData.forEach((slide, index) => {
+        slidesData.forEach((slide) => {
 
-            const picture =
-                document.createElement(
-                    'picture'
-                );
+            const picture = document.createElement('picture');
 
-            picture.innerHTML =
+            picture.innerHTML = `
+                <source srcset="${slide.avif}" type="image/avif">
+                <source srcset="${slide.webp}" type="image/webp">
+                <img
+                    src="${slide.jpg}"
+                    alt="${slide.alt}"
+                    width="1920"
+                    height="1080"
+                    decoding="async"
+                    fetchpriority="${slide.eager ? 'high' : 'low'}"
+                    loading="${slide.eager ? 'eager' : 'lazy'}"
+                >
+            `;
 
-                '<source ' +
-                    'srcset="' + slide.avif + '" ' +
-                    'type="image/avif">' +
-
-                '<source ' +
-                    'srcset="' + slide.webp + '" ' +
-                    'type="image/webp">' +
-
-                '<img ' +
-                    'src="' + slide.jpg + '" ' +
-                    'alt="' + slide.alt + '" ' +
-                    'loading="' +
-                    (
-                        slide.eager
-                            ? 'eager'
-                            : 'lazy'
-                    ) +
-                    '" ' +
-                    'fetchpriority="' +
-                    (
-                        slide.eager
-                            ? 'high'
-                            : 'low'
-                    ) +
-                    '" ' +
-                    'decoding="async" ' +
-                    'width="1920" ' +
-                    'height="1080">';
-
-            fragment.appendChild(
-                picture
-            );
-
+            fragment.appendChild(picture);
         });
 
         slider.appendChild(fragment);
-
     }
 
     // ==========================
-    // START
+    // SLIDER CORE
     // ==========================
     function startSlider() {
 
         createSlides();
 
-        requestAnimationFrame(() => {
-
-            slider.classList.add(
-                'is-ready'
-            );
-
-        });
-
-        const slides =
-            slider.querySelectorAll(
-                'picture'
-            );
+        const slides = slider.querySelectorAll('picture');
+        const totalSlides = slides.length;
 
         let index = 0;
 
-        // ==========================
-        // RED LENTA
-        // ==========================
-        const connection =
-            navigator.connection ||
-            navigator.mozConnection ||
-            navigator.webkitConnection;
-
-        let intervalTime = 5000;
-
-        if (
-            connection &&
-            (
-                connection.saveData ||
-                connection.effectiveType === '2g' ||
-                connection.effectiveType === 'slow-2g'
-            )
-        ) {
-
-            intervalTime = 8000;
-
+        // 🔥 FIX CLAVE: usar width estable (NO getBoundingClientRect)
+        function getSlideWidth() {
+            return container.offsetWidth;
         }
 
-        // ==========================
-        // GO TO
-        // ==========================
-       function goToSlide(i) {
+        function goToSlide(i) {
+            const width = getSlideWidth();
 
-    const slideWidth =
-        container.clientWidth;
+            slider.style.transform =
+                `translate3d(-${i * width}px,0,0)`;
+        }
 
-    slider.style.transform =
-        `translate3d(-${i * slideWidth}px,0,0)`;
-
-}
-
-        // ==========================
-        // NEXT
-        // ==========================
         function nextSlide() {
-
-            index =
-                (index + 1) %
-                slides.length;
-
+            index = (index + 1) % totalSlides;
             goToSlide(index);
-
         }
 
-        // ==========================
-        // AUTOPLAY
-        // ==========================
-        setInterval(
-            nextSlide,
-            intervalTime
-        );
+        // activar transición después del primer frame
+        requestAnimationFrame(() => {
+            slider.classList.add('is-ready');
+        });
 
+        // autoplay
+        const interval = setInterval(nextSlide, 5000);
+
+        // mantener coherencia en resize
+        window.addEventListener('resize', () => {
+            goToSlide(index);
+        });
+
+        // posición inicial obligatoria
+        goToSlide(0);
     }
 
-    // ==========================
-    // IDLE LOAD
-    // ==========================
-    if ('requestIdleCallback' in window) {
-
-        requestIdleCallback(
-            startSlider
-        );
-
-    } else {
-
-        setTimeout(
-            startSlider,
-            1200
-        );
-
-    }
-
+    startSlider();
 }
 
 // ==========================
 // INIT
 // ==========================
-window.addEventListener(
-    'load',
-    () => {
-
-        requestAnimationFrame(() => {
-
-            initHeroSlider();
-
-        });
-
-    }
-);
+document.addEventListener('DOMContentLoaded', () => {
+    initHeroSlider();
+});

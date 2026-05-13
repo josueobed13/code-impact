@@ -8,16 +8,12 @@ if (!defined('BASE_URL')) {
     $isLocal = in_array($host, ['localhost', '127.0.0.1']);
 
     if ($isLocal) {
-
         define('BASE_URL', '/codeImpact/public/');
-
     } else {
-
         define('BASE_URL', '/');
-
     }
-
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -27,17 +23,13 @@ if (!defined('BASE_URL')) {
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>
         <?php echo $titulo ?? 'CodeImpact'; ?>
     </title>
 
-    <meta
-        name="description"
+    <meta name="description"
         content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>"
     >
 
@@ -45,8 +37,7 @@ if (!defined('BASE_URL')) {
          JS GLOBAL CONFIG
     ========================================== -->
     <script>
-        const BASE_URL =
-            "<?php echo BASE_URL; ?>";
+        const BASE_URL = "<?php echo BASE_URL; ?>";
     </script>
 
     <!-- =========================================
@@ -75,16 +66,8 @@ if (!defined('BASE_URL')) {
         crossorigin
     >
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- =========================================
          HERO IMAGE PRELOAD (SOLO HOME)
@@ -92,12 +75,17 @@ if (!defined('BASE_URL')) {
 
     <?php if (($titulo ?? '') === 'Inicio | CodeImpact'): ?>
 
+        <!-- LCP OPTIMIZED PRELOAD (multi-format safe) -->
         <link
             rel="preload"
             as="image"
-            href="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
-            type="image/avif"
-            fetchpriority="high"
+            href="<?= BASE_URL; ?>build/img/header/desarollo-web.jpg"
+            imagesrcset="
+                <?= BASE_URL; ?>build/img/header/desarollo-web.avif 1x,
+                <?= BASE_URL; ?>build/img/header/desarollo-web.webp 1x,
+                <?= BASE_URL; ?>build/img/header/desarollo-web.jpg 1x
+            "
+            imagesizes="100vw"
         >
 
     <?php endif; ?>
@@ -106,23 +94,12 @@ if (!defined('BASE_URL')) {
          FAVICON
     ========================================== -->
 
-    <link
-        rel="icon"
-        href="<?= BASE_URL ?>build/img/favicon/favicon.ico"
-    >
+    <link rel="icon" href="<?= BASE_URL ?>build/img/favicon/favicon.ico">
 
-    <link
-        rel="icon"
-        type="image/svg+xml"
-        href="<?= BASE_URL ?>build/img/favicon/favicon.svg"
-    >
+    <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>build/img/favicon/favicon.svg">
 
-    <link
-        rel="icon"
-        type="image/png"
-        sizes="96x96"
-        href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png"
-    >
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png">
 
 </head>
 

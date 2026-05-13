@@ -26,18 +26,13 @@
         <div class="hero__media">
 
             <div class="hero__slider">
-
-                <div class="hero__slides">
-
-                  <div class="hero__slides">
-
- 
-
-              </div>
-
+                <div class="hero__slides"></div>
             </div>
 
         </div>
+
+
+
 
     </div>
 </section>
