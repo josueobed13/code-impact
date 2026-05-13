@@ -93,3 +93,5 @@
     </div>
 
 </section>
+
+<script src="<?= BASE_URL; ?>build/js/ui.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/ui.min.js'); ?>" defer></script>

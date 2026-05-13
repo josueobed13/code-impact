@@ -33,6 +33,21 @@ export function css() {
         .pipe(dest('./public/build/css', { sourcemaps: '.' }))
 }
 
+
+
+// ==========================
+// JS CORE
+// ==========================
+export function jsinitial() {
+    return src('src/js/initial/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(concat('initial.min.js'))
+        .pipe(terser())
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest('./public/build/js'))
+}
+
+
 // ==========================
 // JS CORE
 // ==========================
@@ -159,7 +174,7 @@ export function videos() {
 // ==========================
 export function dev() {
     watch(paths.scss, { usePolling: true }, css)
-    watch(paths.js, { usePolling: true }, series(jsCore, jsUI, jsHome))
+    watch(paths.js, { usePolling: true }, series(jsinitial, jsCore, jsUI, jsHome))
     watch(paths.img, { usePolling: true }, imagenes)
     watch(paths.video, { usePolling: true }, videos)
     watch(paths.animations, { usePolling: true }, animations)
@@ -169,6 +184,7 @@ export function dev() {
 // DEFAULT
 // ==========================
 export default series(
+    jsinitial,
     jsCore,
     jsUI,
     jsHome,

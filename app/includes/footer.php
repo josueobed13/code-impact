@@ -221,10 +221,6 @@ FOOTER
 
 <script src="<?= BASE_URL; ?>build/js/core.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/core.min.js'); ?>" defer></script>
 
-
-<script src="<?= BASE_URL; ?>build/js/ui.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/ui.min.js'); ?>" defer></script>
-
-
 <script src="<?= BASE_URL; ?>build/js/home.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/home.min.js'); ?>" defer></script>
 
 
