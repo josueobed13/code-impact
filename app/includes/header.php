@@ -67,7 +67,6 @@ if (!defined('BASE_URL')) {
          FONTS
     ========================================== -->
 
-    <!-- fuente local -->
     <link
         rel="preload"
         href="<?= BASE_URL ?>build/fonts/Inter-Regular.woff2"
@@ -76,7 +75,6 @@ if (!defined('BASE_URL')) {
         crossorigin
     >
 
-    <!-- google -->
     <link
         rel="preconnect"
         href="https://fonts.googleapis.com"

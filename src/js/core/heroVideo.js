@@ -1,130 +1,259 @@
 // ==========================
-// HERO SLIDER OPTIMIZADO
+// HERO SLIDER ULTRA OPTIMIZADO
 // ==========================
+
 function initHeroSlider() {
 
+    // ==========================
+    // ELEMENTOS
+    // ==========================
     const slider =
-        document.querySelector('.hero__slides');
+        document.querySelector(
+            '.hero__slides'
+        );
 
     const container =
-        document.querySelector('.hero__slider');
+        document.querySelector(
+            '.hero__slider'
+        );
 
     // salir si no existe
     if (!slider || !container) return;
 
-    // evitar múltiples inicializaciones
+    // evitar doble init
     if (slider.dataset.loaded) return;
 
-    // ==========================
-    // AHORRO DE RECURSOS
-    // ==========================
-    const connection =
-        navigator.connection ||
-        navigator.mozConnection ||
-        navigator.webkitConnection;
-
-    // si el usuario está en red lenta, reducir animación
-    let intervalTime = 5000;
-
-    if (
-        connection &&
-        (
-            connection.saveData ||
-            connection.effectiveType === '2g' ||
-            connection.effectiveType === 'slow-2g'
-        )
-    ) {
-        intervalTime = 8000; // más lento para ahorrar datos
-    }
+    slider.dataset.loaded = 'true';
 
     // ==========================
-    // SLIDER STATE
+    // TODAS LAS SLIDES
     // ==========================
-    const slides =
-        document.querySelectorAll('.hero__slides picture');
+    const slidesData = [
 
-    let index = 0;
-    let interval = null;
+        {
+            avif:
+                BASE_URL +
+                'build/img/header/desarollo-web.avif',
 
-    function goToSlide(i) {
+            webp:
+                BASE_URL +
+                'build/img/header/desarollo-web.webp',
 
-        slider.style.transform =
-            `translateX(-${i * 100}%)`;
-    }
+            jpg:
+                BASE_URL +
+                'build/img/header/desarollo-web.jpg',
 
-    function nextSlide() {
+            alt:
+                'Desarrollo web',
 
-        index++;
+            eager: true
+        },
 
-        if (index >= slides.length) {
-            index = 0;
+        {
+            avif:
+                BASE_URL +
+                'build/img/header/produccion-marketing.avif',
+
+            webp:
+                BASE_URL +
+                'build/img/header/produccion-marketing.webp',
+
+            jpg:
+                BASE_URL +
+                'build/img/header/produccion-marketing.jpg',
+
+            alt:
+                'Producción y marketing'
+        },
+
+        {
+            avif:
+                BASE_URL +
+                'build/img/header/codeimpact-web.avif',
+
+            webp:
+                BASE_URL +
+                'build/img/header/codeimpact-web.webp',
+
+            jpg:
+                BASE_URL +
+                'build/img/header/codeimpact-web.jpg',
+
+            alt:
+                'CodeImpact web'
         }
 
-        goToSlide(index);
-    }
-
-    function startAutoplay() {
-
-        interval =
-            setInterval(nextSlide, intervalTime);
-    }
-
-    function stopAutoplay() {
-
-        if (interval) clearInterval(interval);
-    }
+    ];
 
     // ==========================
-    // INTERSECTION OBSERVER
+    // CREAR SLIDES
     // ==========================
-    const observer =
-        new IntersectionObserver((entries) => {
+    function createSlides() {
 
-            const entry = entries[0];
+        const fragment =
+            document.createDocumentFragment();
 
-            // si no está visible, no iniciar
-            if (!entry.isIntersecting) return;
+        slidesData.forEach((slide, index) => {
 
-            // evitar doble init
-            if (slider.dataset.loaded) return;
+            const picture =
+                document.createElement(
+                    'picture'
+                );
 
-            slider.dataset.loaded = 'true';
+            picture.innerHTML =
 
-            // iniciar autoplay cuando entra en pantalla
-            startAutoplay();
+                '<source ' +
+                    'srcset="' + slide.avif + '" ' +
+                    'type="image/avif">' +
 
-            // opcional: pausar cuando sale
-            observer.disconnect();
+                '<source ' +
+                    'srcset="' + slide.webp + '" ' +
+                    'type="image/webp">' +
 
-        }, {
-            threshold: 0.2
+                '<img ' +
+                    'src="' + slide.jpg + '" ' +
+                    'alt="' + slide.alt + '" ' +
+                    'loading="' +
+                    (
+                        slide.eager
+                            ? 'eager'
+                            : 'lazy'
+                    ) +
+                    '" ' +
+                    'fetchpriority="' +
+                    (
+                        slide.eager
+                            ? 'high'
+                            : 'low'
+                    ) +
+                    '" ' +
+                    'decoding="async" ' +
+                    'width="1920" ' +
+                    'height="1080">';
+
+            fragment.appendChild(
+                picture
+            );
+
         });
 
-    observer.observe(container);
+        slider.appendChild(fragment);
+
+    }
+
+    // ==========================
+    // START
+    // ==========================
+    function startSlider() {
+
+        createSlides();
+
+        requestAnimationFrame(() => {
+
+            slider.classList.add(
+                'is-ready'
+            );
+
+        });
+
+        const slides =
+            slider.querySelectorAll(
+                'picture'
+            );
+
+        let index = 0;
+
+        // ==========================
+        // RED LENTA
+        // ==========================
+        const connection =
+            navigator.connection ||
+            navigator.mozConnection ||
+            navigator.webkitConnection;
+
+        let intervalTime = 5000;
+
+        if (
+            connection &&
+            (
+                connection.saveData ||
+                connection.effectiveType === '2g' ||
+                connection.effectiveType === 'slow-2g'
+            )
+        ) {
+
+            intervalTime = 8000;
+
+        }
+
+        // ==========================
+        // GO TO
+        // ==========================
+       function goToSlide(i) {
+
+    const slideWidth =
+        container.clientWidth;
+
+    slider.style.transform =
+        `translate3d(-${i * slideWidth}px,0,0)`;
+
+}
+
+        // ==========================
+        // NEXT
+        // ==========================
+        function nextSlide() {
+
+            index =
+                (index + 1) %
+                slides.length;
+
+            goToSlide(index);
+
+        }
+
+        // ==========================
+        // AUTOPLAY
+        // ==========================
+        setInterval(
+            nextSlide,
+            intervalTime
+        );
+
+    }
+
+    // ==========================
+    // IDLE LOAD
+    // ==========================
+    if ('requestIdleCallback' in window) {
+
+        requestIdleCallback(
+            startSlider
+        );
+
+    } else {
+
+        setTimeout(
+            startSlider,
+            1200
+        );
+
+    }
 
 }
 
 // ==========================
-// INIT DESPUÉS DEL LOAD
+// INIT
 // ==========================
-window.addEventListener('load', () => {
+window.addEventListener(
+    'load',
+    () => {
 
-    if ('requestIdleCallback' in window) {
-
-        requestIdleCallback(() => {
+        requestAnimationFrame(() => {
 
             initHeroSlider();
 
         });
 
-    } else {
-
-        setTimeout(() => {
-
-            initHeroSlider();
-
-        }, 800);
-
     }
-
-});
+);

@@ -248,10 +248,11 @@ p {
 }
 .hero__media {
   position: relative;
-  transform: none;
-  aspect-ratio: 16/9;
   width: 100%;
+  aspect-ratio: 16/9;
   contain: layout paint;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 .hero {
   /* =========================
@@ -261,6 +262,7 @@ p {
 .hero__media video {
   width: 100%;
   height: 100%;
+  display: block;
   object-fit: cover;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
@@ -280,19 +282,35 @@ p {
   transform: translateZ(0);
   backface-visibility: hidden;
 }
+.hero {
+  /* =========================
+     TRACK
+  ========================= */
+}
 .hero__slides {
   display: flex;
   width: 100%;
   height: 100%;
-  transition: transform 0.45s ease;
   will-change: transform;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+}
+.hero {
+  /* transición activada DESPUÉS */
+}
+.hero__slides.is-ready {
+  transition: transform 0.45s ease;
+}
+.hero {
+  /* =========================
+     SLIDES
+  ========================= */
 }
 .hero__slides picture {
   min-width: 100%;
   height: 100%;
   display: block;
+  flex-shrink: 0;
 }
 .hero__slides img {
   width: 100%;
@@ -352,7 +370,7 @@ p {
     width: 100%;
     justify-items: center;
     text-align: center;
-    margin: 0rem;
+    margin: 0;
   }
   .hero__media {
     order: -1;
@@ -382,16 +400,16 @@ p {
 }
 @media (max-width: 517px) {
   .hero__title {
-    padding: 0rem 1.2rem;
+    padding: 0 1.2rem;
   }
   .hero__text {
-    padding: 0rem 1.2rem;
+    padding: 0 1.2rem;
   }
 }
 @media (max-width: 444px) {
   .hero__title {
     font-size: 2.6rem;
-    padding: 0rem 1rem 0rem 1rem;
+    padding: 0 1rem;
   }
 }
 @media (max-width: 380px) {
@@ -399,7 +417,7 @@ p {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 0 3rem 0 3rem;
+    padding: 0 3rem;
     gap: 1rem;
   }
 }
