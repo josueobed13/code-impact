@@ -13,26 +13,19 @@ function initHeroSlider() {
     slider.dataset.loaded = 'true';
 
     const slidesData = [
-        {
-            avif: BASE_URL + 'build/img/header/desarollo-web.avif',
-            webp: BASE_URL + 'build/img/header/desarollo-web.webp',
-            jpg: BASE_URL + 'build/img/header/desarollo-web.jpg',
-            alt: 'Desarrollo web',
-            eager: true
-        },
-        {
-            avif: BASE_URL + 'build/img/header/produccion-marketing.avif',
-            webp: BASE_URL + 'build/img/header/produccion-marketing.webp',
-            jpg: BASE_URL + 'build/img/header/produccion-marketing.jpg',
-            alt: 'Producción y marketing'
-        },
-        {
-            avif: BASE_URL + 'build/img/header/codeimpact-web.avif',
-            webp: BASE_URL + 'build/img/header/codeimpact-web.webp',
-            jpg: BASE_URL + 'build/img/header/codeimpact-web.jpg',
-            alt: 'CodeImpact web'
-        }
-    ];
+    {
+        avif: BASE_URL + 'build/img/header/produccion-marketing.avif',
+        webp: BASE_URL + 'build/img/header/produccion-marketing.webp',
+        jpg: BASE_URL + 'build/img/header/produccion-marketing.jpg',
+        alt: 'Producción y marketing'
+    },
+    {
+        avif: BASE_URL + 'build/img/header/codeimpact-web.avif',
+        webp: BASE_URL + 'build/img/header/codeimpact-web.webp',
+        jpg: BASE_URL + 'build/img/header/codeimpact-web.jpg',
+        alt: 'CodeImpact web'
+    }
+];
 
     // ==========================
     // CREAR SLIDES
