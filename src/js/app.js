@@ -21,7 +21,6 @@ window.addEventListener('load', () => {
     setTimeout(() => {
 
         
-        window.initCatalog?.();
 
         // LOTTIE (solo si existe)
         if (document.querySelector('.lazy-lottie')) {

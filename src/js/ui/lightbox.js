@@ -1,6 +1,3 @@
-// ==========================
-// 🔥 LIGHTBOX (OPTIMIZADO + CONSISTENTE)
-// ==========================
 function initLightbox() {
 
     const triggers = document.querySelectorAll('.js-lightbox');
@@ -13,21 +10,15 @@ function initLightbox() {
 
     if (!triggers.length || !lightbox || !lightboxImg) return;
 
-    // =========================
-    // STATE GLOBAL
-    // =========================
     let group = [];
     let index = 0;
 
     // =========================
-    // UPDATE IMAGE
+    // UPDATE (solo WRITE DOM)
     // =========================
     const update = () => {
-
         const img = group[index];
-
         if (!img) return;
-
         lightboxImg.src = img.currentSrc || img.src;
     };
 
@@ -35,20 +26,14 @@ function initLightbox() {
     // NAV
     // =========================
     const next = () => {
-
         if (group.length <= 1) return;
-
         index = (index + 1) % group.length;
-
         update();
     };
 
     const prev = () => {
-
         if (group.length <= 1) return;
-
         index = (index - 1 + group.length) % group.length;
-
         update();
     };
 
@@ -56,75 +41,70 @@ function initLightbox() {
     // OPEN
     // =========================
     const open = (imgs, startIndex = 0) => {
-
         group = imgs;
         index = startIndex;
 
         lightbox.classList.add('active');
-
         update();
 
         const hasMultiple = group.length > 1;
-
-        prevBtn.style.display = hasMultiple ? 'block' : 'none';
-        nextBtn.style.display = hasMultiple ? 'block' : 'none';
+        if (prevBtn) prevBtn.style.display = hasMultiple ? 'block' : 'none';
+        if (nextBtn) nextBtn.style.display = hasMultiple ? 'block' : 'none';
     };
 
     // =========================
-    // CLICK HANDLER
+    // CLICK HANDLER (SIN HEAVY DOM QUERIES)
     // =========================
-    triggers.forEach(img => {
+    triggers.forEach(trigger => {
 
-        img.style.cursor = 'zoom-in';
+        trigger.style.cursor = 'zoom-in';
 
-        img.addEventListener('click', (e) => {
+        trigger.addEventListener('click', (e) => {
 
             e.preventDefault();
             e.stopPropagation();
 
-            const catalog = img.closest('.catalog-item');
+            const catalog = trigger.closest('.catalog-item');
 
             // =========================
-            // CATALOGO (SLIDER INTERNO)
+            // CATALOGO
             // =========================
             if (catalog) {
 
-                const imgs = Array.from(
-                    catalog.querySelectorAll('.catalog-track picture img')
-                );
+                const imgs = catalog.querySelectorAll('.catalog-track picture img');
 
-                const active = catalog.querySelector(
-                    '.catalog-track picture.active img'
-                );
+                const active = catalog.querySelector('.catalog-track picture.active img');
 
-                const startIndex = Math.max(
-                    imgs.indexOf(active),
-                    0
-                );
+                let startIndex = 0;
+
+                // evitar indexOf directo (menos costoso)
+                if (active) {
+                    for (let i = 0; i < imgs.length; i++) {
+                        if (imgs[i] === active) {
+                            startIndex = i;
+                            break;
+                        }
+                    }
+                }
 
                 open(imgs, startIndex);
-
                 return;
             }
 
             // =========================
             // SIMPLE IMAGE
             // =========================
-            open([img], 0);
+            open([trigger], 0);
 
         });
-
     });
 
     // =========================
     // CLOSE
     // =========================
     const close = () => {
-
         lightbox.classList.remove('active');
-
         lightboxImg.src = '';
-
         group = [];
         index = 0;
     };
@@ -132,63 +112,33 @@ function initLightbox() {
     closeBtn?.addEventListener('click', close);
 
     lightbox.addEventListener('click', (e) => {
-
-        if (e.target === lightbox) {
-            close();
-        }
-
+        if (e.target === lightbox) close();
     });
 
-    // =========================
-    // BUTTONS
-    // =========================
     nextBtn?.addEventListener('click', (e) => {
-
         e.stopPropagation();
-
         next();
     });
 
     prevBtn?.addEventListener('click', (e) => {
-
         e.stopPropagation();
-
         prev();
     });
 
-    // =========================
-    // KEYBOARD
-    // =========================
     document.addEventListener('keydown', (e) => {
 
         if (!lightbox.classList.contains('active')) return;
 
-        if (e.key === 'Escape') {
-            close();
-        }
+        if (e.key === 'Escape') close();
 
         if (group.length > 1) {
-
-            if (e.key === 'ArrowRight') {
-                next();
-            }
-
-            if (e.key === 'ArrowLeft') {
-                prev();
-            }
-
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
         }
-
     });
-
 }
 
-// ==========================
-// INIT DIFERIDO (6 SEGUNDOS)
-// SOLO PARA .clients
-// O .service-catalog
-// ==========================
-setTimeout(() => {
+document.addEventListener('DOMContentLoaded', () => {
 
     const hasClients = document.querySelector('.clients');
     const hasServiceCatalog = document.querySelector('.service-catalog');
@@ -197,4 +147,4 @@ setTimeout(() => {
         initLightbox();
     }
 
-}, 4000);
+});

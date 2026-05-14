@@ -1,26 +1,31 @@
 // ==========================
-// 🔥 CATALOG SLIDER (OPTIMIZADO FINAL)
+// 🔥 CATALOG SLIDER (FINAL CLEAN)
 // ==========================
 function initCatalog() {
 
     const items = document.querySelectorAll(".catalog-item");
     if (!items.length) return;
 
+    // evita doble init global
+    if (document.body.dataset.catalogInit) return;
+    document.body.dataset.catalogInit = "true";
+
     items.forEach((item) => {
 
         const track = item.querySelector(".catalog-track");
-        const images = track ? track.querySelectorAll("picture") : [];
+        if (!track) return;
+
+        const images = track.querySelectorAll("picture");
+        if (!images.length) return;
 
         const prevBtn = item.querySelector(".catalog-prev");
         const nextBtn = item.querySelector(".catalog-next");
-
-        if (!images.length) return;
 
         let currentIndex = 0;
         let isAnimating = false;
 
         // =========================
-        // CHANGE SLIDE (SAFE)
+        // CHANGE SLIDE (NO REFLOW)
         // =========================
         const show = (newIndex) => {
 
@@ -32,7 +37,6 @@ function initCatalog() {
             const prev = images[currentIndex];
             const next = images[newIndex];
 
-            // batch DOM updates
             requestAnimationFrame(() => {
 
                 prev.classList.remove("active");
@@ -40,7 +44,6 @@ function initCatalog() {
 
                 currentIndex = newIndex;
 
-                // liberar lock después de frame
                 requestAnimationFrame(() => {
                     isAnimating = false;
                 });
@@ -72,23 +75,15 @@ function initCatalog() {
         });
 
         // =========================
-        // SWIPE OPTIMIZADO
+        // SWIPE (SIMPLIFICADO)
         // =========================
         let startX = 0;
-        let moved = false;
 
         item.addEventListener("touchstart", (e) => {
             startX = e.touches[0].clientX;
-            moved = false;
-        }, { passive: true });
-
-        item.addEventListener("touchmove", () => {
-            moved = true;
         }, { passive: true });
 
         item.addEventListener("touchend", (e) => {
-
-            if (!moved) return;
 
             const endX = e.changedTouches[0].clientX;
             const diff = startX - endX;
@@ -100,12 +95,15 @@ function initCatalog() {
         }, { passive: true });
 
         // =========================
-        // INIT SAFE
+        // INIT FIRST STATE
         // =========================
-        images.forEach(img => img.classList.remove("active"));
-        images[0].classList.add("active");
+        for (let i = 0; i < images.length; i++) {
+            images[i].classList.remove("active");
+        }
 
+        images[0].classList.add("active");
     });
 }
 
-initCatalog();
+// NO auto-init aquí (IMPORTANTE)
+// initCatalog();
