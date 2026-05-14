@@ -1,19 +1,17 @@
 (function () {
 
-    let lottieScriptLoading = false;
+    let lottieLoaded = false;
 
     function loadLottieScript(callback) {
 
-        // YA EXISTE
         if (window.lottie) {
             callback();
             return;
         }
 
-        // EVITA DUPLICADOS
-        if (lottieScriptLoading) return;
+        if (lottieLoaded) return;
 
-        lottieScriptLoading = true;
+        lottieLoaded = true;
 
         const script = document.createElement('script');
 
@@ -22,75 +20,59 @@
 
         script.defer = true;
 
-        script.onload = () => {
-            callback();
-        };
+        script.onload = callback;
 
         document.body.appendChild(script);
     }
 
-    function initLazyLotties() {
+    function initLottie() {
 
-        const items = document.querySelectorAll('.lazy-lottie');
+        const lazyItems = document.querySelectorAll('.lazy-lottie');
 
-        if (!items.length) return;
+        if (!lazyItems.length) return;
 
-        const observer = new IntersectionObserver((entries, obs) => {
+        loadLottieScript(() => {
 
-            entries.forEach(entry => {
+            const observer = new IntersectionObserver((entries, obs) => {
 
-                if (!entry.isIntersecting) return;
+                entries.forEach(entry => {
 
-                const target = entry.target;
+                    if (!entry.isIntersecting) return;
+                    if (entry.target.dataset.loaded) return;
 
-                if (target.dataset.loaded === "true") return;
+                    entry.target.dataset.loaded = 'true';
+                    entry.target.innerHTML = '';
 
-                target.dataset.loaded = "true";
-
-                loadLottieScript(() => {
-
-                    target.innerHTML = '';
-
-                    const name = target.dataset.animation;
+                    const name = entry.target.dataset.animation;
 
                     window.lottie.loadAnimation({
-                        container: target,
-
-                        // MEJOR RENDIMIENTO
-                        renderer: 'canvas',
-
+                        name: `lottie-${name}-${Date.now()}`,
+                        container: entry.target,
+                        renderer: 'svg',
                         loop: true,
                         autoplay: true,
-                        path: BASE_URL + 'build/animations/' + name + '.json'
+                        path: `${BASE_URL}build/animations/${name}.json`
                     });
+
+                    obs.unobserve(entry.target);
 
                 });
 
-                obs.unobserve(target);
-
+            }, {
+                threshold: 0.15
             });
 
-        }, {
-            threshold: 0.15,
-            rootMargin: '150px'
-        });
+            lazyItems.forEach(item => observer.observe(item));
 
-        items.forEach(el => observer.observe(el));
+        });
     }
 
-    // INIT SEGURO
     if (document.readyState === 'loading') {
-
         document.addEventListener('DOMContentLoaded', () => {
-            requestAnimationFrame(initLazyLotties);
+            requestAnimationFrame(initLottie);
         });
-
     } else {
-
-        requestAnimationFrame(initLazyLotties);
-
+        requestAnimationFrame(initLottie);
     }
-
-    window.initLazyLotties = initLazyLotties;
 
 })();
