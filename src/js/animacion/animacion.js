@@ -8,8 +8,7 @@
 
         started = true;
 
-        const lazyItems =
-            document.querySelectorAll('.lazy-lottie');
+        const lazyItems = document.querySelectorAll('.lazy-lottie');
 
         if (!lazyItems.length) return;
 
@@ -33,21 +32,15 @@
 
                     entry.target.dataset.loaded = 'true';
 
-                    const name =
-                        entry.target.dataset.animation;
+                    const name = entry.target.dataset.animation;
 
                     window.lottie.loadAnimation({
 
                         container: entry.target,
-
                         renderer: 'svg',
-
                         loop: true,
-
                         autoplay: true,
-
-                        path:
-                            `${BASE_URL}build/animations/${name}.json`
+                        path: `${BASE_URL}build/animations/${name}.json`
 
                     });
 
@@ -56,66 +49,45 @@
                 });
 
             }, {
-
                 threshold: 0.15,
                 rootMargin: '200px'
-
             });
 
-            lazyItems.forEach(item => {
-
-                observer.observe(item);
-
-            });
-
+            lazyItems.forEach(item => observer.observe(item));
         };
 
         document.body.appendChild(script);
 
-        // LIMPIAR EVENTOS
-        window.removeEventListener(
-            'scroll',
-            initLottieSystem
-        );
-
-        window.removeEventListener(
-            'touchstart',
-            initLottieSystem
-        );
-
-        window.removeEventListener(
-            'mousemove',
-            initLottieSystem
-        );
-
+        window.removeEventListener('scroll', initLottieSystem);
+        window.removeEventListener('touchstart', initLottieSystem);
+        window.removeEventListener('mousemove', initLottieSystem);
     }
 
-    // ESPERAR INTERACCIÓN REAL
-    window.addEventListener(
-        'scroll',
-        initLottieSystem,
-        {
-            passive: true,
-            once: true
-        }
-    );
+    // =========================
+    // INIT DIFERIDO (5 SEGUNDOS + VALIDACIÓN)
+    // =========================
+    setTimeout(() => {
 
-    window.addEventListener(
-        'touchstart',
-        initLottieSystem,
-        {
-            passive: true,
-            once: true
-        }
-    );
+        const hasLottie = document.querySelector('.lazy-lottie');
 
-    window.addEventListener(
-        'mousemove',
-        initLottieSystem,
-        {
-            passive: true,
-            once: true
+        if (hasLottie) {
+
+            window.addEventListener('scroll', initLottieSystem, {
+                passive: true,
+                once: true
+            });
+
+            window.addEventListener('touchstart', initLottieSystem, {
+                passive: true,
+                once: true
+            });
+
+            window.addEventListener('mousemove', initLottieSystem, {
+                passive: true,
+                once: true
+            });
         }
-    );
+
+    }, 3000);
 
 })();

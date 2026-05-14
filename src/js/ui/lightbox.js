@@ -23,7 +23,9 @@ function initLightbox() {
     // UPDATE IMAGE
     // =========================
     const update = () => {
+
         const img = group[index];
+
         if (!img) return;
 
         lightboxImg.src = img.currentSrc || img.src;
@@ -33,16 +35,20 @@ function initLightbox() {
     // NAV
     // =========================
     const next = () => {
+
         if (group.length <= 1) return;
 
         index = (index + 1) % group.length;
+
         update();
     };
 
     const prev = () => {
+
         if (group.length <= 1) return;
 
         index = (index - 1 + group.length) % group.length;
+
         update();
     };
 
@@ -55,6 +61,7 @@ function initLightbox() {
         index = startIndex;
 
         lightbox.classList.add('active');
+
         update();
 
         const hasMultiple = group.length > 1;
@@ -113,8 +120,11 @@ function initLightbox() {
     // CLOSE
     // =========================
     const close = () => {
+
         lightbox.classList.remove('active');
+
         lightboxImg.src = '';
+
         group = [];
         index = 0;
     };
@@ -122,19 +132,27 @@ function initLightbox() {
     closeBtn?.addEventListener('click', close);
 
     lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) close();
+
+        if (e.target === lightbox) {
+            close();
+        }
+
     });
 
     // =========================
     // BUTTONS
     // =========================
     nextBtn?.addEventListener('click', (e) => {
+
         e.stopPropagation();
+
         next();
     });
 
     prevBtn?.addEventListener('click', (e) => {
+
         e.stopPropagation();
+
         prev();
     });
 
@@ -145,15 +163,38 @@ function initLightbox() {
 
         if (!lightbox.classList.contains('active')) return;
 
-        if (e.key === 'Escape') close();
+        if (e.key === 'Escape') {
+            close();
+        }
 
         if (group.length > 1) {
-            if (e.key === 'ArrowRight') next();
-            if (e.key === 'ArrowLeft') prev();
+
+            if (e.key === 'ArrowRight') {
+                next();
+            }
+
+            if (e.key === 'ArrowLeft') {
+                prev();
+            }
+
         }
+
     });
 
 }
 
-// INIT
-initLightbox();
+// ==========================
+// INIT DIFERIDO (6 SEGUNDOS)
+// SOLO PARA .clients
+// O .service-catalog
+// ==========================
+setTimeout(() => {
+
+    const hasClients = document.querySelector('.clients');
+    const hasServiceCatalog = document.querySelector('.service-catalog');
+
+    if (hasClients || hasServiceCatalog) {
+        initLightbox();
+    }
+
+}, 6000);

@@ -39,4 +39,13 @@ ${mensaje}
 
 }
 
-initContactForm();
+// ==========================
+// INIT SOLO SI EXISTE FORM
+// ==========================
+const contactForm = document.querySelector(
+    'form.contact-form#contactForm'
+);
+
+if (contactForm) {
+    initContactForm();
+}

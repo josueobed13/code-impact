@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
 
     // PRIORIDAD ALTA
-
+    window.initCookies?.();
 
     // LOTTIES
 
@@ -61,10 +61,6 @@ window.addEventListener('load', () => {
 
             window.initServices?.();
             window.initProcessMobile?.();
-            window.initContactForm?.();
-            window.initLightbox?.();
-
-            window.initCookies?.();
 
             console.log("⚡ UI cargada sin reflow");
         });
