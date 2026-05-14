@@ -225,15 +225,8 @@ FOOTER
     defer
 ></script>
 
-<script
-    src="<?= BASE_URL; ?>build/js/initial.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/initial.min.js'); ?>"
-    defer
-></script>
 
-<script
-    src="<?= BASE_URL; ?>build/js/jsanima.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/jsanima.min.js'); ?>"
-    defer
-></script>
+
 <!-- 2. CORE JS -->
 
 

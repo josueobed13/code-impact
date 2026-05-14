@@ -38,14 +38,14 @@ export function css() {
 // ==========================
 // JS loties logo
 // ==========================
-export function jsinitial() {
-    return src('src/js/initial/**/*.js')
-        .pipe(sourcemaps.init())
-        .pipe(concat('initial.min.js'))
-        .pipe(terser())
-        .pipe(sourcemaps.write('.'))
-        .pipe(dest('./public/build/js'))
-}
+//export function jsinitial() {
+   // return src('src/js/initial/**/*.js')
+      //  .pipe(sourcemaps.init())
+     //   .pipe(concat('initial.min.js'))
+     //   .pipe(terser())
+     //   .pipe(sourcemaps.write('.'))
+     //   .pipe(dest('./public/build/js'))
+//}
 
 // ==========================
 // JS loties animacion
@@ -199,7 +199,7 @@ export function videos() {
 // ==========================
 export function dev() {
     watch(paths.scss, { usePolling: true }, css)
-    watch(paths.js, { usePolling: true }, series(jsinitial, jsanima, jscontador, jsCore, jsUI, jsHome))
+    watch(paths.js, { usePolling: true }, series(jsanima, jscontador, jsCore, jsUI, jsHome))
     watch(paths.img, { usePolling: true }, imagenes)
     watch(paths.video, { usePolling: true }, videos)
     watch(paths.animations, { usePolling: true }, animations)
@@ -209,7 +209,6 @@ export function dev() {
 // DEFAULT
 // ==========================
 export default series(
-    jsinitial,
     jscontador,
     jsanima,
     jsCore,

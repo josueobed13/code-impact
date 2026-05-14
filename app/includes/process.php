@@ -63,3 +63,7 @@
 
     </div>
 </section>
+<script
+    src="<?= BASE_URL; ?>build/js/jsanima.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/jsanima.min.js'); ?>"
+    defer
+></script>
