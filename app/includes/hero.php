@@ -59,7 +59,3 @@
 
     </div>
 </section>
-<script
-    src="<?= BASE_URL; ?>build/js/core.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/core.min.js'); ?>"
-    defer
-></script>
