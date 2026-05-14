@@ -219,8 +219,6 @@ FOOTER
 
     
 
-<!-- 1. Lottie SIEMPRE PRIMERO -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js" defer></script>
 
 <script
     src="<?= BASE_URL; ?>build/js/core.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/core.min.js'); ?>"

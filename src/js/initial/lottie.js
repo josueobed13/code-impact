@@ -1,5 +1,30 @@
 (function () {
 
+    let lottieLoaded = false;
+
+    function loadLottieScript(callback) {
+
+        if (window.lottie) {
+            callback();
+            return;
+        }
+
+        if (lottieLoaded) return;
+
+        lottieLoaded = true;
+
+        const script = document.createElement('script');
+
+        script.src =
+            'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
+
+        script.defer = true;
+
+        script.onload = callback;
+
+        document.body.appendChild(script);
+    }
+
     function initLogoLottie() {
 
         const el = document.querySelector('.logo-lottie');
@@ -7,38 +32,67 @@
         const fallback = document.querySelector('.logo-fallback');
 
         if (!el || el.dataset.loaded === "true") return;
-        if (!window.lottie) return;
 
-        el.dataset.loaded = "true";
+        loadLottieScript(() => {
 
-        el.innerHTML = '';
+            el.dataset.loaded = "true";
 
-        const anim = window.lottie.loadAnimation({
-            container: el,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: BASE_URL + 'build/animations/logo.json'
-        });
+            el.innerHTML = '';
 
-        anim.addEventListener('DOMLoaded', () => {
+            const anim = window.lottie.loadAnimation({
+                container: el,
 
-            wrapper?.classList.add('is-lottie-ready');
+                // CAMBIA SVG → CANVAS
+                renderer: 'svg',
 
-            if (fallback) {
-                fallback.style.opacity = '0';
-            }
+                loop: true,
+                autoplay: true,
+                path: BASE_URL + 'build/animations/logo.json'
+            });
+
+            anim.addEventListener('DOMLoaded', () => {
+
+                wrapper?.classList.add('is-lottie-ready');
+
+                if (fallback) {
+                    fallback.style.opacity = '0';
+                }
+
+            });
 
         });
     }
 
-    // INIT SEGURO
+    function lazyLoadLottie() {
+
+        const logo = document.querySelector('.header__logo');
+
+        if (!logo) return;
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    initLogoLottie();
+
+                    observer.disconnect();
+                }
+
+            });
+
+        }, {
+            rootMargin: '150px'
+        });
+
+        observer.observe(logo);
+    }
+
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initLogoLottie);
+        document.addEventListener('DOMContentLoaded', lazyLoadLottie);
     } else {
-        initLogoLottie();
+        lazyLoadLottie();
     }
-
-    window.initLogoLottie = initLogoLottie;
 
 })();

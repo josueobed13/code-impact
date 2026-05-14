@@ -52,11 +52,13 @@ if (!defined('BASE_URL')) {
     <link
         rel="stylesheet"
         href="<?= BASE_URL; ?>build/css/app.css"
+        fetchpriority="high"
     >
 
     <!-- =========================================
          FONTS
     ========================================== -->
+
 
     <link
         rel="preload"
@@ -66,24 +68,19 @@ if (!defined('BASE_URL')) {
         crossorigin
     >
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- =========================================
-         HERO IMAGE PRELOAD (SOLO HOME)
-    ========================================== -->
-
+    <!-- HERO -->
     <?php if (($titulo ?? '') === 'Inicio | CodeImpact'): ?>
 
-        <!-- LCP OPTIMIZED PRELOAD (multi-format safe) -->
-       <link
-            rel="preload"
-            as="image"
-            href="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
-            type="image/avif"
-            fetchpriority="high">
+    <link
+        rel="preload"
+        as="image"
+        href="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
+        type="image/avif"
+        fetchpriority="high"
+    >
 
-            <?php endif; ?>
+    <?php endif; ?>
 
     <!-- =========================================
          FAVICON
@@ -96,9 +93,6 @@ if (!defined('BASE_URL')) {
     <link rel="icon" type="image/png" sizes="96x96"
         href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png">
 
-
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 
 </head>
 

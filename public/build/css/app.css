@@ -204,6 +204,9 @@ p {
   padding: 6rem 0;
 }
 
+/* =========================
+   HEADER LOGO
+========================= */
 .header__logo {
   display: inline-flex;
   align-items: center;
@@ -259,7 +262,9 @@ p {
   opacity: 1;
 }
 
-/* GRID */
+/* =========================
+   HERO GRID
+========================= */
 .hero__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -269,7 +274,9 @@ p {
   z-index: 2;
 }
 
-/* CONTENT */
+/* =========================
+   HERO CONTENT
+========================= */
 .hero__title {
   font-size: 5rem;
   line-height: 1.1;
@@ -290,7 +297,9 @@ p {
   gap: 1rem;
 }
 
-/* MEDIA */
+/* =========================
+   HERO MEDIA
+========================= */
 .hero__media {
   position: relative;
   width: 100%;
