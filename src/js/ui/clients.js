@@ -7,10 +7,7 @@ function initClientsSlider() {
     track.style.transform = 'translate3d(0,0,0)';
 
     const items = Array.from(track.children);
-
-    for (let i = 0; i < items.length; i++) {
-        track.appendChild(items[i].cloneNode(true));
-    }
+    items.forEach(item => track.appendChild(item.cloneNode(true)));
 
     let halfWidth = 0;
 
@@ -22,40 +19,55 @@ function initClientsSlider() {
 
     window.addEventListener('resize', calculateWidth, { passive: true });
 
-    let position = 0;
     let speed = 0.3;
-    let paused = false;
-    let dragging = false;
+    let position = 0;
+    let isPaused = false;
+    let isDragging = false;
+
+    let startX = 0;
+    let currentX = 0;
 
     let rafId = null;
+    let lastFrame = 0;
 
-    function render() {
+    function update() {
+
+        if (Math.abs(position) >= halfWidth) position = 0;
+        if (position > 0) position = -halfWidth;
+
         track.style.transform = `translate3d(${position}px,0,0)`;
     }
 
-    function loop() {
+    function animate(timestamp) {
 
-        if (!paused && !dragging) {
-            position -= speed;
+        if (timestamp - lastFrame > 16) {
 
-            if (Math.abs(position) >= halfWidth) {
-                position = 0;
+            if (!isPaused && !isDragging) {
+                position -= speed;
+                update();
             }
 
-            render();
+            lastFrame = timestamp;
         }
 
-        rafId = requestAnimationFrame(loop);
+        rafId = requestAnimationFrame(animate);
     }
 
-    const observer = new IntersectionObserver(([entry]) => {
+    function start() {
+        if (!rafId) rafId = requestAnimationFrame(animate);
+    }
 
-        if (entry.isIntersecting) {
-            if (!rafId) rafId = requestAnimationFrame(loop);
-        } else {
-            cancelAnimationFrame(rafId);
-            rafId = null;
-        }
+    function stop() {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+
+        const entry = entries[0];
+
+        if (entry.isIntersecting) start();
+        else stop();
 
     }, { threshold: 0.1 });
 
@@ -64,26 +76,38 @@ function initClientsSlider() {
     let timeout;
 
     function pause() {
-        paused = true;
+        isPaused = true;
         clearTimeout(timeout);
-
-        timeout = setTimeout(() => {
-            paused = false;
-        }, 2000);
+        timeout = setTimeout(() => isPaused = false, 2500);
     }
 
-    let startX = 0;
-
     track.addEventListener('touchstart', (e) => {
+
         pause();
-        dragging = true;
+        isDragging = true;
         startX = e.touches[0].clientX;
+        currentX = startX;
+
     }, { passive: true });
 
-    track.addEventListener('touchend', (e) => {
-        dragging = false;
-        pause();
+    track.addEventListener('touchmove', (e) => {
+
+        if (!isDragging) return;
+
+        const x = e.touches[0].clientX;
+        const diff = x - currentX;
+
+        position += diff;
+        currentX = x;
+
+        update();
+
     }, { passive: true });
+
+    track.addEventListener('touchend', () => {
+        isDragging = false;
+        pause();
+    });
 
     track.addEventListener('click', pause);
 }
@@ -114,3 +138,16 @@ function initClientsArrows() {
         wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 }
+
+window.addEventListener('load', () => {
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+
+            window.initClientsSlider?.();
+            window.initClientsArrows?.();
+
+        });
+    });
+
+});
