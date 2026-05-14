@@ -19,7 +19,7 @@
                 </div>
 
                 <div class="model-card__content">
-                    <h3>modelo 1</h3>
+                    <h3>Chantal Flores</h3>
                     <span class="model-card__role">MODELO</span>
 
                     <p>
@@ -34,7 +34,7 @@
                         <li>🎬 Producciones audiovisuales</li>
                     </ul>
 
-                    <a href="#" class="btn-outline">Ver perfil</a>
+                    <a href="<?= BASE_URL ?>modelos/chantal.php" class="btn-outline">Ver perfil</a>
                 </div>
 
             </div>
@@ -62,7 +62,7 @@
                         <li>🎬 Producciones audiovisuales</li>
                     </ul>
 
-                    <a href="#" class="btn-outline">Ver perfil</a>
+                    <a href="<?= BASE_URL ?>modelos/carla.php" class="btn-outline">Ver perfil</a>
                 </div>
 
             </div>
