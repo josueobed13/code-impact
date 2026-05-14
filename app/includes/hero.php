@@ -1,8 +1,7 @@
-
 <style>
 
 /* =========================================
-   HERO + HEADER LOGO CRITICAL CSS
+   HERO CRITICAL CSS
 ========================================= */
 
 .hero {
@@ -12,65 +11,6 @@
     align-items: center;
     overflow: hidden;
     padding: 6rem 0;
-}
-
-/* =========================
-   HEADER LOGO
-========================= */
-
-.header__logo {
-    display: inline-flex;
-    align-items: center;
-}
-
-/* LINK */
-.logo-link {
-    display: inline-block;
-}
-
-/* CONTENEDOR DEL LOGO */
-.logo-box {
-    position: relative;
-    width: auto;
-    height: 55px;
-}
-
-/* SVG fallback */
-.logo-fallback {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: opacity .2s ease;
-}
-
-/* LOTTIE CONTAINER */
-.logo-lottie {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .2s ease;
-}
-
-/* canvas interno */
-.logo-lottie canvas {
-    width: 100% !important;
-    height: 100% !important;
-    display: block;
-}
-
-/* SWAP FINAL */
-.header__logo.is-lottie-ready .logo-fallback {
-    opacity: 0;
-}
-
-.header__logo.is-lottie-ready .logo-lottie {
-    opacity: 1;
 }
 
 /* =========================
@@ -122,6 +62,7 @@
 }
 
 /* SLIDER */
+
 .hero__slider {
     width: 100%;
     height: 100%;
@@ -131,6 +72,7 @@
 }
 
 /* TRACK */
+
 .hero__slides {
     display: flex;
     width: 100%;
@@ -143,6 +85,7 @@
 }
 
 /* SLIDES */
+
 .hero__slides picture {
     flex: 0 0 100%;
     height: 100%;
