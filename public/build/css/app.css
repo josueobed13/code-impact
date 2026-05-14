@@ -1087,8 +1087,8 @@ body {
   /* icono responsivo */
 }
 .service-card__icon {
-  width: clamp(55px, 6vw, 80px);
-  height: clamp(55px, 6vw, 80px);
+  width: clamp(50px, 5vw, 74px);
+  height: clamp(50px, 5vw, 74px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1104,6 +1104,7 @@ body {
   font-size: 1.8rem;
   color: #fff;
   transition: 0.3s;
+  padding: 1.2rem 0rem 0.5rem 0rem;
 }
 .service-card__link {
   margin-top: auto;
@@ -3776,6 +3777,9 @@ RESPONSIVE
   .services-pro .service-card--image .service-card__desc {
     padding: 0.8rem 1rem 0;
     text-align: center;
+  }
+  .service-card__link {
+    font-size: 1.3rem;
   }
 }
 /* =========================

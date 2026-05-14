@@ -70,8 +70,8 @@
 
     /* icono responsivo */
     &__icon {
-        width: clamp(55px, 6vw, 80px);
-        height: clamp(55px, 6vw, 80px);
+        width: clamp(50px, 5vw, 74px);
+        height: clamp(50px, 5vw, 74px);
 
         display: flex;
         align-items: center;
@@ -92,6 +92,7 @@
         font-size: 1.8rem;
         color: #fff;
         transition: .3s;
+        padding: 1.2rem 0rem 0.5rem 0rem;
     }
 
     &__link {

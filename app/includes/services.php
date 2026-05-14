@@ -21,7 +21,7 @@
                         <div class="lottie lazy-lottie" data-animation="diseno-web"></div>
                     </div>
                     <h3>Desarrollo Web</h3>
-                    <span class="service-card__link">Conocer más →</span>
+                    <span class="service-card__link">Ver más →</span>
                 </div>
                 <div class="service-card__desc">
                     Diseñamos y desarrollamos paginas web optimizadas para convertir visitas en ventas.
@@ -34,8 +34,8 @@
                     <div class="service-card__icon">
                         <div class="lottie lazy-lottie" data-animation="video"></div>
                     </div>
-                    <h3>Producción audiovisual para posicionamiento</h3>
-                    <span class="service-card__link">Conocer más →</span>
+                    <h3>Producción Audiovisual</h3>
+                    <span class="service-card__link">Ver más →</span>
                 </div>
                 <div class="service-card__desc">
                     Creamos videos corporativos que comunican tu mensaje y fortalecen tu marca.
@@ -48,8 +48,8 @@
                     <div class="service-card__icon">
                         <div class="lottie lazy-lottie" data-animation="eventos"></div>
                     </div>
-                    <h3>Eventos corporativos</h3>
-                    <span class="service-card__link">Conocer más →</span>
+                    <h3>Eventos Corporativos</h3>
+                    <span class="service-card__link">Ver más →</span>
                 </div>
                 <div class="service-card__desc">
                     Organizamos eventos que generan conexiones, experiencias y resultados.
@@ -62,8 +62,8 @@
                     <div class="service-card__icon">
                         <div class="lottie lazy-lottie" data-animation="marketing"></div>
                     </div>
-                    <h3>Análisis de marketing</h3>
-                    <span class="service-card__link">Conocer más →</span>
+                    <h3>Análisis de Marketing</h3>
+                    <span class="service-card__link">Ver más →</span>
                 </div>
                 <div class="service-card__desc">
                     Detectamos oportunidades y diseñamos estrategias que hacen crecer tu negocio.
@@ -76,8 +76,8 @@
                     <div class="service-card__icon">
                         <div class="lottie lazy-lottie" data-animation="software"></div>
                     </div>
-                    <h3>Diseño de software a medida</h3>
-                    <span class="service-card__link">Conocer más →</span>
+                    <h3>Diseño de Software a medida</h3>
+                    <span class="service-card__link">Ver más →</span>
                 </div>
                 <div class="service-card__desc">
                     Sistemas de orden y pedidos diseñados para optimizar tus procesos.
@@ -90,8 +90,8 @@
                     <div class="service-card__icon">
                         <div class="lottie lazy-lottie" data-animation="analisis"></div>
                     </div>
-                    <h3>Campañas digitales enfocadas en resultados</h3>
-                    <span class="service-card__link">Conocer más →</span>
+                    <h3>Campañas Digitales ADS</h3>
+                    <span class="service-card__link">Ver más →</span>
                 </div>
                 <div class="service-card__desc">
                     Creamos campañas efectivas que generan leads, ventas y crecimiento real.
