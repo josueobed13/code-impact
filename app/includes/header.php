@@ -43,17 +43,19 @@ if (!defined('BASE_URL')) {
     <!-- =========================================
          CSS
     ========================================== -->
-    <link
+   <link
         rel="preload"
         href="<?= BASE_URL; ?>build/css/app.css"
         as="style"
+        onload="this.onload=null;this.rel='stylesheet'"
     >
 
-    <link
-        rel="stylesheet"
-        href="<?= BASE_URL; ?>build/css/app.css"
-        fetchpriority="high"
-    >
+    <noscript>
+        <link
+            rel="stylesheet"
+            href="<?= BASE_URL; ?>build/css/app.css"
+        >
+    </noscript>
 
     <!-- =========================================
          FONTS
