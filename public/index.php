@@ -13,5 +13,5 @@ include __DIR__ . '/../app/includes/header.php';
     <?php include __DIR__ . '/../app/includes/models.php'; ?>
 </main>
 
-<?php include __DIR__ . '/../app/includes/lightbox.php'; ?>
+
 <?php include __DIR__ . '/../app/includes/footer.php'; ?>
