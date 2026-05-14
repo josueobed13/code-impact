@@ -2,21 +2,22 @@
     <div class="container header__container">
 
         <div class="header__logo">
-            <a href="<?= BASE_URL ?>index.php" aria-label="Inicio">
-                
-                <div class="logo-box">
 
+        <a href="<?= BASE_URL ?>index.php">
+                <img src="<?= BASE_URL ?>build/img/logos/logo.svg" alt="CodeImpact">
+            </a>
+        <!-- Overlay
+            <a href="<?= BASE_URL ?>index.php" aria-label="Inicio">
+            
+                <div class="logo-box">
                     <img
                         class="logo-fallback"
                         src="<?= BASE_URL ?>build/img/logos/logo.svg"
                         alt="Code Impact"
                     >
-
                     <div class="lottie logo-lottie"></div>
-
                 </div>
-
-            </a>
+            </a> -->
         </div>
         
 

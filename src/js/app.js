@@ -49,8 +49,9 @@ window.addEventListener('load', () => {
     // PRIORIDAD ALTA
     window.initCookies?.();
 
+    // LOTTIES
 
-    window.initLazyLotties?.();
+    
 
     // UI PESADA
     requestAnimationFrame(() => {

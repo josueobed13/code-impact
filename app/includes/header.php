@@ -23,13 +23,17 @@ if (!defined('BASE_URL')) {
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>
         <?php echo $titulo ?? 'CodeImpact'; ?>
     </title>
 
-    <meta name="description"
+    <meta
+        name="description"
         content="<?php echo $descripcion ?? 'Agencia digital en Lima'; ?>"
     >
 
@@ -37,13 +41,14 @@ if (!defined('BASE_URL')) {
          JS GLOBAL CONFIG
     ========================================== -->
     <script>
-        const BASE_URL = "<?php echo BASE_URL; ?>";
+        window.BASE_URL = "<?php echo BASE_URL; ?>";
     </script>
 
     <!-- =========================================
          CSS
     ========================================== -->
-   <link
+
+    <link
         rel="preload"
         href="<?= BASE_URL; ?>build/css/app.css"
         as="style"
@@ -61,7 +66,6 @@ if (!defined('BASE_URL')) {
          FONTS
     ========================================== -->
 
-
     <link
         rel="preload"
         href="<?= BASE_URL ?>build/fonts/Inter-Regular.woff2"
@@ -70,17 +74,19 @@ if (!defined('BASE_URL')) {
         crossorigin
     >
 
+    <!-- =========================================
+         HERO IMAGE PRELOAD
+    ========================================== -->
 
-    <!-- HERO -->
     <?php if (($titulo ?? '') === 'Inicio | CodeImpact'): ?>
 
-    <link
-        rel="preload"
-        as="image"
-        href="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
-        type="image/avif"
-        fetchpriority="high"
-    >
+        <link
+            rel="preload"
+            as="image"
+            href="<?= BASE_URL; ?>build/img/header/desarollo-web.avif"
+            type="image/avif"
+            fetchpriority="high"
+        >
 
     <?php endif; ?>
 
@@ -88,13 +94,23 @@ if (!defined('BASE_URL')) {
          FAVICON
     ========================================== -->
 
-    <link rel="icon" href="<?= BASE_URL ?>build/img/favicon/favicon.ico">
+    <link
+        rel="icon"
+        href="<?= BASE_URL ?>build/img/favicon/favicon.ico"
+    >
 
-    <link rel="icon" type="image/svg+xml" href="<?= BASE_URL ?>build/img/favicon/favicon.svg">
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="<?= BASE_URL ?>build/img/favicon/favicon.svg"
+    >
 
-    <link rel="icon" type="image/png" sizes="96x96"
-        href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png">
-
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="96x96"
+        href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png"
+    >
 
 </head>
 

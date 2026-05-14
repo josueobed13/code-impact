@@ -6,34 +6,76 @@ function initHeroSlider() {
     if (!slider || !container) return;
 
     if (slider.dataset.loaded) return;
+
     slider.dataset.loaded = "true";
 
-    const slides = Array.from(slider.querySelectorAll('picture'));
+    const slides = Array.from(
+        slider.querySelectorAll('picture')
+    );
 
-    if (slides.length <= 1) return; // 🔥 IMPORTANTE
+    if (slides.length <= 1) return;
 
     let index = 0;
 
-    function goTo(i) {
-        const width = container.clientWidth;
-        slider.style.transform = `translate3d(-${i * width}px, 0, 0)`;
+    // CALCULAR SOLO UNA VEZ
+    let slideWidth = container.clientWidth;
+
+    function updateSliderPosition() {
+
+        requestAnimationFrame(() => {
+
+            slider.style.transform =
+                `translate3d(-${index * slideWidth}px,0,0)`;
+
+        });
     }
 
+    // INIT
     requestAnimationFrame(() => {
+
         slider.classList.add('is-ready');
-        goTo(0);
+
+        updateSliderPosition();
+
     });
 
-    setInterval(() => {
+    // AUTOPLAY
+    const autoplay = setInterval(() => {
+
         index = (index + 1) % slides.length;
-        goTo(index);
+
+        updateSliderPosition();
+
     }, 5000);
 
-    window.addEventListener('resize', () => goTo(index));
+    // RESIZE OPTIMIZADO
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+
+            slideWidth = container.clientWidth;
+
+            updateSliderPosition();
+
+        }, 120);
+
+    });
+
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initHeroSlider);
+
+    document.addEventListener(
+        'DOMContentLoaded',
+        initHeroSlider
+    );
+
 } else {
+
     initHeroSlider();
+
 }
