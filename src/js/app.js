@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('load', () => {
 
     // PRIORIDAD ALTA
-    window.initCookies?.();
+
 
     // LOTTIES
 
@@ -56,8 +56,6 @@ window.addEventListener('load', () => {
     // UI PESADA
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-
-            window.initClients?.();
             window.initCatalog?.();
             window.initPortfolioCounters?.();
 
@@ -65,6 +63,8 @@ window.addEventListener('load', () => {
             window.initProcessMobile?.();
             window.initContactForm?.();
             window.initLightbox?.();
+
+            window.initCookies?.();
 
             console.log("⚡ UI cargada sin reflow");
         });
