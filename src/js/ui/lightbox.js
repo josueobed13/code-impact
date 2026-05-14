@@ -197,4 +197,4 @@ setTimeout(() => {
         initLightbox();
     }
 
-}, 6000);
+}, 4000);

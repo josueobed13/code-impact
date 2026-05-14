@@ -1,76 +1,45 @@
 function initHeroSlider() {
 
-    const slider = document.querySelector('.hero__slides');
-    const container = document.querySelector('.hero__slider');
+    const slides = document.querySelector(".hero__slides");
+    const slider = document.querySelector(".hero__slider");
 
-    if (!slider || !container) return;
-    if (slider.dataset.loaded) return;
+    if (!slides || !slider) return;
+    if (slides.dataset.loaded) return;
 
-    slider.dataset.loaded = "true";
+    slides.dataset.loaded = "true";
 
-    const slides = Array.from(
-        slider.querySelectorAll('picture')
-    );
-
-    if (slides.length <= 1) return;
+    const items = slides.querySelectorAll("picture");
+    if (items.length <= 1) return;
 
     let index = 0;
-    let slideWidth = 0;
+    let width = slider.getBoundingClientRect().width;
 
-    // ✔ solo lectura separada
-    function updateWidth() {
-        slideWidth = container.getBoundingClientRect().width;
-    }
-
-    function updateSliderPosition() {
+    const update = () => {
         requestAnimationFrame(() => {
-            slider.style.transform =
-                `translate3d(-${index * slideWidth}px,0,0)`;
+            slides.style.transform = `translate3d(-${index * width}px, 0, 0)`;
         });
-    }
+    };
 
-    // INIT
-    requestAnimationFrame(() => {
+    const recalc = () => {
+        width = slider.getBoundingClientRect().width;
+    };
 
-        updateWidth(); // ✔ primero medir
+    recalc();
+    slides.classList.add("is-ready");
+    update();
 
-        slider.classList.add('is-ready');
-
-        updateSliderPosition();
-
-    });
-
-    // AUTOPLAY
-    const autoplay = setInterval(() => {
-
-        index = (index + 1) % slides.length;
-
-        updateSliderPosition();
-
+    const interval = setInterval(() => {
+        index = (index + 1) % items.length;
+        update();
     }, 5000);
 
-    // RESIZE OPTIMIZADO (sin layout thrash)
-    let resizeTimer;
-    let ticking = false;
+    window.addEventListener("resize", () => {
+        clearTimeout(window._heroResize);
 
-    window.addEventListener('resize', () => {
-
-        clearTimeout(resizeTimer);
-
-        resizeTimer = setTimeout(() => {
-
-            if (ticking) return;
-
-            ticking = true;
-
-            requestAnimationFrame(() => {
-
-                updateWidth();
-                updateSliderPosition();
-
-                ticking = false;
-            });
-
-        }, 120);
+        window._heroResize = setTimeout(() => {
+            recalc();
+            update();
+        }, 150);
     });
+
 }
