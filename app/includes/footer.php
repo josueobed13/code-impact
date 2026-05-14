@@ -225,8 +225,6 @@ FOOTER
     defer
 ></script>
 
-
-
 <!-- 4. HOME (solo si aplica) -->
 <?php if (($titulo ?? '') === 'Inicio | CodeImpact'): ?>
 <script

@@ -105,5 +105,5 @@ function initCatalog() {
     });
 }
 
-// NO auto-init aquí (IMPORTANTE)
-// initCatalog();
+window.initClientsSlider = initClientsSlider;
+window.initClientsArrows = initClientsArrows;

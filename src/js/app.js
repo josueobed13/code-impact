@@ -10,6 +10,8 @@ window.addEventListener('load', () => {
             window.initProcessMobile?.();
             window.initPortfolioCounters?.();
             window.initCookies?.();
+            window.initClientsSlider?.();
+            window.initClientsArrows?.();
 
             console.log("⚡ UI base lista");
         });
