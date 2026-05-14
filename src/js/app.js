@@ -1,34 +1,36 @@
 window.addEventListener('load', () => {
 
+    // ==========================
+    // UI BASE (rápido)
+    // ==========================
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
 
-            // ==========================
-            // UI BASE (SIEMPRE LIVIANO)
-            // ==========================
-            lazyInit('.service-card', initServices);
-            lazyInit('.process__step', initProcessMobile);
-            lazyInit('.portfolio-counter', initPortfolioCounters);
+            window.initServices?.();
+            window.initProcessMobile?.();
+            window.initPortfolioCounters?.();
+            window.initCookies?.();
 
             console.log("⚡ UI base lista");
-
         });
     });
 
     // ==========================
-    // UI PESADA (VISUAL / SECOND LAYER)
+    // UI DEPENDIENTE DE CSS / VISUAL COMPLETO
     // ==========================
     setTimeout(() => {
 
-        lazyInit('#contactForm', initCookies);
-        lazyInit('.catalog-item', initCatalog);
-        lazyInit('.clients__track', initClientsSlider);
+        
+        window.initCatalog?.();
+        window.initClientsSlider?.();
 
-        // LOTTIE
-        lazyInit('.lazy-lottie', initLottieSystem);
+        // LOTTIE (solo si existe)
+        if (document.querySelector('.lazy-lottie')) {
+            window.initLottieSystem?.();
+        }
 
         console.log("🎯 UI visual pesada inicializada");
 
-    }, 300);
+    }, 300); // pequeño buffer para asegurar paint final
 
 });
