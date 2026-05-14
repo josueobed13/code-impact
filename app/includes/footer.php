@@ -220,17 +220,8 @@ FOOTER
     
 
 
-<script
-    src="<?= BASE_URL; ?>build/js/core.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/core.min.js'); ?>"
-    defer
-></script>
 
 
-
-<!-- 2. CORE JS -->
-
-
-<!-- 3. INITIAL (LOGO LOTTIE) -->
 
 
 <!-- 4. HOME (solo si aplica) -->

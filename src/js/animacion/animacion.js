@@ -1,21 +1,19 @@
 (function () {
 
-    let lottieLoaded = false;
-    let lottieStarted = false;
+    let started = false;
 
-    function loadLottieScript(callback) {
+    function initLottieSystem() {
 
-        // YA EXISTE
-        if (window.lottie) {
-            callback();
-            return;
-        }
+        if (started) return;
 
-        // EVITAR DUPLICADOS
-        if (lottieLoaded) return;
+        started = true;
 
-        lottieLoaded = true;
+        const lazyItems =
+            document.querySelectorAll('.lazy-lottie');
 
+        if (!lazyItems.length) return;
+
+        // CARGAR SCRIPT RECIÉN AQUÍ
         const script = document.createElement('script');
 
         script.src =
@@ -23,46 +21,22 @@
 
         script.defer = true;
 
-        script.onload = callback;
-
-        document.body.appendChild(script);
-    }
-
-    function initLottie() {
-
-        // EVITAR DOBLE INIT
-        if (lottieStarted) return;
-
-        lottieStarted = true;
-
-        const lazyItems =
-            document.querySelectorAll('.lazy-lottie');
-
-        if (!lazyItems.length) return;
-
-        loadLottieScript(() => {
+        script.onload = () => {
 
             const observer = new IntersectionObserver((entries, obs) => {
 
                 entries.forEach(entry => {
 
-                    // NO VISIBLE
                     if (!entry.isIntersecting) return;
 
-                    // YA CARGADO
                     if (entry.target.dataset.loaded) return;
 
                     entry.target.dataset.loaded = 'true';
-
-                    entry.target.innerHTML = '';
 
                     const name =
                         entry.target.dataset.animation;
 
                     window.lottie.loadAnimation({
-
-                        name:
-                            `lottie-${name}-${Date.now()}`,
 
                         container: entry.target,
 
@@ -84,7 +58,7 @@
             }, {
 
                 threshold: 0.15,
-                rootMargin: '150px'
+                rootMargin: '200px'
 
             });
 
@@ -94,24 +68,50 @@
 
             });
 
-        });
-    }
+        };
 
-    // SOLO INICIAR SI HAY SCROLL
-    function startOnScroll() {
+        document.body.appendChild(script);
 
+        // LIMPIAR EVENTOS
         window.removeEventListener(
             'scroll',
-            startOnScroll
+            initLottieSystem
         );
 
-        requestAnimationFrame(initLottie);
+        window.removeEventListener(
+            'touchstart',
+            initLottieSystem
+        );
+
+        window.removeEventListener(
+            'mousemove',
+            initLottieSystem
+        );
+
     }
 
-    // ESPERAR SCROLL DEL USUARIO
+    // ESPERAR INTERACCIÓN REAL
     window.addEventListener(
         'scroll',
-        startOnScroll,
+        initLottieSystem,
+        {
+            passive: true,
+            once: true
+        }
+    );
+
+    window.addEventListener(
+        'touchstart',
+        initLottieSystem,
+        {
+            passive: true,
+            once: true
+        }
+    );
+
+    window.addEventListener(
+        'mousemove',
+        initLottieSystem,
         {
             passive: true,
             once: true
