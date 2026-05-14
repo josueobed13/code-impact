@@ -4,7 +4,6 @@ function initHeroSlider() {
     const container = document.querySelector('.hero__slider');
 
     if (!slider || !container) return;
-
     if (slider.dataset.loaded) return;
 
     slider.dataset.loaded = "true";
@@ -16,22 +15,24 @@ function initHeroSlider() {
     if (slides.length <= 1) return;
 
     let index = 0;
+    let slideWidth = 0;
 
-    // CALCULAR SOLO UNA VEZ
-    let slideWidth = container.clientWidth;
+    // ✔ solo lectura separada
+    function updateWidth() {
+        slideWidth = container.getBoundingClientRect().width;
+    }
 
     function updateSliderPosition() {
-
         requestAnimationFrame(() => {
-
             slider.style.transform =
                 `translate3d(-${index * slideWidth}px,0,0)`;
-
         });
     }
 
     // INIT
     requestAnimationFrame(() => {
+
+        updateWidth(); // ✔ primero medir
 
         slider.classList.add('is-ready');
 
@@ -48,8 +49,9 @@ function initHeroSlider() {
 
     }, 5000);
 
-    // RESIZE OPTIMIZADO
+    // RESIZE OPTIMIZADO (sin layout thrash)
     let resizeTimer;
+    let ticking = false;
 
     window.addEventListener('resize', () => {
 
@@ -57,25 +59,18 @@ function initHeroSlider() {
 
         resizeTimer = setTimeout(() => {
 
-            slideWidth = container.clientWidth;
+            if (ticking) return;
 
-            updateSliderPosition();
+            ticking = true;
+
+            requestAnimationFrame(() => {
+
+                updateWidth();
+                updateSliderPosition();
+
+                ticking = false;
+            });
 
         }, 120);
-
     });
-
-}
-
-if (document.readyState === 'loading') {
-
-    document.addEventListener(
-        'DOMContentLoaded',
-        initHeroSlider
-    );
-
-} else {
-
-    initHeroSlider();
-
 }

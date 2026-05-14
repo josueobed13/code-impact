@@ -1,13 +1,24 @@
-function initFixedHeader() {
-
-    const header = document.querySelector('.header');
+function initFixedHeader(){
+    const header = document.querySelector(".header");
     if (!header) return;
 
-    function update() {
-        document.body.style.paddingTop = `${header.offsetHeight}px`;
+    function updatePadding(){
+        const h = header.getBoundingClientRect().height;
+        document.body.style.paddingTop = h + "px";
     }
 
-    update();
-    window.addEventListener('resize', update);
-}
+    updatePadding();
 
+    let ticking = false;
+
+    window.addEventListener("resize", () => {
+        if (ticking) return;
+
+        ticking = true;
+
+        requestAnimationFrame(() => {
+            updatePadding();
+            ticking = false;
+        });
+    });
+}
