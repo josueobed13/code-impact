@@ -12,13 +12,9 @@
 
         if (!lazyItems.length) return;
 
-        // CARGAR SCRIPT RECIÉN AQUÍ
         const script = document.createElement('script');
 
-        script.src =
-            'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
-
-        script.defer = true;
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js';
 
         script.onload = () => {
 
@@ -57,35 +53,20 @@
         };
 
         document.body.appendChild(script);
-
-        window.removeEventListener('scroll', initLottieSystem);
-        window.removeEventListener('touchstart', initLottieSystem);
-        window.removeEventListener('mousemove', initLottieSystem);
     }
 
     // =========================
-    // INIT DIFERIDO (5 SEGUNDOS + VALIDACIÓN)
+    // INIT DIFERIDO (MEJORADO)
     // =========================
     setTimeout(() => {
 
-        const hasLottie = document.querySelector('.lazy-lottie');
+        if (document.querySelector('.lazy-lottie')) {
 
-        if (hasLottie) {
+            const trigger = () => initLottieSystem();
 
-            window.addEventListener('scroll', initLottieSystem, {
-                passive: true,
-                once: true
-            });
+            window.addEventListener('scroll', trigger, { passive: true, once: true });
+            window.addEventListener('touchstart', trigger, { passive: true, once: true });
 
-            window.addEventListener('touchstart', initLottieSystem, {
-                passive: true,
-                once: true
-            });
-
-            window.addEventListener('mousemove', initLottieSystem, {
-                passive: true,
-                once: true
-            });
         }
 
     }, 3000);
