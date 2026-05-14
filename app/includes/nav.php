@@ -1,20 +1,20 @@
 <header class="header">
     <div class="container header__container">
 
-       <div class="header__logo">
-            <a href="<?= BASE_URL ?>index.php" class="logo-link">
-
-                <span class="logo-box">
+        <div class="header__logo">
+            <a href="<?= BASE_URL ?>index.php" aria-label="Inicio">
+                
+                <div class="logo-box">
 
                     <img
                         class="logo-fallback"
                         src="<?= BASE_URL ?>build/img/logos/logo.svg"
-                        alt="Code Impact Perú"
+                        alt="Code Impact"
                     >
 
-                    <div class="lottie logo-lottie" data-animation="logo"></div>
+                    <div class="lottie logo-lottie"></div>
 
-                </span>
+                </div>
 
             </a>
         </div>

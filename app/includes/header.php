@@ -96,6 +96,10 @@ if (!defined('BASE_URL')) {
     <link rel="icon" type="image/png" sizes="96x96"
         href="<?= BASE_URL ?>build/img/favicon/favicon-96x96.png">
 
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
 </head>
 
 <body>
