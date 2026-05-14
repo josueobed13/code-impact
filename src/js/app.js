@@ -22,7 +22,6 @@ window.addEventListener('load', () => {
 
         
         window.initCatalog?.();
-        window.initClientsSlider?.();
 
         // LOTTIE (solo si existe)
         if (document.querySelector('.lazy-lottie')) {
