@@ -144,8 +144,13 @@ window.addEventListener('load', () => {
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
 
-            window.initClientsSlider?.();
-            window.initClientsArrows?.();
+            // 🔥 extra frame para asegurar layout final post-CSS
+            requestAnimationFrame(() => {
+
+                window.initClientsSlider?.();
+                window.initClientsArrows?.();
+
+            });
 
         });
     });
