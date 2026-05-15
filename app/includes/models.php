@@ -90,3 +90,5 @@
 
     </div>
 </section>
+
+<?php include __DIR__ . '/../../app/includes/blog.php'; ?>

@@ -76,7 +76,7 @@
                     <div class="service-card__icon">
                         <div class="lottie lazy-lottie" data-animation="software"></div>
                     </div>
-                    <h3>Diseño de Software a medida</h3>
+                    <h3>Desarrollo de Software</h3>
                     <span class="service-card__link">Ver más →</span>
                 </div>
                 <div class="service-card__desc">

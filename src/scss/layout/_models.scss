@@ -215,7 +215,6 @@
     &__list {
         list-style: none;
         padding: 0;
-        margin-bottom: 1rem;
 
         li {
             font-size: 1.2rem;
@@ -263,13 +262,15 @@
 ========================= */
 .btn-outline {
     display: inline-block;
-    padding: .6rem 1.2rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 8px;
     border: 1px solid #2563EB;
-    color: #2563EB;
+    color: $text-main;
     font-size: 1.2rem;
     text-decoration: none;
-    transition: .2s ease;
+    transition: 0.2s ease;
+    background: #2563EB;
+    margin: 0.9rem 0rem 0.9rem 0rem;
 
     &:hover {
         background: #2563EB;

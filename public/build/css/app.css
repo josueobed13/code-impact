@@ -558,12 +558,13 @@ p {
   .footer__bottom {
     flex-direction: column;
     text-align: center;
-    margin-top: 9rem;
+    margin-top: 4rem;
   }
 }
-@media (max-width: 415px) {
+@media (max-width: 465px) {
   .footer__grid {
     grid-template-columns: 1fr;
+    margin-bottom: 0rem;
   }
   .footer__col.footer__brand {
     display: grid;
@@ -680,23 +681,23 @@ p {
 @media (max-width: 650px) {
   .whatsapp-float {
     right: 0.5rem;
-    bottom: 1.5rem;
+    bottom: 3.5rem;
     align-items: flex-end;
     flex-direction: column;
     gap: 0.5rem;
   }
   .whatsapp-float__text {
-    width: 12rem;
-    height: 3rem;
+    width: 13.5rem;
+    height: 3.5rem;
   }
   .whatsapp-float__icon {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 5.5rem;
+    height: 5.5rem;
     font-size: 2.7rem;
   }
   .whatsapp-float__texts span {
-    height: 3rem;
-    font-size: 1rem;
+    height: 3.2rem;
+    font-size: 1.2rem;
     font-weight: 500;
   }
   @keyframes whatsappTextRotate {
@@ -704,7 +705,7 @@ p {
       transform: translateY(0);
     }
     50%, 90% {
-      transform: translateY(-3rem);
+      transform: translateY(-3.1rem);
     }
     100% {
       transform: translateY(0);
@@ -769,7 +770,7 @@ p {
     padding: 0.9rem 1.2rem;
   }
   .back-button span {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
   .back-button i {
     font-size: 1.1rem;
@@ -1419,7 +1420,6 @@ body {
 .model-card__list {
   list-style: none;
   padding: 0;
-  margin-bottom: 1rem;
 }
 .model-card__list li {
   font-size: 1.2rem;
@@ -1465,10 +1465,12 @@ body {
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   border: 1px solid #2563EB;
-  color: #2563EB;
+  color: #ffffff;
   font-size: 1.2rem;
   text-decoration: none;
   transition: 0.2s ease;
+  background: #2563EB;
+  margin: 0.9rem 0rem 0.9rem 0rem;
 }
 .btn-outline:hover {
   background: #2563EB;
@@ -4379,7 +4381,7 @@ HEADER
 ========================= */
 .model-profile__header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 .model-profile__header span {
   display: inline-flex;
@@ -4417,7 +4419,7 @@ CARD
   gap: 6rem;
   padding: 3rem;
   border-radius: 28px;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgb(0, 0, 0));
   border: 1px solid rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(12px);
   overflow: hidden;
@@ -4430,12 +4432,12 @@ GALERÍA
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0.5rem;
   gap: 1.2rem;
 }
 
 .model-gallery__main {
   position: relative;
-  width: 100%;
   max-width: 420px;
   border-radius: 18px;
   overflow: hidden;
@@ -4503,7 +4505,6 @@ GALERÍA
 
 .model-gallery__thumbs img {
   width: 82px;
-  height: 82px;
   object-fit: cover;
   border-radius: 14px;
   cursor: pointer;
@@ -4654,7 +4655,7 @@ MOBILE
     padding: 2rem 0 4rem;
   }
   .model-profile__header {
-    margin-bottom: 3rem;
+    margin-bottom: 0rem;
   }
   .model-profile__header span {
     font-size: 1rem;
@@ -4680,7 +4681,6 @@ MOBILE
   }
   .model-gallery__thumbs img {
     width: 60px;
-    height: 60px;
   }
   .model-info {
     gap: 1.5rem;
@@ -4717,8 +4717,7 @@ SMALL MOBILE
     gap: 0.5rem;
   }
   .model-gallery__thumbs img {
-    width: 48px;
-    height: 48px;
+    width: 41px;
     border-radius: 8px;
   }
   .model-info h1 {

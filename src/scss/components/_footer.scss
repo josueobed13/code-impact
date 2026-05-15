@@ -228,13 +228,16 @@
     .footer__bottom {
         flex-direction: column;
         text-align: center;
-        margin-top: 9rem;
+        margin-top: 4rem;
     }
 }
 
-@media (max-width: 415px) {
+
+
+@media (max-width: 465px) {
     .footer__grid {
         grid-template-columns: 1fr;
+        margin-bottom: 0rem;
     }
     .footer__col.footer__brand{
         display: grid;

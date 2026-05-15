@@ -39,7 +39,7 @@ HEADER
 
     text-align: center;
 
-    margin-bottom: 4rem;
+    margin-bottom: 1rem;
 
     span {
 
@@ -105,12 +105,9 @@ CARD
 
     border-radius: 28px;
 
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.03),
-            rgba(255,255,255,.01)
-        );
+    background: linear-gradient(145deg,
+    rgba(255, 255, 255, 0.03),
+    rgb(0 0 0));
 
     border: 1px solid rgba(255,255,255,.06);
 
@@ -128,7 +125,7 @@ GALERÍA
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    padding: 0.5rem;
     gap: 1.2rem;
 }
 
@@ -136,7 +133,6 @@ GALERÍA
 
     position: relative;
 
-    width: 100%;
     max-width: 420px;
 
     border-radius: 18px;
@@ -239,7 +235,6 @@ GALERÍA
 .model-gallery__thumbs img {
 
     width: 82px;
-    height: 82px;
 
     object-fit: cover;
 
@@ -485,7 +480,7 @@ MOBILE
 
     .model-profile__header {
 
-        margin-bottom: 3rem;
+        margin-bottom: 0rem;
 
         span {
 
@@ -529,7 +524,6 @@ MOBILE
     .model-gallery__thumbs img {
 
         width: 60px;
-        height: 60px;
     }
 
     .model-info {
@@ -591,8 +585,7 @@ SMALL MOBILE
 
     .model-gallery__thumbs img {
 
-        width: 48px;
-        height: 48px;
+        width: 41px;
 
         border-radius: 8px;
     }
