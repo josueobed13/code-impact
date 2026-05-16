@@ -387,6 +387,54 @@ COOKIE MODAL
 
 
 
+<!-- =========================
+POPUP OFFER
+========================= -->
+<div
+    class="popup-offer"
+    id="popupOffer"
+    aria-hidden="true"
+>
+    
+    <div class="popup-offer__overlay"></div>
+
+    <div class="popup-offer__content">
+
+        <button
+            class="popup-offer__close"
+            id="popupOfferClose"
+            aria-label="Cerrar anuncio"
+        >
+            ×
+        </button>
+
+        <span class="popup-offer__tag">
+            Oferta solo por hoy
+        </span>
+
+        <h2 class="popup-offer__title">
+            Asesoría gratis para tu empresa
+        </h2>
+
+        <p class="popup-offer__text">
+            Descubre qué cambios puedes hacer para mejorar
+            el rendimiento de tu empresa.
+        </p>
+
+        <a
+            href="https://wa.me/51970503691?text=Hola,%20quiero%20información%20sobre%20la%20asesoría%20gratis"
+            class="popup-offer__button"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            Comunícate por WhatsApp
+        </a>
+
+    </div>
+
+</div>
+
+
 
 
 </body>

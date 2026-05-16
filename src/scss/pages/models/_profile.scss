@@ -105,9 +105,11 @@ CARD
 
     border-radius: 28px;
 
-    background: linear-gradient(145deg,
-    rgba(255, 255, 255, 0.03),
-    rgb(0 0 0));
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.03),
+        rgb(0 0 0)
+    );
 
     border: 1px solid rgba(255,255,255,.06);
 
@@ -126,7 +128,10 @@ GALERÍA
     flex-direction: column;
     align-items: center;
     padding: 0.5rem;
-    gap: 1.2rem;
+    background: rgb(1 6 24 / 0%);
+    border: none;
+
+    padding: .5rem;
 }
 
 .model-gallery__main {
@@ -175,6 +180,12 @@ GALERÍA
     transform: scale(1);
 }
 
+/* ocultar thumbs */
+
+.model-gallery__thumbs {
+    display: none;
+}
+
 /* NAV */
 
 .model-gallery__prev,
@@ -217,55 +228,6 @@ GALERÍA
 
 .model-gallery__next {
     right: 12px;
-}
-
-/* THUMBS */
-
-.model-gallery__thumbs {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 1rem;
-
-    flex-wrap: wrap;
-}
-
-.model-gallery__thumbs img {
-
-    width: 82px;
-
-    object-fit: cover;
-
-    border-radius: 14px;
-
-    cursor: pointer;
-
-    opacity: .5;
-
-    transition: .3s ease;
-
-    border: 2px solid transparent;
-
-    background: rgba(255,255,255,.03);
-}
-
-.model-gallery__thumbs img:hover {
-
-    opacity: 1;
-
-    transform: translateY(-3px);
-}
-
-.model-gallery__thumbs img.active {
-
-    opacity: 1;
-
-    border-color: $primary;
-
-    box-shadow:
-        0 0 0 4px rgba(37,99,235,.12);
 }
 
 /* =========================
@@ -480,7 +442,7 @@ MOBILE
 
     .model-profile__header {
 
-        margin-bottom: 0rem;
+        margin-bottom: 0;
 
         span {
 
@@ -514,16 +476,6 @@ MOBILE
     .model-slide {
 
         height: 360px;
-    }
-
-    .model-gallery__thumbs {
-
-        gap: .8rem;
-    }
-
-    .model-gallery__thumbs img {
-
-        width: 60px;
     }
 
     .model-info {
@@ -575,19 +527,7 @@ SMALL MOBILE
 
     .model-slide {
 
-        height: 300px;
-    }
-
-    .model-gallery__thumbs {
-
-        gap: .5rem;
-    }
-
-    .model-gallery__thumbs img {
-
-        width: 41px;
-
-        border-radius: 8px;
+        height: 335px;
     }
 
     .model-info h1 {
@@ -607,6 +547,10 @@ SMALL MOBILE
         font-size: 1.3rem;
     }
 }
+
+/* =========================
+LIGHTBOX TRACK
+========================= */
 
 .model-lightbox-track {
 

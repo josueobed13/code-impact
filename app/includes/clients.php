@@ -92,70 +92,65 @@
                 <div class="clients__logos-track">
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo1.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>img/logos/logo1.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo1.png" alt="Panasonic">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/1.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>img/logos/1.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/1.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo2.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo2.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo2.png" alt="Pressto">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/2.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/2.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/2.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo3.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo3.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo3.png" alt="Banco Privado">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/3.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/3.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/3.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo4.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo4.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo4.png" alt="PUCP">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/4.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/4.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/4.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo5.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo5.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo5.png" alt="Quantic">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/5.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/5.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/5.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo6.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo6.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo6.png" alt="Logo 6">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/6.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/6.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/6.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo7.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo7.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo7.png" alt="Logo 7">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/7.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/7.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/7.jpg.png" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo8.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo8.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo8.png" alt="Logo 8">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/8.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/8.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/8.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo9.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo9.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo9.png" alt="Logo 9">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/9.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/9.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/9.jpg" alt="diseño logos">
                     </picture>
 
                     <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo10.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo10.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo10.png" alt="Logo 10">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/10.avif" type="image/avif">
+                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/10.webp" type="image/webp">
+                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/10.JPg" alt="diseño logos">
                     </picture>
 
-                    <picture>
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo11.avif" type="image/avif">
-                        <source srcset="<?php echo BASE_URL; ?>build/img/logos/logo11.webp" type="image/webp">
-                        <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/logos/logo11.png" alt="Logo 11">
-                    </picture>
 
                 </div>
             </div>

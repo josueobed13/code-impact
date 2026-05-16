@@ -109,7 +109,7 @@ require_once __DIR__ . '/../../app/includes/header.php';
                     <!-- 5 -->
                     <div class="service-card service-card--image">
                         <div class="service-card__image">
-                            <img src="<?php echo BASE_URL; ?>build/img/servicios/diseño-software.jpg" alt="Software a medida">
+                            <img src="<?php echo BASE_URL; ?>build/img/servicios/diseno-software.jpg" alt="Software a medida">
                         </div>
                         <h3>Diseño de software</h3>
                         <p class="service-card__desc">

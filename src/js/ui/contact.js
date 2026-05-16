@@ -1,23 +1,40 @@
 // ==========================
 // 🔥 CONTACT FORM -> WHATSAPP
 // ==========================
-function initContactForm() {
 
-    const form = document.getElementById('contactForm');
+(function () {
 
-    if (!form) return;
+    function initContactForm() {
 
-    form.addEventListener('submit', (e) => {
+        const form =
+            document.getElementById(
+                'contactForm'
+            );
 
-        e.preventDefault();
+        if (!form) return;
 
-        const nombre = document.getElementById('nombre')?.value || '';
-        const correo = document.getElementById('correo')?.value || '';
-        const empresa = document.getElementById('empresa')?.value || '';
-        const servicio = document.getElementById('servicio')?.value || '';
-        const mensaje = document.getElementById('mensaje')?.value || '';
+        form.addEventListener(
+            'submit',
+            (e) => {
 
-        const texto = `
+                e.preventDefault();
+
+                const nombre =
+                    document.getElementById('nombre')?.value || '';
+
+                const correo =
+                    document.getElementById('correo')?.value || '';
+
+                const empresa =
+                    document.getElementById('empresa')?.value || '';
+
+                const servicio =
+                    document.getElementById('servicio')?.value || '';
+
+                const mensaje =
+                    document.getElementById('mensaje')?.value || '';
+
+                const texto = `
 Hola CodeImpact Perú
 
 Estoy interesado en sus servicios.
@@ -29,23 +46,30 @@ Estoy interesado en sus servicios.
 
 • Proyecto:
 ${mensaje}
-        `;
+                `;
 
-        const url = `https://wa.me/51970503691?text=${encodeURIComponent(texto)}`;
+                const url =
+                    `https://wa.me/51970503691?text=${encodeURIComponent(texto)}`;
 
-        window.open(url, '_blank');
+                window.open(
+                    url,
+                    '_blank'
+                );
+            }
+        );
+    }
 
-    });
+    // ==========================
+    // INIT SOLO SI EXISTE FORM
+    // ==========================
 
-}
+    const contactForm =
+        document.querySelector(
+            'form.contact-form#contactForm'
+        );
 
-// ==========================
-// INIT SOLO SI EXISTE FORM
-// ==========================
-const contactForm = document.querySelector(
-    'form.contact-form#contactForm'
-);
+    if (contactForm) {
+        initContactForm();
+    }
 
-if (contactForm) {
-    initContactForm();
-}
+})();

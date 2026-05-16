@@ -1,109 +1,182 @@
 // ==========================
-// 🔥 CATALOG SLIDER (FINAL CLEAN)
+// 🔥 CATALOG SLIDER (Optimizado)
 // ==========================
-function initCatalog() {
 
-    const items = document.querySelectorAll(".catalog-item");
-    if (!items.length) return;
+(function () {
 
-    // evita doble init global
-    if (document.body.dataset.catalogInit) return;
-    document.body.dataset.catalogInit = "true";
+    function initCatalog() {
 
-    items.forEach((item) => {
+        const items =
+            document.querySelectorAll(
+                ".catalog-item"
+            );
 
-        const track = item.querySelector(".catalog-track");
-        if (!track) return;
+        if (!items.length) return;
 
-        const images = track.querySelectorAll("picture");
-        if (!images.length) return;
+        items.forEach((item) => {
 
-        const prevBtn = item.querySelector(".catalog-prev");
-        const nextBtn = item.querySelector(".catalog-next");
+            const track =
+                item.querySelector(
+                    ".catalog-track"
+                );
 
-        let currentIndex = 0;
-        let isAnimating = false;
+            const images =
+                track
+                    ? track.querySelectorAll(
+                        "picture"
+                    )
+                    : [];
 
-        // =========================
-        // CHANGE SLIDE (NO REFLOW)
-        // =========================
-        const show = (newIndex) => {
+            const prevBtn =
+                item.querySelector(
+                    ".catalog-prev"
+                );
 
-            if (newIndex === currentIndex) return;
-            if (isAnimating) return;
+            const nextBtn =
+                item.querySelector(
+                    ".catalog-next"
+                );
 
-            isAnimating = true;
+            if (!images.length) return;
 
-            const prev = images[currentIndex];
-            const next = images[newIndex];
+            let currentIndex = 0;
 
-            requestAnimationFrame(() => {
+            // ==========================
+            // SHOW
+            // ==========================
 
-                prev.classList.remove("active");
-                next.classList.add("active");
+            const show = (newIndex) => {
+
+                if (
+                    newIndex === currentIndex
+                ) return;
+
+                images[currentIndex]
+                    .classList.remove(
+                        "active"
+                    );
+
+                images[newIndex]
+                    .classList.add(
+                        "active"
+                    );
 
                 currentIndex = newIndex;
+            };
 
-                requestAnimationFrame(() => {
-                    isAnimating = false;
-                });
+            // ==========================
+            // NEXT
+            // ==========================
 
-            });
-        };
+            const next = () => {
 
-        const next = () => {
-            show((currentIndex + 1) % images.length);
-        };
+                const nextIndex =
+                    (
+                        currentIndex + 1
+                    ) % images.length;
 
-        const prev = () => {
-            show((currentIndex - 1 + images.length) % images.length);
-        };
+                show(nextIndex);
+            };
 
-        // =========================
-        // BUTTONS
-        // =========================
-        nextBtn?.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            next();
+            // ==========================
+            // PREV
+            // ==========================
+
+            const prev = () => {
+
+                const prevIndex =
+                    (
+                        currentIndex - 1
+                        + images.length
+                    ) % images.length;
+
+                show(prevIndex);
+            };
+
+            // ==========================
+            // BUTTONS
+            // ==========================
+
+            nextBtn?.addEventListener(
+                "click",
+                (e) => {
+
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    next();
+                }
+            );
+
+            prevBtn?.addEventListener(
+                "click",
+                (e) => {
+
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    prev();
+                }
+            );
+
+            // ==========================
+            // SWIPE
+            // ==========================
+
+            let startX = 0;
+
+            item.addEventListener(
+                "touchstart",
+                (e) => {
+
+                    startX =
+                        e.touches[0].clientX;
+
+                },
+                { passive: true }
+            );
+
+            item.addEventListener(
+                "touchend",
+                (e) => {
+
+                    const endX =
+                        e.changedTouches[0].clientX;
+
+                    const diff =
+                        startX - endX;
+
+                    if (
+                        Math.abs(diff) < 50
+                    ) return;
+
+                    diff > 0
+                        ? next()
+                        : prev();
+
+                },
+                { passive: true }
+            );
+
+            // ==========================
+            // INIT
+            // ==========================
+
+            if (
+                !images[0].classList.contains(
+                    'active'
+                )
+            ) {
+
+                images[0].classList.add(
+                    "active"
+                );
+            }
+
         });
+    }
 
-        prevBtn?.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            prev();
-        });
+    // auto init
+    initCatalog();
 
-        // =========================
-        // SWIPE (SIMPLIFICADO)
-        // =========================
-        let startX = 0;
-
-        item.addEventListener("touchstart", (e) => {
-            startX = e.touches[0].clientX;
-        }, { passive: true });
-
-        item.addEventListener("touchend", (e) => {
-
-            const endX = e.changedTouches[0].clientX;
-            const diff = startX - endX;
-
-            if (Math.abs(diff) < 50) return;
-
-            diff > 0 ? next() : prev();
-
-        }, { passive: true });
-
-        // =========================
-        // INIT FIRST STATE
-        // =========================
-        for (let i = 0; i < images.length; i++) {
-            images[i].classList.remove("active");
-        }
-
-        images[0].classList.add("active");
-    });
-}
-
-window.initClientsSlider = initClientsSlider;
-window.initClientsArrows = initClientsArrows;
+})();
