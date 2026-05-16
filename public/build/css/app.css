@@ -213,6 +213,11 @@ p {
   width: 223px;
 }
 
+.header__logo img {
+  width: 270px;
+  height: 43px;
+}
+
 /* =========================
    HERO GRID
 ========================= */
