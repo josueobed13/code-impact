@@ -123,4 +123,3 @@ FORM
 $jsPath = __DIR__ . '/build/js/ui.min.js';
 ?>
 
-<script src="build/js/ui.min.js?v=<?= file_exists($jsPath) ? filemtime($jsPath) : time() ?>"></script>

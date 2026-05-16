@@ -176,7 +176,22 @@
         });
     }
 
-    // auto init
-    initCatalog();
+    // ==========================
+    // AUTO INIT
+    // ==========================
+
+    if (
+        document.readyState === 'loading'
+    ) {
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            initCatalog
+        );
+
+    } else {
+
+        initCatalog();
+    }
 
 })();

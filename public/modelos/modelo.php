@@ -166,4 +166,3 @@ GALERÍA
 
 <?php include __DIR__ . '/../../app/includes/lightbox.php'; ?>
 <?php require_once __DIR__ . '/../../app/includes/footer.php'; ?>
-<script src="<?= BASE_URL; ?>build/js/ui.min.js?v=<?= filemtime(__DIR__ . '/../../public/build/js/ui.min.js'); ?>" defer></script>
