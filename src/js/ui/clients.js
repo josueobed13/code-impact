@@ -1,158 +1,234 @@
 function initClientsSlider() {
 
     const track = document.querySelector('.clients__track');
+
     if (!track) return;
 
     track.style.willChange = 'transform';
-    track.style.transform = 'translate3d(0,0,0)';
 
-    const items = Array.from(track.children);
-    items.forEach(item => track.appendChild(item.cloneNode(true)));
+    // =========================
+    // DUPLICAR ITEMS
+    // =========================
 
-    let halfWidth = 0;
+    const fragment = document.createDocumentFragment();
 
-    function calculateWidth() {
-        halfWidth = track.scrollWidth / 2;
-    }
+    [...track.children].forEach(item => {
+        fragment.appendChild(item.cloneNode(true));
+    });
 
-    calculateWidth();
+    track.appendChild(fragment);
 
-    window.addEventListener('resize', calculateWidth, { passive: true });
+    // =========================
+    // VARIABLES
+    // =========================
 
-    let speed = 0.3;
+    let halfWidth = track.scrollWidth / 2;
     let position = 0;
+
     let isPaused = false;
     let isDragging = false;
 
-    let startX = 0;
     let currentX = 0;
 
     let rafId = null;
-    let lastFrame = 0;
+    let timeout = null;
 
-    function update() {
+    // =========================
+    // RECALCULAR WIDTH
+    // =========================
 
-        if (Math.abs(position) >= halfWidth) position = 0;
-        if (position > 0) position = -halfWidth;
+    const calculateWidth = () => {
+        halfWidth = track.scrollWidth / 2;
+    };
 
-        track.style.transform = `translate3d(${position}px,0,0)`;
-    }
+    window.addEventListener('resize', calculateWidth, {
+        passive: true
+    });
 
-    function animate(timestamp) {
+    // =========================
+    // UPDATE POSITION
+    // =========================
 
-        if (timestamp - lastFrame > 16) {
+    const update = () => {
 
-            if (!isPaused && !isDragging) {
-                position -= speed;
-                update();
-            }
+        if (Math.abs(position) >= halfWidth) {
+            position = 0;
+        }
 
-            lastFrame = timestamp;
+        if (position > 0) {
+            position = -halfWidth;
+        }
+
+        track.style.transform = `translateX(${position}px)`;
+    };
+
+    // =========================
+    // ANIMATION
+    // =========================
+
+    const animate = () => {
+
+        if (!isPaused && !isDragging) {
+
+            position -= 0.3;
+
+            update();
         }
 
         rafId = requestAnimationFrame(animate);
-    }
+    };
 
-    function start() {
-        if (!rafId) rafId = requestAnimationFrame(animate);
-    }
+    const start = () => {
 
-    function stop() {
+        if (!rafId) {
+            rafId = requestAnimationFrame(animate);
+        }
+    };
+
+    const stop = () => {
+
         cancelAnimationFrame(rafId);
+
         rafId = null;
-    }
+    };
 
-    const observer = new IntersectionObserver((entries) => {
+    // =========================
+    // VISIBILITY
+    // =========================
 
-        const entry = entries[0];
+    const observer = new IntersectionObserver(([entry]) => {
 
-        if (entry.isIntersecting) start();
-        else stop();
+        if (entry.isIntersecting) {
+            start();
+        } else {
+            stop();
+        }
 
-    }, { threshold: 0.1 });
+    }, {
+        threshold: 0.1
+    });
 
     observer.observe(track);
 
-    let timeout;
+    // =========================
+    // PAUSE
+    // =========================
 
-    function pause() {
+    const pause = () => {
+
         isPaused = true;
-        clearTimeout(timeout);
-        timeout = setTimeout(() => isPaused = false, 2500);
-    }
 
-    track.addEventListener('touchstart', (e) => {
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+            isPaused = false;
+        }, 2500);
+    };
+
+    // =========================
+    // TOUCH
+    // =========================
+
+    track.addEventListener('touchstart', e => {
 
         pause();
+
         isDragging = true;
-        startX = e.touches[0].clientX;
-        currentX = startX;
 
-    }, { passive: true });
+        currentX = e.touches[0].clientX;
 
-    track.addEventListener('touchmove', (e) => {
+    }, {
+        passive: true
+    });
+
+    track.addEventListener('touchmove', e => {
 
         if (!isDragging) return;
 
         const x = e.touches[0].clientX;
-        const diff = x - currentX;
 
-        position += diff;
+        position += x - currentX;
+
         currentX = x;
 
         update();
 
-    }, { passive: true });
+    }, {
+        passive: true
+    });
 
     track.addEventListener('touchend', () => {
+
         isDragging = false;
+
         pause();
+
     });
 
     track.addEventListener('click', pause);
 }
 
-function initClientsArrows() {
+// ========================================
+// GENERIC HORIZONTAL SCROLLER
+// ========================================
 
-    const wrapper = document.querySelector('.clients__logos-wrapper');
-    const leftBtn = document.querySelector('.clients__arrow--left');
-    const rightBtn = document.querySelector('.clients__arrow--right');
+function initClientsArrows(root = document) {
+
+    const wrapper = root.querySelector('.clients__logos-wrapper');
+
+    const leftBtn = root.querySelector('.clients__arrow--left');
+
+    const rightBtn = root.querySelector('.clients__arrow--right');
 
     if (!wrapper || !leftBtn || !rightBtn) return;
 
-    let scrollAmount = 0;
+    let scrollAmount = wrapper.clientWidth * 0.7;
 
-    function calculate() {
+    const calculate = () => {
         scrollAmount = wrapper.clientWidth * 0.7;
-    }
+    };
 
-    calculate();
-
-    window.addEventListener('resize', calculate, { passive: true });
+    window.addEventListener('resize', calculate, {
+        passive: true
+    });
 
     leftBtn.addEventListener('click', () => {
-        wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+
+        wrapper.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+
     });
 
     rightBtn.addEventListener('click', () => {
-        wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+
+        wrapper.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+
     });
 }
 
-window.addEventListener('load', () => {
+// ========================================
+// INIT
+// ========================================
 
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
+document.addEventListener('DOMContentLoaded', () => {
 
-            // 🔥 extra frame para asegurar layout final post-CSS
-            requestAnimationFrame(() => {
+    // slider infinito
+    if (document.querySelector('.clients__track')) {
+        initClientsSlider();
+    }
 
-                window.initClientsSlider?.();
-                window.initClientsArrows?.();
-
-            });
-
-        });
-    });
+    // arrows reutilizables
+    if (
+        document.querySelector('.clients__logos-wrapper') &&
+        document.querySelector('.clients__arrow--left') &&
+        document.querySelector('.clients__arrow--right')
+    ) {
+        initClientsArrows();
+    }
 
 });

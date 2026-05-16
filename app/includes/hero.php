@@ -32,19 +32,19 @@
                      <picture>
                         <source srcset="<?= BASE_URL ?>build/img/header/desarollo-web.avif" type="image/avif">
                         <source srcset="<?= BASE_URL ?>build/img/header/desarollo-web.webp" type="image/webp">
-                        <img src="<?= BASE_URL ?>build/img/header/desarollo-web.jpg" width="1920" height="1080" fetchpriority="high" decoding="async" alt="Desarrollo web">
+                        <img src="<?= BASE_URL ?>build/img/header/desarollo-web.jpg" width="900" height="450" fetchpriority="high" decoding="async" alt="Desarrollo web">
                     </picture>
 
                     <picture>
                         <source srcset="<?= BASE_URL ?>build/img/header/produccion-marketing.avif" type="image/avif">
                         <source srcset="<?= BASE_URL ?>build/img/header/produccion-marketing.webp" type="image/webp">
-                        <img src="<?= BASE_URL ?>build/img/header/produccion-marketing.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="Marketing">
+                        <img src="<?= BASE_URL ?>build/img/header/produccion-marketing.jpg" width="900" height="450" decoding="async" loading="lazy" alt="Marketing">
                     </picture>
 
                     <picture>
                         <source srcset="<?= BASE_URL ?>build/img/header/codeimpact-web.avif" type="image/avif">
                         <source srcset="<?= BASE_URL ?>build/img/header/codeimpact-web.webp" type="image/webp">
-                        <img src="<?= BASE_URL ?>build/img/header/codeimpact-web.jpg" width="1920" height="1080" decoding="async" loading="lazy" alt="CodeImpact">
+                        <img src="<?= BASE_URL ?>build/img/header/codeimpact-web.jpg" width="900" height="450" decoding="async" loading="lazy" alt="CodeImpact">
                     </picture>
                 </div>
 
