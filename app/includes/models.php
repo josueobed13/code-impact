@@ -15,7 +15,7 @@
             <div class="model-card">
 
                 <div class="model-card__image">
-                    <img src="<?= BASE_URL ?>build/img/models/carla.jpg" alt="Carla Aragón">
+                    <img src="<?= BASE_URL ?>build/img/models/chantal.jpg" alt="Chantal Flores">
                 </div>
 
                 <div class="model-card__content">
@@ -43,11 +43,11 @@
             <div class="model-card">
 
                 <div class="model-card__image">
-                    <img src="<?= BASE_URL ?>build/img/models/chantal.jpg" alt="Chantal Flores">
+                    <img src="<?= BASE_URL ?>build/img/models/carla.jpg" alt="carla">
                 </div>
 
                 <div class="model-card__content">
-                    <h3>modelo 2</h3>
+                    <h3>Carla Aragon</h3>
                     <span class="model-card__role">MODELO</span>
 
                     <p>
