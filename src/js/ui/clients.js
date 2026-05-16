@@ -1,234 +1,158 @@
 function initClientsSlider() {
 
     const track = document.querySelector('.clients__track');
-
     if (!track) return;
 
     track.style.willChange = 'transform';
+    track.style.transform = 'translate3d(0,0,0)';
 
-    // =========================
-    // DUPLICAR ITEMS
-    // =========================
+    const items = Array.from(track.children);
+    items.forEach(item => track.appendChild(item.cloneNode(true)));
 
-    const fragment = document.createDocumentFragment();
+    let halfWidth = 0;
 
-    [...track.children].forEach(item => {
-        fragment.appendChild(item.cloneNode(true));
-    });
+    function calculateWidth() {
+        halfWidth = track.scrollWidth / 2;
+    }
 
-    track.appendChild(fragment);
+    calculateWidth();
 
-    // =========================
-    // VARIABLES
-    // =========================
+    window.addEventListener('resize', calculateWidth, { passive: true });
 
-    let halfWidth = track.scrollWidth / 2;
+    let speed = 0.3;
     let position = 0;
-
     let isPaused = false;
     let isDragging = false;
 
+    let startX = 0;
     let currentX = 0;
 
     let rafId = null;
-    let timeout = null;
+    let lastFrame = 0;
 
-    // =========================
-    // RECALCULAR WIDTH
-    // =========================
+    function update() {
 
-    const calculateWidth = () => {
-        halfWidth = track.scrollWidth / 2;
-    };
+        if (Math.abs(position) >= halfWidth) position = 0;
+        if (position > 0) position = -halfWidth;
 
-    window.addEventListener('resize', calculateWidth, {
-        passive: true
-    });
+        track.style.transform = `translate3d(${position}px,0,0)`;
+    }
 
-    // =========================
-    // UPDATE POSITION
-    // =========================
+    function animate(timestamp) {
 
-    const update = () => {
+        if (timestamp - lastFrame > 16) {
 
-        if (Math.abs(position) >= halfWidth) {
-            position = 0;
-        }
+            if (!isPaused && !isDragging) {
+                position -= speed;
+                update();
+            }
 
-        if (position > 0) {
-            position = -halfWidth;
-        }
-
-        track.style.transform = `translateX(${position}px)`;
-    };
-
-    // =========================
-    // ANIMATION
-    // =========================
-
-    const animate = () => {
-
-        if (!isPaused && !isDragging) {
-
-            position -= 0.3;
-
-            update();
+            lastFrame = timestamp;
         }
 
         rafId = requestAnimationFrame(animate);
-    };
+    }
 
-    const start = () => {
+    function start() {
+        if (!rafId) rafId = requestAnimationFrame(animate);
+    }
 
-        if (!rafId) {
-            rafId = requestAnimationFrame(animate);
-        }
-    };
-
-    const stop = () => {
-
+    function stop() {
         cancelAnimationFrame(rafId);
-
         rafId = null;
-    };
+    }
 
-    // =========================
-    // VISIBILITY
-    // =========================
+    const observer = new IntersectionObserver((entries) => {
 
-    const observer = new IntersectionObserver(([entry]) => {
+        const entry = entries[0];
 
-        if (entry.isIntersecting) {
-            start();
-        } else {
-            stop();
-        }
+        if (entry.isIntersecting) start();
+        else stop();
 
-    }, {
-        threshold: 0.1
-    });
+    }, { threshold: 0.1 });
 
     observer.observe(track);
 
-    // =========================
-    // PAUSE
-    // =========================
+    let timeout;
 
-    const pause = () => {
-
+    function pause() {
         isPaused = true;
-
         clearTimeout(timeout);
+        timeout = setTimeout(() => isPaused = false, 2500);
+    }
 
-        timeout = setTimeout(() => {
-            isPaused = false;
-        }, 2500);
-    };
-
-    // =========================
-    // TOUCH
-    // =========================
-
-    track.addEventListener('touchstart', e => {
+    track.addEventListener('touchstart', (e) => {
 
         pause();
-
         isDragging = true;
+        startX = e.touches[0].clientX;
+        currentX = startX;
 
-        currentX = e.touches[0].clientX;
+    }, { passive: true });
 
-    }, {
-        passive: true
-    });
-
-    track.addEventListener('touchmove', e => {
+    track.addEventListener('touchmove', (e) => {
 
         if (!isDragging) return;
 
         const x = e.touches[0].clientX;
+        const diff = x - currentX;
 
-        position += x - currentX;
-
+        position += diff;
         currentX = x;
 
         update();
 
-    }, {
-        passive: true
-    });
+    }, { passive: true });
 
     track.addEventListener('touchend', () => {
-
         isDragging = false;
-
         pause();
-
     });
 
     track.addEventListener('click', pause);
 }
 
-// ========================================
-// GENERIC HORIZONTAL SCROLLER
-// ========================================
+function initClientsArrows() {
 
-function initClientsArrows(root = document) {
-
-    const wrapper = root.querySelector('.clients__logos-wrapper');
-
-    const leftBtn = root.querySelector('.clients__arrow--left');
-
-    const rightBtn = root.querySelector('.clients__arrow--right');
+    const wrapper = document.querySelector('.clients__logos-wrapper');
+    const leftBtn = document.querySelector('.clients__arrow--left');
+    const rightBtn = document.querySelector('.clients__arrow--right');
 
     if (!wrapper || !leftBtn || !rightBtn) return;
 
-    let scrollAmount = wrapper.clientWidth * 0.7;
+    let scrollAmount = 0;
 
-    const calculate = () => {
+    function calculate() {
         scrollAmount = wrapper.clientWidth * 0.7;
-    };
+    }
 
-    window.addEventListener('resize', calculate, {
-        passive: true
-    });
+    calculate();
+
+    window.addEventListener('resize', calculate, { passive: true });
 
     leftBtn.addEventListener('click', () => {
-
-        wrapper.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
-        });
-
+        wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
 
     rightBtn.addEventListener('click', () => {
-
-        wrapper.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
-
+        wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 }
 
-// ========================================
-// INIT
-// ========================================
+window.addEventListener('load', () => {
 
-document.addEventListener('DOMContentLoaded', () => {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
 
-    // slider infinito
-    if (document.querySelector('.clients__track')) {
-        initClientsSlider();
-    }
+            // 🔥 extra frame para asegurar layout final post-CSS
+            requestAnimationFrame(() => {
 
-    // arrows reutilizables
-    if (
-        document.querySelector('.clients__logos-wrapper') &&
-        document.querySelector('.clients__arrow--left') &&
-        document.querySelector('.clients__arrow--right')
-    ) {
-        initClientsArrows();
-    }
+                window.initClientsSlider?.();
+                window.initClientsArrows?.();
+
+            });
+
+        });
+    });
 
 });
