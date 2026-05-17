@@ -1837,8 +1837,8 @@ body {
   ========================= */
 }
 .clients__item {
-  flex: 0 0 320px;
-  width: 320px;
+  flex: 0 0 281px;
+  width: 281px;
   height: 260px;
   display: flex;
   align-items: center;
@@ -1848,12 +1848,12 @@ body {
   background: transparent;
 }
 .clients__item picture {
-  width: 100%;
+  max-width: 259px;
   height: 100%;
   display: block;
 }
 .clients__item picture img {
-  width: 100%;
+  max-width: 259px;
   height: 100%;
   object-fit: contain;
   transform: translateZ(0);
@@ -1974,8 +1974,8 @@ body {
     background-size: cover;
   }
   .clients__item {
-    flex: 0 0 290px;
-    width: 290px;
+    flex: 0 0 249px;
+    width: 249px;
     height: 220px;
   }
   .clients__logos-track img {

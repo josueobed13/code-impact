@@ -144,9 +144,9 @@
     ========================= */
     &__item {
 
-        flex: 0 0 320px;
+        flex: 0 0 281px;
 
-        width: 320px;
+        width: 281px;
 
         height: 260px;
 
@@ -164,7 +164,7 @@
 
         picture {
 
-            width: 100%;
+            max-width: 259px;
 
             height: 100%;
 
@@ -174,7 +174,7 @@
 
         picture img {
 
-            width: 100%;
+            max-width: 259px;
 
             height: 100%;
 
@@ -406,9 +406,9 @@
 
     .clients__item {
 
-        flex: 0 0 290px;
+        flex: 0 0 249px;
 
-        width: 290px;
+        width: 249px;
 
         height: 220px;
 
