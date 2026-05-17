@@ -3,24 +3,81 @@ function initClientsSlider() {
     const track = document.querySelector('.clients__track');
     if (!track) return;
 
+    const isIPad = /iPad|Macintosh/.test(navigator.userAgent)
+        && 'ontouchend' in document;
+
     track.style.willChange = 'transform';
     track.style.transform = 'translate3d(0,0,0)';
 
     const items = Array.from(track.children);
-    items.forEach(item => track.appendChild(item.cloneNode(true)));
+
+    // evitar duplicar varias veces si el script se reinicia
+    if (!track.dataset.cloned) {
+
+        items.forEach(item => {
+            track.appendChild(item.cloneNode(true));
+        });
+
+        track.dataset.cloned = 'true';
+    }
 
     let halfWidth = 0;
+    let position = 0;
 
     function calculateWidth() {
-        halfWidth = track.scrollWidth / 2;
+
+        const previousHalf = halfWidth || 1;
+
+        halfWidth = 0;
+
+        items.forEach(item => {
+
+            halfWidth += item.getBoundingClientRect().width;
+
+        });
+
+        // reajustar proporcionalmente la posición actual
+        position = (position / previousHalf) * halfWidth;
+
+        update();
     }
 
     calculateWidth();
 
-    window.addEventListener('resize', calculateWidth, { passive: true });
+    // resize optimizado
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+
+            calculateWidth();
+
+        }, 150);
+
+    }, { passive: true });
+
+    // orientación móvil
+    window.addEventListener('orientationchange', () => {
+
+        setTimeout(() => {
+
+            calculateWidth();
+
+        }, 300);
+
+    });
+
+    // observer real del contenedor
+    const resizeObserver = new ResizeObserver(() => {
+        calculateWidth();
+    });
+
+    resizeObserver.observe(track);
 
     let speed = 0.3;
-    let position = 0;
     let isPaused = false;
     let isDragging = false;
 
@@ -32,8 +89,13 @@ function initClientsSlider() {
 
     function update() {
 
-        if (Math.abs(position) >= halfWidth) position = 0;
-        if (position > 0) position = -halfWidth;
+        if (Math.abs(position) >= halfWidth) {
+            position = 0;
+        }
+
+        if (position > 0) {
+            position = -halfWidth;
+        }
 
         track.style.transform = `translate3d(${position}px,0,0)`;
     }
@@ -43,7 +105,9 @@ function initClientsSlider() {
         if (timestamp - lastFrame > 16) {
 
             if (!isPaused && !isDragging) {
+
                 position -= speed;
+
                 update();
             }
 
@@ -54,11 +118,19 @@ function initClientsSlider() {
     }
 
     function start() {
-        if (!rafId) rafId = requestAnimationFrame(animate);
+
+        // desactivar autoplay en iPad Safari
+        if (isIPad) return;
+
+        if (!rafId) {
+            rafId = requestAnimationFrame(animate);
+        }
     }
 
     function stop() {
+
         cancelAnimationFrame(rafId);
+
         rafId = null;
     }
 
@@ -66,8 +138,11 @@ function initClientsSlider() {
 
         const entry = entries[0];
 
-        if (entry.isIntersecting) start();
-        else stop();
+        if (entry.isIntersecting) {
+            start();
+        } else {
+            stop();
+        }
 
     }, { threshold: 0.1 });
 
@@ -76,16 +151,26 @@ function initClientsSlider() {
     let timeout;
 
     function pause() {
+
         isPaused = true;
+
         clearTimeout(timeout);
-        timeout = setTimeout(() => isPaused = false, 2500);
+
+        timeout = setTimeout(() => {
+
+            isPaused = false;
+
+        }, 2500);
     }
 
     track.addEventListener('touchstart', (e) => {
 
         pause();
+
         isDragging = true;
+
         startX = e.touches[0].clientX;
+
         currentX = startX;
 
     }, { passive: true });
@@ -95,9 +180,11 @@ function initClientsSlider() {
         if (!isDragging) return;
 
         const x = e.touches[0].clientX;
+
         const diff = x - currentX;
 
         position += diff;
+
         currentX = x;
 
         update();
@@ -105,11 +192,22 @@ function initClientsSlider() {
     }, { passive: true });
 
     track.addEventListener('touchend', () => {
+
         isDragging = false;
+
         pause();
+
     });
 
     track.addEventListener('click', pause);
+
+    // fix render Safari iPad
+    if (isIPad) {
+
+        track.style.willChange = 'auto';
+
+        track.style.transform = 'translateX(0)';
+    }
 }
 
 function initClientsArrows() {
@@ -123,36 +221,60 @@ function initClientsArrows() {
     let scrollAmount = 0;
 
     function calculate() {
+
         scrollAmount = wrapper.clientWidth * 0.7;
     }
 
     calculate();
 
-    window.addEventListener('resize', calculate, { passive: true });
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+
+            calculate();
+
+        }, 150);
+
+    }, { passive: true });
 
     leftBtn.addEventListener('click', () => {
-        wrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+
+        wrapper.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+
     });
 
     rightBtn.addEventListener('click', () => {
-        wrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+
+        wrapper.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+
     });
 }
 
 window.addEventListener('load', () => {
 
     requestAnimationFrame(() => {
+
         requestAnimationFrame(() => {
 
-            // 🔥 extra frame para asegurar layout final post-CSS
             requestAnimationFrame(() => {
 
-                window.initClientsSlider?.();
-                window.initClientsArrows?.();
+                initClientsSlider();
+                initClientsArrows();
 
             });
 
         });
+
     });
 
 });

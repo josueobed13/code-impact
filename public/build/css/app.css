@@ -1797,6 +1797,8 @@ body {
   position: relative;
   overflow: hidden;
   touch-action: pan-y;
+  width: 100%;
+  max-width: 100vw;
 }
 .clients__wrapper::before, .clients__wrapper::after {
   content: "";
@@ -1821,14 +1823,13 @@ body {
   ========================= */
 }
 .clients__track {
-  display: inline-flex;
+  display: flex;
+  width: max-content;
   align-items: center;
   min-height: 250px;
   will-change: transform;
   transform: translate3d(0, 0, 0);
-  contain: content;
   backface-visibility: hidden;
-  perspective: 1000px;
 }
 .clients {
   /* =========================
@@ -1836,8 +1837,8 @@ body {
   ========================= */
 }
 .clients__item {
-  flex-shrink: 0;
-  min-width: 320px;
+  flex: 0 0 320px;
+  width: 320px;
   height: 260px;
   display: flex;
   align-items: center;
@@ -1973,7 +1974,8 @@ body {
     background-size: cover;
   }
   .clients__item {
-    min-width: 290px;
+    flex: 0 0 290px;
+    width: 290px;
     height: 220px;
   }
   .clients__logos-track img {
@@ -1985,7 +1987,8 @@ body {
 ========================= */
 @media (max-width: 768px) {
   .clients__item {
-    min-width: 212px;
+    flex: 0 0 212px;
+    width: 212px;
     height: 180px;
   }
   .clients__logos-track {
@@ -2022,7 +2025,8 @@ body {
 }
 @media (max-width: 396px) {
   .clients__item {
-    min-width: 220px;
+    flex: 0 0 220px;
+    width: 220px;
     height: 150px;
   }
   .clients__logos-track {
@@ -2034,7 +2038,8 @@ body {
 }
 @media (max-width: 395px) {
   .clients__item {
-    min-width: 160px;
+    flex: 0 0 160px;
+    width: 160px;
     height: 150px;
   }
 }
