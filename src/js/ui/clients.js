@@ -32,18 +32,24 @@ function initClientsLightbox() {
     });
 
     // cerrar lightbox
-    lightbox.addEventListener('click', (e) => {
+    if (!lightbox.dataset.listenerReady) {
 
-        if (
-            e.target.classList.contains('lightbox') ||
-            e.target.classList.contains('lightbox__close')
-        ) {
+        lightbox.dataset.listenerReady = 'true';
 
-            lightbox.classList.remove('active');
+        lightbox.addEventListener('click', (e) => {
 
-        }
+            if (
+                e.target.classList.contains('lightbox') ||
+                e.target.classList.contains('lightbox__close')
+            ) {
 
-    });
+                lightbox.classList.remove('active');
+
+            }
+
+        });
+
+    }
 
 }
 
@@ -52,25 +58,35 @@ function initClientsLightbox() {
 // ==========================
 function initClientsSlider() {
 
-    const track = document.querySelector('.clients__track');
+    const track =
+        document.querySelector('.clients__track');
 
     if (!track) return;
 
     // ==========================
-    // DETECTAR iPAD / SAFARI
+    // DETECTAR iPAD / iOS
     // ==========================
-    const isIPad =
-        /iPad|Macintosh/.test(navigator.userAgent) &&
+    const isIOS =
+        /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) &&
         'ontouchend' in document;
 
     // ==========================
     // TRACK BASE
     // ==========================
-    track.style.transform = 'translateX(0)';
+    track.style.transform =
+        'translate3d(0,0,0)';
 
-    track.style.pointerEvents = 'auto';
+    track.style.willChange =
+        'transform';
 
-    const items = Array.from(track.children);
+    track.style.pointerEvents =
+        'auto';
+
+    // ==========================
+    // ITEMS
+    // ==========================
+    const items =
+        Array.from(track.children);
 
     // ==========================
     // EVITAR DUPLICAR CLONES
@@ -87,9 +103,7 @@ function initClientsSlider() {
 
         track.dataset.cloned = 'true';
 
-        // IMPORTANTE:
         // reinicializar lightbox
-        // para clones
         initClientsLightbox();
     }
 
@@ -102,7 +116,8 @@ function initClientsSlider() {
 
     function calculateWidth() {
 
-        const previousHalf = halfWidth || 1;
+        const previousHalf =
+            halfWidth || 1;
 
         halfWidth = 0;
 
@@ -120,7 +135,55 @@ function initClientsSlider() {
         update();
     }
 
-    calculateWidth();
+    // esperar imágenes cargadas
+    function waitImages() {
+
+        const imgs =
+            track.querySelectorAll('img');
+
+        let loaded = 0;
+
+        if (!imgs.length) {
+
+            calculateWidth();
+
+            start();
+
+            return;
+        }
+
+        imgs.forEach(img => {
+
+            if (img.complete) {
+
+                loaded++;
+
+            } else {
+
+                img.addEventListener('load', () => {
+
+                    loaded++;
+
+                    if (loaded === imgs.length) {
+
+                        calculateWidth();
+
+                        start();
+                    }
+
+                });
+
+            }
+
+        });
+
+        if (loaded === imgs.length) {
+
+            calculateWidth();
+
+            start();
+        }
+    }
 
     // ==========================
     // RESIZE
@@ -148,7 +211,7 @@ function initClientsSlider() {
 
             calculateWidth();
 
-        }, 300);
+        }, 500);
 
     });
 
@@ -167,24 +230,22 @@ function initClientsSlider() {
     // ==========================
     // CONFIG
     // ==========================
-    let speed = 0.3;
+    let speed = 0.35;
 
     let isPaused = false;
 
     let isDragging = false;
 
-    let startX = 0;
-
     let currentX = 0;
 
     let rafId = null;
-
-    let lastFrame = 0;
 
     // ==========================
     // UPDATE POSITION
     // ==========================
     function update() {
+
+        if (!halfWidth) return;
 
         // LOOP CONTINUO
         if (position <= -halfWidth) {
@@ -198,27 +259,23 @@ function initClientsSlider() {
         }
 
         track.style.transform =
-            `translateX(${position}px)`;
+            `translate3d(${position}px,0,0)`;
     }
 
     // ==========================
     // ANIMACIÓN
     // ==========================
-    function animate(timestamp) {
+    function animate() {
 
-        if (timestamp - lastFrame > 16) {
+        if (!isPaused && !isDragging) {
 
-            if (!isPaused && !isDragging) {
+            position -= speed;
 
-                position -= speed;
-
-                update();
-            }
-
-            lastFrame = timestamp;
+            update();
         }
 
-        rafId = requestAnimationFrame(animate);
+        rafId =
+            requestAnimationFrame(animate);
     }
 
     // ==========================
@@ -226,14 +283,10 @@ function initClientsSlider() {
     // ==========================
     function start() {
 
-        // desactivar autoplay iPad
-        if (isIPad) return;
+        if (rafId) return;
 
-        if (!rafId) {
-
-            rafId =
-                requestAnimationFrame(animate);
-        }
+        rafId =
+            requestAnimationFrame(animate);
     }
 
     // ==========================
@@ -296,9 +349,8 @@ function initClientsSlider() {
 
         isDragging = true;
 
-        startX = e.touches[0].clientX;
-
-        currentX = startX;
+        currentX =
+            e.touches[0].clientX;
 
     }, { passive: true });
 
@@ -309,9 +361,11 @@ function initClientsSlider() {
 
         if (!isDragging) return;
 
-        const x = e.touches[0].clientX;
+        const x =
+            e.touches[0].clientX;
 
-        const diff = x - currentX;
+        const diff =
+            x - currentX;
 
         position += diff;
 
@@ -335,18 +389,33 @@ function initClientsSlider() {
     // ==========================
     // POINTER DOWN
     // ==========================
-    track.addEventListener('pointerdown', pause, {
+    track.addEventListener('pointerdown', () => {
+
+        pause();
+
+    }, {
         passive: true
     });
 
     // ==========================
-    // FIX iPAD
+    // FIX iOS SAFARI
     // ==========================
-    if (isIPad) {
+    if (isIOS) {
 
-        track.style.transform =
-            'translateX(0)';
+        track.style.backfaceVisibility =
+            'hidden';
+
+        track.style.webkitBackfaceVisibility =
+            'hidden';
+
+        track.style.webkitTransform =
+            'translate3d(0,0,0)';
     }
+
+    // ==========================
+    // INIT
+    // ==========================
+    waitImages();
 }
 
 // ==========================
@@ -426,19 +495,11 @@ window.addEventListener('load', () => {
 
     requestAnimationFrame(() => {
 
-        requestAnimationFrame(() => {
+        initClientsSlider();
 
-            requestAnimationFrame(() => {
+        initClientsArrows();
 
-                initClientsSlider();
-
-                initClientsArrows();
-
-                initClientsLightbox();
-
-            });
-
-        });
+        initClientsLightbox();
 
     });
 
