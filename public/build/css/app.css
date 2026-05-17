@@ -1991,6 +1991,9 @@ body {
     width: 212px;
     height: 180px;
   }
+  .clients__track {
+    min-height: 180px;
+  }
   .clients__logos-track {
     gap: 2.3rem;
   }
@@ -2022,12 +2025,18 @@ body {
   .clients__title {
     font-size: 2.6rem;
   }
+  .clients__track {
+    min-height: 179px;
+  }
 }
 @media (max-width: 396px) {
   .clients__item {
-    flex: 0 0 220px;
-    width: 220px;
+    flex: 0 0 160px;
+    width: 160px;
     height: 150px;
+  }
+  .clients__logos {
+    min-height: 58px;
   }
   .clients__logos-track {
     gap: 1rem;
