@@ -1,8 +1,8 @@
 
 
 <section class="hero">
-    <div class="container hero__grid">
-
+        <div class="container hero__grid">
+        
         <div class="hero__content">
             <h1 class="hero__title">
                 Soluciones digitales que hacen crecer negocios
