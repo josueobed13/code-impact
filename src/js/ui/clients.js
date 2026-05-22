@@ -58,376 +58,364 @@ function initClientsLightbox() {
 // ==========================
 function initClientsSlider() {
 
-    // CAMBIO IMPORTANTE:
-    // ahora soporta múltiples sliders
-    const tracks =
-        document.querySelectorAll('.clients__track');
+    const track =
+        document.querySelector('.clients__track');
 
-    if (!tracks.length) return;
+    if (!track) return;
 
-    tracks.forEach(track => {
+    // ==========================
+    // DETECTAR iPAD / iOS
+    // ==========================
+    const isIOS =
+        /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) &&
+        'ontouchend' in document;
 
-        // evitar doble inicialización
-        if (track.dataset.sliderReady) return;
+    // ==========================
+    // TRACK BASE
+    // ==========================
+    track.style.transform =
+        'translate3d(0,0,0)';
 
-        track.dataset.sliderReady = 'true';
+    track.style.willChange =
+        'transform';
 
-        // ==========================
-        // DETECTAR iPAD / iOS
-        // ==========================
-        const isIOS =
-            /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent) &&
-            'ontouchend' in document;
+    track.style.pointerEvents =
+        'auto';
 
-        // ==========================
-        // TRACK BASE
-        // ==========================
-        track.style.transform =
-            'translate3d(0,0,0)';
+    // ==========================
+    // ITEMS
+    // ==========================
+    const items =
+        Array.from(track.children);
 
-        track.style.willChange =
-            'transform';
+    // ==========================
+    // EVITAR DUPLICAR CLONES
+    // ==========================
+    if (!track.dataset.cloned) {
 
-        track.style.pointerEvents =
-            'auto';
+        items.forEach(item => {
 
-        // ==========================
-        // ITEMS
-        // ==========================
-        const items =
-            Array.from(track.children);
+            track.appendChild(
+                item.cloneNode(true)
+            );
 
-        // ==========================
-        // EVITAR DUPLICAR CLONES
-        // ==========================
-        if (!track.dataset.cloned) {
+        });
 
-            items.forEach(item => {
+        track.dataset.cloned = 'true';
 
-                track.appendChild(
-                    item.cloneNode(true)
-                );
+        // reinicializar lightbox
+        initClientsLightbox();
+    }
 
-            });
+    // ==========================
+    // MEDIDAS
+    // ==========================
+    let halfWidth = 0;
 
-            track.dataset.cloned = 'true';
+    let position = 0;
 
-            // reinicializar lightbox
-            initClientsLightbox();
+    function calculateWidth() {
+
+        const previousHalf =
+            halfWidth || 1;
+
+        halfWidth = 0;
+
+        items.forEach(item => {
+
+            halfWidth +=
+                item.getBoundingClientRect().width;
+
+        });
+
+        // mantener proporción
+        position =
+            (position / previousHalf) * halfWidth;
+
+        update();
+    }
+
+    // esperar imágenes cargadas
+    function waitImages() {
+
+        const imgs =
+            track.querySelectorAll('img');
+
+        let loaded = 0;
+
+        if (!imgs.length) {
+
+            calculateWidth();
+
+            start();
+
+            return;
         }
 
-        // ==========================
-        // MEDIDAS
-        // ==========================
-        let halfWidth = 0;
+        imgs.forEach(img => {
 
-        let position = 0;
+            if (img.complete) {
 
-        function calculateWidth() {
+                loaded++;
 
-            const previousHalf =
-                halfWidth || 1;
+            } else {
 
-            halfWidth = 0;
-
-            items.forEach(item => {
-
-                halfWidth +=
-                    item.getBoundingClientRect().width;
-
-            });
-
-            // mantener proporción
-            position =
-                (position / previousHalf) * halfWidth;
-
-            update();
-        }
-
-        // esperar imágenes cargadas
-        function waitImages() {
-
-            const imgs =
-                track.querySelectorAll('img');
-
-            let loaded = 0;
-
-            if (!imgs.length) {
-
-                calculateWidth();
-
-                start();
-
-                return;
-            }
-
-            imgs.forEach(img => {
-
-                if (img.complete) {
+                img.addEventListener('load', () => {
 
                     loaded++;
 
-                } else {
+                    if (loaded === imgs.length) {
 
-                    img.addEventListener('load', () => {
+                        calculateWidth();
 
-                        loaded++;
+                        start();
+                    }
 
-                        if (loaded === imgs.length) {
+                });
 
-                            calculateWidth();
-
-                            start();
-                        }
-
-                    });
-
-                }
-
-            });
-
-            if (loaded === imgs.length) {
-
-                calculateWidth();
-
-                start();
             }
-        }
-
-        // ==========================
-        // RESIZE
-        // ==========================
-        let resizeTimer;
-
-        window.addEventListener('resize', () => {
-
-            clearTimeout(resizeTimer);
-
-            resizeTimer = setTimeout(() => {
-
-                calculateWidth();
-
-            }, 150);
-
-        }, { passive: true });
-
-        // ==========================
-        // ORIENTATION
-        // ==========================
-        window.addEventListener('orientationchange', () => {
-
-            setTimeout(() => {
-
-                calculateWidth();
-
-            }, 500);
 
         });
 
-        // ==========================
-        // RESIZE OBSERVER
-        // ==========================
-        const resizeObserver =
-            new ResizeObserver(() => {
+        if (loaded === imgs.length) {
 
-                calculateWidth();
+            calculateWidth();
 
-            });
-
-        resizeObserver.observe(track);
-
-        // ==========================
-        // CONFIG
-        // ==========================
-        let speed = 0.35;
-
-        let isPaused = false;
-
-        let isDragging = false;
-
-        let currentX = 0;
-
-        let rafId = null;
-
-        // ==========================
-        // UPDATE POSITION
-        // ==========================
-        function update() {
-
-            if (!halfWidth) return;
-
-            // LOOP CONTINUO
-            if (position <= -halfWidth) {
-
-                position += halfWidth;
-            }
-
-            if (position > 0) {
-
-                position -= halfWidth;
-            }
-
-            track.style.transform =
-                `translate3d(${position}px,0,0)`;
+            start();
         }
+    }
 
-        // ==========================
-        // ANIMACIÓN
-        // ==========================
-        function animate() {
+    // ==========================
+    // RESIZE
+    // ==========================
+    let resizeTimer;
 
-            if (!isPaused && !isDragging) {
+    window.addEventListener('resize', () => {
 
-                position -= speed;
+        clearTimeout(resizeTimer);
 
-                update();
-            }
+        resizeTimer = setTimeout(() => {
 
-            rafId =
-                requestAnimationFrame(animate);
-        }
+            calculateWidth();
 
-        // ==========================
-        // START
-        // ==========================
-        function start() {
+        }, 150);
 
-            if (rafId) return;
+    }, { passive: true });
 
-            rafId =
-                requestAnimationFrame(animate);
-        }
+    // ==========================
+    // ORIENTATION
+    // ==========================
+    window.addEventListener('orientationchange', () => {
 
-        // ==========================
-        // STOP
-        // ==========================
-        function stop() {
+        setTimeout(() => {
 
-            cancelAnimationFrame(rafId);
+            calculateWidth();
 
-            rafId = null;
-        }
-
-        // ==========================
-        // INTERSECTION OBSERVER
-        // ==========================
-        const observer =
-            new IntersectionObserver((entries) => {
-
-                const entry = entries[0];
-
-                if (entry.isIntersecting) {
-
-                    start();
-
-                } else {
-
-                    stop();
-                }
-
-            }, {
-                threshold: 0.1
-            });
-
-        observer.observe(track);
-
-        // ==========================
-        // PAUSA
-        // ==========================
-        let timeout;
-
-        function pause() {
-
-            isPaused = true;
-
-            clearTimeout(timeout);
-
-            timeout = setTimeout(() => {
-
-                isPaused = false;
-
-            }, 2500);
-        }
-
-        // ==========================
-        // TOUCH START
-        // ==========================
-        track.addEventListener('touchstart', (e) => {
-
-            pause();
-
-            isDragging = true;
-
-            currentX =
-                e.touches[0].clientX;
-
-        }, { passive: true });
-
-        // ==========================
-        // TOUCH MOVE
-        // ==========================
-        track.addEventListener('touchmove', (e) => {
-
-            if (!isDragging) return;
-
-            const x =
-                e.touches[0].clientX;
-
-            const diff =
-                x - currentX;
-
-            position += diff;
-
-            currentX = x;
-
-            update();
-
-        }, { passive: true });
-
-        // ==========================
-        // TOUCH END
-        // ==========================
-        track.addEventListener('touchend', () => {
-
-            isDragging = false;
-
-            pause();
-
-        });
-
-        // ==========================
-        // POINTER DOWN
-        // ==========================
-        track.addEventListener('pointerdown', () => {
-
-            pause();
-
-        }, {
-            passive: true
-        });
-
-        // ==========================
-        // FIX iOS SAFARI
-        // ==========================
-        if (isIOS) {
-
-            track.style.backfaceVisibility =
-                'hidden';
-
-            track.style.webkitBackfaceVisibility =
-                'hidden';
-
-            track.style.webkitTransform =
-                'translate3d(0,0,0)';
-        }
-
-        // ==========================
-        // INIT
-        // ==========================
-        waitImages();
+        }, 500);
 
     });
 
+    // ==========================
+    // RESIZE OBSERVER
+    // ==========================
+    const resizeObserver =
+        new ResizeObserver(() => {
+
+            calculateWidth();
+
+        });
+
+    resizeObserver.observe(track);
+
+    // ==========================
+    // CONFIG
+    // ==========================
+    let speed = 0.35;
+
+    let isPaused = false;
+
+    let isDragging = false;
+
+    let currentX = 0;
+
+    let rafId = null;
+
+    // ==========================
+    // UPDATE POSITION
+    // ==========================
+    function update() {
+
+        if (!halfWidth) return;
+
+        // LOOP CONTINUO
+        if (position <= -halfWidth) {
+
+            position += halfWidth;
+        }
+
+        if (position > 0) {
+
+            position -= halfWidth;
+        }
+
+        track.style.transform =
+            `translate3d(${position}px,0,0)`;
+    }
+
+    // ==========================
+    // ANIMACIÓN
+    // ==========================
+    function animate() {
+
+        if (!isPaused && !isDragging) {
+
+            position -= speed;
+
+            update();
+        }
+
+        rafId =
+            requestAnimationFrame(animate);
+    }
+
+    // ==========================
+    // START
+    // ==========================
+    function start() {
+
+        if (rafId) return;
+
+        rafId =
+            requestAnimationFrame(animate);
+    }
+
+    // ==========================
+    // STOP
+    // ==========================
+    function stop() {
+
+        cancelAnimationFrame(rafId);
+
+        rafId = null;
+    }
+
+    // ==========================
+    // INTERSECTION OBSERVER
+    // ==========================
+    const observer =
+        new IntersectionObserver((entries) => {
+
+            const entry = entries[0];
+
+            if (entry.isIntersecting) {
+
+                start();
+
+            } else {
+
+                stop();
+            }
+
+        }, {
+            threshold: 0.1
+        });
+
+    observer.observe(track);
+
+    // ==========================
+    // PAUSA
+    // ==========================
+    let timeout;
+
+    function pause() {
+
+        isPaused = true;
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(() => {
+
+            isPaused = false;
+
+        }, 2500);
+    }
+
+    // ==========================
+    // TOUCH START
+    // ==========================
+    track.addEventListener('touchstart', (e) => {
+
+        pause();
+
+        isDragging = true;
+
+        currentX =
+            e.touches[0].clientX;
+
+    }, { passive: true });
+
+    // ==========================
+    // TOUCH MOVE
+    // ==========================
+    track.addEventListener('touchmove', (e) => {
+
+        if (!isDragging) return;
+
+        const x =
+            e.touches[0].clientX;
+
+        const diff =
+            x - currentX;
+
+        position += diff;
+
+        currentX = x;
+
+        update();
+
+    }, { passive: true });
+
+    // ==========================
+    // TOUCH END
+    // ==========================
+    track.addEventListener('touchend', () => {
+
+        isDragging = false;
+
+        pause();
+
+    });
+
+    // ==========================
+    // POINTER DOWN
+    // ==========================
+    track.addEventListener('pointerdown', () => {
+
+        pause();
+
+    }, {
+        passive: true
+    });
+
+    // ==========================
+    // FIX iOS SAFARI
+    // ==========================
+    if (isIOS) {
+
+        track.style.backfaceVisibility =
+            'hidden';
+
+        track.style.webkitBackfaceVisibility =
+            'hidden';
+
+        track.style.webkitTransform =
+            'translate3d(0,0,0)';
+    }
+
+    // ==========================
+    // INIT
+    // ==========================
+    waitImages();
 }
 
 // ==========================

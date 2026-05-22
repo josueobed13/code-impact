@@ -11,9 +11,9 @@
              SLIDER IMÁGENES
         ========================== -->
         <div class="clients__wrapper">
-                <div class="clients__track">
+                <div class="promos__track">
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/1.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/1.webp" type="image/webp">
@@ -21,7 +21,7 @@
                         </picture>
                     </div>
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/2.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/2.webp" type="image/webp">
@@ -29,7 +29,7 @@
                         </picture>
                     </div>
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/3.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/3.webp" type="image/webp">
@@ -37,7 +37,7 @@
                         </picture>
                     </div>
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/4.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/4.webp" type="image/webp">
@@ -45,7 +45,7 @@
                         </picture>
                     </div>
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/5.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/5.webp" type="image/webp">
@@ -53,7 +53,7 @@
                         </picture>
                     </div>
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/6.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/6.webp" type="image/webp">
@@ -61,7 +61,7 @@
                         </picture>
                     </div>
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/7.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/7.webp" type="image/webp">
@@ -69,21 +69,21 @@
                         </picture>
                     </div>
 
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/8.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/8.webp" type="image/webp">
                             <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/promos/8.jpg" alt="Proyecto 8">
                         </picture>
                     </div>
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/9.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/9.webp" type="image/webp">
                             <img class="js-lightbox" loading="lazy" src="<?php echo BASE_URL; ?>build/img/promos/9.jpg" alt="Proyecto 8">
                         </picture>
                     </div>
-                    <div class="clients__item">
+                    <div class="promos__item">
                         <picture>
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/10.avif" type="image/avif">
                             <source srcset="<?php echo BASE_URL; ?>build/img/promos/10.webp" type="image/webp">
