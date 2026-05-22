@@ -8,7 +8,7 @@ include __DIR__ . '/../app/includes/header.php';
 <main>
     <?php include __DIR__ . '/../app/includes/hero.php'; ?>
     <?php include __DIR__ . '/../app/includes/process.php'; ?>
-    <?php include __DIR__ . '/../app/includes/Promociones.php'; ?>
+    <?php include __DIR__ . '/../app/includes/promociones.php'; ?>
     <?php include __DIR__ . '/../app/includes/services.php'; ?>
     <?php include __DIR__ . '/../app/includes/clients.php'; ?>
     <?php include __DIR__ . '/../app/includes/models.php'; ?>
