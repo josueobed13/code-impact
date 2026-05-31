@@ -49,7 +49,7 @@ function initPromosLightbox() {
 
 
 // ==========================
-// PROMOS SLIDER (INDEPENDIENTE)
+// PROMOS SLIDER (VERSIÓN FINAL ESTABLE)
 // ==========================
 function initPromosSlider() {
 
@@ -63,12 +63,21 @@ function initPromosSlider() {
     track.style.transform = 'translate3d(0,0,0)';
     track.style.willChange = 'transform';
 
-    let items = Array.from(track.children);
+    let position = 0;
+    let halfWidth = 0;
+
+    let speed = 0.35;
+    let isPaused = false;
+    let isDragging = false;
+    let currentX = 0;
+    let rafId = null;
 
     // ==========================
-    // CLONADO (loop infinito)
+    // CLONADO
     // ==========================
     if (!track.dataset.cloned) {
+
+        const items = Array.from(track.children);
 
         items.forEach(item => {
             track.appendChild(item.cloneNode(true));
@@ -79,41 +88,34 @@ function initPromosSlider() {
         initPromosLightbox();
     }
 
-    let halfWidth = 0;
-    let position = 0;
-    let speed = 0.35;
-    let isPaused = false;
-    let isDragging = false;
-    let currentX = 0;
-    let rafId = null;
-
+    // ==========================
+    // CALCULO CORRECTO
+    // ==========================
     function calculateWidth() {
 
-        const previousHalf = halfWidth || 1;
-        halfWidth = 0;
-
-        items = Array.from(track.children);
-
-        items.forEach(item => {
-            halfWidth += item.getBoundingClientRect().width;
-        });
-
-        position = (position / previousHalf) * halfWidth;
+        halfWidth = track.scrollWidth / 2;
 
         update();
     }
 
+    // ==========================
+    // UPDATE LOOP
+    // ==========================
     function update() {
 
         if (!halfWidth) return;
 
-        if (position <= -halfWidth) position += halfWidth;
+        position = position % halfWidth;
+
         if (position > 0) position -= halfWidth;
 
         track.style.transform =
             `translate3d(${position}px,0,0)`;
     }
 
+    // ==========================
+    // ANIMACIÓN
+    // ==========================
     function animate() {
 
         if (!isPaused && !isDragging) {
@@ -129,21 +131,62 @@ function initPromosSlider() {
         rafId = requestAnimationFrame(animate);
     }
 
-    function pause() {
-
-        isPaused = true;
-
-        setTimeout(() => {
-            isPaused = false;
-        }, 2000);
+    function stop() {
+        cancelAnimationFrame(rafId);
+        rafId = null;
     }
+
+    // ==========================
+    // WAIT LAYOUT REAL (🔥 FIX IMPORTANTE)
+    // ==========================
+    function waitReady(callback) {
+
+        requestAnimationFrame(() => {
+
+            requestAnimationFrame(() => {
+
+                callback();
+
+            });
+
+        });
+    }
+
+    // ==========================
+    // INTERSECTION OBSERVER
+    // ==========================
+    const observer =
+        new IntersectionObserver((entries) => {
+
+            const entry = entries[0];
+
+            if (entry.isIntersecting) start();
+            else stop();
+
+        }, { threshold: 0.1 });
+
+    observer.observe(track);
+
+    // ==========================
+    // RESIZE
+    // ==========================
+    let resizeTimer;
+
+    window.addEventListener('resize', () => {
+
+        clearTimeout(resizeTimer);
+
+        resizeTimer = setTimeout(() => {
+            calculateWidth();
+        }, 150);
+
+    }, { passive: true });
 
     // ==========================
     // TOUCH
     // ==========================
     track.addEventListener('touchstart', (e) => {
 
-        pause();
         isDragging = true;
         currentX = e.touches[0].clientX;
 
@@ -164,29 +207,34 @@ function initPromosSlider() {
     }, { passive: true });
 
     track.addEventListener('touchend', () => {
+
         isDragging = false;
-        pause();
+
+        isPaused = true;
+
+        setTimeout(() => {
+            isPaused = false;
+        }, 2000);
+
     });
 
     // ==========================
-    // IOS FIX
+    // iOS FIX
     // ==========================
     if (isIOS) {
         track.style.webkitTransform = 'translate3d(0,0,0)';
+        track.style.backfaceVisibility = 'hidden';
     }
 
     // ==========================
-    // RESIZE
+    // INIT (🔥 FIX REAL DEL PROBLEMA DE F12)
     // ==========================
-    window.addEventListener('resize', () => {
-        calculateWidth();
-    });
+    waitReady(() => {
 
-    // ==========================
-    // INIT
-    // ==========================
-    calculateWidth();
-    start();
+        calculateWidth();
+        start();
+
+    });
 }
 
 
@@ -195,7 +243,11 @@ function initPromosSlider() {
 // ==========================
 window.addEventListener('load', () => {
 
-    initPromosSlider();
-    initPromosLightbox();
+    requestAnimationFrame(() => {
+
+        initPromosSlider();
+        initPromosLightbox();
+
+    });
 
 });

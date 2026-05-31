@@ -1,5 +1,5 @@
 <!-- seccion ejemplo de clientes -->
-<section class="clients">
+<section class="promos">
     <div class="container-clientes">
 
         <h2 class="clients__title">Últimas Promociones</h2>

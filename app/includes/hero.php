@@ -4,12 +4,16 @@
         <div class="container hero__grid">
         
         <div class="hero__content">
-            <h1 class="hero__title">
-                Soluciones digitales que hacen crecer negocios
+           <h1 class="hero__title">
+                TRANSFORMAMOS IDEAS EN
+                <span>Soluciones Digitales</span>
             </h1>
 
+           <span class="hero__badge">
+                Desarrollo Web · Marketing · Producción Audiovisual
+            </span>
             <p class="hero__text">
-                Desarrollo web, marketing y contenido enfocado en resultados reales.
+                Aquí encontrarás un espacio profesional que te ayudará a alcanzar tus metas.
             </p>
 
             <div class="hero__buttons">

@@ -17,23 +17,9 @@
 
     text-align: center;
 
-    position: relative;
 
     line-height: 1.2;
 
-    overflow: hidden;
-
-    background-image: image-set(
-        url(../img/clients/client-background-desktop.avif) type('image/avif'),
-        url(../img/catalog/client-background-desktop.webp) type('image/webp'),
-        url(../img/catalog/client-background-desktop.jpg) type('image/jpeg')
-    );
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
 
     /* =========================
        TEXTOS

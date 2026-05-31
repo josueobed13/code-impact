@@ -68,7 +68,13 @@ CATÁLOGO AUDIOVISUAL
                  "title"=>"Fotografía Profesional",
                  "desc"=>"Retoque fotográfico, corrección de color y edición avanzada.",
                  "price"=>"$70",
-                 "time"=>"2-4 días"]
+                 "time"=>"2-4 días"],
+
+                 ["name"=>"drone-grabacion",
+                  "title"=>"Grabación con Dron",
+                  "desc"=>"Tomas aéreas profesionales en alta resolución para eventos, negocios y contenido publicitario.",
+                  "price"=>"$120",
+                  "time"=>"1-3 días"]
 
             ];
 

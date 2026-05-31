@@ -71,7 +71,7 @@ FOOTER
 
                     <!-- TIKTOK -->
                     <a
-                        href="https://www.tiktok.com/@codeimpactperu"
+                        href="https://www.tiktok.com/@code.impactperu"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="TikTok"

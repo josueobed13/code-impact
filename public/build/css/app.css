@@ -197,8 +197,13 @@ p {
 .hero {
   background-color: #010618;
   padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
+/* =========================
+   EFECTOS FONDO PREMIUM
+========================= */
 /* =========================
    HEADER LOGO
 ========================= */
@@ -229,17 +234,49 @@ p {
 /* =========================
    HERO CONTENT
 ========================= */
+.hero__content {
+  max-width: 600px;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1.8rem;
+  margin-bottom: 1.4rem;
+  border-radius: 999px;
+  background: rgba(0, 183, 255, 0.08);
+  border: 1px solid rgba(0, 183, 255, 0.2);
+  color: #48c7ff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+}
+
 .hero__title {
-  font-size: 5rem;
-  line-height: 1.1;
+  font-size: 5.4rem;
+  line-height: 1.05;
   margin-bottom: 2rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.hero__title span {
+  display: block;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, #00d4ff, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .hero__text {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   color: #b0b7c3;
-  margin-bottom: 3rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+  max-width: 55rem;
 }
 
 .hero__buttons {
@@ -247,6 +284,7 @@ p {
   grid-auto-flow: column;
   text-align: center;
   gap: 1rem;
+  margin-top: 3rem;
 }
 
 /* =========================
@@ -258,16 +296,32 @@ p {
   aspect-ratio: 16/9;
 }
 
-/* SLIDER */
+/* =========================
+   SLIDER
+========================= */
 .hero__slider {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 16px;
-  background-color: #000; /* evita flash blanco */
+  border-radius: 14px;
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 102, 255, 0.08);
+  position: relative;
 }
 
-/* TRACK */
+.hero__slider::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 35%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* =========================
+   TRACK
+========================= */
 .hero__slides {
   display: flex;
   width: 100%;
@@ -278,7 +332,9 @@ p {
   transition: transform 0.45s ease;
 }
 
-/* SLIDES */
+/* =========================
+   SLIDES
+========================= */
 .hero__slides picture {
   flex: 0 0 100%;
   height: 100%;
@@ -297,7 +353,10 @@ p {
 ========================= */
 @media (max-width: 1127px) {
   .hero__title {
-    font-size: 3.5rem;
+    font-size: 4.2rem;
+  }
+  .hero__text {
+    font-size: 1.6rem;
   }
 }
 @media (max-width: 900px) {
@@ -318,12 +377,18 @@ p {
     text-align: center;
   }
   .hero__title {
-    font-size: 3.4rem;
+    font-size: 3.8rem;
     text-align: center;
+  }
+  .hero__text {
+    max-width: 100%;
   }
   .hero__buttons {
     display: flex;
     gap: 3rem;
+  }
+  .hero__badge {
+    justify-content: center;
   }
 }
 @media (max-width: 768px) {
@@ -340,10 +405,16 @@ p {
     padding: 0rem 2rem;
   }
   .hero__title {
-    font-size: 3rem;
+    font-size: 3.2rem;
+  }
+  .hero__text {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
   }
   .hero__buttons {
     justify-content: center;
+    margin-top: 1rem;
   }
   .hero__grid {
     width: 100%;
@@ -352,6 +423,11 @@ p {
   }
   .hero__slider {
     border-radius: 0px;
+  }
+  .hero__badge {
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1.5;
   }
 }
 @media (max-width: 505px) {
@@ -365,6 +441,14 @@ p {
     width: 77%;
     gap: 1.5rem;
   }
+  .hero__title {
+    font-size: 2.8rem;
+  }
+  .hero__badge {
+    padding: 1rem 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.3;
+  }
 }
 @media (max-width: 435px) {
   .hero__grid {
@@ -372,6 +456,9 @@ p {
   }
   .hero__title {
     font-size: 2.5rem;
+  }
+  .hero__text {
+    font-size: 1.5rem;
   }
 }
 .footer {
@@ -2351,13 +2438,7 @@ body {
 .promos {
   padding: 6rem 0;
   text-align: center;
-  position: relative;
   line-height: 1.2;
-  overflow: hidden;
-  background-image: image-set(url(../img/clients/client-background-desktop.avif) type('image/avif'), url(../img/catalog/client-background-desktop.webp) type('image/webp'), url(../img/catalog/client-background-desktop.jpg) type('image/jpeg'));
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   /* =========================
      TEXTOS
   ========================= */
@@ -3904,6 +3985,205 @@ MOBILE
   }
   .popup-offer__button {
     font-size: 1.5rem;
+  }
+}
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
+.linktree-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+}
+
+/* =========================
+   PROFILE
+========================= */
+.profile {
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* LOGO */
+.logo {
+  width: clamp(90px, 40vw, 180px);
+  height: clamp(90px, 40vw, 180px);
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border: 2px solid #22d3ee;
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+}
+
+/* =========================
+   BRAND TITLE (GRADIENT PRO)
+========================= */
+.brand-title {
+  font-size: clamp(20px, 2.6vw, 32px);
+  font-weight: 700;
+  margin: 6px 0;
+  background: linear-gradient(90deg, #22d3ee, #3b82f6, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.25));
+  letter-spacing: 0.5px;
+}
+
+/* TAGLINE */
+.tagline {
+  display: block;
+  font-size: clamp(12px, 1.4vw, 14px);
+  color: #22d3ee;
+  margin-bottom: 2px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+/* DESCRIPTION */
+.description {
+  max-width: 420px;
+  font-size: clamp(13px, 1.5vw, 15px);
+  opacity: 0.85;
+  line-height: 1.6;
+  margin-bottom: 7px;
+}
+
+/* SOCIAL HINT */
+.social-hint {
+  margin-top: 0px;
+  font-size: 13px;
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.social-hint span::after {
+  content: "";
+  display: block;
+  width: 155px;
+  height: 2px;
+  margin: 6px auto 0;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #22d3ee, transparent);
+  background-size: 200% 100%;
+  animation: lineMove 1.8s linear infinite;
+}
+
+/* ANIMACIÓN */
+@keyframes lineMove {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+/* =========================
+   LINKS CONTAINER
+========================= */
+.links {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* =========================
+   LINK CARD
+========================= */
+.link-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px;
+  background: #1e293b;
+  border-radius: 14px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* HOVER CARD */
+.link-card:hover {
+  background: #22d3ee;
+  color: #0f172a;
+  transform: translateY(-3px);
+}
+
+/* =========================
+   ICON BOX
+========================= */
+.icon-box {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0f172a;
+  border-radius: 12px;
+  flex-shrink: 0;
+  transition: 0.3s ease;
+}
+
+/* SVG ICON */
+.icon-box svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ICON HOVER */
+.link-card:hover .icon-box {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* TEXT */
+.link-card span {
+  font-size: clamp(14px, 1.6vw, 16px);
+  font-weight: 500;
+}
+
+/* =========================
+   RESPONSIVE SMALL
+========================= */
+@media (max-width: 480px) {
+  .linktree-container {
+    padding: 25px 15px;
+  }
+  .links {
+    max-width: 100%;
+  }
+  .link-card {
+    padding: 8px;
+  }
+  .icon-box {
+    width: 40px;
+    height: 40px;
+  }
+}
+/* =========================
+   LARGE SCREENS
+========================= */
+@media (min-width: 1200px) {
+  .links {
+    max-width: 480px;
+  }
+  .link-card {
+    padding: 12px;
+  }
+  .icon-box {
+    width: 48px;
+    height: 48px;
   }
 }
 /* =========================
